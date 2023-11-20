@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://bu7m6t24bv5l7"]
+
+[ext_resource type="Script" path="res://scripts/StudentBtn.gd" id="1_lplfa"]
+[ext_resource type="Script" path="res://scripts/DeanBtn.gd" id="2_dd0j5"]
+
+[node name="StartMenu" type="Node2D"]
+
+[node name="StudentBtn" type="Button" parent="."]
+offset_left = 238.0
+offset_top = 175.0
+offset_right = 447.0
+offset_bottom = 279.0
+theme_override_font_sizes/font_size = 30
+text = "Student
+"
+script = ExtResource("1_lplfa")
+
+[node name="DeanBtn" type="Button" parent="."]
+offset_left = 679.0
+offset_top = 175.0
+offset_right = 902.0
+offset_bottom = 276.0
+theme_override_font_sizes/font_size = 30
+text = "Dean
+"
+script = ExtResource("2_dd0j5")
+
+[connection signal="button_up" from="StudentBtn" to="StudentBtn" method="_on_button_up"]
+[connection signal="button_up" from="DeanBtn" to="DeanBtn" method="_on_button_up"]
