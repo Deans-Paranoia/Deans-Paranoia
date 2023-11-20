@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://dm1vrnv5e47gm"]
+
+[ext_resource type="PackedScene" uid="uid://d3ccjideg1avb" path="res://scenes/player.tscn" id="1_hbpgo"]
+[ext_resource type="Script" path="res://scripts/deanInput.gd" id="2_14kl1"]
+
+[node name="Dean" instance=ExtResource("1_hbpgo")]
+script = ExtResource("2_14kl1")

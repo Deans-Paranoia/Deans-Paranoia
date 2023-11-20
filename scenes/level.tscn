@@ -1,7 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://podb4rxtyveg"]
+[gd_scene load_steps=3 format=3 uid="uid://podb4rxtyveg"]
 
 [ext_resource type="PackedScene" uid="uid://d3ccjideg1avb" path="res://scenes/player.tscn" id="1_8v81b"]
+[ext_resource type="PackedScene" uid="uid://dm1vrnv5e47gm" path="res://scenes/dean.tscn" id="2_pny1u"]
 
 [node name="level" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_8v81b")]
+position = Vector2(562, 303)
+
+[node name="Dean" parent="." instance=ExtResource("2_pny1u")]
