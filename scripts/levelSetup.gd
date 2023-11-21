@@ -1,7 +1,7 @@
 extends Node
 
 # wczytuje globalną zmienną player_type
-var player_type = Engine.get_singleton("Singleton").player_type
+var player_type = Engine.get_singleton("global").player_type
 
 # preloaduje do pamięci zwykłego gracza
 @onready var player_scene = preload("res://scenes/player.tscn")
