@@ -32,6 +32,7 @@ func use_terminal():
 func use_elevator():
 	pass
 
+#write your logic for player here, also create server scene and you can attach a script for this scene
 func use_server():
 	pass
 	
