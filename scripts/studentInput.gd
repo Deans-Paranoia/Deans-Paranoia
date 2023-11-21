@@ -28,7 +28,7 @@ func dig():
 
 func use_terminal():
 	pass
-
+#write your logic for student here, also create elevator scene and you can attach a script for this scene
 func use_elevator():
 	pass
 
