@@ -6,7 +6,7 @@ var can_move: bool
 
 func acquire_booster():
 	pass
-
+#write your logic for student here, also create fireAlarm scene and you can attach a script for this scene
 func sabotage_alarm():
 	pass
 

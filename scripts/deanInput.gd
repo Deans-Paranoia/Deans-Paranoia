@@ -17,7 +17,7 @@ func manage_deans_tablet():
 
 func catch_student():
 	pass
-
+#write your logic for dean here, also create fireAlarm scene and you can attach a script for this scene
 func ring_fire_alarm():
 	pass
 
