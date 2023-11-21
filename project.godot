@@ -17,7 +17,7 @@ config/icon="res://assets/icon.svg"
 
 [autoload]
 
-globalScript="*res://scripts/Singleton.gd"
+globalScript="*res://scripts/global.gd"
 
 [dotnet]
 
