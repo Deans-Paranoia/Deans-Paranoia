@@ -22,7 +22,9 @@ func acquire_booster():
 
 func sabotage_alarm():
 	print("Alarm sabotaged")
-
+	pass
+	
+#write your logic for student here, also create obstacle scene and you can attach a script for this scene
 func dig():
 	pass
 
