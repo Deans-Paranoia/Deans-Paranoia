@@ -23,6 +23,10 @@ globalScript="*res://scripts/global.gd"
 
 project/assembly_name="Dean-s Paranoia"
 
+[filesystem]
+
+import/blender/enabled=false
+
 [input]
 
 up={
