@@ -2,9 +2,8 @@ extends Node2D
 
 var can_use_alarm : bool = false
 # sprawdza czy znajduje sie w strefie gdzie mozna odpalic alarm
-
+var can_move: bool
 var has_booster: bool
-
 var temp_speed
 
 func _process(_delta):
@@ -16,6 +15,9 @@ func _process(_delta):
 			stop_player_movement()
 			$CharacterBody2D/FreezeTimer.start()
 
+
+
+#write your logic for student here, also create booster scene and you can attach a script for this scene
 func acquire_booster():
 	pass
 #write your logic for student here, also create fireAlarm scene and you can attach a script for this scene
