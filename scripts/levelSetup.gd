@@ -25,7 +25,3 @@ func _replace_player():
 			current_player = preload("res://scenes/student.tscn").instantiate()
 
 	add_child(current_player)
-
-
-func _on_fire_alarm_player_entered_fire_alarm_zone():
-	print("Player has entered the gate")

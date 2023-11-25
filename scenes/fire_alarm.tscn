@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://ci2w51qx0u74u"]
+
+[ext_resource type="Script" path="res://scripts/fireAlarmSetup.gd" id="1_55pn0"]
+[ext_resource type="Texture2D" uid="uid://dur1x7juguii1" path="res://assets/fireAlarm.jpg" id="2_ofswb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t8uc6"]
+size = Vector2(85, 78.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iqthm"]
+size = Vector2(128, 97)
+
+[node name="fire_alarm" type="Node"]
+script = ExtResource("1_55pn0")
+
+[node name="FireAlarm" type="StaticBody2D" parent="."]
+
+[node name="FireAlarm" type="Sprite2D" parent="FireAlarm"]
+position = Vector2(1071, 72.0001)
+scale = Vector2(0.0823334, 0.065)
+texture = ExtResource("2_ofswb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FireAlarm"]
+position = Vector2(1071, 69)
+shape = SubResource("RectangleShape2D_t8uc6")
+
+[node name="FireAlarmArea" type="Area2D" parent="FireAlarm"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FireAlarm/FireAlarmArea"]
+position = Vector2(1069, 72)
+shape = SubResource("RectangleShape2D_iqthm")
+
+[connection signal="area_entered" from="FireAlarm/FireAlarmArea" to="FireAlarm" method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="FireAlarm/FireAlarmArea" to="FireAlarm" method="_on_area_2d_body_entered"]
