@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://podb4rxtyveg"]
+[gd_scene load_steps=3 format=3 uid="uid://podb4rxtyveg"]
 
 [ext_resource type="Script" path="res://scripts/levelSetup.gd" id="1_xklf6"]
+[ext_resource type="PackedScene" uid="uid://ci2w51qx0u74u" path="res://scenes/fire_alarm.tscn" id="2_y0lwb"]
 
 [node name="level" type="Node2D"]
 script = ExtResource("1_xklf6")
+
+[node name="fire_alarm" parent="." instance=ExtResource("2_y0lwb")]
