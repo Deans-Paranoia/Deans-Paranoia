@@ -1,24 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://d3ccjideg1avb"]
+[gd_scene load_steps=5 format=3 uid="uid://d3ccjideg1avb"]
 
 [ext_resource type="Script" path="res://scripts/movementInput.gd" id="1_yo5wt"]
 [ext_resource type="Texture2D" uid="uid://b7hx6nra362b" path="res://assets/icon.svg" id="2_kk7ku"]
-
-[sub_resource type="GDScript" id="GDScript_stsgf"]
-script/source = "extends Node2D
-
-var can_use_alarm : bool = false
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-	
-"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jbpbo"]
 size = Vector2(129, 127)
@@ -27,7 +10,6 @@ size = Vector2(129, 127)
 size = Vector2(136, 133)
 
 [node name="Player" type="Node2D"]
-script = SubResource("GDScript_stsgf")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 script = ExtResource("1_yo5wt")

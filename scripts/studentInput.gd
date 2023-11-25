@@ -7,7 +7,7 @@ var has_booster: bool
 
 var temp_speed
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("use_alarm"):
 		var fire_alarm_reference = get_node("../fire_alarm")
 		if fire_alarm_reference.useable and can_use_alarm:
