@@ -1,6 +1,7 @@
 extends Node2D
 
 var can_use_alarm : bool = false
+# sprawdza czy znajduje sie w strefie gdzie mozna odpalic alarm
 
 var has_booster: bool
 
@@ -35,19 +36,23 @@ func use_server():
 	pass
 	
 func _on_player_area_area_entered(area):
+	#metoda do rejestrowanie aktualnie area, do ktorej weszlismy
 	var area_entered = area.get_name()
 	if (area_entered == "FireAlarmArea"):
 		can_use_alarm = true
 
 func _on_player_area_area_exited(area):
+	#metoda do rejestrowania aktualnie opuszczonej area
 	var area_exited = area.get_name()
 	if (area_exited == "FireAlarmArea"):
 		can_use_alarm = false
 
 func stop_player_movement():
+	#metoda do zatrzymania movementu studenta, zbiera aktualna predkosc i przechowuje ja w temp_speed
 	temp_speed = $CharacterBody2D.take_current_speed_value()
 	$CharacterBody2D.stop_player_movement()
 
 
 func _on_freeze_timer_timeout():
+	#metoda, ktora po skonczeniu timera przywraca stary movement studentowi
 	$CharacterBody2D.restore_player_movement(temp_speed)

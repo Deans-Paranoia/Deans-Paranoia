@@ -1,6 +1,7 @@
 extends Node2D
 
 var can_use_alarm : bool = false
+# sprawdza czy znajduje sie w strefie gdzie mozna odpalic alarm
 
 var is_tablet_open: bool = false
 # sprawdza czy wywołana została akcja "open_tablet" i wywołuje odpowiednią funkcję
@@ -35,11 +36,13 @@ func kick_student():
 	pass
 	
 func _on_player_area_area_entered(area):
+	#metoda do rejestrowanie aktualnie area, do ktorej weszlismy
 	var area_entered = area.get_name()
 	if (area_entered == "FireAlarmArea"):
 		can_use_alarm = true
 
 func _on_player_area_area_exited(area):
+	#metoda do rejestrowania aktualnie opuszczonej are
 	var area_exited = area.get_name()
 	if (area_exited == "FireAlarmArea"):
 		can_use_alarm = false

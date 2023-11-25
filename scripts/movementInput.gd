@@ -18,11 +18,14 @@ func calculate_velocity():
 	return direction.normalized() * speed
 	
 func take_current_speed_value() -> int:
+	#metoda zwraca aktualna wartosc speed
 	return speed
 
 func stop_player_movement():
+	#metoda do zastopowania playera (jego movementu)
 	speed = 0
 	
 func restore_player_movement(tempspeed):
+	#metoda do przywrocenia dawnego movementu
 	speed = tempspeed
 	
