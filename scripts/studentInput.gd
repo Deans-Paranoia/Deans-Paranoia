@@ -4,7 +4,7 @@ var can_use_alarm : bool = false
 
 var has_booster: bool
 
-var can_move: bool = false
+var temp_speed
 
 func _process(delta):
 	if Input.is_action_just_pressed("use_alarm"):
@@ -12,7 +12,8 @@ func _process(delta):
 		if fire_alarm_reference.useable and can_use_alarm:
 			sabotage_alarm()
 			fire_alarm_reference.useable = false
-			can_move = false 
+			stop_player_movement()
+			$CharacterBody2D/FreezeTimer.start()
 
 func acquire_booster():
 	pass
@@ -43,3 +44,10 @@ func _on_player_area_area_exited(area):
 	if (area_exited == "FireAlarmArea"):
 		can_use_alarm = false
 
+func stop_player_movement():
+	temp_speed = $CharacterBody2D.take_current_speed_value()
+	$CharacterBody2D.stop_player_movement()
+
+
+func _on_freeze_timer_timeout():
+	$CharacterBody2D.restore_player_movement(temp_speed)

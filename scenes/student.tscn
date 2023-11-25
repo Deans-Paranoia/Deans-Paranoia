@@ -18,7 +18,7 @@ texture = ExtResource("3_02yls")
 process_callback = 0
 wait_time = 2.0
 
-[connection signal="timeout" from="CharacterBody2D/FreezeTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="CharacterBody2D/FreezeTimer" to="." method="_on_freeze_timer_timeout"]
+[connection signal="timeout" from="CharacterBody2D/FreezeTimer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="CharacterBody2D/PlayerArea" to="." method="_on_player_area_area_entered"]
 [connection signal="area_exited" from="CharacterBody2D/PlayerArea" to="." method="_on_player_area_area_exited"]

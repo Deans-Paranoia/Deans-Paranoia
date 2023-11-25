@@ -17,3 +17,12 @@ func calculate_velocity():
 	var direction = Input.get_vector("left","right","up","down")
 	return direction.normalized() * speed
 	
+func take_current_speed_value() -> int:
+	return speed
+
+func stop_player_movement():
+	speed = 0
+	
+func restore_player_movement(tempspeed):
+	speed = tempspeed
+	
