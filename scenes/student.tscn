@@ -13,3 +13,10 @@ position = Vector2(575, 325)
 [node name="Sprite2D" parent="CharacterBody2D" index="0"]
 scale = Vector2(0.42, 0.42)
 texture = ExtResource("3_02yls")
+
+[node name="FreezeTimer" type="Timer" parent="CharacterBody2D" index="2"]
+process_callback = 0
+wait_time = 2.0
+
+[connection signal="timeout" from="CharacterBody2D/FreezeTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="CharacterBody2D/FreezeTimer" to="." method="_on_freeze_timer_timeout"]

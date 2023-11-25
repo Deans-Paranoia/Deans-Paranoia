@@ -1,6 +1,37 @@
-[gd_scene load_steps=2 format=3 uid="uid://podb4rxtyveg"]
+[gd_scene load_steps=6 format=3 uid="uid://podb4rxtyveg"]
 
 [ext_resource type="Script" path="res://scripts/levelSetup.gd" id="1_xklf6"]
+[ext_resource type="Texture2D" uid="uid://dur1x7juguii1" path="res://assets/fireAlarm.jpg" id="2_06qna"]
+[ext_resource type="Script" path="res://scripts/fireAlarm.gd" id="2_t5sa4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rgs70"]
+size = Vector2(85, 78.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oa8qo"]
+size = Vector2(128, 97)
 
 [node name="level" type="Node2D"]
 script = ExtResource("1_xklf6")
+
+[node name="FireAlarm" type="StaticBody2D" parent="."]
+script = ExtResource("2_t5sa4")
+
+[node name="FireAlarm" type="Sprite2D" parent="FireAlarm"]
+position = Vector2(143.25, 95.25)
+scale = Vector2(0.0823334, 0.065)
+texture = ExtResource("2_06qna")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FireAlarm"]
+position = Vector2(143, 95)
+shape = SubResource("RectangleShape2D_rgs70")
+
+[node name="Area2D" type="Area2D" parent="FireAlarm"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FireAlarm/Area2D"]
+position = Vector2(143, 95.5)
+shape = SubResource("RectangleShape2D_oa8qo")
+
+[connection signal="player_entered_fire_alarm_zone" from="FireAlarm" to="." method="_on_fire_alarm_player_entered_fire_alarm_zone"]
+[connection signal="area_entered" from="FireAlarm/Area2D" to="FireAlarm" method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="FireAlarm/Area2D" to="." method="_on_fire_alarm_2d_body_entered"]
+[connection signal="body_entered" from="FireAlarm/Area2D" to="FireAlarm" method="_on_area_2d_body_entered"]
