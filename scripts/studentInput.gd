@@ -65,13 +65,15 @@ func _on_freeze_timer_timeout():
 	
 func _on_digging_timer_timeout():
 	#metoda po skończeniu DiggingTimer niszczy obstacle
-	obstacle_instance.destroy_obstacle()
+	if (obstacle_instance != null):
+		obstacle_instance.destroy_obstacle()
+		obstacle_instance = null
 	
 func _on_student_entered_obstacle_area(obstacle):
 	#metoda przechwytuje sygnał wysłany przez obstacle jeśli student się zbliży do przeszkody
 	obstacle_instance = obstacle
 	
-func _on_student_exited_obstacle_area(body):
+func _on_student_exited_obstacle_area(_body):
 	#metoda przechwytuje sygnał wysłany przez obstacle jeśli student się oddali do przeszkody
 	obstacle_instance = null
 
