@@ -23,10 +23,9 @@ func _input(event):
 	if event.is_action_pressed("use_boost") and not has_booster:
 		var booster = get_node("../booster")
 		
-		# sprawdzenie czy gracz w pobliżu boostera
+		# sprawdzenie czy gracz w pobliżu boostera, jesli tak to daje boosta
 		var distance = $CharacterBody2D.global_position.distance_to(booster.global_position)
 
-		# jeśli ten warunek jest spełniony gracz dostaje boosta
 		if distance < 50.0:
 			booster.on_boost_requested() # usuniecie boostera
 			
