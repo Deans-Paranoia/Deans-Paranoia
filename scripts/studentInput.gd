@@ -21,23 +21,23 @@ func _process(_delta):
 func _input(event):
 	
 	if event.is_action_pressed("use_boost") and not has_booster:
-		var boosters = get_tree().get_nodes_in_group("boosters")
+		var booster = get_node("../booster")
 		
-		# sprawdzenie czy gracz w pobliżu jakiegoś boosta
-		for booster in boosters:
-			var distance = $CharacterBody2D.global_position.distance_to(booster.global_position)
+		# sprawdzenie czy gracz w pobliżu boostera
+		var distance = $CharacterBody2D.global_position.distance_to(booster.global_position)
 
-			# jeśli ten warunek jest spełniony gracz dostaje boosta
-			if distance < 50.0 and booster.visible:
-				has_booster = true
-				booster.on_boost_requested()
-				# boost
-				acquire_booster()
+		# jeśli ten warunek jest spełniony gracz dostaje boosta
+		if distance < 50.0:
+			booster.on_boost_requested() # usuniecie boostera
+			
+			# boost
+			acquire_booster()
 
 #write your logic for student here, also create booster scene and you can attach a script for this scene
 func acquire_booster():
+	has_booster = true
 	print("Boost taken")
-	has_booster = false
+	
 #write your logic for student here, also create fireAlarm scene and you can attach a script for this scene
 
 func sabotage_alarm():
