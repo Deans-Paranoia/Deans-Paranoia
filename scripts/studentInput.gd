@@ -2,11 +2,13 @@ extends Node2D
 
 var can_use_alarm : bool = false
 # sprawdza czy znajduje sie w strefie gdzie mozna odpalic alarm
-
-var has_booster: bool
-
+var can_move: bool
+var has_booster: bool = false
 var temp_speed
 
+func _ready():
+	set_process_input(true)
+	
 func _process(_delta):
 	if Input.is_action_just_pressed("use_alarm"):
 		var fire_alarm_reference = get_node("../fire_alarm")
@@ -16,8 +18,25 @@ func _process(_delta):
 			stop_player_movement()
 			$CharacterBody2D/FreezeTimer.start()
 
+func _input(event):
+	
+	if event.is_action_pressed("use_boost") and not has_booster:
+		var booster = get_node("../booster")
+		
+		# sprawdzenie czy gracz w pobliżu boostera, jesli tak to daje boosta
+		var distance = $CharacterBody2D.global_position.distance_to(booster.global_position)
+
+		if distance < 50.0:
+			booster.on_boost_requested() # usuniecie boostera
+			
+			# boost
+			acquire_booster()
+
+#write your logic for student here, also create booster scene and you can attach a script for this scene
 func acquire_booster():
-	pass
+	has_booster = true
+	print("Boost taken")
+	
 #write your logic for student here, also create fireAlarm scene and you can attach a script for this scene
 
 func sabotage_alarm():
