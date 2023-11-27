@@ -3,11 +3,17 @@
 [ext_resource type="Script" path="res://scripts/levelSetup.gd" id="1_xklf6"]
 [ext_resource type="PackedScene" uid="uid://ci2w51qx0u74u" path="res://scenes/fire_alarm.tscn" id="2_y0lwb"]
 [ext_resource type="PackedScene" uid="uid://bsgmwg36gvtxu" path="res://scenes/server.tscn" id="3_00481"]
+[ext_resource type="PackedScene" uid="uid://b4jtyggr1i1y5" path="res://scenes/booster.tscn" id="3_ikbec"]
 
 [node name="level" type="Node2D"]
 script = ExtResource("1_xklf6")
 
 [node name="fire_alarm" parent="." instance=ExtResource("2_y0lwb")]
 
+
 [node name="server" parent="." instance=ExtResource("3_00481")]
 position = Vector2(347, 268)
+
+[node name="booster" parent="." instance=ExtResource("3_ikbec")]
+position = Vector2(1061, 568)
+
