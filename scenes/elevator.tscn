@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://ci4moycif5owm"]
+
+[ext_resource type="Texture2D" uid="uid://ci64siyoeogpo" path="res://assets/elevator.png" id="1_iro4j"]
+[ext_resource type="Script" path="res://scripts/elevatorSetup.gd" id="1_sgu5p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6lwfo"]
+size = Vector2(90, 157)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_52sja"]
+size = Vector2(136, 157)
+
+[node name="elevator" type="Node"]
+script = ExtResource("1_sgu5p")
+
+[node name="Elevator" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Elevator"]
+position = Vector2(575, 567.5)
+shape = SubResource("RectangleShape2D_6lwfo")
+
+[node name="Elevator" type="Sprite2D" parent="Elevator"]
+position = Vector2(575, 554)
+scale = Vector2(0.248047, 0.367187)
+texture = ExtResource("1_iro4j")
+
+[node name="ElevatorArea" type="Area2D" parent="Elevator"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Elevator/ElevatorArea"]
+position = Vector2(575, 567.5)
+shape = SubResource("RectangleShape2D_52sja")
