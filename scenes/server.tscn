@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bsgmwg36gvtxu"]
+[gd_scene load_steps=5 format=3 uid="uid://bsgmwg36gvtxu"]
 
 [ext_resource type="Texture2D" uid="uid://71m2ld2gmwu" path="res://assets/server.png" id="1_mkupf"]
+[ext_resource type="Script" path="res://scripts/server.gd" id="1_xfjyh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tvtru"]
 size = Vector2(294, 131)
@@ -9,6 +10,7 @@ size = Vector2(294, 131)
 size = Vector2(362, 209)
 
 [node name="server" type="Node2D"]
+script = ExtResource("1_xfjyh")
 
 [node name="body" type="StaticBody2D" parent="."]
 
