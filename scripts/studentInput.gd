@@ -21,6 +21,7 @@ func _process(_delta):
 	if Input.is_action_just_pressed("use_server"):
 		if can_use_server:
 			use_server()
+			
 
 func acquire_booster():
 	pass
@@ -37,10 +38,15 @@ func use_terminal():
 
 func use_elevator():
 	pass
-
 #write your logic for player here, also create server scene and you can attach a script for this scene
 func use_server():
-	print("server opened")
+	var serverOpened = get_node("../server")
+	if serverOpened.server_opened == false:
+		print("server opened")
+		serverOpened.server_opened = true
+	else:
+		print("server closed")
+		serverOpened.server_opened = false
 	
 func _on_player_area_area_entered(area):
 	#metoda do rejestrowanie aktualnie area, do ktorej weszlismy
