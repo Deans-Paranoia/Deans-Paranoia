@@ -13,15 +13,18 @@ var can_use_booster: bool = false
 # sprawdza czy znajduje sie w strefie gdzie mozna uzyc boostera
 
 var has_booster: bool = false
+# sprawdza czy student posiada booster
 
 var can_move: bool
 
 var temp_speed
+# zmienna przechowujaca tymczasowa predkosc
 
 func _ready():
 	set_process_input(true)
 	
 func _input(event):
+	# event do obslugi alarmu przez studenta
 	if event.is_action_pressed("use_alarm"):
 		var fire_alarm_reference = get_node("../fire_alarm")
 		if fire_alarm_reference.useable and can_use_alarm:
@@ -30,16 +33,18 @@ func _input(event):
 			stop_player_movement()
 			$CharacterBody2D/FreezeTimer.start()
 
+	# event do obslugi serwera przez studenta
 	if event.is_action_pressed("use_server"):
 		if can_use_server:
 			use_server()
 			
-
+	# event do obslugi windy przez studenta
 	if event.is_action_pressed("use_elevator"):
 		var elevator_reference = get_node("../elevator")
 		if can_use_elevator:
 			use_elevator()
-			
+	
+	# event do obslugi boostera przez studenta
 	if event.is_action_pressed("use_boost") and not has_booster:
 		var booster = get_node("../booster")
 		
@@ -47,29 +52,15 @@ func _input(event):
 			# usuniecie boostera
 			booster.on_boost_requested() 
 			
-			# boost
+			# nadanie boosta
 			acquire_booster()
 
-#write your logic for student here, also create booster scene and you can attach a script for this scene
-func acquire_booster():
-	has_booster = true
-	print("Boost taken")
-	
-#write your logic for student here, also create fireAlarm scene and you can attach a script for this scene
-
 func sabotage_alarm():
+	# funkcja do sabotowania alarmu przez studenta
 	print("Alarm sabotaged")
-
-func dig():
-	pass
-
-func use_terminal():
-	pass
-#write your logic for student here, also create elevator scene and you can attach a script for this scene
-func use_elevator():
-	print("Elevator works!")
-
+	
 func use_server():
+	# funkcja do uzywania serwera przez studenta
 	var serverOpened = get_node("../server")
 	if serverOpened.server_opened == false:
 		print("server opened")
@@ -78,8 +69,24 @@ func use_server():
 		print("server closed")
 		serverOpened.server_opened = false
 	
+func use_elevator():
+	# funkcja do uzywania windy przez studenta
+	print("Elevator works!")
+	
+func acquire_booster():
+	# funkcja nadajaca booster dla studenta
+	has_booster = true
+	print("Boost taken")
+	
+
+func dig():
+	pass
+
+func use_terminal():
+	pass
+
 func _on_player_area_area_entered(area):
-	#metoda do rejestrowanie aktualnie area, do ktorej weszlismy
+	#funkcja do rejestrowanie aktualnie area, do ktorej weszlismy
 	var area_entered = area.get_name()
 	if (area_entered == "FireAlarmArea"):
 		can_use_alarm = true
@@ -93,9 +100,8 @@ func _on_player_area_area_entered(area):
 	if (area_entered == "BoosterArea"):
 		can_use_booster = true
 
-
 func _on_player_area_area_exited(area):
-	#metoda do rejestrowania aktualnie opuszczonej area
+	#funkcja  do rejestrowania aktualnie opuszczonej area
 	var area_exited = area.get_name()
 	if (area_exited == "FireAlarmArea"):
 		can_use_alarm = false
@@ -109,13 +115,11 @@ func _on_player_area_area_exited(area):
 	if (area_exited == "BoosterArea"):
 		can_use_elevator = false
 
-
 func stop_player_movement():
-	#metoda do zatrzymania movementu studenta, zbiera aktualna predkosc i przechowuje ja w temp_speed
+	#funkcja  do zatrzymania movementu studenta, zbiera aktualna predkosc i przechowuje ja w temp_speed
 	temp_speed = $CharacterBody2D.take_current_speed_value()
 	$CharacterBody2D.stop_player_movement()
 
-
 func _on_freeze_timer_timeout():
-	#metoda, ktora po skonczeniu timera przywraca stary movement studentowi
+	#funkcja, ktora po skonczeniu timera przywraca stary movement studentowi
 	$CharacterBody2D.restore_player_movement(temp_speed)
