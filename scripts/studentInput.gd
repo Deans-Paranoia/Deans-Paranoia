@@ -24,8 +24,9 @@ func _ready():
 	set_process_input(true)
 	
 func _input(event):
-	# event do obslugi alarmu przez studenta
-	if event.is_action_pressed("use_alarm"):
+	# interakcja z obiektami 
+	if event.is_action_pressed("interaction"):
+		# bsluga alarmu przez studenta
 		var fire_alarm_reference = get_node("../fire_alarm")
 		if fire_alarm_reference.useable and can_use_alarm:
 			sabotage_alarm()
@@ -33,27 +34,25 @@ func _input(event):
 			stop_player_movement()
 			$CharacterBody2D/FreezeTimer.start()
 
-	# event do obslugi serwera przez studenta
-	if event.is_action_pressed("use_server"):
+		# obsluga serwera przez studenta
 		if can_use_server:
 			use_server()
 			
-	# event do obslugi windy przez studenta
-	if event.is_action_pressed("use_elevator"):
+		# obsluga windy przez studenta
 		var elevator_reference = get_node("../elevator")
 		if can_use_elevator:
 			use_elevator()
-	
-	# event do obslugi boostera przez studenta
-	if event.is_action_pressed("use_boost") and not has_booster:
-		var booster = get_node("../booster")
 		
-		if can_use_booster:
-			# usuniecie boostera
-			booster.on_boost_requested() 
+		# obsluga boostera przez studenta
+		if can_use_booster and !has_booster:
+			var booster = get_node("../booster")
+		
+			if can_use_booster:
+				# usuniecie boostera
+				booster.on_boost_requested() 
 			
-			# nadanie boosta
-			acquire_booster()
+				# nadanie boosta
+				acquire_booster()
 
 func sabotage_alarm():
 	# funkcja do sabotowania alarmu przez studenta
@@ -61,13 +60,13 @@ func sabotage_alarm():
 	
 func use_server():
 	# funkcja do uzywania serwera przez studenta
-	var serverOpened = get_node("../server")
-	if serverOpened.server_opened == false:
+	var server_reference = get_node("../server")
+	if server_reference.server_opened == false:
 		print("server opened")
-		serverOpened.server_opened = true
+		server_reference.server_opened = true
 	else:
 		print("server closed")
-		serverOpened.server_opened = false
+		server_reference.server_opened = false
 	
 func use_elevator():
 	# funkcja do uzywania windy przez studenta

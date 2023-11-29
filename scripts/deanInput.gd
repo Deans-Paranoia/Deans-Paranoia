@@ -11,8 +11,9 @@ func _input(event):
 	if event.is_action_pressed("open_tablet"):
 		manage_deans_tablet()
 	
-	# event do obslugi alarmu przez dziekana
-	if event.is_action_pressed("use_alarm"):
+	# event do interakcji z obiektami przez dziekana
+	if event.is_action_pressed("interaction"):
+		# obsluga alarmu
 		var fire_alarm_reference = get_node("../fire_alarm")
 		if fire_alarm_reference.useable and can_use_alarm:
 			ring_fire_alarm()
