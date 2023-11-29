@@ -6,16 +6,15 @@ var can_use_alarm : bool = false
 var is_tablet_open: bool = false
 # sprawdza czy wywołana została akcja "open_tablet" i wywołuje odpowiednią funkcję
 
-func _process(_delta):
-	if Input.is_action_just_pressed("open_tablet"):
+func _input(event):
+	if event.is_action_pressed("open_tablet"):
 		manage_deans_tablet()
 	
-	if Input.is_action_just_pressed("use_alarm"):
+	if event.is_action_pressed("use_alarm"):
 		var fire_alarm_reference = get_node("../fire_alarm")
 		if fire_alarm_reference.useable and can_use_alarm:
 			ring_fire_alarm()
 			fire_alarm_reference.useable = false
-			
 
 func manage_deans_tablet():
 	match is_tablet_open:

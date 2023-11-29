@@ -17,8 +17,8 @@ var temp_speed
 func _ready():
 	set_process_input(true)
 	
-func _process(_delta):
-	if Input.is_action_just_pressed("use_alarm"):
+func _input(event):
+	if event.is_action_pressed("use_alarm"):
 		var fire_alarm_reference = get_node("../fire_alarm")
 		if fire_alarm_reference.useable and can_use_alarm:
 			sabotage_alarm()
@@ -26,19 +26,16 @@ func _process(_delta):
 			stop_player_movement()
 			$CharacterBody2D/FreezeTimer.start()
 
-	if Input.is_action_just_pressed("use_server"):
+	if event.is_action_pressed("use_server"):
 		if can_use_server:
 			use_server()
 			
 
-	if Input.is_action_just_pressed("use_elevator"):
+	if event.is_action_pressed("use_elevator"):
 		var elevator_reference = get_node("../elevator")
 		if can_use_elevator:
 			use_elevator()
-
-
-func _input(event):
-	
+			
 	if event.is_action_pressed("use_boost") and not has_booster:
 		var booster = get_node("../booster")
 		
