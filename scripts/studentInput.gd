@@ -1,16 +1,20 @@
 extends Node2D
 
 var can_use_alarm : bool = false
-
 # sprawdza czy znajduje sie w strefie gdzie mozna odpalic alarm
 
 var can_use_server : bool = false
 # sprawdza czy znajduje sie w strefie gdzie mozna otworzyc serwer
-var can_move: bool
-var has_booster: bool = false
 
 var can_use_elevator: bool = false
-# Zmienna pomocna w kontroli położenia gracza w obszarze użycia któregoś z powyższych obiektów
+# sprawdza czy znajduje sie w strefie gdzie mozna uzyc windy
+
+var can_use_booster: bool = false
+# sprawdza czy znajduje sie w strefie gdzie mozna uzyc boostera
+
+var has_booster: bool = false
+
+var can_move: bool
 
 var temp_speed
 
@@ -39,11 +43,9 @@ func _input(event):
 	if event.is_action_pressed("use_boost") and not has_booster:
 		var booster = get_node("../booster")
 		
-		# sprawdzenie czy gracz w pobliżu boostera, jesli tak to daje boosta
-		var distance = $CharacterBody2D.global_position.distance_to(booster.global_position)
-
-		if distance < 50.0:
-			booster.on_boost_requested() # usuniecie boostera
+		if can_use_booster:
+			# usuniecie boostera
+			booster.on_boost_requested() 
 			
 			# boost
 			acquire_booster()
@@ -87,6 +89,9 @@ func _on_player_area_area_entered(area):
 
 	if (area_entered == "ElevatorArea"):
 		can_use_elevator = true
+		
+	if (area_entered == "BoosterArea"):
+		can_use_booster = true
 
 
 func _on_player_area_area_exited(area):
@@ -99,6 +104,9 @@ func _on_player_area_area_exited(area):
 		can_use_server = false
 
 	if (area_exited == "ElevatorArea"):
+		can_use_elevator = false
+		
+	if (area_exited == "BoosterArea"):
 		can_use_elevator = false
 
 
