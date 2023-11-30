@@ -7,7 +7,8 @@ var has_booster: bool
 
 var temp_speed
 
-var obstacle_instance = null
+var _obstacle_to_destroy
+var _is_space_pressed = false	
 
 func _process(_delta):
 	dig()
@@ -27,11 +28,22 @@ func sabotage_alarm():
 	print("Alarm sabotaged")
 	pass
 	
-#write your logic for student here, also create obstacle scene and you can attach a script for this scene
+#metoda usuwa obstacle po przytrzymaniu spacji, jeśli gracz znajduje się blisko przeszkody i jest zwrócony przodem do niej
 func dig():
-	if Input.is_action_pressed("dig") and obstacle_instance != null:
-		if _is_student_facing_obstacle(obstacle_instance):
-			$CharacterBody2D/DiggingTimer.start()
+	if Input.is_action_pressed("dig"):
+		var _is_facing_obstacle = false
+		var obstacles_nearby = $CharacterBody2D/PlayerArea.get_overlapping_bodies()
+		for obstacle in obstacles_nearby:
+			if obstacle.is_in_group("obstacles"):
+				_is_facing_obstacle = _is_student_facing_obstacle(obstacle)
+				if _is_facing_obstacle:
+					_obstacle_to_destroy = obstacle
+					if not _is_space_pressed:
+						_is_space_pressed = true
+						$CharacterBody2D/DiggingTimer.start()
+	else:
+		_is_space_pressed = false
+		$CharacterBody2D/DiggingTimer.stop()
 
 func use_terminal():
 	pass
@@ -65,20 +77,12 @@ func _on_freeze_timer_timeout():
 	
 func _on_digging_timer_timeout():
 	#metoda po skończeniu DiggingTimer niszczy obstacle
-	if (obstacle_instance != null):
-		obstacle_instance.destroy_obstacle()
-		obstacle_instance = null
-	
-func _on_student_entered_obstacle_area(obstacle):
-	#metoda przechwytuje sygnał wysłany przez obstacle jeśli student się zbliży do przeszkody
-	obstacle_instance = obstacle
-	
-func _on_student_exited_obstacle_area(_body):
-	#metoda przechwytuje sygnał wysłany przez obstacle jeśli student się oddali do przeszkody
-	obstacle_instance = null
+	if (_obstacle_to_destroy != null):
+		_obstacle_to_destroy.queue_free()
+		_obstacle_to_destroy = null
 
 func _is_student_facing_obstacle(obstacle):
-	#metoda sprawdza czy student jest zwrócony w strone obstacle
+	#metoda sprawdza czy student jest zwrócony w strone przeszkody
 	
 	var obstacle_position = obstacle.global_position
 	var student_position = $CharacterBody2D.global_position
