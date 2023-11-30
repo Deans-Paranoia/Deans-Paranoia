@@ -5,10 +5,16 @@
 
 [node name="fourthFloor" type="Node2D"]
 
-[node name="obstacle" parent="." instance=ExtResource("1_v26fx")]
-position = Vector2(279, 389)
-
 [node name="Student" parent="." instance=ExtResource("2_2h8jt")]
 
-[connection signal="student_entered_obstacle_area" from="obstacle" to="Student" method="_on_student_entered_obstacle_area"]
-[connection signal="student_exited_obstacle_area" from="obstacle" to="Student" method="_on_student_exited_obstacle_area"]
+[node name="obstacle" parent="." instance=ExtResource("1_v26fx")]
+position = Vector2(250, 389)
+
+[node name="obstacle2" parent="." instance=ExtResource("1_v26fx")]
+position = Vector2(834, 374)
+
+[node name="obstacle3" parent="." instance=ExtResource("1_v26fx")]
+position = Vector2(250, 502)
+
+[node name="obstacle4" parent="." instance=ExtResource("1_v26fx")]
+position = Vector2(250, 278)
