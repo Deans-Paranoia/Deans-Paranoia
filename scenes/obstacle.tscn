@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://qnl4o5vsa0va"]
+[gd_scene load_steps=4 format=3 uid="uid://qnl4o5vsa0va"]
 
 [ext_resource type="Texture2D" uid="uid://bypan81n23gog" path="res://assets/obstacle.png" id="1_0p38c"]
-[ext_resource type="Script" path="res://scripts/obstacle.gd" id="1_tvojf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_avtpj"]
 size = Vector2(121, 109)
@@ -10,7 +9,6 @@ size = Vector2(121, 109)
 size = Vector2(215.5, 203)
 
 [node name="obstacle" type="Node2D"]
-script = ExtResource("1_tvojf")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -25,6 +23,3 @@ shape = SubResource("RectangleShape2D_avtpj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/ObstacleArea"]
 shape = SubResource("RectangleShape2D_348qg")
-
-[connection signal="body_entered" from="StaticBody2D/ObstacleArea" to="." method="_on_obstacle_body_entered"]
-[connection signal="body_exited" from="StaticBody2D/ObstacleArea" to="." method="_on_obstacle_body_exited"]
