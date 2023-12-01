@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://gitmckv6idiq"]
+
+[ext_resource type="PackedScene" uid="uid://qnl4o5vsa0va" path="res://scenes/obstacle.tscn" id="1_v26fx"]
+[ext_resource type="PackedScene" uid="uid://y4kbm2l282iy" path="res://scenes/student.tscn" id="2_2h8jt"]
+
+[node name="fourthFloor" type="Node2D"]
+
+[node name="Student" parent="." instance=ExtResource("2_2h8jt")]
+
+[node name="obstacle" parent="." instance=ExtResource("1_v26fx")]
+position = Vector2(250, 389)
+
+[node name="obstacle2" parent="." instance=ExtResource("1_v26fx")]
+position = Vector2(834, 374)
+
+[node name="obstacle3" parent="." instance=ExtResource("1_v26fx")]
+position = Vector2(250, 502)
+
+[node name="obstacle4" parent="." instance=ExtResource("1_v26fx")]
+position = Vector2(250, 278)

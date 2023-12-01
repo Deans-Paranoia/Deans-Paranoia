@@ -20,13 +20,19 @@ var can_move: bool
 var temp_speed
 # zmienna przechowujaca tymczasowa predkosc
 
+var _obstacle_to_destroy
+var _is_space_pressed = false	
+var _dig_speed : float = 0.5
+
+func _process(_delta):
+	dig()
 func _ready():
 	set_process_input(true)
 	
 func _input(event):
 	# interakcja z obiektami 
 	if event.is_action_pressed("interaction"):
-		# bsluga alarmu przez studenta
+		# obsluga alarmu przez studenta
 		var fire_alarm_reference = get_node("../fire_alarm")
 		if fire_alarm_reference.useable and can_use_alarm:
 			sabotage_alarm()
@@ -78,8 +84,24 @@ func acquire_booster():
 	print("Boost taken")
 	
 
+	
+#metoda usuwa obstacle po przytrzymaniu spacji, jeśli gracz znajduje się blisko przeszkody i jest zwrócony przodem do niej
 func dig():
-	pass
+	if Input.is_action_pressed("dig"):
+		var _is_facing_obstacle = false
+		var obstacles_nearby = $CharacterBody2D/PlayerArea.get_overlapping_bodies()
+		for obstacle in obstacles_nearby:
+			if obstacle.is_in_group("obstacles"):
+				_is_facing_obstacle = _is_student_facing_obstacle(obstacle)
+				if _is_facing_obstacle:
+					_obstacle_to_destroy = obstacle
+					if not _is_space_pressed:
+						_is_space_pressed = true
+						$CharacterBody2D/DiggingTimer.wait_time = _dig_speed
+						$CharacterBody2D/DiggingTimer.start()
+	else:
+		_is_space_pressed = false
+		$CharacterBody2D/DiggingTimer.stop()
 
 func use_terminal():
 	pass
@@ -122,3 +144,31 @@ func stop_player_movement():
 func _on_freeze_timer_timeout():
 	#funkcja, ktora po skonczeniu timera przywraca stary movement studentowi
 	$CharacterBody2D.restore_player_movement(temp_speed)
+	
+func _on_digging_timer_timeout():
+	#metoda po skończeniu DiggingTimer niszczy obstacle
+	if (_obstacle_to_destroy != null):
+		_obstacle_to_destroy.queue_free()
+		_obstacle_to_destroy = null
+
+func _is_student_facing_obstacle(obstacle):
+	#metoda sprawdza czy student jest zwrócony w strone przeszkody
+	
+	var obstacle_position = obstacle.global_position
+	var student_position = $CharacterBody2D.global_position
+	var student_direction = $CharacterBody2D.last_direction
+
+	#Obliczamy wektor skierowany znormalizowany
+	var direction_to_obstacle = (obstacle_position - student_position).normalized()
+
+	if direction_to_obstacle.x < -0.95 and student_direction == Vector2(-1,0):
+		return true
+	elif direction_to_obstacle.x > 0.95 and student_direction == Vector2(1,0):
+		return true
+	elif direction_to_obstacle.y < -0.95 and student_direction == Vector2(0,-1):
+		return true
+	elif direction_to_obstacle.y > 0.95 and student_direction == Vector2(0,1):
+		return true
+	else:
+		return false
+
