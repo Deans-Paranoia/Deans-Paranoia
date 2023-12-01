@@ -24,8 +24,8 @@ var _obstacle_to_destroy
 var _is_space_pressed = false	
 var _dig_speed : float = 0.5
 
-func _process(_delta):
-	dig()
+#dfunc _process(_delta):
+	#dig()
 func _ready():
 	set_process_input(true)
 	
@@ -34,7 +34,7 @@ func _input(event):
 	if event.is_action_pressed("interaction"):
 		# obsluga alarmu przez studenta
 		var fire_alarm_reference = get_node("../fire_alarm")
-		if fire_alarm_reference.useable and can_use_alarm:
+		if fire_alarm_reference !=null and fire_alarm_reference.useable and can_use_alarm:
 			sabotage_alarm()
 			fire_alarm_reference.useable = false
 			stop_player_movement()
@@ -59,6 +59,11 @@ func _input(event):
 			
 				# nadanie boosta
 				acquire_booster()
+	elif event.is_action_pressed("dig"):
+		dig()
+	elif event.is_action_released("dig"):
+		stop_dig()
+		
 
 func sabotage_alarm():
 	# funkcja do sabotowania alarmu przez studenta
@@ -87,22 +92,21 @@ func acquire_booster():
 	
 #metoda usuwa obstacle po przytrzymaniu spacji, jeśli gracz znajduje się blisko przeszkody i jest zwrócony przodem do niej
 func dig():
-	if Input.is_action_pressed("dig"):
-		var _is_facing_obstacle = false
-		var obstacles_nearby = $CharacterBody2D/PlayerArea.get_overlapping_bodies()
-		for obstacle in obstacles_nearby:
-			if obstacle.is_in_group("obstacles"):
-				_is_facing_obstacle = _is_student_facing_obstacle(obstacle)
-				if _is_facing_obstacle:
-					_obstacle_to_destroy = obstacle
-					if not _is_space_pressed:
-						_is_space_pressed = true
-						$CharacterBody2D/DiggingTimer.wait_time = _dig_speed
-						$CharacterBody2D/DiggingTimer.start()
-	else:
-		_is_space_pressed = false
-		$CharacterBody2D/DiggingTimer.stop()
-
+	var _is_facing_obstacle = false
+	var obstacles_nearby = $CharacterBody2D/PlayerArea.get_overlapping_bodies()
+	for obstacle in obstacles_nearby:
+		if obstacle.is_in_group("obstacles"):
+			_is_facing_obstacle = _is_student_facing_obstacle(obstacle)
+			if _is_facing_obstacle:
+				_obstacle_to_destroy = obstacle
+				if not _is_space_pressed:
+					_is_space_pressed = true
+					$CharacterBody2D/DiggingTimer.wait_time = _dig_speed
+					$CharacterBody2D/DiggingTimer.start()
+		
+func stop_dig():
+	_is_space_pressed = false
+	$CharacterBody2D/DiggingTimer.stop()
 func use_terminal():
 	pass
 
