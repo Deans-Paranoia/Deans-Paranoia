@@ -9,6 +9,7 @@ var temp_speed
 
 var _obstacle_to_destroy
 var _is_space_pressed = false	
+var _dig_speed : float = 0.5
 
 func _process(_delta):
 	dig()
@@ -40,6 +41,7 @@ func dig():
 					_obstacle_to_destroy = obstacle
 					if not _is_space_pressed:
 						_is_space_pressed = true
+						$CharacterBody2D/DiggingTimer.wait_time = _dig_speed
 						$CharacterBody2D/DiggingTimer.start()
 	else:
 		_is_space_pressed = false
