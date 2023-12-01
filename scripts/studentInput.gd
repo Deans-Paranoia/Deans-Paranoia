@@ -33,7 +33,7 @@ func _input(event):
 	# interakcja z obiektami 
 	if event.is_action_pressed("interaction"):
 		# obsluga alarmu przez studenta
-		var fire_alarm_reference = get_node("../fire_alarm")
+		var fire_alarm_reference = get_node_or_null("../fire_alarm")
 		if fire_alarm_reference !=null and fire_alarm_reference.useable and can_use_alarm:
 			sabotage_alarm()
 			fire_alarm_reference.useable = false
@@ -45,13 +45,13 @@ func _input(event):
 			use_server()
 			
 		# obsluga windy przez studenta
-		var elevator_reference = get_node("../elevator")
+		var elevator_reference = get_node_or_null("../elevator")
 		if can_use_elevator:
 			use_elevator()
 		
 		# obsluga boostera przez studenta
 		if can_use_booster and !has_booster:
-			var booster = get_node("../booster")
+			var booster = get_node_or_null("../booster")
 		
 			if can_use_booster:
 				# usuniecie boostera
@@ -71,7 +71,7 @@ func sabotage_alarm():
 	
 func use_server():
 	# funkcja do uzywania serwera przez studenta
-	var server_reference = get_node("../server")
+	var server_reference = get_node_or_null("../server")
 	if server_reference.server_opened == false:
 		print("server opened")
 		server_reference.server_opened = true

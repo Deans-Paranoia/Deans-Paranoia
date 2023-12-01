@@ -14,7 +14,7 @@ position = Vector2(250, 389)
 position = Vector2(834, 374)
 
 [node name="obstacle3" parent="." instance=ExtResource("1_v26fx")]
-position = Vector2(250, 502)
+position = Vector2(249, 498)
 
 [node name="obstacle4" parent="." instance=ExtResource("1_v26fx")]
-position = Vector2(250, 278)
+position = Vector2(372, 388)
