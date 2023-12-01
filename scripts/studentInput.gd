@@ -3,9 +3,22 @@ extends Node2D
 var can_use_alarm : bool = false
 # sprawdza czy znajduje sie w strefie gdzie mozna odpalic alarm
 
-var has_booster: bool
+var can_use_server : bool = false
+# sprawdza czy znajduje sie w strefie gdzie mozna otworzyc serwer
+
+var can_use_elevator: bool = false
+# sprawdza czy znajduje sie w strefie gdzie mozna uzyc windy
+
+var can_use_booster: bool = false
+# sprawdza czy znajduje sie w strefie gdzie mozna uzyc boostera
+
+var has_booster: bool = false
+# sprawdza czy student posiada booster
+
+var can_move: bool
 
 var temp_speed
+# zmienna przechowujaca tymczasowa predkosc
 
 var _obstacle_to_destroy
 var _is_space_pressed = false	
@@ -13,7 +26,13 @@ var _dig_speed : float = 0.5
 
 func _process(_delta):
 	dig()
-	if Input.is_action_just_pressed("use_alarm"):
+func _ready():
+	set_process_input(true)
+	
+func _input(event):
+	# interakcja z obiektami 
+	if event.is_action_pressed("interaction"):
+		# obsluga alarmu przez studenta
 		var fire_alarm_reference = get_node("../fire_alarm")
 		if fire_alarm_reference.useable and can_use_alarm:
 			sabotage_alarm()
@@ -21,13 +40,50 @@ func _process(_delta):
 			stop_player_movement()
 			$CharacterBody2D/FreezeTimer.start()
 
-func acquire_booster():
-	pass
-#write your logic for student here, also create fireAlarm scene and you can attach a script for this scene
+		# obsluga serwera przez studenta
+		if can_use_server:
+			use_server()
+			
+		# obsluga windy przez studenta
+		var elevator_reference = get_node("../elevator")
+		if can_use_elevator:
+			use_elevator()
+		
+		# obsluga boostera przez studenta
+		if can_use_booster and !has_booster:
+			var booster = get_node("../booster")
+		
+			if can_use_booster:
+				# usuniecie boostera
+				booster.on_boost_requested() 
+			
+				# nadanie boosta
+				acquire_booster()
 
 func sabotage_alarm():
+	# funkcja do sabotowania alarmu przez studenta
 	print("Alarm sabotaged")
-	pass
+	
+func use_server():
+	# funkcja do uzywania serwera przez studenta
+	var server_reference = get_node("../server")
+	if server_reference.server_opened == false:
+		print("server opened")
+		server_reference.server_opened = true
+	else:
+		print("server closed")
+		server_reference.server_opened = false
+	
+func use_elevator():
+	# funkcja do uzywania windy przez studenta
+	print("Elevator works!")
+	
+func acquire_booster():
+	# funkcja nadajaca booster dla studenta
+	has_booster = true
+	print("Boost taken")
+	
+
 	
 #metoda usuwa obstacle po przytrzymaniu spacji, jeśli gracz znajduje się blisko przeszkody i jest zwrócony przodem do niej
 func dig():
@@ -50,31 +106,43 @@ func dig():
 func use_terminal():
 	pass
 
-func use_elevator():
-	pass
-
-func use_server():
-	pass
-	
 func _on_player_area_area_entered(area):
-	#metoda do rejestrowanie aktualnie area, do ktorej weszlismy
+	#funkcja do rejestrowanie aktualnie area, do ktorej weszlismy
 	var area_entered = area.get_name()
 	if (area_entered == "FireAlarmArea"):
 		can_use_alarm = true
 
+	if (area_entered == "ServerArea"):
+		can_use_server = true
+
+	if (area_entered == "ElevatorArea"):
+		can_use_elevator = true
+		
+	if (area_entered == "BoosterArea"):
+		can_use_booster = true
+
 func _on_player_area_area_exited(area):
-	#metoda do rejestrowania aktualnie opuszczonej area
+	#funkcja  do rejestrowania aktualnie opuszczonej area
 	var area_exited = area.get_name()
 	if (area_exited == "FireAlarmArea"):
 		can_use_alarm = false
 
+	if (area_exited == "ServerArea"):
+		can_use_server = false
+
+	if (area_exited == "ElevatorArea"):
+		can_use_elevator = false
+		
+	if (area_exited == "BoosterArea"):
+		can_use_elevator = false
+
 func stop_player_movement():
-	#metoda do zatrzymania movementu studenta, zbiera aktualna predkosc i przechowuje ja w temp_speed
+	#funkcja  do zatrzymania movementu studenta, zbiera aktualna predkosc i przechowuje ja w temp_speed
 	temp_speed = $CharacterBody2D.take_current_speed_value()
 	$CharacterBody2D.stop_player_movement()
 
 func _on_freeze_timer_timeout():
-	#metoda, ktora po skonczeniu timera przywraca stary movement studentowi
+	#funkcja, ktora po skonczeniu timera przywraca stary movement studentowi
 	$CharacterBody2D.restore_player_movement(temp_speed)
 	
 func _on_digging_timer_timeout():
