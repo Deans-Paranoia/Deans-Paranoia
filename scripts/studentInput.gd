@@ -37,8 +37,6 @@ func _input(event):
 		if fire_alarm_reference !=null and fire_alarm_reference.useable and can_use_alarm:
 			sabotage_alarm()
 			fire_alarm_reference.useable = false
-			stop_player_movement()
-			$CharacterBody2D/FreezeTimer.start()
 
 		# obsluga serwera przez studenta
 		if can_use_server:
@@ -52,11 +50,9 @@ func _input(event):
 		# obsluga boostera przez studenta
 		if can_use_booster and !has_booster:
 			var booster = get_node_or_null("../booster")
-		
 			if can_use_booster:
 				# usuniecie boostera
 				booster.on_boost_requested() 
-			
 				# nadanie boosta
 				acquire_booster()
 	elif event.is_action_pressed("dig"):
@@ -68,6 +64,8 @@ func _input(event):
 func sabotage_alarm():
 	# funkcja do sabotowania alarmu przez studenta
 	print("Alarm sabotaged")
+	stop_player_movement()
+	$CharacterBody2D/FreezeTimer.start()
 	
 func use_server():
 	# funkcja do uzywania serwera przez studenta
