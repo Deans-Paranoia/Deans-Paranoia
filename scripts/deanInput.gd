@@ -18,7 +18,10 @@ func _input(event):
 		if fire_alarm_reference.useable and can_use_alarm:
 			ring_fire_alarm()
 			fire_alarm_reference.useable = false
-
+			
+@rpc("any_peer","call_local")
+func remove_obstacle(_obstacle_to_destroy):
+	_obstacle_to_destroy.queue_free()
 func manage_deans_tablet():
 	# funkcja do obsługi tabletu przez dziekana
 	match is_tablet_open:

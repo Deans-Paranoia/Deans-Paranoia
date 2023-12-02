@@ -62,7 +62,24 @@ func _input(event):
 		dig()
 	elif event.is_action_released("dig"):
 		stop_dig()
-	
+@rpc("any_peer","call_remote")
+func hide_me(id,isThirdFloor):
+	var player = get_node_or_null("../"+str(id))
+	if(player != null):
+		if isThirdFloor:
+			if(self.is_in_group("ThirdFloor")):
+				player.visible = true
+				player.process_mode = PROCESS_MODE_ALWAYS
+			else: 
+				player.visible = false
+				player.process_mode = PROCESS_MODE_DISABLED
+		else:
+			if self.is_in_group("FourthFloor"):
+				player.visible = true
+				player.process_mode = PROCESS_MODE_ALWAYS
+			else: 
+				player.visible = false
+				player.process_mode = PROCESS_MODE_DISABLED
 @rpc("any_peer","call_local")
 func change_alarm_state():
 	var fire_alarm_reference = get_node_or_null("../level/fire_alarm")
@@ -89,7 +106,46 @@ func use_server():
 		server_reference.server_opened = false
 	
 func use_elevator():
-	print("Elevator works!")
+	var fourth = get_node_or_null("../fourthFloor")
+	var third = get_node_or_null("../level")
+	
+	var id = multiplayer.get_unique_id()
+	if(fourth != null and third!=null):
+		if(fourth.visible == false):
+			self.add_to_group("FourthFloor")
+			self.remove_from_group("ThirdFloor")
+			var fourthFloorPlayers = get_tree().get_nodes_in_group("FourthFloor")
+			var thirdFloorPlayers = get_tree().get_nodes_in_group("ThirdFloor")
+			for i in fourthFloorPlayers:
+				i.visible = true
+				i.process_mode = PROCESS_MODE_ALWAYS
+			for i in thirdFloorPlayers:
+				i.visible = false
+				i.process_mode = PROCESS_MODE_DISABLED
+			fourth.visible = true
+			fourth.process_mode = PROCESS_MODE_ALWAYS
+			third.visible = false
+			third.process_mode = PROCESS_MODE_DISABLED
+			
+			hide_me.rpc(id,false)
+			
+		else:
+			self.add_to_group("ThirdFloor")
+			self.remove_from_group("FourthFloor")
+			var fourthFloorPlayers = get_tree().get_nodes_in_group("FourthFloor")
+			var thirdFloorPlayers = get_tree().get_nodes_in_group("ThirdFloor")
+			for i in thirdFloorPlayers:
+				i.visible = true
+				i.process_mode = PROCESS_MODE_ALWAYS
+			for i in fourthFloorPlayers:
+				i.visible = false
+				i.process_mode = PROCESS_MODE_DISABLED
+			fourth.visible = false
+			fourth.process_mode = PROCESS_MODE_DISABLED
+			third.visible = true
+			third.process_mode = PROCESS_MODE_ALWAYS
+			
+			hide_me.rpc(id,true)
 func acquire_booster():
 	# funkcja nadajaca booster dla studenta
 	has_booster = true
@@ -159,9 +215,13 @@ func _on_freeze_timer_timeout():
 func _on_digging_timer_timeout():
 	#metoda po skończeniu DiggingTimer niszczy obstacle
 	if (_obstacle_to_destroy != null):
-		_obstacle_to_destroy.queue_free()
+		remove_obstacle.rpc(_obstacle_to_destroy.get_parent().name)
 		_obstacle_to_destroy = null
-
+@rpc("any_peer","call_local")
+func remove_obstacle(_obstacle_to_destroy):
+	var obstacle = get_node_or_null("../fourthFloor/"+_obstacle_to_destroy)
+	if obstacle:
+		obstacle.queue_free()
 func _is_student_facing_obstacle(obstacle):
 	#metoda sprawdza czy student jest zwrócony w strone przeszkody
 	

@@ -11,7 +11,7 @@
 position = Vector2(1069, 563)
 
 [node name="elevator" parent="." instance=ExtResource("4_dtumn")]
-position = Vector2(-470, -24)
+position = Vector2(670, 199)
 
 [node name="fire_alarm" parent="." instance=ExtResource("5_msouu")]
 
