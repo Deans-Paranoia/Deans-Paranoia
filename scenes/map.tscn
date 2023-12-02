@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://de4r2chqi0nbi"]
+
+[ext_resource type="PackedScene" uid="uid://gitmckv6idiq" path="res://scenes/fourth_floor.tscn" id="1_158or"]
+[ext_resource type="PackedScene" uid="uid://d1ak7xk1ahtkk" path="res://scenes/level.tscn" id="2_tqwam"]
+
+[node name="map" type="Node2D"]
+
+[node name="fourthFloor" parent="." instance=ExtResource("1_158or")]
+
+[node name="level" parent="." instance=ExtResource("2_tqwam")]
