@@ -22,7 +22,7 @@ func _process(delta):
 		var bytes = listener.get_packet()
 		var data = bytes.get_string_from_ascii()
 		var roomInfo = JSON.parse_string(data)
-		print(serverIp +":"+ str(serverPort) + " " + str(roomInfo))
+		#print(serverIp +":"+ str(serverPort) + " " + str(roomInfo))
 		playerCount = roomInfo.playerCount
 		if $VBoxContainer.get_children().size()>0:
 			for i in $VBoxContainer.get_children():
@@ -76,7 +76,7 @@ func setupBroadcast(name):
 		print("Failed to bind to broadcast port")
 	$BroadcastTimer.start()
 func _on_broadcast_timer_timeout():
-	print("Broadcasting game!")
+	#print("Broadcasting game!")
 	RoomInfo.playerCount = globalScript.Players.size()
 	var data = JSON.stringify(RoomInfo)
 	var packet = data.to_ascii_buffer()

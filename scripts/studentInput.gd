@@ -1,5 +1,4 @@
 extends Node2D
-
 var fourthFloor = load("res://scenes/fourth_floor.tscn")
 var thirdFloor = load("res://scenes/level.tscn")
 var can_use_alarm : bool = false
@@ -49,7 +48,8 @@ func _input(event):
 		var elevator_reference = get_node_or_null("../elevator")
 		if can_use_elevator:
 			use_elevator()
-			hide_me.rpc()
+			
+			
 		# obsluga boostera przez studenta
 		if can_use_booster and !has_booster:
 			var booster = get_node_or_null("../booster")
@@ -62,12 +62,7 @@ func _input(event):
 		dig()
 	elif event.is_action_released("dig"):
 		stop_dig()
-@rpc("any_peer","call_remote")
-func hide_me():
-	var id = multiplayer.get_unique_id()
-	var me = get_tree().root.get_node_or_null("level/"+str(id))
-	if me:
-		me.hide()
+
 	
 @rpc("any_peer","call_local")
 func change_alarm_state():
@@ -94,10 +89,7 @@ func use_server():
 		server_reference.server_opened = false
 	
 func use_elevator():
-	get_tree().change_scene_to_packed(fourthFloor)
-	var level:Node2D = get_tree().root.get_node_or_null("level")
-	if level:
-		level.visible = false
+	
 	print("Elevator works!")
 func acquire_booster():
 	# funkcja nadajaca booster dla studenta
