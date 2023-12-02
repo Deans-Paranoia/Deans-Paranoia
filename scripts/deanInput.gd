@@ -14,7 +14,7 @@ func _input(event):
 	# event do interakcji z obiektami przez dziekana
 	if event.is_action_pressed("interaction"):
 		# obsluga alarmu
-		var fire_alarm_reference = get_node("../fire_alarm")
+		var fire_alarm_reference = get_node("../level/fire_alarm")
 		if fire_alarm_reference.useable and can_use_alarm:
 			ring_fire_alarm()
 			fire_alarm_reference.useable = false

@@ -16,15 +16,15 @@ radius = 87.122
 size = Vector2(147, 144)
 
 [node name="Node2D" type="Node2D" groups=["Player"]]
-position = Vector2(591, 297)
+position = Vector2(0,0)
 metadata/_edit_lock_ = true
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(17, 17)
+position = Vector2(0,0)
 script = ExtResource("1_y8ilh")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
-position = Vector2(-3, 10)
+position = Vector2(0,0)
 texture = ExtResource("1_grwq2")
 metadata/_edit_lock_ = true
 
@@ -32,15 +32,15 @@ metadata/_edit_lock_ = true
 replication_config = SubResource("SceneReplicationConfig_qy6rn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(-4.5, 11)
+position = Vector2(0,0)
 shape = SubResource("CircleShape2D_0nlaq")
 metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="CharacterBody2D"]
-offset_left = -89.0
-offset_top = -103.0
-offset_right = 86.0
-offset_bottom = -73.0
+offset_left = 0.0
+offset_top = 20.0
+offset_right = 0.0
+offset_bottom = 0.0
 text = "Player"
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
@@ -48,6 +48,6 @@ metadata/_edit_lock_ = true
 [node name="PlayerArea" type="Area2D" parent="CharacterBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/PlayerArea"]
-position = Vector2(-4.5, 7)
+position = Vector2(0,0)
 shape = SubResource("RectangleShape2D_dw1tk")
 debug_color = Color(0, 0.643137, 0.298039, 0.419608)

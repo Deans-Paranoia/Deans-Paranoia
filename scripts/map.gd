@@ -1,5 +1,4 @@
 extends Node2D
-
 @export var studentScene:PackedScene
 @export var deanScene:PackedScene
 # Called when the node enters the scene tree for the first time.
@@ -7,10 +6,10 @@ func _ready():
 	var index = 0
 	for i in globalScript.Players:
 		var currentPlayer
-		if i==globalScript.deanId:
-			currentPlayer = deanScene.instantiate()
-		else:
-			currentPlayer = studentScene.instantiate()
+		#if i==globalScript.deanId:
+		#	currentPlayer = deanScene.instantiate()
+		#else:
+		currentPlayer = studentScene.instantiate()
 		currentPlayer.name = str(globalScript.Players[i].id)
 		var body = currentPlayer.get_node("CharacterBody2D")
 		if body != null:	
@@ -21,8 +20,3 @@ func _ready():
 				currentPlayer.global_position = spawn.global_position
 		index +=1		
 	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass

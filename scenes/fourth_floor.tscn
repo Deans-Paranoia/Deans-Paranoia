@@ -15,12 +15,3 @@ position = Vector2(249, 498)
 
 [node name="obstacle4" parent="." instance=ExtResource("1_v26fx")]
 position = Vector2(372, 388)
-
-[node name="SpawnLocations" type="Node2D" parent="."]
-position = Vector2(143, 110)
-
-[node name="0" type="Node2D" parent="SpawnLocations" groups=["PlayerSpawnPoint"]]
-position = Vector2(197, -34)
-
-[node name="1" type="Node2D" parent="SpawnLocations" groups=["PlayerSpawnPoint"]]
-position = Vector2(-50, -30)

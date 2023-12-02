@@ -61,17 +61,13 @@ func SendPlayerInformation(name, id):
 			SendPlayerInformation.rpc(globalScript.Players[i].name, i)
 @rpc("any_peer","call_local")
 func StartGame(control):
-	var sceneMain = load("res://scenes/level.tscn").instantiate()
-	var fourthFloor = load("res://scenes/fourth_floor.tscn").instantiate()
+	var sceneMain = load("res://scenes/map.tscn").instantiate()
 	self.hide()
 	#print(control)
 	var rooms = get_tree().get_nodes_in_group("room")
 	for i in rooms:
 		i.hide()
-	fourthFloor.process_mode = PROCESS_MODE_DISABLED
-	fourthFloor.visible = false
 	get_tree().root.add_child(sceneMain)
-	get_tree().root.add_child(fourthFloor)
 	
 func hostGame():
 	peer = ENetMultiplayerPeer.new()

@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cxfbk5bqebjsd" path="res://assets/student.png" id="3_02yls"]
 
 [node name="Student" instance=ExtResource("1_6lj7h")]
+position = Vector2(30, -17)
 script = ExtResource("2_vaos0")
 
 [node name="CharacterBody2D" parent="." index="0"]
@@ -19,6 +20,9 @@ texture = ExtResource("3_02yls")
 [node name="FreezeTimer" type="Timer" parent="CharacterBody2D" index="3"]
 process_callback = 0
 wait_time = 2.0
+
+[node name="CollisionShape2D" parent="CharacterBody2D/PlayerArea" index="0"]
+position = Vector2(0, 5)
 
 [connection signal="timeout" from="CharacterBody2D/DiggingTimer" to="." method="_on_digging_timer_timeout"]
 [connection signal="timeout" from="CharacterBody2D/FreezeTimer" to="." method="_on_freeze_timer_timeout"]
