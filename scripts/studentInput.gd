@@ -3,7 +3,7 @@ var fourthFloor = load("res://scenes/fourth_floor.tscn")
 var thirdFloor = load("res://scenes/level.tscn")
 var can_use_alarm : bool = false
 # sprawdza czy znajduje sie w strefie gdzie mozna odpalic alarm
-
+var multiplayerId = self.name 
 var can_use_server : bool = false
 # sprawdza czy znajduje sie w strefie gdzie mozna otworzyc serwer
 
@@ -36,31 +36,31 @@ func _input(event):
 	if event.is_action_pressed("interaction"):
 		# obsluga alarmu przez studenta
 		var fire_alarm_reference = get_node_or_null("../level/fire_alarm")
-		if fire_alarm_reference !=null and fire_alarm_reference.useable and can_use_alarm:
+		if fire_alarm_reference !=null and fire_alarm_reference.useable and can_use_alarm and self.name == str(multiplayer.get_unique_id()):
 			sabotage_alarm()
 			change_alarm_state.rpc()
 
 		# obsluga serwera przez studenta
-		if can_use_server:
+		if can_use_server and self.name == str(multiplayer.get_unique_id()):
 			use_server()
 			
 		# obsluga windy przez studenta
 		var elevator_reference = get_node_or_null("../level/elevator")
-		if can_use_elevator:
+		if can_use_elevator and self.name == str(multiplayer.get_unique_id()):
 			use_elevator()
 			
 			
 		# obsluga boostera przez studenta
-		if can_use_booster and !has_booster:
+		if can_use_booster and !has_booster and self.name == str(multiplayer.get_unique_id()):
 			var booster = get_node_or_null("../level/booster")
-			if booster !=null and can_use_booster:
+			if booster !=null and can_use_booster and self.name == str(multiplayer.get_unique_id()):
 				# usuniecie boostera
 				removeBooster.rpc()
 				# nadanie boosta
 				acquire_booster()
-	elif event.is_action_pressed("dig"):
+	elif event.is_action_pressed("dig") and self.name == str(multiplayer.get_unique_id()):
 		dig()
-	elif event.is_action_released("dig"):
+	elif event.is_action_released("dig") and self.name == str(multiplayer.get_unique_id()):
 		stop_dig()
 @rpc("any_peer","call_remote")
 func hide_me(id,isThirdFloor):

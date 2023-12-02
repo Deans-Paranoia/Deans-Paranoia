@@ -9,13 +9,14 @@ var can_use_alarm : bool = false
 func _input(event):
 	# event do obslugi tabletu przez dziekana
 	if event.is_action_pressed("open_tablet"):
-		manage_deans_tablet()
+		if self.name == str(multiplayer.get_unique_id()):
+			manage_deans_tablet()
 	
 	# event do interakcji z obiektami przez dziekana
 	if event.is_action_pressed("interaction"):
 		# obsluga alarmu
 		var fire_alarm_reference = get_node("../level/fire_alarm")
-		if fire_alarm_reference.useable and can_use_alarm:
+		if fire_alarm_reference.useable and can_use_alarm and self.name == str(multiplayer.get_unique_id()):
 			ring_fire_alarm()
 			fire_alarm_reference.useable = false
 			
