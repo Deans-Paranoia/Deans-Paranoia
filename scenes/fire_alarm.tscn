@@ -9,7 +9,7 @@ size = Vector2(85, 78.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iqthm"]
 size = Vector2(128, 97)
 
-[node name="fire_alarm" type="Node"]
+[node name="fire_alarm" type="Node2D"]
 script = ExtResource("1_55pn0")
 
 [node name="FireAlarm" type="StaticBody2D" parent="."]

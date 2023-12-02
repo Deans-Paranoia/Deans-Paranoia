@@ -1,27 +1,53 @@
-[gd_scene load_steps=5 format=3 uid="uid://d3ccjideg1avb"]
+[gd_scene load_steps=6 format=3 uid="uid://ctspysrhlil1i"]
 
-[ext_resource type="Script" path="res://scripts/movementInput.gd" id="1_yo5wt"]
-[ext_resource type="Texture2D" uid="uid://b7hx6nra362b" path="res://assets/icon.svg" id="2_kk7ku"]
+[ext_resource type="Texture2D" uid="uid://b7hx6nra362b" path="res://assets/icon.svg" id="1_grwq2"]
+[ext_resource type="Script" path="res://scripts/movementInput.gd" id="1_y8ilh"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jbpbo"]
-size = Vector2(129, 127)
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_qy6rn"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jii4e"]
-size = Vector2(136, 133)
+[sub_resource type="CircleShape2D" id="CircleShape2D_0nlaq"]
+radius = 87.122
 
-[node name="Player" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dw1tk"]
+size = Vector2(147, 144)
+
+[node name="Node2D" type="Node2D" groups=["Player"]]
+position = Vector2(591, 297)
+metadata/_edit_lock_ = true
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-script = ExtResource("1_yo5wt")
+position = Vector2(17, 17)
+script = ExtResource("1_y8ilh")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
-texture = ExtResource("2_kk7ku")
+position = Vector2(-3, 10)
+texture = ExtResource("1_grwq2")
+metadata/_edit_lock_ = true
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="CharacterBody2D"]
+replication_config = SubResource("SceneReplicationConfig_qy6rn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-shape = SubResource("RectangleShape2D_jbpbo")
+position = Vector2(-4.5, 11)
+shape = SubResource("CircleShape2D_0nlaq")
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="CharacterBody2D"]
+offset_left = -89.0
+offset_top = -103.0
+offset_right = 86.0
+offset_bottom = -73.0
+text = "Player"
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="PlayerArea" type="Area2D" parent="CharacterBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/PlayerArea"]
-position = Vector2(1, 0.5)
-shape = SubResource("RectangleShape2D_jii4e")
+position = Vector2(-4.5, 7)
+shape = SubResource("RectangleShape2D_dw1tk")
+debug_color = Color(0, 0.643137, 0.298039, 0.419608)

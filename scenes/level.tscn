@@ -1,26 +1,34 @@
-[gd_scene load_steps=4 format=3 uid="uid://podb4rxtyveg"]
+[gd_scene load_steps=8 format=3 uid="uid://d1ak7xk1ahtkk"]
 
-[ext_resource type="Script" path="res://scripts/levelSetup.gd" id="1_xklf6"]
-[ext_resource type="PackedScene" uid="uid://ci2w51qx0u74u" path="res://scenes/fire_alarm.tscn" id="2_y0lwb"]
-
-[ext_resource type="PackedScene" uid="uid://bsgmwg36gvtxu" path="res://scenes/server.tscn" id="3_00481"]
-
-[ext_resource type="PackedScene" uid="uid://ci4moycif5owm" path="res://scenes/elevator.tscn" id="3_byqbw"]
-
-[ext_resource type="PackedScene" uid="uid://b4jtyggr1i1y5" path="res://scenes/booster.tscn" id="3_ikbec"]
+[ext_resource type="Script" path="res://scripts/levelSetup.gd" id="1_vb3uo"]
+[ext_resource type="PackedScene" uid="uid://y4kbm2l282iy" path="res://scenes/student.tscn" id="2_kn4wr"]
+[ext_resource type="PackedScene" uid="uid://b4jtyggr1i1y5" path="res://scenes/booster.tscn" id="3_jjk6f"]
+[ext_resource type="PackedScene" uid="uid://dm1vrnv5e47gm" path="res://scenes/dean.tscn" id="3_thte2"]
+[ext_resource type="PackedScene" uid="uid://ci4moycif5owm" path="res://scenes/elevator.tscn" id="4_dtumn"]
+[ext_resource type="PackedScene" uid="uid://ci2w51qx0u74u" path="res://scenes/fire_alarm.tscn" id="5_msouu"]
+[ext_resource type="PackedScene" uid="uid://bsgmwg36gvtxu" path="res://scenes/server.tscn" id="6_thrs0"]
 
 [node name="level" type="Node2D"]
-script = ExtResource("1_xklf6")
+script = ExtResource("1_vb3uo")
+studentScene = ExtResource("2_kn4wr")
+deanScene = ExtResource("3_thte2")
 
-[node name="fire_alarm" parent="." instance=ExtResource("2_y0lwb")]
+[node name="SpawnLocations" type="Node2D" parent="."]
+position = Vector2(554, 261)
 
+[node name="0" type="Node2D" parent="SpawnLocations" groups=["PlayerSpawnPoint"]]
+position = Vector2(182, -57)
 
-[node name="server" parent="." instance=ExtResource("3_00481")]
-position = Vector2(347, 268)
+[node name="1" type="Node2D" parent="SpawnLocations" groups=["PlayerSpawnPoint"]]
+position = Vector2(-85, 53)
 
+[node name="booster" parent="." instance=ExtResource("3_jjk6f")]
+position = Vector2(1069, 563)
 
-[node name="elevator" parent="." instance=ExtResource("3_byqbw")]
+[node name="elevator" parent="." instance=ExtResource("4_dtumn")]
+position = Vector2(-470, -24)
 
-[node name="booster" parent="." instance=ExtResource("3_ikbec")]
-position = Vector2(1061, 568)
+[node name="fire_alarm" parent="." instance=ExtResource("5_msouu")]
 
+[node name="server" parent="." instance=ExtResource("6_thrs0")]
+position = Vector2(573, 521)

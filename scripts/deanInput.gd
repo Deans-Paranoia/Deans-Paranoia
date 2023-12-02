@@ -39,13 +39,15 @@ func catch_student():
 func kick_student():
 	pass
 	
-func _on_player_area_area_entered(area):
+
+func _on_area_2d_area_entered(area):
 	#funkcja  do rejestrowanie aktualnie area, do ktorej weszlismy
 	var area_entered = area.get_name()
 	if (area_entered == "FireAlarmArea"):
 		can_use_alarm = true
 
-func _on_player_area_area_exited(area):
+
+func _on_area_2d_area_exited(area):
 	#funkcja  do rejestrowania aktualnie opuszczonej are
 	var area_exited = area.get_name()
 	if (area_exited == "FireAlarmArea"):

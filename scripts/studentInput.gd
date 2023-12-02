@@ -1,5 +1,7 @@
 extends Node2D
 
+var fourthFloor = load("res://scenes/fourth_floor.tscn")
+var thirdFloor = load("res://scenes/level.tscn")
 var can_use_alarm : bool = false
 # sprawdza czy znajduje sie w strefie gdzie mozna odpalic alarm
 
@@ -19,7 +21,7 @@ var can_move: bool
 
 var temp_speed
 # zmienna przechowujaca tymczasowa predkosc
-
+var body:CharacterBody2D
 var _obstacle_to_destroy
 var _is_space_pressed = false	
 var _dig_speed : float = 0.5
@@ -28,7 +30,8 @@ var _dig_speed : float = 0.5
 	#dig()
 func _ready():
 	set_process_input(true)
-	
+	if(multiplayer.get_unique_id()!=1):
+		body = get_node_or_null(str(multiplayer.get_unique_id()))
 func _input(event):
 	# interakcja z obiektami 
 	if event.is_action_pressed("interaction"):
@@ -36,7 +39,7 @@ func _input(event):
 		var fire_alarm_reference = get_node_or_null("../fire_alarm")
 		if fire_alarm_reference !=null and fire_alarm_reference.useable and can_use_alarm:
 			sabotage_alarm()
-			fire_alarm_reference.useable = false
+			change_alarm_state.rpc()
 
 		# obsluga serwera przez studenta
 		if can_use_server:
@@ -46,26 +49,39 @@ func _input(event):
 		var elevator_reference = get_node_or_null("../elevator")
 		if can_use_elevator:
 			use_elevator()
-		
+			hide_me.rpc()
 		# obsluga boostera przez studenta
 		if can_use_booster and !has_booster:
 			var booster = get_node_or_null("../booster")
 			if can_use_booster:
 				# usuniecie boostera
-				booster.on_boost_requested() 
+				removeBooster.rpc()
 				# nadanie boosta
 				acquire_booster()
 	elif event.is_action_pressed("dig"):
 		dig()
 	elif event.is_action_released("dig"):
 		stop_dig()
-		
-
+@rpc("any_peer","call_remote")
+func hide_me():
+	var id = multiplayer.get_unique_id()
+	var me = get_tree().root.get_node_or_null("level/"+str(id))
+	if me:
+		me.hide()
+	
+@rpc("any_peer","call_local")
+func change_alarm_state():
+	var fire_alarm_reference = get_node_or_null("../fire_alarm")
+	fire_alarm_reference.useable = false
+@rpc("any_peer","call_local")
+func removeBooster():
+	var booster = get_node_or_null("../booster")
+	booster.on_boost_requested()
 func sabotage_alarm():
 	# funkcja do sabotowania alarmu przez studenta
 	print("Alarm sabotaged")
 	stop_player_movement()
-	$CharacterBody2D/FreezeTimer.start()
+	body.get_node("FreezeTimer").start()
 	
 func use_server():
 	# funkcja do uzywania serwera przez studenta
@@ -78,9 +94,11 @@ func use_server():
 		server_reference.server_opened = false
 	
 func use_elevator():
-	# funkcja do uzywania windy przez studenta
+	get_tree().change_scene_to_packed(fourthFloor)
+	var level:Node2D = get_tree().root.get_node_or_null("level")
+	if level:
+		level.visible = false
 	print("Elevator works!")
-	
 func acquire_booster():
 	# funkcja nadajaca booster dla studenta
 	has_booster = true
@@ -91,7 +109,7 @@ func acquire_booster():
 #metoda usuwa obstacle po przytrzymaniu spacji, jeśli gracz znajduje się blisko przeszkody i jest zwrócony przodem do niej
 func dig():
 	var _is_facing_obstacle = false
-	var obstacles_nearby = $CharacterBody2D/PlayerArea.get_overlapping_bodies()
+	var obstacles_nearby = body.get_node("PlayerArea").get_overlapping_bodies()
 	for obstacle in obstacles_nearby:
 		if obstacle.is_in_group("obstacles"):
 			_is_facing_obstacle = _is_student_facing_obstacle(obstacle)
@@ -99,12 +117,12 @@ func dig():
 				_obstacle_to_destroy = obstacle
 				if not _is_space_pressed:
 					_is_space_pressed = true
-					$CharacterBody2D/DiggingTimer.wait_time = _dig_speed
-					$CharacterBody2D/DiggingTimer.start()
+					body.get_node("DiggingTimer").wait_time = _dig_speed
+					body.get_node("DiggingTimer").start()
 		
 func stop_dig():
 	_is_space_pressed = false
-	$CharacterBody2D/DiggingTimer.stop()
+	body.get_node("DiggingTimer").stop()
 func use_terminal():
 	pass
 
@@ -140,12 +158,12 @@ func _on_player_area_area_exited(area):
 
 func stop_player_movement():
 	#funkcja  do zatrzymania movementu studenta, zbiera aktualna predkosc i przechowuje ja w temp_speed
-	temp_speed = $CharacterBody2D.take_current_speed_value()
-	$CharacterBody2D.stop_player_movement()
+	temp_speed = body.take_current_speed_value()
+	body.stop_player_movement()
 
 func _on_freeze_timer_timeout():
 	#funkcja, ktora po skonczeniu timera przywraca stary movement studentowi
-	$CharacterBody2D.restore_player_movement(temp_speed)
+	body.restore_player_movement(temp_speed)
 	
 func _on_digging_timer_timeout():
 	#metoda po skończeniu DiggingTimer niszczy obstacle
@@ -157,8 +175,8 @@ func _is_student_facing_obstacle(obstacle):
 	#metoda sprawdza czy student jest zwrócony w strone przeszkody
 	
 	var obstacle_position = obstacle.global_position
-	var student_position = $CharacterBody2D.global_position
-	var student_direction = $CharacterBody2D.last_direction
+	var student_position = body.global_position
+	var student_direction = body.last_direction
 
 	#Obliczamy wektor skierowany znormalizowany
 	var direction_to_obstacle = (obstacle_position - student_position).normalized()
@@ -173,4 +191,3 @@ func _is_student_facing_obstacle(obstacle):
 		return true
 	else:
 		return false
-

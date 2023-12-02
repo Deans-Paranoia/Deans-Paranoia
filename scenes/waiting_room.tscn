@@ -1,0 +1,88 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlax5hsl67b0q"]
+
+[ext_resource type="Script" path="res://scripts/waiting_room.gd" id="1_fkmg8"]
+[ext_resource type="PackedScene" uid="uid://br8gcsc0qn7l6" path="res://scenes/PlayerInfo.tscn" id="2_7ksot"]
+
+[node name="Waiting_room" type="Control" groups=["room"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fkmg8")
+serverInfo = ExtResource("2_7ksot")
+
+[node name="StartGame" type="Button" parent="."]
+layout_mode = 0
+offset_left = 425.0
+offset_top = 36.0
+offset_right = 679.0
+offset_bottom = 109.0
+disabled = true
+text = "Start Game"
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 238.0
+offset_top = 157.0
+offset_right = 902.0
+offset_bottom = 626.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 68.0
+offset_right = 647.0
+offset_bottom = 469.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 12.0
+offset_right = 648.0
+offset_bottom = 43.0
+
+[node name="NameTitle" type="Label" parent="Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Name:"
+
+[node name="RoleTitle" type="Label" parent="Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Role:"
+
+[node name="MakeAsDeanTitle" type="Label" parent="Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Change role:"
+
+[node name="HSeparator" type="HSeparator" parent="Panel"]
+visible = false
+layout_mode = 0
+offset_top = 44.0
+offset_right = 664.0
+offset_bottom = 66.0
+
+[node name="VSeparator" type="VSeparator" parent="Panel"]
+visible = false
+layout_mode = 0
+offset_left = 204.0
+offset_right = 215.0
+offset_bottom = 466.0
+
+[node name="VSeparator2" type="VSeparator" parent="Panel"]
+visible = false
+layout_mode = 0
+offset_left = 427.0
+offset_top = 2.0
+offset_right = 438.0
+offset_bottom = 468.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+autostart = true
+
+[connection signal="button_down" from="StartGame" to="." method="_on_start_game_button_down"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

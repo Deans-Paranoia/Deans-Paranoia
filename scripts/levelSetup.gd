@@ -1,27 +1,28 @@
-extends Node
+extends Node2D
 
-# wczytuje globalną zmienną player_type
-var player_type = Engine.get_singleton("global").player_type
-
-# preloaduje do pamięci zwykłego gracza
-@onready var player_scene = preload("res://scenes/player.tscn")
-var current_player
-
+@export var studentScene:PackedScene
+@export var deanScene:PackedScene
+# Called when the node enters the scene tree for the first time.
 func _ready():
-	# tworzy zwykłego gracza "na wszelki"
-	current_player = player_scene.instantiate()
-	add_child(current_player)
-	_replace_player()
+	var index = 0
+	for i in globalScript.Players:
+		var currentPlayer
+		#if i==globalScript.deanId:
+		#	currentPlayer = deanScene.instantiate()
+		#else:
+		currentPlayer = studentScene.instantiate()
+		currentPlayer.name = str(globalScript.Players[i].id)
+		var body = currentPlayer.get_node("CharacterBody2D")
+		if body != null:	
+			body.name =  str(globalScript.Players[i].id)
+		add_child(currentPlayer)
+		for spawn in get_tree().get_nodes_in_group("PlayerSpawnPoint"):
+			if spawn.name == str(index):
+				currentPlayer.global_position = spawn.global_position
+		index +=1		
+	pass # Replace with function body.
 
-func _replace_player():
-	# usuwa obecnego gracza
-	current_player.queue_free()
 
-	# wczytuje i tworzy gracza zgodnie z dokonanym wyborem
-	match player_type:
-		"dean":
-			current_player = preload("res://scenes/dean.tscn").instantiate()
-		"student":
-			current_player = preload("res://scenes/student.tscn").instantiate()
-
-	add_child(current_player)
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
