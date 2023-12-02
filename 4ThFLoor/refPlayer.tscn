@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmjn1tsti6myk"]
+
+[ext_resource type="Script" path="res://4ThFLoor/player_movement.gd" id="1_kemqp"]
+[ext_resource type="Texture2D" uid="uid://ecqtdr37nrb2" path="res://4ThFLoor/Grafika_bez_nazwy.png" id="2_awppf"]
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(59.63, 0)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_kemqp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_awppf")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(-51.63, -64, 50.37, -64, 56.74, -58, 64.37, -51, 64.37, 49, 56.74, 58, 51.37, 64, -50.63, 64, -57.26, 58, -63.63, 51, -63.63, -51, -57.26, -58)
