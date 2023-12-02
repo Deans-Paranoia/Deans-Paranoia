@@ -53,7 +53,7 @@ func _input(event):
 		# obsluga boostera przez studenta
 		if can_use_booster and !has_booster:
 			var booster = get_node_or_null("../booster")
-			if can_use_booster:
+			if booster !=null and can_use_booster:
 				# usuniecie boostera
 				removeBooster.rpc()
 				# nadanie boosta
@@ -71,7 +71,8 @@ func change_alarm_state():
 @rpc("any_peer","call_local")
 func removeBooster():
 	var booster = get_node_or_null("../booster")
-	booster.on_boost_requested()
+	if booster!= null:
+		booster.on_boost_requested()
 func sabotage_alarm():
 	# funkcja do sabotowania alarmu przez studenta
 	print("Alarm sabotaged")

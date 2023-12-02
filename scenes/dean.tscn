@@ -14,5 +14,5 @@ position = Vector2(575, 325)
 scale = Vector2(0.42, 0.42)
 texture = ExtResource("3_rxgh1")
 
-[connection signal="area_entered" from="CharacterBody2D/Area2D" to="." method="_on_area_2d_area_entered"]
-[connection signal="area_exited" from="CharacterBody2D/Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="area_entered" from="CharacterBody2D/PlayerArea" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="CharacterBody2D/PlayerArea" to="." method="_on_area_2d_area_exited"]
