@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 var useable: bool = true
 

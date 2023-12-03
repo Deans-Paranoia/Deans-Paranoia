@@ -1,27 +1,45 @@
-[gd_scene load_steps=5 format=3 uid="uid://d3ccjideg1avb"]
+[gd_scene load_steps=6 format=3 uid="uid://ctspysrhlil1i"]
 
-[ext_resource type="Script" path="res://scripts/movementInput.gd" id="1_yo5wt"]
-[ext_resource type="Texture2D" uid="uid://b7hx6nra362b" path="res://assets/icon.svg" id="2_kk7ku"]
+[ext_resource type="Texture2D" uid="uid://b7hx6nra362b" path="res://assets/icon.svg" id="1_grwq2"]
+[ext_resource type="Script" path="res://scripts/movementInput.gd" id="1_y8ilh"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jbpbo"]
-size = Vector2(129, 127)
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_qy6rn"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jii4e"]
-size = Vector2(136, 133)
+[sub_resource type="CircleShape2D" id="CircleShape2D_0nlaq"]
+radius = 65.0308
 
-[node name="Player" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_84uu5"]
+size = Vector2(177, 165)
+
+[node name="Node2D" type="Node2D" groups=["Player"]]
+metadata/_edit_lock_ = true
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-script = ExtResource("1_yo5wt")
+script = ExtResource("1_y8ilh")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
-texture = ExtResource("2_kk7ku")
+texture = ExtResource("1_grwq2")
+metadata/_edit_lock_ = true
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="CharacterBody2D"]
+replication_config = SubResource("SceneReplicationConfig_qy6rn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-shape = SubResource("RectangleShape2D_jbpbo")
+shape = SubResource("CircleShape2D_0nlaq")
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="CharacterBody2D"]
+offset_top = 20.0
+text = "Player"
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="PlayerArea" type="Area2D" parent="CharacterBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/PlayerArea"]
-position = Vector2(1, 0.5)
-shape = SubResource("RectangleShape2D_jii4e")
+position = Vector2(-0.5, -1.5)
+shape = SubResource("RectangleShape2D_84uu5")

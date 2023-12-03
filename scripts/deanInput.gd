@@ -9,16 +9,25 @@ var can_use_alarm : bool = false
 func _input(event):
 	# event do obslugi tabletu przez dziekana
 	if event.is_action_pressed("open_tablet"):
-		manage_deans_tablet()
+		if self.name == str(multiplayer.get_unique_id()):
+			manage_deans_tablet()
 	
 	# event do interakcji z obiektami przez dziekana
 	if event.is_action_pressed("interaction"):
 		# obsluga alarmu
-		var fire_alarm_reference = get_node("../fire_alarm")
-		if fire_alarm_reference.useable and can_use_alarm:
+		var fire_alarm_reference = get_node("../level/fire_alarm")
+		if fire_alarm_reference.useable and can_use_alarm and self.name == str(multiplayer.get_unique_id()):
 			ring_fire_alarm()
 			fire_alarm_reference.useable = false
+			change_alarm_state.rpc()
 
+@rpc("any_peer","call_remote")
+func change_alarm_state():
+	var fire_alarm_reference = get_node("../level/fire_alarm")
+	fire_alarm_reference.useable = false	
+@rpc("any_peer","call_local")
+func remove_obstacle(_obstacle_to_destroy):
+	_obstacle_to_destroy.queue_free()
 func manage_deans_tablet():
 	# funkcja do obsługi tabletu przez dziekana
 	match is_tablet_open:
@@ -39,13 +48,15 @@ func catch_student():
 func kick_student():
 	pass
 	
-func _on_player_area_area_entered(area):
+
+func _on_area_2d_area_entered(area):
 	#funkcja  do rejestrowanie aktualnie area, do ktorej weszlismy
 	var area_entered = area.get_name()
 	if (area_entered == "FireAlarmArea"):
 		can_use_alarm = true
 
-func _on_player_area_area_exited(area):
+
+func _on_area_2d_area_exited(area):
 	#funkcja  do rejestrowania aktualnie opuszczonej are
 	var area_exited = area.get_name()
 	if (area_exited == "FireAlarmArea"):
