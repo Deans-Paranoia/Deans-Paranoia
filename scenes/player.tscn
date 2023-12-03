@@ -41,5 +41,4 @@ metadata/_edit_lock_ = true
 [node name="PlayerArea" type="Area2D" parent="CharacterBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/PlayerArea"]
-position = Vector2(-0.5, -1.5)
 shape = SubResource("RectangleShape2D_84uu5")
