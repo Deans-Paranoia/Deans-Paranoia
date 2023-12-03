@@ -38,6 +38,7 @@ func _input(event):
 		var fire_alarm_reference = get_node_or_null("../level/fire_alarm")
 		if fire_alarm_reference !=null and fire_alarm_reference.useable and can_use_alarm and self.name == str(multiplayer.get_unique_id()):
 			sabotage_alarm()
+			fire_alarm_reference.useable = false
 			change_alarm_state.rpc()
 
 		# obsluga serwera przez studenta
@@ -80,7 +81,7 @@ func hide_me(id,isThirdFloor):
 			else: 
 				player.visible = false
 				player.process_mode = PROCESS_MODE_DISABLED
-@rpc("any_peer","call_local")
+@rpc("any_peer","call_remote")
 func change_alarm_state():
 	var fire_alarm_reference = get_node_or_null("../level/fire_alarm")
 	fire_alarm_reference.useable = false
@@ -176,32 +177,32 @@ func use_terminal():
 func _on_player_area_area_entered(area):
 	#funkcja do rejestrowanie aktualnie area, do ktorej weszlismy
 	var area_entered = area.get_name()
-	if (area_entered == "FireAlarmArea"):
+	if (area_entered == "FireAlarmArea" and self.name == str(multiplayer.get_unique_id())):
 		can_use_alarm = true
 
-	if (area_entered == "ServerArea"):
+	if (area_entered == "ServerArea" and self.name == str(multiplayer.get_unique_id())):
 		can_use_server = true
 
-	if (area_entered == "ElevatorArea"):
+	if (area_entered == "ElevatorArea" and self.name == str(multiplayer.get_unique_id())):
 		can_use_elevator = true
 		
-	if (area_entered == "BoosterArea"):
+	if (area_entered == "BoosterArea" and self.name == str(multiplayer.get_unique_id())):
 		can_use_booster = true
 
 func _on_player_area_area_exited(area):
 	#funkcja  do rejestrowania aktualnie opuszczonej area
 	var area_exited = area.get_name()
-	if (area_exited == "FireAlarmArea"):
+	if (area_exited == "FireAlarmArea" and self.name == str(multiplayer.get_unique_id())):
 		can_use_alarm = false
 
-	if (area_exited == "ServerArea"):
+	if (area_exited == "ServerArea" and self.name == str(multiplayer.get_unique_id())):
 		can_use_server = false
 
-	if (area_exited == "ElevatorArea"):
+	if (area_exited == "ElevatorArea" and self.name == str(multiplayer.get_unique_id())):
 		can_use_elevator = false
 		
-	if (area_exited == "BoosterArea"):
-		can_use_elevator = false
+	if (area_exited == "BoosterArea" and self.name == str(multiplayer.get_unique_id())):
+		can_use_booster = false
 
 func stop_player_movement():
 	#funkcja  do zatrzymania movementu studenta, zbiera aktualna predkosc i przechowuje ja w temp_speed
