@@ -15,16 +15,13 @@ script = ExtResource("1_55pn0")
 [node name="FireAlarm" type="StaticBody2D" parent="."]
 
 [node name="FireAlarm" type="Sprite2D" parent="FireAlarm"]
-position = Vector2(1071, 72.0001)
 scale = Vector2(0.0823334, 0.065)
 texture = ExtResource("2_ofswb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FireAlarm"]
-position = Vector2(1071, 69)
 shape = SubResource("RectangleShape2D_t8uc6")
 
 [node name="FireAlarmArea" type="Area2D" parent="FireAlarm"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FireAlarm/FireAlarmArea"]
-position = Vector2(1069, 72)
 shape = SubResource("RectangleShape2D_iqthm")
