@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://de4r2chqi0nbi"]
+
+[ext_resource type="PackedScene" uid="uid://gitmckv6idiq" path="res://scenes/fourth_floor.tscn" id="1_158or"]
+[ext_resource type="Script" path="res://scripts/map.gd" id="1_v8og6"]
+[ext_resource type="PackedScene" uid="uid://d1ak7xk1ahtkk" path="res://scenes/level.tscn" id="2_tqwam"]
+[ext_resource type="PackedScene" uid="uid://y4kbm2l282iy" path="res://scenes/student.tscn" id="2_xevit"]
+[ext_resource type="PackedScene" uid="uid://dm1vrnv5e47gm" path="res://scenes/dean.tscn" id="3_jrkig"]
+
+[node name="Map" type="Node2D"]
+script = ExtResource("1_v8og6")
+studentScene = ExtResource("2_xevit")
+deanScene = ExtResource("3_jrkig")
+
+[node name="level" parent="." instance=ExtResource("2_tqwam")]
+
+[node name="fourthFloor" parent="." instance=ExtResource("1_158or")]
+process_mode = 4
+visible = false
+
+[node name="SpawnLocations" type="Node2D" parent="."]
+position = Vector2(612, 272)
+
+[node name="0" type="Node2D" parent="SpawnLocations" groups=["PlayerSpawnPoint"]]
+position = Vector2(182, -57)
+
+[node name="1" type="Node2D" parent="SpawnLocations" groups=["PlayerSpawnPoint"]]
+position = Vector2(-85, 53)
