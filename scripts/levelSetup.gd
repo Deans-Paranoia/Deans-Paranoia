@@ -5,13 +5,18 @@ var player_type = Engine.get_singleton("global").player_type
 
 # preloaduje do pamięci zwykłego gracza
 @onready var player_scene = preload("res://scenes/player.tscn")
+@onready var npc_scene = preload("res://scenes/npc.tscn")
 var current_player
+var npc
 
 func _ready():
 	# tworzy zwykłego gracza "na wszelki"
 	current_player = player_scene.instantiate()
 	add_child(current_player)
 	_replace_player()
+	# tworzy npca i dodaje go do sceny jako dziecko
+	npc = npc_scene.instantiate()
+	add_child(npc)
 
 func _replace_player():
 	# usuwa obecnego gracza
