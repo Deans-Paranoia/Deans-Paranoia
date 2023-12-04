@@ -59,7 +59,7 @@ func SendPlayerInformation(name, id):
 	if multiplayer.is_server():
 		for i in globalScript.Players:
 			SendPlayerInformation.rpc(globalScript.Players[i].name, i)
-@rpc("any_peer","call_local")
+@rpc("any_peer","call_remote")
 func StartGame(control):
 	var sceneMain = load("res://scenes/map.tscn").instantiate()
 	self.hide()
