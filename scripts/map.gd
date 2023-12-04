@@ -8,11 +8,11 @@ func _ready():
 	var index = 0
 	for i in globalScript.Players:
 		var currentPlayer
-		#if i==globalScript.deanId:
-		#currentPlayer = deanScene.instantiate()
-		#else:
+		if i == globalScript.deanId:
+			currentPlayer = deanScene.instantiate()
+		else:
+			currentPlayer = studentScene.instantiate()
 		#currentPlayer = studentScene.instantiate()
-		currentPlayer = studentScene.instantiate()
 		currentPlayer.name = str(globalScript.Players[i].id)
 		currentPlayer.add_to_group("ThirdFloor")
 		var body = currentPlayer.get_node("CharacterBody2D")
