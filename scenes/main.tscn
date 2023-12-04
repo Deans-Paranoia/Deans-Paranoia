@@ -29,6 +29,7 @@ serverInfo = ExtResource("3_8utcf")
 [node name="BroadcastTimer" type="Timer" parent="ServerBrowser"]
 
 [node name="Label" type="Label" parent="ServerBrowser"]
+visible = false
 layout_mode = 0
 offset_left = 333.0
 offset_top = -259.0
@@ -38,6 +39,7 @@ theme_override_font_sizes/font_size = 30
 text = "Host: false"
 
 [node name="ServerIp" type="LineEdit" parent="ServerBrowser"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.5

@@ -1,23 +1,35 @@
 extends Node2D
 
-var can_use_alarm : bool = false
-# sprawdza czy znajduje sie w strefie gdzie mozna odpalic alarm
-
 var is_tablet_open: bool = false
 # sprawdza czy wywołana została akcja "open_tablet" i wywołuje odpowiednią funkcję
 
-func _process(_delta):
-	if Input.is_action_just_pressed("open_tablet"):
-		manage_deans_tablet()
+var can_use_alarm : bool = false
+# sprawdza czy znajduje sie w strefie gdzie mozna odpalic alarm
+
+func _input(event):
+	# event do obslugi tabletu przez dziekana
+	if event.is_action_pressed("open_tablet"):
+		if self.name == str(multiplayer.get_unique_id()):
+			manage_deans_tablet()
 	
-	if Input.is_action_just_pressed("use_alarm"):
-		var fire_alarm_reference = get_node("../fire_alarm")
-		if fire_alarm_reference.useable and can_use_alarm:
+	# event do interakcji z obiektami przez dziekana
+	if event.is_action_pressed("interaction"):
+		# obsluga alarmu
+		var fire_alarm_reference = get_node("../level/fire_alarm")
+		if fire_alarm_reference.useable and can_use_alarm and self.name == str(multiplayer.get_unique_id()):
 			ring_fire_alarm()
 			fire_alarm_reference.useable = false
-			
+			change_alarm_state.rpc()
 
+@rpc("any_peer","call_remote")
+func change_alarm_state():
+	var fire_alarm_reference = get_node("../level/fire_alarm")
+	fire_alarm_reference.useable = false	
+@rpc("any_peer","call_local")
+func remove_obstacle(_obstacle_to_destroy):
+	_obstacle_to_destroy.queue_free()
 func manage_deans_tablet():
+	# funkcja do obsługi tabletu przez dziekana
 	match is_tablet_open:
 		false:
 			print("Tablet opened")
@@ -26,23 +38,26 @@ func manage_deans_tablet():
 			print("Tablet closed")
 			is_tablet_open = false
 
+func ring_fire_alarm():
+	# funkcja do obsługi alarmu przez dziekana
+	print("Alarm rang")
+	
 func catch_student():
 	pass
-#write your logic for dean here, also create fireAlarm scene and you can attach a script for this scene
-func ring_fire_alarm():
-	print("Alarm rang")
 
 func kick_student():
 	pass
 	
-func _on_player_area_area_entered(area):
-	#metoda do rejestrowanie aktualnie area, do ktorej weszlismy
+
+func _on_area_2d_area_entered(area):
+	#funkcja  do rejestrowanie aktualnie area, do ktorej weszlismy
 	var area_entered = area.get_name()
 	if (area_entered == "FireAlarmArea"):
 		can_use_alarm = true
 
-func _on_player_area_area_exited(area):
-	#metoda do rejestrowania aktualnie opuszczonej are
+
+func _on_area_2d_area_exited(area):
+	#funkcja  do rejestrowania aktualnie opuszczonej are
 	var area_exited = area.get_name()
 	if (area_exited == "FireAlarmArea"):
 		can_use_alarm = false
