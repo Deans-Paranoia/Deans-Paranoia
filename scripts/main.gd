@@ -59,8 +59,8 @@ func SendPlayerInformation(name, id):
 	if multiplayer.is_server():
 		for i in globalScript.Players:
 			SendPlayerInformation.rpc(globalScript.Players[i].name, i)
-@rpc("any_peer","call_local")
-func StartGame(control):
+@rpc("any_peer","call_remote")
+func StartGame():
 	var sceneMain = load("res://scenes/map.tscn").instantiate()
 	self.hide()
 	#print(control)
@@ -118,5 +118,6 @@ func joinByIp(ip):
 		for i in $ServerBrowser/VBoxContainer.get_children():
 			i.get_node("Button").text = "room is full"
 func on_start_game(control):
-	StartGame.rpc(control)
+	StartGame.rpc()
+	StartGame()
 	pass
