@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Dean's Paranoia"
 run/main_scene="res://scenes/start_menu.tscn"
-config/features=PackedStringArray("4.1", "Forward Plus")
+config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://assets/icon.svg"
 
 [autoload]
@@ -22,6 +22,10 @@ globalScript="*res://scripts/global.gd"
 [dotnet]
 
 project/assembly_name="Dean-s Paranoia"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/format_on_save/plugin.cfg", "res://addons/gdUnit4/plugin.cfg", "res://addons/script-ide/plugin.cfg")
 
 [filesystem]
 
