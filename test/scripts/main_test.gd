@@ -7,16 +7,28 @@ extends GdUnitTestSuite
 const __source = "res://scripts/main.gd"
 
 
+# creates a host server and starts it
+#func before():
+#var main1 := scene_runner("res://scenes/main.tscn")
+##var ServerBrowser = mock(find_child("ServerBrowser"))
+#var _ServerIp1 = auto_free(main1.find_child("ServerIp"))
+##var test = ServerIp.get_property("text")
+#_ServerIp1.text = "192.168.8.107"
+#main1.invoke("_on_host_button_down")
+#await await_millis(10000)
+#main1.invoke("on_start_game")
+##var main2 := scene_runner("res://scenes/main.tscn")
 func before():
-	var main1 := scene_runner("res://scenes/main.tscn")
-	#var ServerBrowser = mock(find_child("ServerBrowser"))
-	var _ServerIp1 = auto_free(main1.find_child("ServerIp"))
-	#var test = ServerIp.get_property("text")
-	_ServerIp1.text = "192.168.8.107"
-	main1.invoke("_on_host_button_down")
-	await await_millis(10000)
-	main1.invoke("on_start_game")
-	#var main2 := scene_runner("res://scenes/main.tscn")
+	#var main := scene_runner("res://scenes/main.tscn")
+	#var _server_info = auto_free(preload("res://scenes/server_info.tscn"))
+	#
+	#_ip.text = "192.168.8.107"
+	##server_info.invoke("_on_button_button_down")
+	##var ServerBrowser = mock(find_child("ServerBrowser"))
+	##var _ServerInfo = auto_free(main.find_child("ServerInfo"))
+	##_ServerInfo.text = "192.168.8.107"
+	##main.invoke("_on_host_button_down")
+	#await await_millis(10000)
 
 
 #
