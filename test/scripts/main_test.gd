@@ -14,7 +14,7 @@ func before():
 	#var test = ServerIp.get_property("text")
 	_ServerIp.text = "192.168.8.107"
 	runner.invoke("_on_host_button_down")
-	runner.invoke("on_start_game(control)", Control)
+	runner.invoke("on_start_game")
 
 	await await_millis(2000)
 
