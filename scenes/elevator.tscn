@@ -10,6 +10,7 @@ size = Vector2(90, 157)
 size = Vector2(133, 179.5)
 
 [node name="elevator" type="Node2D"]
+scale = Vector2(0.3, 0.3)
 script = ExtResource("1_sgu5p")
 
 [node name="Elevator" type="StaticBody2D" parent="."]

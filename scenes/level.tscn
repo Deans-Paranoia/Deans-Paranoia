@@ -1,20 +1,32 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1ak7xk1ahtkk"]
+[gd_scene load_steps=7 format=3 uid="uid://d1ak7xk1ahtkk"]
 
+[ext_resource type="Script" path="res://scripts/map.gd" id="1_vg720"]
+[ext_resource type="PackedScene" uid="uid://y4kbm2l282iy" path="res://scenes/student.tscn" id="2_es16m"]
 [ext_resource type="PackedScene" uid="uid://b4jtyggr1i1y5" path="res://scenes/booster.tscn" id="3_jjk6f"]
-[ext_resource type="PackedScene" uid="uid://ci4moycif5owm" path="res://scenes/elevator.tscn" id="4_dtumn"]
-[ext_resource type="PackedScene" uid="uid://ci2w51qx0u74u" path="res://scenes/fire_alarm.tscn" id="5_msouu"]
-[ext_resource type="PackedScene" uid="uid://bsgmwg36gvtxu" path="res://scenes/server.tscn" id="6_thrs0"]
+[ext_resource type="PackedScene" uid="uid://dm1vrnv5e47gm" path="res://scenes/dean.tscn" id="3_ls1s0"]
+[ext_resource type="PackedScene" uid="uid://gitmckv6idiq" path="res://scenes/fourth_floor.tscn" id="4_bsoap"]
+[ext_resource type="PackedScene" uid="uid://bm1ngabod5xlp" path="res://scenes/world.tscn" id="5_my8be"]
 
-[node name="level" type="Node2D"]
+[node name="Map" type="Node2D"]
+script = ExtResource("1_vg720")
+studentScene = ExtResource("2_es16m")
+deanScene = ExtResource("3_ls1s0")
 
-[node name="booster" parent="." instance=ExtResource("3_jjk6f")]
-position = Vector2(1069, 563)
+[node name="fourthFloor" parent="." instance=ExtResource("4_bsoap")]
+process_mode = 4
+position = Vector2(631, -997)
 
-[node name="elevator" parent="." instance=ExtResource("4_dtumn")]
-position = Vector2(670, 199)
+[node name="SpawnLocations" type="Node2D" parent="."]
+position = Vector2(612, 272)
 
-[node name="fire_alarm" parent="." instance=ExtResource("5_msouu")]
-position = Vector2(998, 155)
+[node name="0" type="Node2D" parent="SpawnLocations" groups=["PlayerSpawnPoint"]]
+position = Vector2(182, -57)
 
-[node name="server" parent="." instance=ExtResource("6_thrs0")]
-position = Vector2(573, 521)
+[node name="1" type="Node2D" parent="SpawnLocations" groups=["PlayerSpawnPoint"]]
+position = Vector2(-85, 53)
+
+[node name="level" parent="." instance=ExtResource("5_my8be")]
+metadata/_edit_lock_ = true
+
+[node name="booster" parent="level" instance=ExtResource("3_jjk6f")]
+position = Vector2(374, -1200)
