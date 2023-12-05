@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://gitmckv6idiq"]
+[gd_scene load_steps=4 format=3 uid="uid://gitmckv6idiq"]
 
 [ext_resource type="PackedScene" uid="uid://qnl4o5vsa0va" path="res://scenes/obstacle.tscn" id="1_v26fx"]
 [ext_resource type="PackedScene" uid="uid://ci4moycif5owm" path="res://scenes/elevator.tscn" id="2_1m5us"]
+[ext_resource type="PackedScene" uid="uid://dmqsyy0b226i3" path="res://scenes/terminal.tscn" id="3_ao6qd"]
 
 [node name="fourthFloor" type="Node2D"]
 
@@ -9,7 +10,7 @@
 position = Vector2(250, 389)
 
 [node name="obstacle2" parent="." instance=ExtResource("1_v26fx")]
-position = Vector2(834, 374)
+position = Vector2(113, 514)
 
 [node name="obstacle3" parent="." instance=ExtResource("1_v26fx")]
 position = Vector2(249, 498)
@@ -19,3 +20,12 @@ position = Vector2(372, 388)
 
 [node name="elevator" parent="." instance=ExtResource("2_1m5us")]
 position = Vector2(595, 144)
+
+[node name="terminal1" parent="." instance=ExtResource("3_ao6qd")]
+position = Vector2(710, 574)
+
+[node name="terminal2" parent="." instance=ExtResource("3_ao6qd")]
+position = Vector2(854, 574)
+
+[node name="terminal3" parent="." instance=ExtResource("3_ao6qd")]
+position = Vector2(999, 574)
