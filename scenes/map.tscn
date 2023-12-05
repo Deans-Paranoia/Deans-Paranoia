@@ -12,7 +12,7 @@ studentScene = ExtResource("2_dqx11")
 deanScene = ExtResource("3_h3gah")
 metadata/_edit_lock_ = true
 
-[node name="level" parent="." instance=ExtResource("2_cmphr")]
+[node name="thirdFloor" parent="." instance=ExtResource("2_cmphr")]
 
 [node name="fourthFloor" parent="." instance=ExtResource("3_xpfht")]
 process_mode = 4

@@ -15,7 +15,7 @@ func _input(event):
 	# event do interakcji z obiektami przez dziekana
 	if event.is_action_pressed("interaction"):
 		# obsluga alarmu
-		var fire_alarm_reference = get_node_or_null("../level/fire_alarm")
+		var fire_alarm_reference = get_node_or_null("../thirdFloor/fire_alarm")
 		if fire_alarm_reference and fire_alarm_reference.useable and can_use_alarm and self.name == str(multiplayer.get_unique_id()):
 			ring_fire_alarm()
 			fire_alarm_reference.useable = false
@@ -23,7 +23,7 @@ func _input(event):
 
 @rpc("any_peer","call_remote")
 func change_alarm_state():
-	var fire_alarm_reference = get_node_or_null("../level/fire_alarm")
+	var fire_alarm_reference = get_node_or_null("../thirdFloor/fire_alarm")
 	if fire_alarm_reference:
 		fire_alarm_reference.useable = false	
 @rpc("any_peer","call_local")
