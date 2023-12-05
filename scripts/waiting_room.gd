@@ -18,7 +18,7 @@ func enable_dean_change():
 func makeAsDean(id):
 	dean_picked.emit(id)
 func _on_start_game_button_down():
-	button_pressed.emit(self)
+	button_pressed.emit()
 	
 func findDeanId():
 	var candidate:int

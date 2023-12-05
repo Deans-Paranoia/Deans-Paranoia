@@ -10,6 +10,7 @@ size = Vector2(84, 72)
 size = Vector2(116, 106)
 
 [node name="booster" type="Node2D"]
+scale = Vector2(0.3, 0.3)
 script = ExtResource("1_wv6eh")
 
 [node name="Booster" type="StaticBody2D" parent="."]
