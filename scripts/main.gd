@@ -117,7 +117,7 @@ func joinByIp(ip):
 	else:
 		for i in $ServerBrowser/VBoxContainer.get_children():
 			i.get_node("Button").text = "room is full"
-func on_start_game(control):
+func on_start_game():
 	StartGame.rpc()
 	StartGame()
 	pass

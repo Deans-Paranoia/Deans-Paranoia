@@ -9,6 +9,7 @@ size = Vector2(121, 109)
 size = Vector2(215.5, 203)
 
 [node name="obstacle" type="Node2D"]
+scale = Vector2(0.2, 0.2)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." groups=["obstacles"]]
 
