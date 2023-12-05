@@ -13,7 +13,7 @@ func load_textures():
 
 func update_texture():
 	$Terminal/Sprite2D.texture = textures[actual_value]
-
+@rpc("any_peer","call_remote")
 func use_terminal():
 	actual_value += 1
 	if actual_value > 9:

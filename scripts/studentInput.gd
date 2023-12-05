@@ -57,6 +57,7 @@ func _input(event):
 		# obsluga terminalu przez studenta
 		if terminal_address != null and self.name == str(multiplayer.get_unique_id()):
 			terminal_address.use_terminal()
+			terminal_address.use_terminal.rpc()
 			
 		# obsluga boostera przez studenta
 		if can_use_booster and !has_booster and self.name == str(multiplayer.get_unique_id()):
