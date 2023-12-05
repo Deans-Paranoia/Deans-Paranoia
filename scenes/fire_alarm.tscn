@@ -10,6 +10,7 @@ size = Vector2(85, 78.5)
 size = Vector2(128, 97)
 
 [node name="fire_alarm" type="Node2D"]
+scale = Vector2(0.3, 0.3)
 script = ExtResource("1_55pn0")
 
 [node name="FireAlarm" type="StaticBody2D" parent="."]

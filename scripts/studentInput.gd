@@ -35,7 +35,7 @@ func _input(event):
 	# interakcja z obiektami 
 	if event.is_action_pressed("interaction"):
 		# obsluga alarmu przez studenta
-		var fire_alarm_reference = get_node_or_null("../level/fire_alarm")
+		var fire_alarm_reference = get_node_or_null("../thirdFloor/fire_alarm")
 		if fire_alarm_reference !=null and fire_alarm_reference.useable and can_use_alarm and self.name == str(multiplayer.get_unique_id()):
 			sabotage_alarm()
 			fire_alarm_reference.useable = false
@@ -46,14 +46,14 @@ func _input(event):
 			use_server()
 			
 		# obsluga windy przez studenta
-		var elevator_reference = get_node_or_null("../level/elevator")
+		var elevator_reference = get_node_or_null("../thirdFloor/elevator")
 		if can_use_elevator and self.name == str(multiplayer.get_unique_id()):
 			use_elevator()
 			
 			
 		# obsluga boostera przez studenta
 		if can_use_booster and !has_booster and self.name == str(multiplayer.get_unique_id()):
-			var booster = get_node_or_null("../level/booster")
+			var booster = get_node_or_null("../thirdFloor/booster")
 			if booster !=null and can_use_booster and self.name == str(multiplayer.get_unique_id()):
 				# usuniecie boostera
 				removeBooster.rpc()
@@ -83,11 +83,11 @@ func hide_me(id,isThirdFloor):
 				player.process_mode = PROCESS_MODE_DISABLED
 @rpc("any_peer","call_remote")
 func change_alarm_state():
-	var fire_alarm_reference = get_node_or_null("../level/fire_alarm")
+	var fire_alarm_reference = get_node_or_null("../thirdFloor/fire_alarm")
 	fire_alarm_reference.useable = false
 @rpc("any_peer","call_local")
 func removeBooster():
-	var booster = get_node_or_null("../level/booster")
+	var booster = get_node_or_null("../thirdFloor/booster")
 	if booster!= null:
 		booster.on_boost_requested()
 func sabotage_alarm():
@@ -98,7 +98,7 @@ func sabotage_alarm():
 	
 func use_server():
 	# funkcja do uzywania serwera przez studenta
-	var server_reference = get_node_or_null("../level/server")
+	var server_reference = get_node_or_null("../fourthFloor/server")
 	if server_reference.server_opened == false:
 		print("server opened")
 		server_reference.server_opened = true
@@ -108,7 +108,7 @@ func use_server():
 	
 func use_elevator():
 	var fourth = get_node_or_null("../fourthFloor")
-	var third = get_node_or_null("../level")
+	var third = get_node_or_null("../thirdFloor")
 	
 	var id = multiplayer.get_unique_id()
 	if(fourth != null and third!=null):
