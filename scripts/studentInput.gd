@@ -16,6 +16,10 @@ var can_use_booster: bool = false
 var has_booster: bool = false
 # sprawdza czy student posiada booster
 
+var can_use_terminal: bool = false
+# sprawdza czy znajduje sie w strefie gdzie mozna uzyc terminalu
+var terminal_address
+
 var can_move: bool
 
 var temp_speed
@@ -50,6 +54,10 @@ func _input(event):
 		if can_use_elevator and self.name == str(multiplayer.get_unique_id()):
 			use_elevator()
 			
+		# obsluga terminalu przez studenta
+		if terminal_address != null and self.name == str(multiplayer.get_unique_id()):
+			terminal_address.use_terminal()
+			terminal_address.use_terminal.rpc()
 			
 		# obsluga boostera przez studenta
 		if can_use_booster and !has_booster and self.name == str(multiplayer.get_unique_id()):
@@ -171,8 +179,6 @@ func dig():
 func stop_dig():
 	_is_space_pressed = false
 	body.get_node("DiggingTimer").stop()
-func use_terminal():
-	pass
 
 func _on_player_area_area_entered(area):
 	#funkcja do rejestrowanie aktualnie area, do ktorej weszlismy
@@ -188,6 +194,10 @@ func _on_player_area_area_entered(area):
 		
 	if (area_entered == "BoosterArea" and self.name == str(multiplayer.get_unique_id())):
 		can_use_booster = true
+		
+	if (area_entered == "TerminalArea" and self.name == str(multiplayer.get_unique_id())):
+		can_use_terminal = true
+		terminal_address = area.get_parent().get_parent()
 
 func _on_player_area_area_exited(area):
 	#funkcja  do rejestrowania aktualnie opuszczonej area
@@ -203,6 +213,10 @@ func _on_player_area_area_exited(area):
 		
 	if (area_exited == "BoosterArea" and self.name == str(multiplayer.get_unique_id())):
 		can_use_booster = false
+	
+	if (area_exited == "TerminalArea" and self.name == str(multiplayer.get_unique_id())):
+		can_use_terminal = false
+		terminal_address = null
 
 func stop_player_movement():
 	#funkcja  do zatrzymania movementu studenta, zbiera aktualna predkosc i przechowuje ja w temp_speed
