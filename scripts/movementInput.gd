@@ -7,7 +7,7 @@ var player_name: String
 var last_direction = Vector2.ZERO
 
 #speed zostało dodane dodatkowo tymczasowo (bez tego ruch jest niezauważalny)
-var speed: int = 200
+var speed: int = 250
 
 func _ready():
 	#dodaj to do klasy movementinput, also dodaj multiplayerSychronizer ( nie wiem czy do deana i studenta czy tez playera)
@@ -18,7 +18,7 @@ func _ready():
 			var camera = Camera2D.new()
 			
 			camera.name = "camera " +str( multiplayer.get_unique_id())
-			camera.zoom = Vector2(2,2)
+			camera.zoom = Vector2(1.8,1.8)
 			#if camera.enabled && camera.is_inside_tree():
 			if camera.enabled && camera.is_inside_tree():
 				camera.make_current()
