@@ -1,6 +1,6 @@
 extends Node2D
-var fourthFloor = load("res://scenes/fourth_floor.tscn")
-var thirdFloor = load("res://scenes/level.tscn")
+var fourthFloor = load("res://map/fourth_floor.tscn")
+var thirdFloor = load("res://map/level.tscn")
 var can_use_alarm : bool = false
 # sprawdza czy znajduje sie w strefie gdzie mozna odpalic alarm
 var multiplayerId = self.name 

@@ -1,0 +1,19 @@
+[gd_scene load_steps=6 format=3 uid="uid://bsldsfbg1mo8e"]
+
+[ext_resource type="Script" path="res://map/map.gd" id="1_dmw7b"]
+[ext_resource type="PackedScene" uid="uid://bm1ngabod5xlp" path="res://map/world.tscn" id="2_cmphr"]
+[ext_resource type="PackedScene" uid="uid://y4kbm2l282iy" path="res://scenes/student.tscn" id="2_dqx11"]
+[ext_resource type="PackedScene" uid="uid://dm1vrnv5e47gm" path="res://scenes/dean.tscn" id="3_h3gah"]
+[ext_resource type="PackedScene" uid="uid://gitmckv6idiq" path="res://map/fourth_floor.tscn" id="3_xpfht"]
+
+[node name="Map" type="Node2D"]
+script = ExtResource("1_dmw7b")
+studentScene = ExtResource("2_dqx11")
+deanScene = ExtResource("3_h3gah")
+metadata/_edit_lock_ = true
+
+[node name="thirdFloor" parent="." instance=ExtResource("2_cmphr")]
+
+[node name="fourthFloor" parent="." instance=ExtResource("3_xpfht")]
+process_mode = 4
+position = Vector2(620, -969)

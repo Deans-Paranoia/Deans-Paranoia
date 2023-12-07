@@ -61,7 +61,7 @@ func SendPlayerInformation(name, id):
 			SendPlayerInformation.rpc(globalScript.Players[i].name, i)
 @rpc("any_peer","call_remote")
 func StartGame():
-	var sceneMain = load("res://scenes/map.tscn").instantiate()
+	var sceneMain = load("res://map/map.tscn").instantiate()
 	self.hide()
 	#print(control)
 	var rooms = get_tree().get_nodes_in_group("room")
