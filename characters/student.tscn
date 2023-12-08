@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://y4kbm2l282iy"]
 
-[ext_resource type="PackedScene" uid="uid://ctspysrhlil1i" path="res://scenes/player.tscn" id="1_6lj7h"]
-[ext_resource type="Script" path="res://scripts/studentInput.gd" id="2_vaos0"]
+[ext_resource type="PackedScene" uid="uid://ctspysrhlil1i" path="res://characters/player.tscn" id="1_6lj7h"]
+[ext_resource type="Script" path="res://characters/studentInput.gd" id="2_vaos0"]
 [ext_resource type="Texture2D" uid="uid://ci6reda475qnr" path="res://assets/student_new.png" id="3_mwujw"]
 
 [node name="Student" instance=ExtResource("1_6lj7h")]

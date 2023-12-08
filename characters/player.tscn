@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://ctspysrhlil1i"]
 
 [ext_resource type="Texture2D" uid="uid://b7hx6nra362b" path="res://assets/icon.svg" id="1_grwq2"]
-[ext_resource type="Script" path="res://scripts/movementInput.gd" id="1_y8ilh"]
+[ext_resource type="Script" path="res://characters/movementInput.gd" id="1_y8ilh"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_qy6rn"]
 properties/0/path = NodePath(".:position")
