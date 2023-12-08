@@ -71,24 +71,7 @@ func _input(event):
 		dig()
 	elif event.is_action_released("dig") and self.name == str(multiplayer.get_unique_id()):
 		stop_dig()
-@rpc("any_peer","call_remote")
-func hide_me(id,isThirdFloor):
-	var player = get_node_or_null("../"+str(id))
-	if(player != null):
-		if isThirdFloor:
-			if(self.is_in_group("ThirdFloor")):
-				player.visible = true
-				player.process_mode = PROCESS_MODE_ALWAYS
-			else: 
-				player.visible = false
-				player.process_mode = PROCESS_MODE_DISABLED
-		else:
-			if self.is_in_group("FourthFloor"):
-				player.visible = true
-				player.process_mode = PROCESS_MODE_ALWAYS
-			else: 
-				player.visible = false
-				player.process_mode = PROCESS_MODE_DISABLED
+
 @rpc("any_peer","call_remote")
 func change_alarm_state():
 	var fire_alarm_reference = get_node_or_null("../thirdFloor/fire_alarm")
@@ -120,41 +103,16 @@ func use_elevator():
 	
 	var id = multiplayer.get_unique_id()
 	if(fourth != null and third!=null):
-		if(fourth.visible == false):
+		if(self.is_in_group("ThirdFloor")):
 			self.add_to_group("FourthFloor")
 			self.remove_from_group("ThirdFloor")
-			var fourthFloorPlayers = get_tree().get_nodes_in_group("FourthFloor")
-			var thirdFloorPlayers = get_tree().get_nodes_in_group("ThirdFloor")
-			for i in fourthFloorPlayers:
-				i.visible = true
-				i.process_mode = PROCESS_MODE_ALWAYS
-			for i in thirdFloorPlayers:
-				i.visible = false
-				i.process_mode = PROCESS_MODE_DISABLED
-			fourth.visible = true
-			fourth.process_mode = PROCESS_MODE_ALWAYS
-			third.visible = false
-			third.process_mode = PROCESS_MODE_DISABLED
+			self.global_position.x += 3000
 			
-			hide_me.rpc(id,false)
 			
 		else:
 			self.add_to_group("ThirdFloor")
 			self.remove_from_group("FourthFloor")
-			var fourthFloorPlayers = get_tree().get_nodes_in_group("FourthFloor")
-			var thirdFloorPlayers = get_tree().get_nodes_in_group("ThirdFloor")
-			for i in thirdFloorPlayers:
-				i.visible = true
-				i.process_mode = PROCESS_MODE_ALWAYS
-			for i in fourthFloorPlayers:
-				i.visible = false
-				i.process_mode = PROCESS_MODE_DISABLED
-			fourth.visible = false
-			fourth.process_mode = PROCESS_MODE_DISABLED
-			third.visible = true
-			third.process_mode = PROCESS_MODE_ALWAYS
-			
-			hide_me.rpc(id,true)
+			self.global_position.x -= 3000
 func acquire_booster():
 	# funkcja nadajaca booster dla studenta
 	has_booster = true
