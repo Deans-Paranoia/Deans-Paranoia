@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://ci2w51qx0u74u"]
 
-[ext_resource type="Script" path="res://scripts/fireAlarmSetup.gd" id="1_55pn0"]
+[ext_resource type="Script" path="res://items/fireAlarmSetup.gd" id="1_55pn0"]
 [ext_resource type="Texture2D" uid="uid://dur1x7juguii1" path="res://assets/fireAlarm.jpg" id="2_ofswb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t8uc6"]

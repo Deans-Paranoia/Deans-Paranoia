@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://b4jtyggr1i1y5"]
 
-[ext_resource type="Script" path="res://scripts/booster.gd" id="1_wv6eh"]
+[ext_resource type="Script" path="res://items/booster.gd" id="1_wv6eh"]
 [ext_resource type="Texture2D" uid="uid://c00t5e6ckeu4s" path="res://assets/kawa.png" id="2_ycvw5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f1shx"]
