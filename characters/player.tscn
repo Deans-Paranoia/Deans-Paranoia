@@ -19,6 +19,7 @@ size = Vector2(177, 165)
 metadata/_edit_lock_ = true
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+collision_layer = 2
 script = ExtResource("1_y8ilh")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]

@@ -7,6 +7,7 @@
 size = Vector2(148, 156)
 
 [node name="Npc" type="Node2D"]
+scale = Vector2(0.3, 0.3)
 script = ExtResource("1_638kx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -14,6 +15,7 @@ scale = Vector2(0.470588, 0.470588)
 texture = ExtResource("2_sfffr")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(0, 1)
