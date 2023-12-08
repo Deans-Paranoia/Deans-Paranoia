@@ -106,20 +106,22 @@ func use_elevator():
 		if(self.is_in_group("ThirdFloor")):
 			self.add_to_group("FourthFloor")
 			self.remove_from_group("ThirdFloor")
-			self.global_position.x += 3000
+			teleport.rpc(3000)
 			
 			
 		else:
 			self.add_to_group("ThirdFloor")
 			self.remove_from_group("FourthFloor")
-			self.global_position.x -= 3000
+			teleport.rpc(-3000)
 func acquire_booster():
 	# funkcja nadajaca booster dla studenta
 	has_booster = true
 	print("Boost taken")
 	
 
-	
+@rpc("any_peer","call_local")
+func teleport(ammount):
+	self.global_position.x += ammount
 #metoda usuwa obstacle po przytrzymaniu spacji, jeśli gracz znajduje się blisko przeszkody i jest zwrócony przodem do niej
 func dig():
 	var _is_facing_obstacle = false
