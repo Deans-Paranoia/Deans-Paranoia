@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cw8354n8rrb6q"]
+[gd_scene load_steps=5 format=3 uid="uid://cw8354n8rrb6q"]
 
 [ext_resource type="Script" path="res://characters/npc.gd" id="1_638kx"]
 [ext_resource type="Texture2D" uid="uid://crfru6wvgkwf8" path="res://assets/npc.png" id="2_sfffr"]
+[ext_resource type="Script" path="res://characters/task.gd" id="3_avpwc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3im3k"]
 size = Vector2(148, 156)
@@ -20,3 +21,8 @@ collision_layer = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_3im3k")
+
+[node name="TaskScript" type="Node2D" parent="."]
+script = ExtResource("3_avpwc")
+
+[connection signal="task_type_emitted" from="." to="TaskScript" method="on_npc_task_type_emitted"]
