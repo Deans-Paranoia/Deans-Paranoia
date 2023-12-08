@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bjahfyp48dpwn"]
 
-[ext_resource type="Script" path="res://scripts/ServerInfo.gd" id="1_lno7d"]
+[ext_resource type="Script" path="res://netcode/ServerInfo.gd" id="1_lno7d"]
 
 [node name="ServerInfo" type="HBoxContainer" groups=["server"]]
 size_flags_stretch_ratio = 0.61

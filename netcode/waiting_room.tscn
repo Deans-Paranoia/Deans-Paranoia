@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dlax5hsl67b0q"]
 
-[ext_resource type="Script" path="res://scripts/waiting_room.gd" id="1_fkmg8"]
-[ext_resource type="PackedScene" uid="uid://br8gcsc0qn7l6" path="res://scenes/PlayerInfo.tscn" id="2_7ksot"]
+[ext_resource type="Script" path="res://netcode/waiting_room.gd" id="1_fkmg8"]
+[ext_resource type="PackedScene" uid="uid://br8gcsc0qn7l6" path="res://netcode/PlayerInfo.tscn" id="2_7ksot"]
 
 [node name="Waiting_room" type="Control" groups=["room"]]
 layout_mode = 3

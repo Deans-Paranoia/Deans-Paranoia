@@ -32,7 +32,7 @@ func peer_disconnected(id):
 func connected_to_server():
 	print("Connected to server")
 	SendPlayerInformation.rpc_id(1, "Player " + str(globalScript.Players.size()+1), multiplayer.get_unique_id() )
-	var scene = load("res://scenes/waiting_room.tscn").instantiate()
+	var scene = load("res://netcode/waiting_room.tscn").instantiate()
 	
 	current_player.connect(scene.on_current_player)
 	current_player.emit( multiplayer.get_unique_id())
@@ -78,7 +78,7 @@ func hostGame():
 	peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER)
 	multiplayer.set_multiplayer_peer(peer)
 	print("waiting for players...")
-	var scene:Node = load("res://scenes/waiting_room.tscn").instantiate()
+	var scene:Node = load("res://netcode/waiting_room.tscn").instantiate()
 	var node:Button = scene.get_node("StartGame")
 	node.disabled = false
 	scene.button_pressed.connect(on_start_game)
