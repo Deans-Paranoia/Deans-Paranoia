@@ -35,6 +35,7 @@ func _ready():
 	set_process_input(true)
 	if(multiplayer.get_unique_id()!=1):
 		body = get_node_or_null(str(multiplayer.get_unique_id()))
+		
 func _input(event):
 	# interakcja z obiektami 
 	if event.is_action_pressed("interaction"):
@@ -113,12 +114,13 @@ func use_elevator():
 			self.add_to_group("ThirdFloor")
 			self.remove_from_group("FourthFloor")
 			self.global_position.x -= 3000
+			
 func acquire_booster():
 	# funkcja nadajaca booster dla studenta
 	has_booster = true
-	print("Boost taken")
+	_dig_speed = 0.3
+	print("Boost taken, current dig speed: ",_dig_speed)
 	
-
 	
 #metoda usuwa obstacle po przytrzymaniu spacji, jeśli gracz znajduje się blisko przeszkody i jest zwrócony przodem do niej
 func dig():
