@@ -19,16 +19,19 @@ class Task:
 
 
 var Tasks: = [
-	 Task.new(0.0, 50.0, "taskType1"),
-	 Task.new(100.0, 50.0, "taskType2"),
-	 Task.new(200.0, 100.0, "taskType3"),
-	 Task.new(140.0, 140.0, "taskType4"),
-	 Task.new(100.0, 100.0, "taskType5"),
-	 Task.new(50.0, 300.0, "taskType6"),
-	 Task.new(500.0, 100.0, "taskType7"),
-	 Task.new(250.0, 0.0, "taskType8"),
-	 Task.new(0.0, 250.0, "taskType9"),
-	 Task.new(500.0, 500.0, "taskType10"),
+	 Task.new(0.0, 50.0, "takingNotes"),
+	 Task.new(100.0, 50.0, "takingNotes"),
+	 Task.new(200.0, 100.0, "takingNotes"),
+	 Task.new(140.0, 140.0, "takingNotes"),
+	 Task.new(100.0, 100.0, "computer"),
+	 Task.new(50.0, 300.0, "computer"),
+	 Task.new(500.0, 100.0, "computer"),
+	 Task.new(250.0, 0.0, "walking"),
+	 Task.new(0.0, 250.0, "walking"),
+	 Task.new(500.0, 500.0, "walking"),
+	 Task.new(-200.0, 500.0, "walking"),
+	 Task.new(-300.0, 500.0, "vendingMachine"),
+	 Task.new(-400.0, 500.0, "vendingMachine"),
 ]
 
 var UsedTasks: = []
