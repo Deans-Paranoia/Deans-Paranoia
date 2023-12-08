@@ -1,0 +1,88 @@
+[gd_scene load_steps=4 format=3 uid="uid://dyallalkeim1f"]
+
+[ext_resource type="Script" path="res://netcode/main.gd" id="1_2afmc"]
+[ext_resource type="Script" path="res://netcode/ServerBrowser.gd" id="2_4kyfb"]
+[ext_resource type="PackedScene" uid="uid://bjahfyp48dpwn" path="res://netcode/server_info.tscn" id="3_8utcf"]
+
+[node name="main" type="Control"]
+layout_mode = 3
+anchor_left = 0.488715
+anchor_top = 0.436728
+anchor_right = 0.536458
+anchor_bottom = 0.5
+offset_left = 36.0
+offset_top = 2.0
+offset_right = 36.0
+offset_bottom = 2.0
+script = ExtResource("1_2afmc")
+metadata/_edit_use_anchors_ = true
+
+[node name="ServerBrowser" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 89.0
+offset_top = -89.0
+offset_right = 138.0
+offset_bottom = -51.0
+script = ExtResource("2_4kyfb")
+serverInfo = ExtResource("3_8utcf")
+
+[node name="BroadcastTimer" type="Timer" parent="ServerBrowser"]
+
+[node name="Label" type="Label" parent="ServerBrowser"]
+visible = false
+layout_mode = 0
+offset_left = 333.0
+offset_top = -259.0
+offset_right = 485.0
+offset_bottom = -197.0
+theme_override_font_sizes/font_size = 30
+text = "Host: false"
+
+[node name="ServerIp" type="LineEdit" parent="ServerBrowser"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.5
+offset_left = -234.0
+offset_top = -21.0
+offset_right = 141.0
+offset_bottom = 71.0
+theme_override_font_sizes/font_size = 25
+text = "127.0.0.1"
+placeholder_text = "enter your server ip..."
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ServerBrowser"]
+layout_mode = 0
+offset_left = -496.0
+offset_top = -159.0
+offset_right = 500.0
+offset_bottom = -77.0
+
+[node name="Host" type="Button" parent="ServerBrowser"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -257.5
+offset_top = 70.0
+offset_right = 145.5
+offset_bottom = 161.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 28
+text = "Host"
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = -153.0
+offset_top = -269.0
+offset_right = 205.0
+offset_bottom = -201.0
+theme_override_font_sizes/font_size = 40
+text = "Waiting for server..."
+
+[connection signal="timeout" from="ServerBrowser/BroadcastTimer" to="ServerBrowser" method="_on_broadcast_timer_timeout"]
+[connection signal="button_down" from="ServerBrowser/Host" to="." method="_on_host_button_down"]

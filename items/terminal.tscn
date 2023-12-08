@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dmqsyy0b226i3"]
+
+[ext_resource type="Texture2D" uid="uid://6dvu00j6jjxr" path="res://assets/terminal_0.png" id="1_ujpqw"]
+[ext_resource type="Script" path="res://items/terminal.gd" id="1_x6vuj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y235l"]
+size = Vector2(200, 200)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u4aqg"]
+size = Vector2(286, 286)
+
+[node name="terminal" type="Node2D"]
+position = Vector2(0, -1)
+script = ExtResource("1_x6vuj")
+
+[node name="Terminal" type="StaticBody2D" parent="."]
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="Terminal"]
+texture = ExtResource("1_ujpqw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Terminal"]
+shape = SubResource("RectangleShape2D_y235l")
+
+[node name="TerminalArea" type="Area2D" parent="Terminal"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Terminal/TerminalArea"]
+shape = SubResource("RectangleShape2D_u4aqg")
