@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cw8354n8rrb6q"]
 
 [ext_resource type="Script" path="res://characters/npc.gd" id="1_638kx"]
-[ext_resource type="Texture2D" uid="uid://crfru6wvgkwf8" path="res://assets/npc.png" id="2_sfffr"]
+[ext_resource type="Texture2D" uid="uid://ci6reda475qnr" path="res://assets/student_new.png" id="2_2elt8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3im3k"]
 size = Vector2(148, 156)
@@ -11,8 +11,8 @@ scale = Vector2(0.3, 0.3)
 script = ExtResource("1_638kx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.470588, 0.470588)
-texture = ExtResource("2_sfffr")
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("2_2elt8")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 collision_layer = 2
@@ -20,3 +20,20 @@ collision_layer = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_3im3k")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -92.5
+offset_top = -175.0
+offset_right = 92.5
+offset_bottom = -95.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 42
+text = "Player"
+horizontal_alignment = 1
+metadata/_edit_lock_ = true

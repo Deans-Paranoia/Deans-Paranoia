@@ -54,7 +54,8 @@ func SendPlayerInformation(name, id):
 	if !globalScript.Players.has(id):
 		globalScript.Players[id] = {
 			"name": name,
-			"id": id
+			"id": id,
+			"fakeName":""
 		}
 	if multiplayer.is_server():
 		for i in globalScript.Players:
@@ -118,6 +119,18 @@ func joinByIp(ip):
 		for i in $ServerBrowser/VBoxContainer.get_children():
 			i.get_node("Button").text = "room is full"
 func on_start_game():
+	for i in globalScript.Players:
+		#if i != globalScript.deanId:
+			
+			var rand = RandomNumberGenerator.new()
+			var name_number = rand.randi() % globalScript.studentsNames.size()
+			signName(name_number,i)
+			signName.rpc(name_number,i)
+			
 	StartGame.rpc()
 	StartGame()
 	pass
+@rpc("any_peer","call_remote")
+func signName(name_number,i):
+	globalScript.Players[i].fakeName = globalScript.studentsNames[name_number]
+	globalScript.remove_name(name_number)
