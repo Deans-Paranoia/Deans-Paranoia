@@ -19,6 +19,7 @@ size = Vector2(177, 165)
 metadata/_edit_lock_ = true
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+z_index = 1
 collision_layer = 2
 script = ExtResource("1_y8ilh")
 
@@ -33,13 +34,27 @@ replication_config = SubResource("SceneReplicationConfig_qy6rn")
 position = Vector2(0, 18)
 shape = SubResource("CircleShape2D_0nlaq")
 
-[node name="Label" type="Label" parent="CharacterBody2D"]
-offset_top = 20.0
-text = "Player"
-horizontal_alignment = 1
-metadata/_edit_lock_ = true
-
 [node name="PlayerArea" type="Area2D" parent="CharacterBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/PlayerArea"]
 shape = SubResource("RectangleShape2D_84uu5")
+
+[node name="Label" type="Label" parent="CharacterBody2D"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -92.5
+offset_top = -175.0
+offset_right = 92.5
+offset_bottom = -95.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 42
+text = "Player"
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
