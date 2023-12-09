@@ -10,10 +10,6 @@ func _ready():
 		#if i==globalScript.deanId:
 		#	currentPlayer = deanScene.instantiate()
 		#else:
-		add_child(npcScene.instantiate())
-		add_child(npcScene.instantiate())
-		add_child(npcScene.instantiate())
-		add_child(npcScene.instantiate())
 		currentPlayer = studentScene.instantiate()
 		currentPlayer.name = str(globalScript.Players[i].id)
 		currentPlayer.add_to_group("ThirdFloor")
