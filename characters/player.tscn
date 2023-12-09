@@ -10,7 +10,7 @@ properties/0/sync = true
 properties/0/watch = false
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0nlaq"]
-radius = 65.0308
+radius = 49.0918
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_84uu5"]
 size = Vector2(177, 165)
@@ -30,8 +30,8 @@ metadata/_edit_lock_ = true
 replication_config = SubResource("SceneReplicationConfig_qy6rn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(0, 18)
 shape = SubResource("CircleShape2D_0nlaq")
-metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="CharacterBody2D"]
 offset_top = 20.0
