@@ -27,7 +27,7 @@ var temp_speed
 var body:CharacterBody2D
 var _obstacle_to_destroy
 var _is_space_pressed = false	
-var _dig_speed : float = 0.5
+var _dig_speed : float = 1.5
 
 #dfunc _process(_delta):
 	#dig()
@@ -107,21 +107,24 @@ func use_elevator():
 		if(self.is_in_group("ThirdFloor")):
 			self.add_to_group("FourthFloor")
 			self.remove_from_group("ThirdFloor")
-			self.global_position.x += 3000
+			teleport.rpc(3000)
 			
 			
 		else:
 			self.add_to_group("ThirdFloor")
 			self.remove_from_group("FourthFloor")
-			self.global_position.x -= 3000
-			
+			teleport.rpc(-3000)
 func acquire_booster():
 	# funkcja nadajaca booster dla studenta
 	has_booster = true
-	_dig_speed = 0.3
+	_dig_speed = 0.75
 	print("Boost taken, current dig speed: ",_dig_speed)
 	
-	
+
+@rpc("any_peer","call_local")
+func teleport(ammount):
+	self.global_position.x += ammount
+
 #metoda usuwa obstacle po przytrzymaniu spacji, jeśli gracz znajduje się blisko przeszkody i jest zwrócony przodem do niej
 func dig():
 	var _is_facing_obstacle = false
