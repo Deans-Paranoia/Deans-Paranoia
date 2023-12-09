@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bsgmwg36gvtxu"]
+[gd_scene load_steps=6 format=3 uid="uid://bsgmwg36gvtxu"]
 
 [ext_resource type="Texture2D" uid="uid://71m2ld2gmwu" path="res://assets/server.png" id="1_mkupf"]
 [ext_resource type="Script" path="res://items/server.gd" id="1_xfjyh"]
+[ext_resource type="PackedScene" uid="uid://dmqsyy0b226i3" path="res://items/terminal.tscn" id="3_2vb1b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tvtru"]
 size = Vector2(294, 131)
@@ -26,3 +27,11 @@ texture = ExtResource("1_mkupf")
 [node name="CollsionShape2D" type="CollisionShape2D" parent="body/ServerArea"]
 position = Vector2(5, 5.5)
 shape = SubResource("RectangleShape2D_yc460")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="terminal1" parent="." instance=ExtResource("3_2vb1b")]
+
+[node name="terminal2" parent="." instance=ExtResource("3_2vb1b")]
+
+[node name="terminal3" parent="." instance=ExtResource("3_2vb1b")]
