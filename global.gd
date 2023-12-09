@@ -17,7 +17,9 @@ class Task:
 		self.positionY = positionY
 		self.taskType = taskType
 
-
+var studentsNames = [
+	"imie1", "imie2", "imie3", "imie4", "imie5", "imie6", "imie7", "imie8", "imie9", "imie10", "imie11", "imie12", "imie13"
+]
 var Tasks: = [
 	 Task.new(882.0, -2147.0, "takingNotes"),
 	 Task.new(978.0, -2147.0, "takingNotes"),
@@ -32,9 +34,13 @@ var Tasks: = [
 	 Task.new(729.0, -235.0, "walking"),
 	 Task.new(1251.0, -631.0, "vendingMachine"),
 	 Task.new(-29.0, -1342.0, "vendingMachine"),
+
 ]
 
 var UsedTasks: = []
+
+func remove_name(nameNumber:int):
+	studentsNames.pop_at(nameNumber)
 
 func get_task_data(task_number: int) -> Task:
 	# zwraca taska, ktorego wylosowal npc
@@ -47,4 +53,4 @@ func manage_task(task_number: int):
 
 func remove_task(task_number: int):
 	# usuwa wczesniej dodanego taska do UsedTasks z Tasks
-	Tasks.erase(task_number)
+	Tasks.pop_at(task_number)

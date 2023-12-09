@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://ci6reda475qnr" path="res://assets/student_new.png" id="3_mwujw"]
 
 [node name="Student" instance=ExtResource("1_6lj7h")]
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.3, 0.3)
 script = ExtResource("2_vaos0")
 
 [node name="Sprite2D" parent="CharacterBody2D" index="0"]
@@ -19,10 +19,18 @@ process_callback = 0
 wait_time = 2.0
 
 [node name="Label" parent="CharacterBody2D" index="5"]
-offset_left = -25.0
-offset_top = -140.0
-offset_right = 24.0
-offset_bottom = -114.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -92.5
+offset_top = -175.0
+offset_right = 92.5
+offset_bottom = -95.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 42
 
 [connection signal="timeout" from="CharacterBody2D/DiggingTimer" to="." method="_on_digging_timer_timeout"]
 [connection signal="timeout" from="CharacterBody2D/FreezeTimer" to="." method="_on_freeze_timer_timeout"]

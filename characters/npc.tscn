@@ -1,7 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://cw8354n8rrb6q"]
 
 [ext_resource type="Script" path="res://characters/npc.gd" id="1_638kx"]
-[ext_resource type="Texture2D" uid="uid://crfru6wvgkwf8" path="res://assets/npc.png" id="2_sfffr"]
+
+[ext_resource type="Texture2D" uid="uid://ci6reda475qnr" path="res://assets/student_new.png" id="2_2elt8"]
 [ext_resource type="Script" path="res://characters/npcMovementInput.gd" id="3_8jnpr"]
 [ext_resource type="Script" path="res://characters/task.gd" id="3_avpwc"]
 [ext_resource type="Script" path="res://characters/npcTextureChange.gd" id="3_v2v1l"]
@@ -13,6 +14,7 @@ size = Vector2(148, 156)
 scale = Vector2(0.3, 0.3)
 script = ExtResource("1_638kx")
 
+
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 collision_layer = 2
 script = ExtResource("3_8jnpr")
@@ -21,8 +23,9 @@ script = ExtResource("3_8jnpr")
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_3im3k")
 
+
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
-scale = Vector2(0.470588, 0.470588)
+scale = Vector2(0.07, 0.07)
 texture = ExtResource("2_sfffr")
 script = ExtResource("3_v2v1l")
 
@@ -35,3 +38,20 @@ script = ExtResource("3_avpwc")
 [connection signal="rotate" from="CharacterBody2D" to="CharacterBody2D/Sprite2D" method="_on_character_body_2d_rotate"]
 [connection signal="npc_sprite_task" from="CharacterBody2D/TaskScript" to="CharacterBody2D/Sprite2D" method="on_task_script_npc_sprite_task"]
 [connection signal="npc_walking_task" from="CharacterBody2D/TaskScript" to="CharacterBody2D" method="_on_task_script_npc_walking_task"]
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -92.5
+offset_top = -175.0
+offset_right = 92.5
+offset_bottom = -95.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 42
+text = "Player"
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
