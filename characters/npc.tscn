@@ -32,5 +32,6 @@ script = ExtResource("3_avpwc")
 [node name="Timer" type="Timer" parent="CharacterBody2D"]
 
 [connection signal="task_type_emitted" from="." to="CharacterBody2D/TaskScript" method="on_npc_task_type_emitted"]
+[connection signal="rotate" from="CharacterBody2D" to="CharacterBody2D/Sprite2D" method="_on_character_body_2d_rotate"]
 [connection signal="npc_sprite_task" from="CharacterBody2D/TaskScript" to="CharacterBody2D/Sprite2D" method="on_task_script_npc_sprite_task"]
 [connection signal="npc_walking_task" from="CharacterBody2D/TaskScript" to="CharacterBody2D" method="_on_task_script_npc_walking_task"]

@@ -3,6 +3,9 @@ extends Sprite2D
 var computerSprite = preload("res://assets/npc_computer.png")
 var notesSprite = preload("res://assets/npc_notes.png")
 var vendingSprite = preload("res://assets/npc_vending.png")
+
+var backSprite = preload("res://assets/npc_back.png")
+
 var basicSprite = preload("res://assets/npc.png")
 
 func on_task_script_npc_sprite_task(task_type):
@@ -36,3 +39,9 @@ func vending_machine_loop():
 		texture = basicSprite
 
 
+func _on_character_body_2d_rotate(direction):
+	match direction:
+		"up":
+			texture = backSprite
+		"down":
+			texture = basicSprite

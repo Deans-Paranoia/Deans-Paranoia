@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal rotate(direction: String)
+
 var speed = 200
 @onready var destination = Vector2()
 @onready var point_A: Vector2
@@ -23,13 +25,18 @@ func _process(delta):
 			position = position.move_toward(destination, delta * speed)
 		else: 
 			can_move = false
-			test()
+			wait()
 			if destination == point_A:
 				destination = point_B
-			else: destination = point_A
+			else: 
+				destination = point_A
 
-func test():
+func wait():
 	await get_tree().create_timer(2.0).timeout
 	can_move = true
+	if destination == point_A:
+		rotate.emit("up")
+	else: 
+		rotate.emit("down")
 
 
