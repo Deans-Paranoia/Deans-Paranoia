@@ -1,6 +1,7 @@
 extends Node2D
 @export var studentScene:PackedScene
 @export var deanScene:PackedScene
+@export var npcScene:PackedScene
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var index = 0
@@ -9,6 +10,10 @@ func _ready():
 		#if i==globalScript.deanId:
 		#	currentPlayer = deanScene.instantiate()
 		#else:
+		add_child(npcScene.instantiate())
+		add_child(npcScene.instantiate())
+		add_child(npcScene.instantiate())
+		add_child(npcScene.instantiate())
 		currentPlayer = studentScene.instantiate()
 		currentPlayer.name = str(globalScript.Players[i].id)
 		currentPlayer.add_to_group("ThirdFloor")
