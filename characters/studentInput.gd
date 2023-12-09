@@ -27,7 +27,7 @@ var temp_speed
 var body:CharacterBody2D
 var _obstacle_to_destroy
 var _is_space_pressed = false	
-var _dig_speed : float = 0.5
+var _dig_speed : float = 1.5
 
 #dfunc _process(_delta):
 	#dig()
@@ -35,6 +35,7 @@ func _ready():
 	set_process_input(true)
 	if(multiplayer.get_unique_id()!=1):
 		body = get_node_or_null(str(multiplayer.get_unique_id()))
+		
 func _input(event):
 	# interakcja z obiektami 
 	if event.is_action_pressed("interaction"):
@@ -116,12 +117,14 @@ func use_elevator():
 func acquire_booster():
 	# funkcja nadajaca booster dla studenta
 	has_booster = true
-	print("Boost taken")
+	_dig_speed = 0.75
+	print("Boost taken, current dig speed: ",_dig_speed)
 	
 
 @rpc("any_peer","call_local")
 func teleport(ammount):
 	self.global_position.x += ammount
+
 #metoda usuwa obstacle po przytrzymaniu spacji, jeśli gracz znajduje się blisko przeszkody i jest zwrócony przodem do niej
 func dig():
 	var _is_facing_obstacle = false
