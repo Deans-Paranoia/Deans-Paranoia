@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cw8354n8rrb6q"]
+[gd_scene load_steps=7 format=3 uid="uid://cw8354n8rrb6q"]
 
 [ext_resource type="Script" path="res://characters/npc.gd" id="1_638kx"]
 [ext_resource type="Texture2D" uid="uid://crfru6wvgkwf8" path="res://assets/npc.png" id="2_sfffr"]
+[ext_resource type="Script" path="res://characters/npcMovementInput.gd" id="3_8jnpr"]
 [ext_resource type="Script" path="res://characters/task.gd" id="3_avpwc"]
+[ext_resource type="Script" path="res://characters/npcTextureChange.gd" id="3_v2v1l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3im3k"]
 size = Vector2(148, 156)
@@ -11,18 +13,24 @@ size = Vector2(148, 156)
 scale = Vector2(0.3, 0.3)
 script = ExtResource("1_638kx")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.470588, 0.470588)
-texture = ExtResource("2_sfffr")
-
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 collision_layer = 2
+script = ExtResource("3_8jnpr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_3im3k")
 
-[node name="TaskScript" type="Node2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+scale = Vector2(0.470588, 0.470588)
+texture = ExtResource("2_sfffr")
+script = ExtResource("3_v2v1l")
+
+[node name="TaskScript" type="Node2D" parent="CharacterBody2D"]
 script = ExtResource("3_avpwc")
 
-[connection signal="task_type_emitted" from="." to="TaskScript" method="on_npc_task_type_emitted"]
+[node name="Timer" type="Timer" parent="CharacterBody2D"]
+
+[connection signal="task_type_emitted" from="." to="CharacterBody2D/TaskScript" method="on_npc_task_type_emitted"]
+[connection signal="npc_sprite_task" from="CharacterBody2D/TaskScript" to="CharacterBody2D/Sprite2D" method="on_task_script_npc_sprite_task"]
+[connection signal="npc_walking_task" from="CharacterBody2D/TaskScript" to="CharacterBody2D" method="_on_task_script_npc_walking_task"]
