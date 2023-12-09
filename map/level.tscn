@@ -1,10 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://d1ak7xk1ahtkk"]
+[gd_scene load_steps=10 format=3 uid="uid://d1ak7xk1ahtkk"]
 
 [ext_resource type="Script" path="res://map/map.gd" id="1_vg720"]
-[ext_resource type="PackedScene" uid="uid://y4kbm2l282iy" path="res://scenes/student.tscn" id="2_es16m"]
-[ext_resource type="PackedScene" uid="uid://dm1vrnv5e47gm" path="res://scenes/dean.tscn" id="3_ls1s0"]
+[ext_resource type="PackedScene" uid="uid://y4kbm2l282iy" path="res://characters/student.tscn" id="2_es16m"]
+[ext_resource type="PackedScene" uid="uid://dm1vrnv5e47gm" path="res://characters/dean.tscn" id="3_ls1s0"]
 [ext_resource type="PackedScene" uid="uid://gitmckv6idiq" path="res://map/fourth_floor.tscn" id="4_bsoap"]
 [ext_resource type="PackedScene" uid="uid://bm1ngabod5xlp" path="res://map/world.tscn" id="5_my8be"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rsp8r"]
+size = Vector2(7.72222, 19)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wj481"]
+size = Vector2(368, 310)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7pkbs"]
+size = Vector2(432, 311)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gu5pl"]
+size = Vector2(368, 312)
 
 [node name="Map" type="Node2D"]
 script = ExtResource("1_vg720")
@@ -25,3 +37,42 @@ position = Vector2(182, -57)
 position = Vector2(-85, 53)
 
 [node name="level" parent="." instance=ExtResource("5_my8be")]
+
+[node name="TaskAreas" type="Node2D" parent="."]
+
+[node name="VendingMachine1Area" type="Area2D" parent="TaskAreas"]
+position = Vector2(1238, -633)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TaskAreas/VendingMachine1Area"]
+position = Vector2(-30, -1)
+scale = Vector2(18, 10)
+shape = SubResource("RectangleShape2D_rsp8r")
+
+[node name="VendingMachine2Area" type="Area2D" parent="TaskAreas"]
+position = Vector2(-24, -1343)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TaskAreas/VendingMachine2Area"]
+position = Vector2(36.5, -1)
+scale = Vector2(18, 10)
+shape = SubResource("RectangleShape2D_rsp8r")
+
+[node name="ComputersArea" type="Area2D" parent="TaskAreas"]
+position = Vector2(631, -1471)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TaskAreas/ComputersArea"]
+position = Vector2(9, 26)
+shape = SubResource("RectangleShape2D_wj481")
+
+[node name="NotesArea" type="Area2D" parent="TaskAreas"]
+position = Vector2(1045, -2119)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TaskAreas/NotesArea"]
+position = Vector2(11, 33.5)
+shape = SubResource("RectangleShape2D_7pkbs")
+
+[node name="WalkingArea" type="Area2D" parent="TaskAreas"]
+position = Vector2(561, -141)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TaskAreas/WalkingArea"]
+position = Vector2(15, 40)
+shape = SubResource("RectangleShape2D_gu5pl")
