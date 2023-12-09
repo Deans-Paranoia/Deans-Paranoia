@@ -15,7 +15,6 @@ func _on_task_script_npc_walking_task():
 
 func _ready():
 	point_A = position
-	print(point_A)
 	point_B = point_A + Vector2(0, 600)
 	destination = point_B
 
