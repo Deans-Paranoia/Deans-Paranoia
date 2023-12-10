@@ -29,7 +29,7 @@ var temp_speed
 var body:CharacterBody2D
 var _obstacle_to_destroy
 var _is_space_pressed = false	
-var _dig_speed : float = 1.5
+var _dig_speed : float = 1.0
 
 #dfunc _process(_delta):
 	#dig()
@@ -92,7 +92,7 @@ func sabotage_alarm():
 	
 func use_server():
 	# funkcja do uzywania serwera przez studenta
-		var serverNode = get_node_or_null("res://items/server.tscn")
+		var serverNode = get_node_or_null("../fourthFloor/server")
 		var czyPoprawnyKod : bool = serverNode.calculate_value()
 		if czyPoprawnyKod == false:
 			can_use_server_again = false
@@ -119,7 +119,7 @@ func use_elevator():
 func acquire_booster():
 	# funkcja nadajaca booster dla studenta
 	has_booster = true
-	_dig_speed = 0.75
+	_dig_speed = 0.7
 	print("Boost taken, current dig speed: ",_dig_speed)
 	
 

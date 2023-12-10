@@ -1,12 +1,9 @@
 extends Node
 
-var rng = RandomNumberGenerator.new()
-
 func _ready():
 	# rejestruje skrypt jako singleton (umożliwia dostęp z innych skryptów)
 	Engine.register_singleton("global", self)
-	#generowanie trzycyfrowej wartosci value servera
-	var ServerValue = rng.randi_range(100, 999)
+	
 var Players ={}
 var deanId:int
 var player_type: String
