@@ -5,6 +5,7 @@ extends Node2D
 signal taskType(taskType)
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$RoundTimer.start()
 	var j = 0
 	for i in globalScript.Players:
 		var currentPlayer
@@ -66,3 +67,14 @@ func setPlayer(i,task_number):
 		var position = Vector2(task_data.positionX, task_data.positionY)
 		player.global_position = position
 		globalScript.manage_task(task_number)
+
+
+func _on_round_timer_timeout():
+	#tymczasowo disabled zeby mozna bylo testowac, aby uruchomic wystaczy usunąć # dla linjki nizej
+	#change_view.rpc()
+	pass
+@rpc("any_peer","call_remote")
+func change_view():
+	var camera:Camera2D = get_node("lecture_hall/Camera2D")
+	camera.enabled = true
+	camera.make_current()

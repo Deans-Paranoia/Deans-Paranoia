@@ -21,6 +21,7 @@ class Task:
 var studentsNames = [
 	"imie1", "imie2", "imie3", "imie4", "imie5", "imie6", "imie7", "imie8", "imie9", "imie10", "imie11", "imie12", "imie13"
 ]
+var usedNames = []
 var Tasks: = [
 
 	 Task.new(882.0, -2147.0, "takingNotes"),
@@ -42,7 +43,9 @@ var Tasks: = [
 var UsedTasks: = []
 
 func remove_name(nameNumber:int):
+	usedNames.append(studentsNames[nameNumber])
 	studentsNames.pop_at(nameNumber)
+	
 
 func get_task_data(task_number: int) -> Task:
 	# zwraca taska, ktorego wylosowal npc

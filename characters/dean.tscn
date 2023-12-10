@@ -12,16 +12,11 @@ script = ExtResource("2_14kl1")
 scale = Vector2(0.42, 0.42)
 texture = ExtResource("3_rxgh1")
 
-[node name="Label" parent="CharacterBody2D" index="3"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
+[node name="Label" parent="CharacterBody2D" index="4"]
 offset_left = -100.0
 offset_top = -144.0
 offset_right = 100.0
 offset_bottom = -40.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 42
 
 [connection signal="area_entered" from="CharacterBody2D/PlayerArea" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="CharacterBody2D/PlayerArea" to="." method="_on_area_2d_area_exited"]
