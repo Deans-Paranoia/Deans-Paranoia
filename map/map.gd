@@ -2,6 +2,7 @@ extends Node2D
 @export var studentScene:PackedScene
 @export var deanScene:PackedScene
 @export var npcScene:PackedScene
+signal taskType(taskType)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var j = 0
@@ -47,10 +48,15 @@ func setNpc(name,task_number):
 	var task_data = globalScript.get_task_data(task_number)
 	var position = Vector2(task_data.positionX, task_data.positionY)
 	var npc = npcScene.instantiate()
+	var taskscript = npc.get_node("CharacterBody2D/TaskScript")
+	taskType.connect(taskscript.on_npc_task_type_emitted)
 	npc.global_transform.origin = position
-	var node = npc.get_node("Label")
+	var node = npc.get_node("CharacterBody2D/Label")
 	node.text=globalScript.studentsNames[name]
 	add_child(npc)
+	taskType.emit(task_data.taskType)
+	taskType.disconnect(taskscript.on_npc_task_type_emitted)
+	print(str(task_data.positionX) + str(task_data.positionY)+ task_data.taskType + globalScript.studentsNames[name])
 	globalScript.remove_name(name)
 	globalScript.manage_task(task_number)
 @rpc("any_peer","call_remote")		

@@ -1,6 +1,14 @@
 extends Node2D
 var fourthFloor = load("res://map/fourth_floor.tscn")
 var thirdFloor = load("res://map/level.tscn")
+
+var dangerScene = preload("res://ui/task_exited.tscn")
+var danger_instance
+# pusta zmienna do ktorej przypisywana jest instancja sceny
+
+var catchable: bool = false
+# sprawdza czy student moze zostac zlapany przez dziekana
+
 var can_use_alarm : bool = false
 # sprawdza czy znajduje sie w strefie gdzie mozna odpalic alarm
 var multiplayerId = self.name 
@@ -163,6 +171,7 @@ func _on_player_area_area_entered(area):
 	if (area_entered == "TerminalArea" and self.name == str(multiplayer.get_unique_id())):
 		can_use_terminal = true
 		terminal_address = area.get_parent().get_parent()
+		
 
 func _on_player_area_area_exited(area):
 	#funkcja  do rejestrowania aktualnie opuszczonej area
@@ -227,3 +236,56 @@ func _is_student_facing_obstacle(obstacle):
 		return true
 	else:
 		return false
+
+
+func _on_task_area_exited(area):
+	#funkcja  do rejestrowania aktualnie opuszczonej area taska
+	var area_exited = area.get_name()
+	if (area_exited == "VendingMachine1Area" and self.name == str(multiplayer.get_unique_id())):
+		danger_instance = dangerScene.instantiate()
+		add_child(danger_instance)
+		catchable = true
+		
+	if (area_exited == "VendingMachine2Area" and self.name == str(multiplayer.get_unique_id())):
+		danger_instance = dangerScene.instantiate()
+		add_child(danger_instance)
+		catchable = true
+		
+	if (area_exited == "ComputersArea" and self.name == str(multiplayer.get_unique_id())):
+		danger_instance = dangerScene.instantiate()
+		add_child(danger_instance)
+		catchable = true
+		
+	if (area_exited == "NotesArea" and self.name == str(multiplayer.get_unique_id())):
+		danger_instance = dangerScene.instantiate()
+		add_child(danger_instance)
+		catchable = true
+		
+	if (area_exited == "WalkingArea" and self.name == str(multiplayer.get_unique_id())):
+		danger_instance = dangerScene.instantiate()
+		add_child(danger_instance)
+		catchable = true
+
+
+func _on_task_area_entered(area):
+	#funkcja  do rejestrowania aktualnie odwiedzonej area taska
+	var area_entered = area.get_name()
+	if (area_entered == "VendingMachine1Area" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
+		danger_instance.queue_free()
+		catchable = false
+		
+	if (area_entered == "VendingMachine2Area" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
+		danger_instance.queue_free()
+		catchable = false
+		
+	if (area_entered == "ComputersArea" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
+		danger_instance.queue_free()
+		catchable = false
+		
+	if (area_entered == "NotesArea" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
+		danger_instance.queue_free()
+		catchable = false
+		
+	if (area_entered == "WalkingArea" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
+		danger_instance.queue_free()
+		catchable = false
