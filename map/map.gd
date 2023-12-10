@@ -56,7 +56,6 @@ func setNpc(name,task_number):
 	add_child(npc)
 	taskType.emit(task_data.taskType)
 	taskType.disconnect(taskscript.on_npc_task_type_emitted)
-	print(str(task_data.positionX) + str(task_data.positionY)+ task_data.taskType + globalScript.studentsNames[name])
 	globalScript.remove_name(name)
 	globalScript.manage_task(task_number)
 @rpc("any_peer","call_remote")		
