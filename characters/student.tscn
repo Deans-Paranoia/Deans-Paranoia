@@ -18,7 +18,9 @@ texture = ExtResource("3_mwujw")
 process_callback = 0
 wait_time = 2.0
 
-[node name="Label" parent="CharacterBody2D" index="5"]
+[node name="ServerTimer" type="Timer" parent="CharacterBody2D" index="4"]
+
+[node name="Label" parent="CharacterBody2D" index="6"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -34,6 +36,7 @@ theme_override_font_sizes/font_size = 42
 
 [connection signal="timeout" from="CharacterBody2D/DiggingTimer" to="." method="_on_digging_timer_timeout"]
 [connection signal="timeout" from="CharacterBody2D/FreezeTimer" to="." method="_on_freeze_timer_timeout"]
+[connection signal="timeout" from="CharacterBody2D/ServerTimer" to="." method="_on_server_timer_timeout"]
 [connection signal="area_entered" from="CharacterBody2D/PlayerArea" to="." method="_on_player_area_area_entered"]
 [connection signal="area_entered" from="CharacterBody2D/PlayerArea" to="." method="_on_task_area_entered"]
 [connection signal="area_exited" from="CharacterBody2D/PlayerArea" to="." method="_on_player_area_area_exited"]

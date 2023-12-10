@@ -26,3 +26,5 @@ texture = ExtResource("1_mkupf")
 [node name="CollsionShape2D" type="CollisionShape2D" parent="body/ServerArea"]
 position = Vector2(5, 5.5)
 shape = SubResource("RectangleShape2D_yc460")
+
+[node name="Timer" type="Timer" parent="."]

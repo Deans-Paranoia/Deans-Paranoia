@@ -13,7 +13,9 @@ var can_use_alarm : bool = false
 # sprawdza czy znajduje sie w strefie gdzie mozna odpalic alarm
 var multiplayerId = self.name 
 var can_use_server : bool = false
-# sprawdza czy znajduje sie w strefie gdzie mozna otworzyc serwer
+# sprawdza czy znajduje sie w strefie gdzie mozna uzyc serwer
+var can_use_server_again : bool = true
+# sprawdza czy gracz moze juz ponownie uzyc servera
 
 var can_use_elevator: bool = false
 # sprawdza czy znajduje sie w strefie gdzie mozna uzyc windy
@@ -35,7 +37,7 @@ var temp_speed
 var body:CharacterBody2D
 var _obstacle_to_destroy
 var _is_space_pressed = false	
-var _dig_speed : float = 1.5
+var _dig_speed : float = 1.0
 
 #dfunc _process(_delta):
 	#dig()
@@ -55,7 +57,7 @@ func _input(event):
 			change_alarm_state.rpc()
 
 		# obsluga serwera przez studenta
-		if can_use_server and self.name == str(multiplayer.get_unique_id()):
+		if can_use_server and can_use_server_again and self.name == str(multiplayer.get_unique_id()):
 			use_server()
 			
 		# obsluga windy przez studenta
@@ -98,13 +100,13 @@ func sabotage_alarm():
 	
 func use_server():
 	# funkcja do uzywania serwera przez studenta
-	var server_reference = get_node_or_null("../fourthFloor/server")
-	if server_reference.server_opened == false:
-		print("server opened")
-		server_reference.server_opened = true
-	else:
-		print("server closed")
-		server_reference.server_opened = false
+		var serverNode = get_node_or_null("../fourthFloor/server")
+		var czyPoprawnyKod : bool = serverNode.calculate_value()
+		if czyPoprawnyKod == false:
+			can_use_server_again = false
+			body.get_node("ServerTimer").wait_time = 5
+			body.get_node("ServerTimer").start()
+
 	
 func use_elevator():
 	var fourth = get_node_or_null("../fourthFloor")
@@ -125,7 +127,7 @@ func use_elevator():
 func acquire_booster():
 	# funkcja nadajaca booster dla studenta
 	has_booster = true
-	_dig_speed = 0.75
+	_dig_speed = 0.7
 	print("Boost taken, current dig speed: ",_dig_speed)
 	
 
@@ -204,6 +206,11 @@ func _on_digging_timer_timeout():
 	if (_obstacle_to_destroy != null):
 		remove_obstacle.rpc(_obstacle_to_destroy.get_parent().name)
 		_obstacle_to_destroy = null
+		
+func _on_server_timer_timeout():
+	# metoda, ktora po skonczeniu timera przywraca mozliwosc ponownego uzycia servera
+	can_use_server_again = true
+
 @rpc("any_peer","call_local")
 func remove_obstacle(_obstacle_to_destroy):
 	var obstacle = get_node_or_null("../fourthFloor/"+_obstacle_to_destroy)
