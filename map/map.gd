@@ -5,6 +5,8 @@ extends Node2D
 signal taskType(taskType)
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if multiplayer.get_unique_id() ==1:
+		$Camera2D.enabled = true
 	$RoundTimer.start()
 	var j = 0
 	for i in globalScript.Players:
@@ -15,7 +17,7 @@ func _ready():
 				var rand = RandomNumberGenerator.new()
 				var task_number = rand.randi() % globalScript.Tasks.size()
 				var name_number = rand.randi() % globalScript.studentsNames.size()
-				setNpc(name_number,task_number)
+				#setNpc(name_number,task_number)
 				setNpc.rpc(name_number,task_number)
 				j+=1
 		#if i==globalScript.deanId:
@@ -44,7 +46,7 @@ func _ready():
 			setPlayer.rpc(i,task_number)
 	
 	pass # Replace with function body.
-@rpc("any_peer","call_remote")
+@rpc("any_peer","call_local")
 func setNpc(name,task_number):
 	var task_data = globalScript.get_task_data(task_number)
 	var position = Vector2(task_data.positionX, task_data.positionY)
