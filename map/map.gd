@@ -19,6 +19,7 @@ func _ready():
 				var name_number = rand.randi() % globalScript.studentsNames.size()
 				#setNpc(name_number,task_number)
 				setNpc.rpc(name_number,task_number)
+				set_npc_for_host(name_number,task_number)
 				j+=1
 		#if i==globalScript.deanId:
 		#	currentPlayer = deanScene.instantiate()
@@ -46,19 +47,16 @@ func _ready():
 			setPlayer.rpc(i,task_number)
 	
 	pass # Replace with function body.
-@rpc("any_peer","call_local")
+@rpc("any_peer","call_remote")
 func setNpc(name,task_number):
 	var task_data = globalScript.get_task_data(task_number)
 	var position = Vector2(task_data.positionX, task_data.positionY)
 	var npc = npcScene.instantiate()
-	var taskscript = npc.get_node("CharacterBody2D/TaskScript")
-	taskType.connect(taskscript.on_npc_task_type_emitted)
 	npc.global_transform.origin = position
 	var node = npc.get_node("CharacterBody2D/Label")
 	node.text=globalScript.studentsNames[name]
+	npc.name = globalScript.studentsNames[name]
 	add_child(npc)
-	taskType.emit(task_data.taskType)
-	taskType.disconnect(taskscript.on_npc_task_type_emitted)
 	globalScript.remove_name(name)
 	globalScript.manage_task(task_number)
 @rpc("any_peer","call_remote")		
@@ -70,7 +68,21 @@ func setPlayer(i,task_number):
 		player.global_position = position
 		globalScript.manage_task(task_number)
 
-
+func set_npc_for_host(name,task_number):
+	var task_data = globalScript.get_task_data(task_number)
+	var position = Vector2(task_data.positionX, task_data.positionY)
+	var npc = npcScene.instantiate()
+	var taskscript = npc.get_node("CharacterBody2D/TaskScript")
+	taskType.connect(taskscript.on_npc_task_type_emitted)
+	npc.global_transform.origin = position
+	var node = npc.get_node("CharacterBody2D/Label")
+	node.text=globalScript.studentsNames[name]
+	npc.name =globalScript.studentsNames[name]
+	add_child(npc)
+	taskType.emit(task_data.taskType)
+	taskType.disconnect(taskscript.on_npc_task_type_emitted)
+	globalScript.remove_name(name)
+	globalScript.manage_task(task_number)
 func _on_round_timer_timeout():
 	#tymczasowo disabled zeby mozna bylo testowac, aby uruchomic wystaczy usunąć # dla linjki nizej
 	#change_view.rpc()

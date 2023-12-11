@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cw8354n8rrb6q"]
+[gd_scene load_steps=8 format=3 uid="uid://cw8354n8rrb6q"]
 
 [ext_resource type="Script" path="res://characters/npc.gd" id="1_638kx"]
 [ext_resource type="Script" path="res://characters/npcMovementInput.gd" id="3_8jnpr"]
@@ -8,6 +8,12 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3im3k"]
 size = Vector2(148, 156)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_fipmk"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
 
 [node name="Npc" type="Node2D"]
 scale = Vector2(0.3, 0.3)
@@ -55,6 +61,10 @@ text = "Player"
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="CharacterBody2D"]
+replication_config = SubResource("SceneReplicationConfig_fipmk")
+
 [connection signal="rotate" from="CharacterBody2D" to="CharacterBody2D/Sprite2D" method="_on_character_body_2d_rotate"]
+[connection signal="texture_changed" from="CharacterBody2D/Sprite2D" to="CharacterBody2D/Sprite2D" method="_on_texture_changed"]
 [connection signal="npc_sprite_task" from="CharacterBody2D/TaskScript" to="CharacterBody2D/Sprite2D" method="on_task_script_npc_sprite_task"]
 [connection signal="npc_walking_task" from="CharacterBody2D/TaskScript" to="CharacterBody2D" method="_on_task_script_npc_walking_task"]
