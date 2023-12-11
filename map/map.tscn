@@ -84,4 +84,13 @@ shape = SubResource("RectangleShape2D_rwv1i")
 
 [node name="TaskAreas2" type="Node2D" parent="."]
 
+[node name="Student" parent="." instance=ExtResource("2_dqx11")]
+position = Vector2(72, 161)
+
+[node name="Student2" parent="." instance=ExtResource("2_dqx11")]
+position = Vector2(455, -131)
+
+[node name="Student3" parent="." instance=ExtResource("2_dqx11")]
+position = Vector2(1165, -244)
+
 [connection signal="timeout" from="RoundTimer" to="." method="_on_round_timer_timeout"]

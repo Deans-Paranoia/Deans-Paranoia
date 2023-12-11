@@ -6,6 +6,8 @@ var is_tablet_open: bool = false
 var can_use_alarm : bool = false
 # sprawdza czy znajduje sie w strefie gdzie mozna odpalic alarm
 
+var students_to_catch = []
+
 func _input(event):
 	# event do obslugi tabletu przez dziekana
 	if event.is_action_pressed("open_tablet"):
@@ -62,3 +64,17 @@ func _on_area_2d_area_exited(area):
 	var area_exited = area.get_name()
 	if (area_exited == "FireAlarmArea"):
 		can_use_alarm = false
+
+
+
+
+
+func _on_catch_student_area_area_entered(area):
+	var object = area.get_parent().get_parent()
+	if object.is_in_group("Student"):
+		print("Masz jakiegoś studenta w swoim polu do złapania")
+		
+func _on_catch_student_area_area_exited(area):
+	var object = area.get_parent().get_parent()
+	if object.is_in_group("Student"):
+		print("Jakiś student opuścił twoje pole do łapania")
