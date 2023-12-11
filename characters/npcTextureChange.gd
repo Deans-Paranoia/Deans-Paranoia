@@ -9,6 +9,8 @@ var backSprite = preload("res://assets/npc_back.png")
 var basicSprite = preload("res://assets/student_new.png")
 
 func on_task_script_npc_sprite_task(task_type):
+	var time = float(randi_range(0,40))/10
+	await get_tree().create_timer(time).timeout
 	match task_type:
 		"takingNotes":
 			taking_notes_loop()
@@ -19,7 +21,8 @@ func on_task_script_npc_sprite_task(task_type):
 
 func taking_notes_loop():
 	while true:
-		await get_tree().create_timer(5.0).timeout
+		var time = float(randi_range(0,20))/10
+		await get_tree().create_timer(4.0 + time).timeout
 		texture = notesSprite
 		scale = Vector2(1,1)
 		await get_tree().create_timer(0.5).timeout
@@ -27,7 +30,8 @@ func taking_notes_loop():
 		scale = Vector2(0.07,0.07)
 func computer_loop():
 	while true:
-		await get_tree().create_timer(4.0).timeout
+		var time = float(randi_range(0,20))/10
+		await get_tree().create_timer(3.0+time).timeout
 		texture = computerSprite
 		scale = Vector2(1,1)
 		await get_tree().create_timer(0.4).timeout
@@ -35,7 +39,8 @@ func computer_loop():
 		scale = Vector2(0.07,0.07)
 func vending_machine_loop():
 	while true:
-		await get_tree().create_timer(3.0).timeout
+		var time = float(randi_range(0,20))/10
+		await get_tree().create_timer(2.0+time).timeout
 		texture = vendingSprite
 		scale = Vector2(1,1)
 		await get_tree().create_timer(0.3).timeout
