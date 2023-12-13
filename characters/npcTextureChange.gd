@@ -51,7 +51,7 @@ func _on_character_body_2d_rotate(direction):
 	match direction:
 		"up":
 			texture = backSprite
-			scale = Vector2(1,1)
+			scale = Vector2(0.37, 0.37)
 		"down":
 			texture = basicSprite
 			scale = Vector2(0.07,0.07)
@@ -75,7 +75,7 @@ func change_texture(texture_path):
 		scale = Vector2(1,1)
 	elif texture_path == "res://assets/npc_back.png":
 		texture = backSprite
-		scale = Vector2(1,1)
+		scale = Vector2(0.37, 0.37)
 	elif texture_path == "res://assets/student_new.png":
 		texture = basicSprite
 		scale = Vector2(0.07,0.07)
