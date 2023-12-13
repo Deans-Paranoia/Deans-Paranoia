@@ -1,29 +1,215 @@
-[gd_scene load_steps=4 format=3 uid="uid://y4kbm2l282iy"]
+[gd_scene load_steps=14 format=3 uid="uid://y4kbm2l282iy"]
 
 [ext_resource type="PackedScene" uid="uid://ctspysrhlil1i" path="res://characters/player.tscn" id="1_6lj7h"]
 [ext_resource type="Script" path="res://characters/studentInput.gd" id="2_vaos0"]
-[ext_resource type="Texture2D" uid="uid://ci6reda475qnr" path="res://assets/student_new.png" id="3_mwujw"]
+[ext_resource type="Texture2D" uid="uid://kmrox1au34ri" path="res://assets/student_assets/prawy-sprite-combine.png" id="3_vii0m"]
+[ext_resource type="Texture2D" uid="uid://cqyquwb2hcmkk" path="res://assets/student_assets/tyl-sprite-combine.png" id="3_w4h8j"]
+[ext_resource type="Texture2D" uid="uid://br11rbr0lxmeu" path="res://assets/student_assets/lewy-sprite-combine.png" id="4_eherf"]
+[ext_resource type="Texture2D" uid="uid://c2m7hb6mbijhf" path="res://assets/student_assets/przod-sprite-combine.png" id="6_qmyhb"]
+
+[sub_resource type="Animation" id="Animation_cbiaf"]
+resource_name = "idle"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_hnehq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2DWalkingRight:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2DWalkingLeft:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2DWalkingDown:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_0cn4d"]
+resource_name = "walking_up"
+loop_mode = 1
+step = 0.0435
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0435, 0.087, 0.1305, 0.174, 0.2175, 0.261, 0.3045, 0.348, 0.3915, 0.435, 0.4785, 0.522, 0.5655, 0.609, 0.6525, 0.696, 0.7395, 0.783, 0.8265, 0.87, 0.9135, 0.957),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 7, 8, 9, 10, 11, 12, 11, 10, 9, 7, 7]
+}
+
+[sub_resource type="Animation" id="Animation_l6awf"]
+resource_name = "walking_right"
+loop_mode = 1
+step = 0.0435
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DWalkingRight:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0435, 0.087, 0.1305, 0.174, 0.2175, 0.261, 0.3045, 0.348, 0.3915, 0.435, 0.4785, 0.522, 0.5655, 0.609, 0.6525, 0.696, 0.7395, 0.783, 0.8265, 0.87, 0.9135),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 4, 3, 2, 1, 0, 6, 7, 8, 9, 10, 11, 10, 9, 8, 7, 6]
+}
+
+[sub_resource type="Animation" id="Animation_cxddg"]
+resource_name = "walking_left"
+loop_mode = 1
+step = 0.0435
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DWalkingLeft:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0435, 0.087, 0.1305, 0.174, 0.2175, 0.261, 0.3045, 0.348, 0.3915, 0.435, 0.4785, 0.522, 0.5655, 0.609, 0.6525, 0.696, 0.7395, 0.783, 0.8265, 0.87, 0.9135, 0.957),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 1, 2, 3, 4, 5, 5, 4, 3, 2, 1, 0, 6, 7, 8, 9, 10, 11, 10, 9, 8, 7]
+}
+
+[sub_resource type="Animation" id="Animation_asw14"]
+resource_name = "walking_down"
+loop_mode = 1
+step = 0.0435
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DWalkingDown:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0435, 0.087, 0.1305, 0.174, 0.2175, 0.261, 0.3045, 0.348, 0.3915, 0.435, 0.4785, 0.522, 0.5655, 0.609, 0.6525, 0.696, 0.7395, 0.783, 0.8265, 0.87, 0.9135, 0.957),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 7, 8, 9, 10, 11, 12, 11, 10, 9, 8, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sav45"]
+_data = {
+"RESET": SubResource("Animation_hnehq"),
+"idle": SubResource("Animation_cbiaf"),
+"walking_down": SubResource("Animation_asw14"),
+"walking_left": SubResource("Animation_cxddg"),
+"walking_right": SubResource("Animation_l6awf"),
+"walking_up": SubResource("Animation_0cn4d")
+}
 
 [node name="Student" instance=ExtResource("1_6lj7h")]
 scale = Vector2(0.3, 0.3)
 script = ExtResource("2_vaos0")
 
-[node name="Sprite2D" parent="CharacterBody2D" index="0"]
-scale = Vector2(0.07, 0.07)
-texture = ExtResource("3_mwujw")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D" index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_sav45")
+}
+autoplay = "walking_down"
 
-[node name="DiggingTimer" type="Timer" parent="CharacterBody2D" index="2"]
+[node name="Sprite2D" parent="CharacterBody2D" index="1"]
+visible = false
+scale = Vector2(0.37, 0.37)
+texture = ExtResource("3_w4h8j")
+hframes = 13
 
-[node name="FreezeTimer" type="Timer" parent="CharacterBody2D" index="3"]
+[node name="Sprite2DWalkingRight" type="Sprite2D" parent="CharacterBody2D" index="2"]
+visible = false
+scale = Vector2(0.37, 0.37)
+texture = ExtResource("3_vii0m")
+hframes = 12
+
+[node name="Sprite2DWalkingLeft" type="Sprite2D" parent="CharacterBody2D" index="3"]
+visible = false
+scale = Vector2(0.37, 0.37)
+texture = ExtResource("4_eherf")
+hframes = 12
+
+[node name="Sprite2DWalkingDown" type="Sprite2D" parent="CharacterBody2D" index="4"]
+scale = Vector2(0.37, 0.37)
+texture = ExtResource("6_qmyhb")
+hframes = 13
+
+[node name="DiggingTimer" type="Timer" parent="CharacterBody2D" index="6"]
+
+[node name="FreezeTimer" type="Timer" parent="CharacterBody2D" index="7"]
 process_callback = 0
 wait_time = 2.0
 
-[node name="ServerTimer" type="Timer" parent="CharacterBody2D" index="4"]
+[node name="ServerTimer" type="Timer" parent="CharacterBody2D" index="8"]
 
-[node name="Label" parent="CharacterBody2D" index="7"]
+[node name="CollisionShape2D" parent="CharacterBody2D" index="9"]
+visible = false
+
+[node name="PlayerArea" parent="CharacterBody2D" index="10"]
+visible = false
+
+[node name="CollisionShape2D" parent="CharacterBody2D/PlayerArea" index="0"]
+visible = false
+
+[node name="Label" parent="CharacterBody2D" index="11"]
+visible = false
 anchors_preset = 8
 anchor_top = 0.5
 anchor_bottom = 0.5
+offset_top = -40.0
+offset_bottom = 40.0
 grow_vertical = 2
 
 [connection signal="timeout" from="CharacterBody2D/DiggingTimer" to="." method="_on_digging_timer_timeout"]
@@ -31,5 +217,5 @@ grow_vertical = 2
 [connection signal="timeout" from="CharacterBody2D/ServerTimer" to="." method="_on_server_timer_timeout"]
 [connection signal="area_entered" from="CharacterBody2D/PlayerArea" to="." method="_on_task_area_entered"]
 [connection signal="area_entered" from="CharacterBody2D/PlayerArea" to="." method="_on_player_area_area_entered"]
-[connection signal="area_exited" from="CharacterBody2D/PlayerArea" to="." method="_on_task_area_exited"]
 [connection signal="area_exited" from="CharacterBody2D/PlayerArea" to="." method="_on_player_area_area_exited"]
+[connection signal="area_exited" from="CharacterBody2D/PlayerArea" to="." method="_on_task_area_exited"]
