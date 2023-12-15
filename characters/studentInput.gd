@@ -140,6 +140,7 @@ func dig():
 	var _is_facing_obstacle = false
 	var obstacles_nearby = body.get_node("PlayerArea").get_overlapping_bodies()
 	for obstacle in obstacles_nearby:
+		
 		if obstacle.is_in_group("obstacles"):
 			_is_facing_obstacle = _is_student_facing_obstacle(obstacle)
 			if _is_facing_obstacle:
@@ -204,7 +205,9 @@ func _on_freeze_timer_timeout():
 func _on_digging_timer_timeout():
 	#metoda po skończeniu DiggingTimer niszczy obstacle
 	if (_obstacle_to_destroy != null):
+		
 		remove_obstacle.rpc(_obstacle_to_destroy.get_parent().name)
+		print(_obstacle_to_destroy.get_parent().name)
 		_obstacle_to_destroy = null
 		
 func _on_server_timer_timeout():
@@ -213,7 +216,7 @@ func _on_server_timer_timeout():
 
 @rpc("any_peer","call_local")
 func remove_obstacle(_obstacle_to_destroy):
-	var obstacle = get_node_or_null("../fourthFloor/"+_obstacle_to_destroy)
+	var obstacle = get_node_or_null("../fourthFloor/Obstacles/"+_obstacle_to_destroy)
 	if obstacle:
 		obstacle.queue_free()
 func _is_student_facing_obstacle(obstacle):

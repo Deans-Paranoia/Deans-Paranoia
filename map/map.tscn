@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bm1ngabod5xlp" path="res://map/world.tscn" id="2_cmphr"]
 [ext_resource type="PackedScene" uid="uid://y4kbm2l282iy" path="res://characters/student.tscn" id="2_dqx11"]
 [ext_resource type="PackedScene" uid="uid://dm1vrnv5e47gm" path="res://characters/dean.tscn" id="3_h3gah"]
-[ext_resource type="PackedScene" uid="uid://gitmckv6idiq" path="res://map/fourth_floor.tscn" id="3_xpfht"]
+[ext_resource type="PackedScene" uid="uid://tyedsi7liv1g" path="res://map/fourth_floor.tscn" id="3_xpfht"]
 [ext_resource type="PackedScene" uid="uid://cw8354n8rrb6q" path="res://characters/npc.tscn" id="4_8xdmr"]
 [ext_resource type="PackedScene" uid="uid://ctkxjg73cfako" path="res://map/lecture_hall.tscn" id="7_tmh0k"]
 
