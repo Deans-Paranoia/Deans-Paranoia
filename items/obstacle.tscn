@@ -1,12 +1,12 @@
 [gd_scene load_steps=4 format=3 uid="uid://qnl4o5vsa0va"]
 
-[ext_resource type="Texture2D" uid="uid://bdtynotjuug4n" path="res://assets/redobstacle.png" id="1_qihs7"]
+[ext_resource type="Texture2D" uid="uid://dwljw3jux5q0j" path="res://assets/redobstacle.png" id="1_qihs7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_avtpj"]
-size = Vector2(121, 109)
+size = Vector2(95.0002, 90.0002)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_348qg"]
-size = Vector2(215.5, 203)
+size = Vector2(105, 105)
 
 [node name="obstacle" type="Node2D"]
 scale = Vector2(0.2, 0.2)
@@ -18,11 +18,15 @@ scale = Vector2(0.781046, 0.734899)
 texture = ExtResource("1_qihs7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-visible = false
+position = Vector2(-2.5, -45)
+scale = Vector2(0.999998, 0.999998)
 shape = SubResource("RectangleShape2D_avtpj")
 
 [node name="ObstacleArea" type="Area2D" parent="StaticBody2D"]
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/ObstacleArea"]
-visible = false
+position = Vector2(-2.49999, -47.5)
+scale = Vector2(0.999997, 0.999997)
 shape = SubResource("RectangleShape2D_348qg")
+metadata/_edit_lock_ = true
