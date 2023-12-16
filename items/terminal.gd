@@ -2,6 +2,7 @@ extends Node2D
 
 var actual_value = 0
 var textures = []
+var can_update_value: bool = false
 
 func _ready():
 	load_textures()
@@ -19,4 +20,10 @@ func use_terminal():
 	if actual_value > 9:
 		actual_value = 0
 	update_texture()
-
+	
+	
+func _on_terminal_area_body_exited(body):
+	if body.is_in_group("obstacles"):
+		can_update_value = true
+		$".".visible = true
+		
