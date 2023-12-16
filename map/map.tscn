@@ -100,6 +100,18 @@ scale = Vector2(21, 21.85)
 position = Vector2(579, -153)
 scale = Vector2(19.3, 22.4)
 
+[node name="Student" parent="." instance=ExtResource("2_dqx11")]
+position = Vector2(72, 161)
+
+[node name="Student2" parent="." instance=ExtResource("2_dqx11")]
+position = Vector2(455, -131)
+
+[node name="Student3" parent="." instance=ExtResource("2_dqx11")]
+position = Vector2(1165, -244)
+
+[node name="Student4" parent="." instance=ExtResource("2_dqx11")]
+position = Vector2(439, -58)
+
 [connection signal="timeout" from="RoundTimer" to="." method="_on_round_timer_timeout"]
 [connection signal="screen_entered" from="TaskAreas/AreaNotifiers/NotesAreaNotifier" to="TaskAreas/AreaNotifiers" method="_on_notes_area_notifier_screen_entered"]
 [connection signal="screen_exited" from="TaskAreas/AreaNotifiers/NotesAreaNotifier" to="TaskAreas/AreaNotifiers" method="_on_notes_area_notifier_screen_exited"]

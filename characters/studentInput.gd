@@ -9,6 +9,9 @@ var danger_instance
 var catchable: bool = false
 # sprawdza czy student moze zostac zlapany przez dziekana
 
+var is_catched : bool = false
+# sprawdza czy student zostal juz zlapany
+
 var can_use_alarm : bool = false
 # sprawdza czy znajduje sie w strefie gdzie mozna odpalic alarm
 var multiplayerId = self.name 
@@ -97,6 +100,12 @@ func sabotage_alarm():
 	print("Alarm sabotaged")
 	stop_player_movement()
 	body.get_node("FreezeTimer").start()
+	
+@rpc("any_peer","call_local")
+func catch_student():
+	if catchable and !is_catched:
+		is_catched = true
+		stop_player_movement()
 	
 func use_server():
 	# funkcja do uzywania serwera przez studenta

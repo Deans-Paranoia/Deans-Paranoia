@@ -273,7 +273,7 @@ states/Walking/node = SubResource("AnimationNodeBlendSpace2D_aisff")
 states/Walking/position = Vector2(537, 115)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_afr7b"), "Idle", "Walking", SubResource("AnimationNodeStateMachineTransition_jn718"), "Walking", "Idle", SubResource("AnimationNodeStateMachineTransition_ysjbg")]
 
-[node name="Student" instance=ExtResource("1_6lj7h")]
+[node name="Student" groups=["Student"] instance=ExtResource("1_6lj7h")]
 scale = Vector2(0.3, 0.3)
 script = ExtResource("2_vaos0")
 
@@ -331,6 +331,7 @@ visible = false
 
 [node name="CollisionShape2D" parent="CharacterBody2D/PlayerArea" index="0"]
 visible = false
+
 
 [node name="Label" parent="CharacterBody2D" index="12"]
 visible = false
