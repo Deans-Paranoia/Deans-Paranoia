@@ -6,8 +6,6 @@ var is_tablet_open: bool = false
 var can_use_alarm : bool = false
 # sprawdza czy znajduje sie w strefie gdzie mozna odpalic alarm
 
-var students_to_catch = []
-
 func _input(event):
 	# event do obslugi tabletu przez dziekana
 	if event.is_action_pressed("open_tablet"):
@@ -22,6 +20,14 @@ func _input(event):
 			ring_fire_alarm()
 			fire_alarm_reference.useable = false
 			change_alarm_state.rpc()
+			
+		var catchable_objects = get_tree().get_nodes_in_group("Catchable_Students")
+		for catchable_object in catchable_objects:
+			var student = str(catchable_object)
+			var start_index = student.find("#") + 1
+			var end_index = student.find(">")
+			var id = student.substr(start_index, end_index - start_index)
+			catchable_object.catch_student.rpc_id(int(id))
 
 @rpc("any_peer","call_remote")
 func change_alarm_state():
@@ -66,15 +72,12 @@ func _on_area_2d_area_exited(area):
 		can_use_alarm = false
 
 
-
-
-
 func _on_catch_student_area_area_entered(area):
 	var object = area.get_parent().get_parent()
 	if object.is_in_group("Student"):
-		print("Masz jakiegoś studenta w swoim polu do złapania")
+		object.add_to_group("Catchable_Students")
 		
 func _on_catch_student_area_area_exited(area):
 	var object = area.get_parent().get_parent()
 	if object.is_in_group("Student"):
-		print("Jakiś student opuścił twoje pole do łapania")
+		object.remove_from_group("Catchable_Students")

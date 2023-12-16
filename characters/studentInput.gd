@@ -98,6 +98,11 @@ func sabotage_alarm():
 	stop_player_movement()
 	body.get_node("FreezeTimer").start()
 	
+@rpc("any_peer","call_local")
+func catch_student():
+	if catchable:
+		stop_player_movement()
+	
 func use_server():
 	# funkcja do uzywania serwera przez studenta
 		var serverNode = get_node_or_null("../fourthFloor/server")

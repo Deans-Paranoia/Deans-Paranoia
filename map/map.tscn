@@ -93,4 +93,7 @@ position = Vector2(455, -131)
 [node name="Student3" parent="." instance=ExtResource("2_dqx11")]
 position = Vector2(1165, -244)
 
+[node name="Student4" parent="." instance=ExtResource("2_dqx11")]
+position = Vector2(439, -58)
+
 [connection signal="timeout" from="RoundTimer" to="." method="_on_round_timer_timeout"]
