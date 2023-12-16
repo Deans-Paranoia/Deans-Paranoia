@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qynp7xjk5i26"
-path="res://.godot/imported/npc_back.png-dae08e108d294dd12d3fa5549b75f484.ctex"
+uid="uid://dwljw3jux5q0j"
+path="res://.godot/imported/redobstacle.png-7c1195fb4ec3ba70d81a2ccfd6ee3256.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/npc_back.png"
-dest_files=["res://.godot/imported/npc_back.png-dae08e108d294dd12d3fa5549b75f484.ctex"]
+source_file="res://assets/redobstacle.png"
+dest_files=["res://.godot/imported/redobstacle.png-7c1195fb4ec3ba70d81a2ccfd6ee3256.ctex"]
 
 [params]
 

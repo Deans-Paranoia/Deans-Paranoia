@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal direction(direction_vector: Vector2)
+
 #nazwa zmieniona z name na player_name (name w Godot to słowo kluczowe)
 var player_name: String
 
@@ -30,6 +32,7 @@ func _physics_process(_delta):
 
 func apply_physics():
 	velocity = calculate_velocity()
+	emit_direction_signal(velocity)
 	move_and_slide()
 	
 func calculate_velocity():
@@ -49,4 +52,8 @@ func stop_player_movement():
 func restore_player_movement(tempspeed):
 	#metoda do przywrocenia dawnego movementu
 	speed = tempspeed
+	
+func emit_direction_signal(velocity):
+	direction.emit(velocity)
+
 	

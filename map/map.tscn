@@ -1,12 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://bsldsfbg1mo8e"]
+[gd_scene load_steps=13 format=3 uid="uid://bsldsfbg1mo8e"]
 
 [ext_resource type="Script" path="res://map/map.gd" id="1_dmw7b"]
 [ext_resource type="PackedScene" uid="uid://bm1ngabod5xlp" path="res://map/world.tscn" id="2_cmphr"]
 [ext_resource type="PackedScene" uid="uid://y4kbm2l282iy" path="res://characters/student.tscn" id="2_dqx11"]
 [ext_resource type="PackedScene" uid="uid://dm1vrnv5e47gm" path="res://characters/dean.tscn" id="3_h3gah"]
-[ext_resource type="PackedScene" uid="uid://gitmckv6idiq" path="res://map/fourth_floor.tscn" id="3_xpfht"]
+[ext_resource type="PackedScene" uid="uid://tyedsi7liv1g" path="res://map/fourth_floor.tscn" id="3_xpfht"]
 [ext_resource type="PackedScene" uid="uid://cw8354n8rrb6q" path="res://characters/npc.tscn" id="4_8xdmr"]
-[ext_resource type="PackedScene" uid="uid://ctkxjg73cfako" path="res://map/lecture_hall.tscn" id="7_tmh0k"]
+[ext_resource type="PackedScene" path="res://map/lecture_hall.tscn" id="7_tmh0k"]
+[ext_resource type="Script" path="res://map/areaNotifiers.gd" id="8_fbx0e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u0pr7"]
 size = Vector2(4.13888, 11)
@@ -30,6 +31,7 @@ metadata/_edit_lock_ = true
 [node name="thirdFloor" parent="." instance=ExtResource("2_cmphr")]
 
 [node name="fourthFloor" parent="." instance=ExtResource("3_xpfht")]
+visible = false
 position = Vector2(3623, -976)
 
 [node name="lecture_hall" parent="." instance=ExtResource("7_tmh0k")]
@@ -39,6 +41,7 @@ position = Vector2(-3202, -1211)
 wait_time = 15.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
+visible = false
 position = Vector2(1943, -848)
 enabled = false
 zoom = Vector2(0.2, 0.2)
@@ -82,7 +85,20 @@ position = Vector2(561, -141)
 position = Vector2(17, 30)
 shape = SubResource("RectangleShape2D_rwv1i")
 
-[node name="TaskAreas2" type="Node2D" parent="."]
+[node name="AreaNotifiers" type="Node2D" parent="TaskAreas"]
+script = ExtResource("8_fbx0e")
+
+[node name="NotesAreaNotifier" type="VisibleOnScreenNotifier2D" parent="TaskAreas/AreaNotifiers"]
+position = Vector2(1063, -2120.5)
+scale = Vector2(22, 14.65)
+
+[node name="ComputerAreaNotifier" type="VisibleOnScreenNotifier2D" parent="TaskAreas/AreaNotifiers"]
+position = Vector2(640, -1501.5)
+scale = Vector2(21, 21.85)
+
+[node name="WalkingNotifier" type="VisibleOnScreenNotifier2D" parent="TaskAreas/AreaNotifiers"]
+position = Vector2(579, -153)
+scale = Vector2(19.3, 22.4)
 
 [node name="Student" parent="." instance=ExtResource("2_dqx11")]
 position = Vector2(72, 161)
@@ -97,3 +113,9 @@ position = Vector2(1165, -244)
 position = Vector2(439, -58)
 
 [connection signal="timeout" from="RoundTimer" to="." method="_on_round_timer_timeout"]
+[connection signal="screen_entered" from="TaskAreas/AreaNotifiers/NotesAreaNotifier" to="TaskAreas/AreaNotifiers" method="_on_notes_area_notifier_screen_entered"]
+[connection signal="screen_exited" from="TaskAreas/AreaNotifiers/NotesAreaNotifier" to="TaskAreas/AreaNotifiers" method="_on_notes_area_notifier_screen_exited"]
+[connection signal="screen_entered" from="TaskAreas/AreaNotifiers/ComputerAreaNotifier" to="TaskAreas/AreaNotifiers" method="_on_computer_area_notifier_screen_entered"]
+[connection signal="screen_exited" from="TaskAreas/AreaNotifiers/ComputerAreaNotifier" to="TaskAreas/AreaNotifiers" method="_on_computer_area_notifier_screen_exited"]
+[connection signal="screen_entered" from="TaskAreas/AreaNotifiers/WalkingNotifier" to="TaskAreas/AreaNotifiers" method="_on_walking_notifier_screen_entered"]
+[connection signal="screen_exited" from="TaskAreas/AreaNotifiers/WalkingNotifier" to="TaskAreas/AreaNotifiers" method="_on_walking_notifier_screen_exited"]

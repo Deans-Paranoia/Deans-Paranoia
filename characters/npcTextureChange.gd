@@ -51,7 +51,31 @@ func _on_character_body_2d_rotate(direction):
 	match direction:
 		"up":
 			texture = backSprite
-			scale = Vector2(1,1)
+			scale = Vector2(0.37, 0.37)
 		"down":
 			texture = basicSprite
 			scale = Vector2(0.07,0.07)
+
+
+func _on_texture_changed():
+	
+	if(multiplayer.get_unique_id()==1):
+		change_texture.rpc(texture.resource_path)
+		
+@rpc("any_peer","call_remote")
+func change_texture(texture_path):
+	if(texture_path == "res://assets/npc_computer.png"):
+		texture = computerSprite
+		scale = Vector2(1,1)
+	elif texture_path == "res://assets/npc_notes.png":
+		texture = notesSprite
+		scale = Vector2(1,1)
+	elif texture_path == "res://assets/npc_vending.png":
+		texture = vendingSprite
+		scale = Vector2(1,1)
+	elif texture_path == "res://assets/npc_back.png":
+		texture = backSprite
+		scale = Vector2(0.37, 0.37)
+	elif texture_path == "res://assets/student_new.png":
+		texture = basicSprite
+		scale = Vector2(0.07,0.07)
