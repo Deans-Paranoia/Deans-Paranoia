@@ -1,0 +1,17 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://clry0vicpsvk4"]
+
+[ext_resource type="FontFile" uid="uid://duw2x2g18tmee" path="res://ui/main_menu/style/joystix monospace.otf" id="1_ytjqi"]
+[ext_resource type="StyleBox" uid="uid://8nvuangp4yxs" path="res://ui/main_menu/style/button_hover.tres" id="2_ixr33"]
+[ext_resource type="StyleBox" uid="uid://c4c8awj6tg2bn" path="res://ui/main_menu/style/button_normal.tres" id="3_bxx7d"]
+[ext_resource type="StyleBox" uid="uid://6nutjpjilx5e" path="res://ui/main_menu/style/button_pressed.tres" id="4_pxp6f"]
+
+[sub_resource type="SystemFont" id="SystemFont_3gkkm"]
+
+[resource]
+default_font = SubResource("SystemFont_3gkkm")
+Button/fonts/font = ExtResource("1_ytjqi")
+Button/styles/focus = ExtResource("2_ixr33")
+Button/styles/hover = ExtResource("2_ixr33")
+Button/styles/normal = ExtResource("3_bxx7d")
+Button/styles/pressed = ExtResource("4_pxp6f")
+Label/fonts/font = ExtResource("1_ytjqi")
