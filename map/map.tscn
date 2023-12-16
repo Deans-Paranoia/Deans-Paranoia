@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dm1vrnv5e47gm" path="res://characters/dean.tscn" id="3_h3gah"]
 [ext_resource type="PackedScene" uid="uid://tyedsi7liv1g" path="res://map/fourth_floor.tscn" id="3_xpfht"]
 [ext_resource type="PackedScene" uid="uid://cw8354n8rrb6q" path="res://characters/npc.tscn" id="4_8xdmr"]
-[ext_resource type="PackedScene" path="res://map/lecture_hall.tscn" id="7_tmh0k"]
+[ext_resource type="PackedScene" uid="uid://ctkxjg73cfako" path="res://map/lecture_hall.tscn" id="7_tmh0k"]
 [ext_resource type="Script" path="res://map/areaNotifiers.gd" id="8_fbx0e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u0pr7"]
@@ -99,18 +99,6 @@ scale = Vector2(21, 21.85)
 [node name="WalkingNotifier" type="VisibleOnScreenNotifier2D" parent="TaskAreas/AreaNotifiers"]
 position = Vector2(579, -153)
 scale = Vector2(19.3, 22.4)
-
-[node name="Student" parent="." instance=ExtResource("2_dqx11")]
-position = Vector2(72, 161)
-
-[node name="Student2" parent="." instance=ExtResource("2_dqx11")]
-position = Vector2(455, -131)
-
-[node name="Student3" parent="." instance=ExtResource("2_dqx11")]
-position = Vector2(1165, -244)
-
-[node name="Student4" parent="." instance=ExtResource("2_dqx11")]
-position = Vector2(439, -58)
 
 [connection signal="timeout" from="RoundTimer" to="." method="_on_round_timer_timeout"]
 [connection signal="screen_entered" from="TaskAreas/AreaNotifiers/NotesAreaNotifier" to="TaskAreas/AreaNotifiers" method="_on_notes_area_notifier_screen_entered"]

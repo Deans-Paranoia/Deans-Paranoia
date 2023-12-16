@@ -21,16 +21,16 @@ func _ready():
 				setNpc.rpc(name_number,task_number)
 				set_npc_for_host(name_number,task_number)
 				j+=1
-		if i==globalScript.deanId:
-			currentPlayer = deanScene.instantiate()
-			label = currentPlayer.get_node_or_null("CharacterBody2D/Label")
-			if(label != null):
-				label.text = "Dean"
-		else:
-			currentPlayer = studentScene.instantiate()
-			label = currentPlayer.get_node_or_null("CharacterBody2D/Label")
-			if(label != null):
-				label.text = globalScript.Players[i].fakeName
+		#if i==globalScript.deanId:
+			#currentPlayer = deanScene.instantiate()
+			#label = currentPlayer.get_node_or_null("CharacterBody2D/Label")
+			#if(label != null):
+				#label.text = "Dean"
+		#else:
+		currentPlayer = studentScene.instantiate()
+		label = currentPlayer.get_node_or_null("CharacterBody2D/Label")
+		if(label != null):
+			label.text = globalScript.Players[i].fakeName
 				
 		currentPlayer.name = str(globalScript.Players[i].id)
 		currentPlayer.add_to_group("ThirdFloor")
