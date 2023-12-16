@@ -111,18 +111,20 @@ func use_server():
 func use_elevator():
 	var fourth = get_node_or_null("../fourthFloor")
 	var third = get_node_or_null("../thirdFloor")
-	
-	var id = multiplayer.get_unique_id()
 	if(fourth != null and third!=null):
 		if(self.is_in_group("ThirdFloor")):
 			self.add_to_group("FourthFloor")
 			self.remove_from_group("ThirdFloor")
+			fourth.visible = true
+			third.visible = false
 			teleport.rpc(3000)
 			
 			
 		else:
 			self.add_to_group("ThirdFloor")
 			self.remove_from_group("FourthFloor")
+			fourth.visible = false
+			third.visible = true
 			teleport.rpc(-3000)
 func acquire_booster():
 	# funkcja nadajaca booster dla studenta
@@ -207,7 +209,6 @@ func _on_digging_timer_timeout():
 	if (_obstacle_to_destroy != null):
 		
 		remove_obstacle.rpc(_obstacle_to_destroy.get_parent().name)
-		print(_obstacle_to_destroy.get_parent().name)
 		_obstacle_to_destroy = null
 		
 func _on_server_timer_timeout():

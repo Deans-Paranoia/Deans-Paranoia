@@ -5,8 +5,8 @@ extends Node2D
 signal taskType(taskType)
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if multiplayer.get_unique_id() ==1:
-		$Camera2D.enabled = true
+	#if multiplayer.get_unique_id() ==1:
+		#$Camera2D.enabled = true
 	$RoundTimer.start()
 	var j = 0
 	for i in globalScript.Players:
@@ -57,6 +57,8 @@ func setNpc(name,task_number):
 	node.text=globalScript.studentsNames[name]
 	npc.name = globalScript.studentsNames[name]
 	add_child(npc)
+	npc.visible = false
+	npc.add_to_group(task_data.taskType)
 	globalScript.remove_name(name)
 	globalScript.manage_task(task_number)
 @rpc("any_peer","call_remote")		
@@ -79,6 +81,8 @@ func set_npc_for_host(name,task_number):
 	node.text=globalScript.studentsNames[name]
 	npc.name =globalScript.studentsNames[name]
 	add_child(npc)
+	npc.visible = false
+	npc.add_to_group(task_data.taskType)
 	taskType.emit(task_data.taskType)
 	taskType.disconnect(taskscript.on_npc_task_type_emitted)
 	globalScript.remove_name(name)
@@ -92,3 +96,28 @@ func change_view():
 	var camera:Camera2D = get_node("lecture_hall/Camera2D")
 	camera.enabled = true
 	camera.make_current()
+func npcs_notes(isVisible):
+	var npcs = get_tree().get_nodes_in_group("takingNotes")
+	if(isVisible):
+		for i in npcs:
+			i.visible = true	
+	else:
+		for i in npcs:
+			i.visible = false
+func npcs_walking(isVisible):
+	var npcs = get_tree().get_nodes_in_group("walking")
+	if(isVisible):
+		for i in npcs:
+			i.visible = true	
+	else:
+		for i in npcs:
+			i.visible = false
+
+func npcs_computer(isVisible):
+	var npcs = get_tree().get_nodes_in_group("computer")
+	if(isVisible):
+		for i in npcs:
+			i.visible = true	
+	else:
+		for i in npcs:
+			i.visible = false
