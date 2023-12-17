@@ -44,12 +44,13 @@ func _ready():
 		if body != null:	
 			body.name =  str(globalScript.Players[i].id)
 		add_child(currentPlayer)	
-		if multiplayer.get_unique_id() ==1:
+		if multiplayer.get_unique_id() ==1 and i != globalScript.deanId:
 			var rand = RandomNumberGenerator.new()
 			var task_number = rand.randi() % globalScript.Tasks.size()
 			setPlayer(i,task_number)
 			setPlayer.rpc(i,task_number)
-	
+	if(multiplayer.get_unique_id()==1):
+		get_node("lecture_hall").on_npc_spawn()
 	pass # Replace with function body.
 func _process(delta):
 	if(multiplayer.get_unique_id()==1):

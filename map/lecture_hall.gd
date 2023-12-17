@@ -5,19 +5,31 @@ var counter = 1
 var kicked_player_number = 1
 var maximum_ammount_to_kick = 1
 var hovered_student
-func _ready():
-	for i in globalScript.usedNames:
-		var scene = npcScene.instantiate()
-		scene.name = i;
-		var label = scene.get_node("CharacterBody2D/Label")
-		label.text = i
-		var spawnpoint = get_node("spawnPoints/"+str(counter))
-		scene.position = spawnpoint.position
-		scene.get_node("CharacterBody2D/KickScript").on_lecture_hall = true
-		scene.get_node("CharacterBody2D/KickScript").on_student_hovered.connect(set_hovered_student)
-		counter+=1
-		scene.scale = Vector2(1,1)
-		add_child(scene)
+func on_npc_spawn():
+	if(multiplayer.get_unique_id() ==1):
+		print(globalScript.usedNames)
+		for i in globalScript.usedNames:
+			set_student(i)
+			set_student.rpc(i)
+			set_dean()
+			set_dean.rpc()
+@rpc("any_peer","call_remote")
+func set_student(name):
+	#if(counter>14):
+		#return
+	var scene = npcScene.instantiate()
+	scene.name = name;
+	var label = scene.get_node("CharacterBody2D/Label")
+	label.text = name
+	var spawnpoint = get_node("spawnPoints/"+str(counter))
+	scene.position = spawnpoint.position
+	scene.get_node("CharacterBody2D/KickScript").on_lecture_hall = true
+	scene.get_node("CharacterBody2D/KickScript").on_student_hovered.connect(set_hovered_student)
+	scene.scale = Vector2(1,1)
+	add_child(scene)
+	counter+=1
+@rpc("any_peer","call_remote")
+func set_dean():
 	var dean = deanScene.instantiate()
 	dean.name = "dean"
 	var label = dean.get_node("CharacterBody2D/Label")

@@ -120,7 +120,7 @@ func joinByIp(ip):
 			i.get_node("Button").text = "room is full"
 func on_start_game():
 	for i in globalScript.Players:
-		#if i != globalScript.deanId:
+		if i != globalScript.deanId:
 			
 			var rand = RandomNumberGenerator.new()
 			var name_number = rand.randi() % globalScript.studentsNames.size()
