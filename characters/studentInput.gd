@@ -238,14 +238,13 @@ func _is_student_facing_obstacle(obstacle):
 
 	#Obliczamy wektor skierowany znormalizowany
 	var direction_to_obstacle = (obstacle_position - student_position).normalized()
-
-	if direction_to_obstacle.x < -0.95 and student_direction == Vector2(-1,0):
+	if direction_to_obstacle.x < -0.86 and student_direction == Vector2(-1,0):
 		return true
-	elif direction_to_obstacle.x > 0.95 and student_direction == Vector2(1,0):
+	elif direction_to_obstacle.x > 0.86 and student_direction == Vector2(1,0):
 		return true
-	elif direction_to_obstacle.y < -0.95 and student_direction == Vector2(0,-1):
+	elif direction_to_obstacle.y < -0.86 and student_direction == Vector2(0,-1):
 		return true
-	elif direction_to_obstacle.y > 0.95 and student_direction == Vector2(0,1):
+	elif direction_to_obstacle.y > 0.86 and student_direction == Vector2(0,1):
 		return true
 	else:
 		return false

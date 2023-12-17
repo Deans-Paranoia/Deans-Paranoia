@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://tyedsi7liv1g"]
+[gd_scene load_steps=10 format=3 uid="uid://tyedsi7liv1g"]
+
 
 [ext_resource type="PackedScene" uid="uid://ci4moycif5owm" path="res://items/elevator.tscn" id="2_1m5us"]
 [ext_resource type="PackedScene" uid="uid://dmqsyy0b226i3" path="res://items/terminal.tscn" id="3_ao6qd"]
 [ext_resource type="Texture2D" uid="uid://bbbsbm8u5isa4" path="res://assets/TX Tileset Wall.png" id="4_57b0q"]
 [ext_resource type="PackedScene" uid="uid://qnl4o5vsa0va" path="res://items/obstacle.tscn" id="5_2sept"]
 [ext_resource type="Texture2D" uid="uid://dyklgviaa7wyw" path="res://assets/TX Tileset Stone Ground.png" id="5_wbys8"]
+[ext_resource type="PackedScene" uid="uid://bsgmwg36gvtxu" path="res://items/server.tscn" id="6_tg2ad"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sja3x"]
 texture = ExtResource("4_57b0q")
@@ -101,20 +103,29 @@ one_way_collision_margin = 0.0
 [node name="elevator" parent="." instance=ExtResource("2_1m5us")]
 position = Vector2(660, 162)
 
-[node name="terminal1" parent="." instance=ExtResource("3_ao6qd")]
-position = Vector2(40, 152)
-scale = Vector2(0.3, 0.3)
-
-[node name="terminal2" parent="." instance=ExtResource("3_ao6qd")]
-position = Vector2(0, 176)
-scale = Vector2(0.3, 0.3)
-
-[node name="terminal3" parent="." instance=ExtResource("3_ao6qd")]
-position = Vector2(-47, 156)
-scale = Vector2(0.3, 0.3)
 
 [node name="elevator2" parent="." instance=ExtResource("2_1m5us")]
 position = Vector2(-653, 160)
+
+[node name="server" parent="." instance=ExtResource("6_tg2ad")]
+position = Vector2(-3, 192)
+
+scale = Vector2(0.3, 0.3)
+
+[node name="terminal1" parent="server" instance=ExtResource("3_ao6qd")]
+z_index = 1
+position = Vector2(953.333, 663.333)
+scale = Vector2(2.5, 2.5)
+
+[node name="terminal2" parent="server" instance=ExtResource("3_ao6qd")]
+z_index = 1
+position = Vector2(-1176.67, -626.667)
+scale = Vector2(2.5, 2.5)
+
+[node name="terminal3" parent="server" instance=ExtResource("3_ao6qd")]
+z_index = 1
+position = Vector2(543.333, -1696.67)
+scale = Vector2(2.5, 2.5)
 
 [node name="Obstacles" type="Node2D" parent="."]
 
@@ -170,7 +181,7 @@ scale = Vector2(0.675, 0.675)
 position = Vector2(-160, -382)
 scale = Vector2(0.675, 0.675)
 
-[node name="obstacle252" parent="Obstacles" instance=ExtResource("5_2sept")]
+[node name="obstacle252" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
 position = Vector2(-96, -382)
 scale = Vector2(0.675, 0.675)
 
@@ -226,7 +237,7 @@ scale = Vector2(0.675, 0.675)
 position = Vector2(-32, -250)
 scale = Vector2(0.675, 0.675)
 
-[node name="obstacle274" parent="Obstacles" instance=ExtResource("5_2sept")]
+[node name="obstacle274" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
 position = Vector2(32, -250)
 scale = Vector2(0.675, 0.675)
 
@@ -270,24 +281,24 @@ scale = Vector2(0.675, 0.675)
 position = Vector2(-480, 328)
 scale = Vector2(0.675, 0.675)
 
-[node name="obstacle293" parent="Obstacles" instance=ExtResource("5_2sept")]
-position = Vector2(-480, 72)
-scale = Vector2(0.675, 0.675)
-
-[node name="obstacle294" parent="Obstacles" instance=ExtResource("5_2sept")]
-position = Vector2(-480, 136)
-scale = Vector2(0.675, 0.675)
-
 [node name="obstacle295" parent="Obstacles" instance=ExtResource("5_2sept")]
-position = Vector2(-480, 200)
+position = Vector2(544, 72)
 scale = Vector2(0.675, 0.675)
 
 [node name="obstacle296" parent="Obstacles" instance=ExtResource("5_2sept")]
-position = Vector2(-480, 264)
+position = Vector2(546, 135)
 scale = Vector2(0.675, 0.675)
 
 [node name="obstacle298" parent="Obstacles" instance=ExtResource("5_2sept")]
 position = Vector2(-544, 72)
+scale = Vector2(0.675, 0.675)
+
+[node name="obstacle294" parent="Obstacles" instance=ExtResource("5_2sept")]
+position = Vector2(547, 201)
+scale = Vector2(0.675, 0.675)
+
+[node name="obstacle293" parent="Obstacles" instance=ExtResource("5_2sept")]
+position = Vector2(548, 264)
 scale = Vector2(0.675, 0.675)
 
 [node name="obstacle299" parent="Obstacles" instance=ExtResource("5_2sept")]
@@ -298,12 +309,8 @@ scale = Vector2(0.675, 0.675)
 position = Vector2(-544, 200)
 scale = Vector2(0.675, 0.675)
 
-[node name="obstacle301" parent="Obstacles" instance=ExtResource("5_2sept")]
-position = Vector2(-544, 264)
-scale = Vector2(0.675, 0.675)
-
 [node name="obstacle297" parent="Obstacles" instance=ExtResource("5_2sept")]
-position = Vector2(-480, 328)
+position = Vector2(-545, 262)
 scale = Vector2(0.675, 0.675)
 
 [node name="obstacle21" parent="Obstacles" instance=ExtResource("5_2sept")]
@@ -330,7 +337,7 @@ scale = Vector2(0.675, 0.675)
 position = Vector2(-416, 72)
 scale = Vector2(0.675, 0.675)
 
-[node name="obstacle27" parent="Obstacles" instance=ExtResource("5_2sept")]
+[node name="obstacle27" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
 position = Vector2(-416, 136)
 scale = Vector2(0.675, 0.675)
 
@@ -338,8 +345,8 @@ scale = Vector2(0.675, 0.675)
 position = Vector2(-416, 200)
 scale = Vector2(0.675, 0.675)
 
-[node name="obstacle29" parent="Obstacles" instance=ExtResource("5_2sept")]
-position = Vector2(-416, 264)
+[node name="obstacle29" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
+position = Vector2(-417, 264)
 scale = Vector2(0.675, 0.675)
 
 [node name="obstacle30" parent="Obstacles" instance=ExtResource("5_2sept")]
@@ -386,7 +393,7 @@ scale = Vector2(0.675, 0.675)
 position = Vector2(-352, 328)
 scale = Vector2(0.675, 0.675)
 
-[node name="obstacle41" parent="Obstacles" instance=ExtResource("5_2sept")]
+[node name="obstacle41" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
 position = Vector2(-352, 392)
 scale = Vector2(0.675, 0.675)
 
@@ -450,7 +457,7 @@ scale = Vector2(0.675, 0.675)
 position = Vector2(-160, -184)
 scale = Vector2(0.675, 0.675)
 
-[node name="obstacle288" parent="Obstacles" instance=ExtResource("5_2sept")]
+[node name="obstacle288" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
 position = Vector2(-96, -184)
 scale = Vector2(0.675, 0.675)
 
@@ -482,7 +489,7 @@ scale = Vector2(0.675, 0.675)
 position = Vector2(-224, 200)
 scale = Vector2(0.675, 0.675)
 
-[node name="obstacle59" parent="Obstacles" instance=ExtResource("5_2sept")]
+[node name="obstacle59" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
 position = Vector2(-224, 264)
 scale = Vector2(0.675, 0.675)
 
@@ -605,7 +612,7 @@ scale = Vector2(0.675, 0.675)
 position = Vector2(-32, 328)
 scale = Vector2(0.675, 0.675)
 
-[node name="obstacle91" parent="Obstacles" instance=ExtResource("5_2sept")]
+[node name="obstacle91" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
 position = Vector2(-32, 392)
 scale = Vector2(0.675, 0.675)
 
@@ -708,7 +715,7 @@ scale = Vector2(0.675, 0.675)
 position = Vector2(-224, -512)
 scale = Vector2(0.675, 0.675)
 
-[node name="obstacle247" parent="Obstacles" instance=ExtResource("5_2sept")]
+[node name="obstacle247" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
 position = Vector2(224, -448)
 scale = Vector2(0.675, 0.675)
 
@@ -720,7 +727,7 @@ scale = Vector2(0.675, 0.675)
 position = Vector2(-288, -448)
 scale = Vector2(0.675, 0.675)
 
-[node name="obstacle250" parent="Obstacles" instance=ExtResource("5_2sept")]
+[node name="obstacle250" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
 position = Vector2(-224, -448)
 scale = Vector2(0.675, 0.675)
 
@@ -744,7 +751,7 @@ scale = Vector2(0.675, 0.675)
 position = Vector2(224, -316)
 scale = Vector2(0.675, 0.675)
 
-[node name="obstacle268" parent="Obstacles" instance=ExtResource("5_2sept")]
+[node name="obstacle268" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
 position = Vector2(288, -316)
 scale = Vector2(0.675, 0.675)
 
@@ -824,7 +831,7 @@ scale = Vector2(0.675, 0.675)
 position = Vector2(160, 328)
 scale = Vector2(0.675, 0.675)
 
-[node name="obstacle121" parent="Obstacles" instance=ExtResource("5_2sept")]
+[node name="obstacle121" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
 position = Vector2(160, 392)
 scale = Vector2(0.675, 0.675)
 
@@ -832,7 +839,7 @@ scale = Vector2(0.675, 0.675)
 position = Vector2(160, 456)
 scale = Vector2(0.675, 0.675)
 
-[node name="obstacle123" parent="Obstacles" instance=ExtResource("5_2sept")]
+[node name="obstacle123" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
 position = Vector2(224, -120)
 scale = Vector2(0.675, 0.675)
 
@@ -848,7 +855,7 @@ scale = Vector2(0.675, 0.675)
 position = Vector2(224, 72)
 scale = Vector2(0.675, 0.675)
 
-[node name="obstacle127" parent="Obstacles" instance=ExtResource("5_2sept")]
+[node name="obstacle127" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
 position = Vector2(224, 136)
 scale = Vector2(0.675, 0.675)
 
@@ -960,7 +967,7 @@ scale = Vector2(0.675, 0.675)
 position = Vector2(32, 584)
 scale = Vector2(0.675, 0.675)
 
-[node name="obstacle185" parent="Obstacles" instance=ExtResource("5_2sept")]
+[node name="obstacle185" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
 position = Vector2(96, 584)
 scale = Vector2(0.675, 0.675)
 
@@ -968,7 +975,7 @@ scale = Vector2(0.675, 0.675)
 position = Vector2(160, 584)
 scale = Vector2(0.675, 0.675)
 
-[node name="obstacle187" parent="Obstacles" instance=ExtResource("5_2sept")]
+[node name="obstacle187" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
 position = Vector2(224, 584)
 scale = Vector2(0.675, 0.675)
 
@@ -980,7 +987,7 @@ scale = Vector2(0.675, 0.675)
 position = Vector2(-288, 648)
 scale = Vector2(0.675, 0.675)
 
-[node name="obstacle190" parent="Obstacles" instance=ExtResource("5_2sept")]
+[node name="obstacle190" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
 position = Vector2(-224, 648)
 scale = Vector2(0.675, 0.675)
 
@@ -1088,7 +1095,7 @@ scale = Vector2(0.675, 0.675)
 position = Vector2(-32, 776)
 scale = Vector2(0.675, 0.675)
 
-[node name="obstacle214" parent="Obstacles" instance=ExtResource("5_2sept")]
+[node name="obstacle214" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
 position = Vector2(32, 776)
 scale = Vector2(0.675, 0.675)
 
@@ -1100,7 +1107,7 @@ scale = Vector2(0.675, 0.675)
 position = Vector2(160, 776)
 scale = Vector2(0.675, 0.675)
 
-[node name="obstacle217" parent="Obstacles" instance=ExtResource("5_2sept")]
+[node name="obstacle217" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
 position = Vector2(224, 776)
 scale = Vector2(0.675, 0.675)
 
@@ -1164,7 +1171,7 @@ scale = Vector2(0.675, 0.675)
 position = Vector2(352, -120)
 scale = Vector2(0.675, 0.675)
 
-[node name="obstacle144" parent="Obstacles" instance=ExtResource("5_2sept")]
+[node name="obstacle144" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
 position = Vector2(352, -60)
 scale = Vector2(0.675, 0.675)
 
@@ -1204,7 +1211,7 @@ scale = Vector2(0.675, 0.675)
 position = Vector2(416, -120)
 scale = Vector2(0.675, 0.675)
 
-[node name="obstacle154" parent="Obstacles" instance=ExtResource("5_2sept")]
+[node name="obstacle154" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
 position = Vector2(416, -60)
 scale = Vector2(0.675, 0.675)
 
@@ -1266,22 +1273,6 @@ scale = Vector2(0.675, 0.675)
 
 [node name="obstacle169" parent="Obstacles" instance=ExtResource("5_2sept")]
 position = Vector2(480, 264)
-scale = Vector2(0.675, 0.675)
-
-[node name="obstacle302" parent="Obstacles" instance=ExtResource("5_2sept")]
-position = Vector2(544, 72)
-scale = Vector2(0.675, 0.675)
-
-[node name="obstacle303" parent="Obstacles" instance=ExtResource("5_2sept")]
-position = Vector2(544, 136)
-scale = Vector2(0.675, 0.675)
-
-[node name="obstacle304" parent="Obstacles" instance=ExtResource("5_2sept")]
-position = Vector2(544, 200)
-scale = Vector2(0.675, 0.675)
-
-[node name="obstacle305" parent="Obstacles" instance=ExtResource("5_2sept")]
-position = Vector2(545, 264)
 scale = Vector2(0.675, 0.675)
 
 [node name="obstacle170" parent="Obstacles" instance=ExtResource("5_2sept")]
