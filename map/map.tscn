@@ -39,6 +39,7 @@ position = Vector2(-3202, -1211)
 
 [node name="RoundTimer" type="Timer" parent="."]
 wait_time = 15.0
+one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 visible = false

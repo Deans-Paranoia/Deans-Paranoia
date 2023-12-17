@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://elehcsjwwhtm"]
+[gd_scene format=3 uid="uid://p6pn2xmbp2lk"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
@@ -12,10 +12,9 @@ offset_bottom = 40.0
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 11.975
-anchor_top = 3.925
+anchor_top = 0.95
 anchor_right = 15.35
-anchor_bottom = 5.125
-offset_bottom = -1.52588e-05
+anchor_bottom = 2.175
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
@@ -23,6 +22,6 @@ alignment = 1
 [node name="Label" type="Label" parent="Control/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
-text = "DANGER"
+text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1

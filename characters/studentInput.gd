@@ -33,7 +33,7 @@ var can_use_terminal: bool = false
 # sprawdza czy znajduje sie w strefie gdzie mozna uzyc terminalu
 var terminal_address
 
-var can_move: bool
+
 
 var temp_speed
 # zmienna przechowujaca tymczasowa predkosc
@@ -47,9 +47,11 @@ var _dig_speed : float = 1.0
 func _ready():
 	set_process_input(true)
 	if(multiplayer.get_unique_id()!=1):
-		body = get_node_or_null(str(multiplayer.get_unique_id()))
+		body = get_node_or_null(str(self))
 		
 func _input(event):
+	if body!= null and body.can_move == false:
+		return
 	# interakcja z obiektami 
 	if event.is_action_pressed("interaction"):
 		# obsluga alarmu przez studenta
@@ -251,6 +253,8 @@ func _is_student_facing_obstacle(obstacle):
 
 
 func _on_task_area_exited(area):
+	var map = get_node("../../Map")
+	
 	#funkcja  do rejestrowania aktualnie opuszczonej area taska
 	var area_exited = area.get_name()
 	if (area_exited == "VendingMachine1Area" and self.name == str(multiplayer.get_unique_id())):

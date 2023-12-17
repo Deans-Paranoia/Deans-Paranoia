@@ -2,16 +2,18 @@ extends Node2D
 
 var is_tablet_open: bool = false
 # sprawdza czy wywołana została akcja "open_tablet" i wywołuje odpowiednią funkcję
-
+var body:CharacterBody2D
 var can_use_alarm : bool = false
 # sprawdza czy znajduje sie w strefie gdzie mozna odpalic alarm
-
+func _ready():
+	body = get_node_or_null(str(self.name))
 func _input(event):
 	# event do obslugi tabletu przez dziekana
 	if event.is_action_pressed("open_tablet"):
 		if self.name == str(multiplayer.get_unique_id()):
 			manage_deans_tablet()
-	
+	if body!= null and body.can_move == false:
+		return
 	# event do interakcji z obiektami przez dziekana
 	if event.is_action_pressed("interaction"):
 		# obsluga alarmu

@@ -4,7 +4,7 @@ signal direction(direction_vector: Vector2)
 
 #nazwa zmieniona z name na player_name (name w Godot to słowo kluczowe)
 var player_name: String
-
+var can_move: bool = true
 #zmienna która pozwala określić w którą stronę zwrócony jest gracz (jego wektor przed zatrzymaniem)
 var last_direction = Vector2.ZERO
 
@@ -27,7 +27,7 @@ func _ready():
 			
 			add_child(camera)
 func _physics_process(_delta):
-	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
+	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id() and can_move:
 		apply_physics()
 
 func apply_physics():

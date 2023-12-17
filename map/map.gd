@@ -2,12 +2,16 @@ extends Node2D
 @export var studentScene:PackedScene
 @export var deanScene:PackedScene
 @export var npcScene:PackedScene
+@onready var timeUi = load("res://ui/time.tscn").instantiate()
+var isVotingProcess = false
 signal taskType(taskType)
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#if multiplayer.get_unique_id() ==1:
-		#$Camera2D.enabled = true
-	$RoundTimer.start()
+	if multiplayer.get_unique_id() ==1:
+		$Camera2D.enabled = true
+		$RoundTimer.start()
+	timeUi.get_node("Control/VBoxContainer/Label").text = "60"
+	add_child(timeUi)
 	var j = 0
 	for i in globalScript.Players:
 		var currentPlayer
@@ -21,16 +25,16 @@ func _ready():
 				setNpc.rpc(name_number,task_number)
 				set_npc_for_host(name_number,task_number)
 				j+=1
-		#if i==globalScript.deanId:
-			#currentPlayer = deanScene.instantiate()
-			#label = currentPlayer.get_node_or_null("CharacterBody2D/Label")
-			#if(label != null):
-				#label.text = "Dean"
-		#else:
-		currentPlayer = studentScene.instantiate()
-		label = currentPlayer.get_node_or_null("CharacterBody2D/Label")
-		if(label != null):
-			label.text = globalScript.Players[i].fakeName
+		if i==globalScript.deanId:
+			currentPlayer = deanScene.instantiate()
+			label = currentPlayer.get_node_or_null("CharacterBody2D/Label")
+			if(label != null):
+				label.text = "Dean"
+		else:
+			currentPlayer = studentScene.instantiate()
+			label = currentPlayer.get_node_or_null("CharacterBody2D/Label")
+			if(label != null):
+				label.text = globalScript.Players[i].fakeName
 				
 		currentPlayer.name = str(globalScript.Players[i].id)
 		currentPlayer.add_to_group("ThirdFloor")
@@ -47,6 +51,20 @@ func _ready():
 			setPlayer.rpc(i,task_number)
 	
 	pass # Replace with function body.
+func _process(delta):
+	if(multiplayer.get_unique_id()==1):
+		var timeLeft = str(int($RoundTimer.time_left))
+		if timeLeft != "0":
+			timeUi.get_node("Control/VBoxContainer/Label").text =timeLeft
+			set_time_ui.rpc(timeLeft)
+		else:
+			timeUi.get_node("Control/VBoxContainer/Label").visible = false
+@rpc("any_peer","call_remote")
+func set_time_ui(time):
+	if time == "0":
+		timeUi.get_node("Control/VBoxContainer/Label").visible = false
+	else:
+		timeUi.get_node("Control/VBoxContainer/Label").text= time
 @rpc("any_peer","call_remote")
 func setNpc(name,task_number):
 	var task_data = globalScript.get_task_data(task_number)
@@ -64,7 +82,7 @@ func setNpc(name,task_number):
 @rpc("any_peer","call_remote")		
 func setPlayer(i,task_number):
 	var player:Node2D = get_node_or_null(str(i))
-	if(player != null):
+	if player != null and i != globalScript.deanId:
 		var task_data = globalScript.get_task_data(task_number)
 		var position = Vector2(task_data.positionX, task_data.positionY)
 		player.global_position = position
@@ -89,13 +107,25 @@ func set_npc_for_host(name,task_number):
 	globalScript.manage_task(task_number)
 func _on_round_timer_timeout():
 	#tymczasowo disabled zeby mozna bylo testowac, aby uruchomic wystaczy usunąć # dla linjki nizej
-	#change_view.rpc()
+	change_view.rpc()
+	var camera:Camera2D = get_node("lecture_hall/Camera2D")
+	camera.enabled = true
+	camera.make_current()
 	pass
 @rpc("any_peer","call_remote")
 func change_view():
 	var camera:Camera2D = get_node("lecture_hall/Camera2D")
+	timeUi.visible = false;
+	$RoundTimer.stop()
+	isVotingProcess = true
 	camera.enabled = true
 	camera.make_current()
+	var player = get_node(str(multiplayer.get_unique_id()))
+	var canvas =  player.get_node_or_null("CanvasLayer")
+	if canvas != null:
+		canvas.visible = false
+	var body = player.get_node(str(multiplayer.get_unique_id()))
+	body.can_move = false
 func npcs_notes(isVisible):
 	var npcs = get_tree().get_nodes_in_group("takingNotes")
 	if(isVisible):
