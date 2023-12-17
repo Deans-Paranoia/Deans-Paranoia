@@ -9,6 +9,9 @@ var danger_instance
 var catchable: bool = false
 # sprawdza czy student moze zostac zlapany przez dziekana
 
+var is_catched : bool = false
+# sprawdza czy student zostal juz zlapany
+
 var can_use_alarm : bool = false
 # sprawdza czy znajduje sie w strefie gdzie mozna odpalic alarm
 var multiplayerId = self.name 
@@ -98,6 +101,12 @@ func sabotage_alarm():
 	stop_player_movement()
 	body.get_node("FreezeTimer").start()
 	
+@rpc("any_peer","call_local")
+func catch_student():
+	if catchable and !is_catched:
+		is_catched = true
+		stop_player_movement()
+	
 func use_server():
 	# funkcja do uzywania serwera przez studenta
 		var serverNode = get_node_or_null("../fourthFloor/server")
@@ -111,18 +120,20 @@ func use_server():
 func use_elevator():
 	var fourth = get_node_or_null("../fourthFloor")
 	var third = get_node_or_null("../thirdFloor")
-	
-	var id = multiplayer.get_unique_id()
 	if(fourth != null and third!=null):
 		if(self.is_in_group("ThirdFloor")):
 			self.add_to_group("FourthFloor")
 			self.remove_from_group("ThirdFloor")
+			fourth.visible = true
+			third.visible = false
 			teleport.rpc(3000)
 			
 			
 		else:
 			self.add_to_group("ThirdFloor")
 			self.remove_from_group("FourthFloor")
+			fourth.visible = false
+			third.visible = true
 			teleport.rpc(-3000)
 func acquire_booster():
 	# funkcja nadajaca booster dla studenta
