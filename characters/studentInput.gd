@@ -207,7 +207,6 @@ func _on_digging_timer_timeout():
 	if (_obstacle_to_destroy != null):
 		
 		remove_obstacle.rpc(_obstacle_to_destroy.get_parent().name)
-		print(_obstacle_to_destroy.get_parent().name)
 		_obstacle_to_destroy = null
 		
 func _on_server_timer_timeout():

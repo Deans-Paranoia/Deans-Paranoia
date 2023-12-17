@@ -3,7 +3,7 @@ extends Node2D
 var actual_value = 0
 var textures = []
 var can_update_value: bool = false
-
+var isSet = false
 func _ready():
 	load_textures()
 	update_texture()
@@ -24,6 +24,13 @@ func use_terminal():
 	
 func _on_terminal_area_body_exited(body):
 	if body.is_in_group("obstacles"):
-		can_update_value = true
-		$".".visible = true
-		
+		if !isSet:
+			isSet = true
+		else:
+			can_update_value = true
+			$".".visible = true
+			show_terminal.rpc($".".name)
+@rpc("any_peer","call_local")
+func show_terminal(name):
+	var terminal = get_node("../"+str(name))
+	terminal.visible = true

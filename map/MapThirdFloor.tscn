@@ -5510,9 +5510,7 @@ sources/0 = SubResource("TileSetAtlasSource_htuoe")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_nk0df")
-cell_quadrant_size = 8
-collision_animatable = true
-collision_visibility_mode = 1
+rendering_quadrant_size = 8
 format = 2
 layer_0/name = "Kontur"
 layer_0/z_index = 2
