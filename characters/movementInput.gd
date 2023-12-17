@@ -57,3 +57,7 @@ func emit_direction_signal(velocity):
 	direction.emit(velocity)
 
 	
+
+
+
+

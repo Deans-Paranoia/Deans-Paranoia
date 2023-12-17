@@ -59,3 +59,17 @@ position = Vector2(1272, -428)
 [node name="Camera2D" type="Camera2D" parent="."]
 enabled = false
 zoom = Vector2(0.3, 0.3)
+
+[node name="deathZones" type="Node2D" parent="."]
+
+[node name="1" type="Node2D" parent="deathZones"]
+position = Vector2(1386, 279)
+
+[node name="2" type="Node2D" parent="deathZones"]
+position = Vector2(1223, 438)
+
+[node name="3" type="Node2D" parent="deathZones"]
+position = Vector2(1070, 251)
+
+[node name="4" type="Node2D" parent="deathZones"]
+position = Vector2(1205, 104)

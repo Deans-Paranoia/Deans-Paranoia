@@ -1,17 +1,25 @@
 extends Node2D
-
+signal student_picked()
 var is_tablet_open: bool = false
 # sprawdza czy wywołana została akcja "open_tablet" i wywołuje odpowiednią funkcję
 var body:CharacterBody2D
 var can_use_alarm : bool = false
 # sprawdza czy znajduje sie w strefie gdzie mozna odpalic alarm
 func _ready():
+	var hall = get_tree().root.get_node("Map/lecture_hall")
 	body = get_node_or_null(str(self.name))
+	if globalScript.deanId == multiplayer.get_unique_id() and get_parent().name != "lecture_hall":
+		student_picked.connect(hall.on_student_moved)
+		
 func _input(event):
 	# event do obslugi tabletu przez dziekana
 	if event.is_action_pressed("open_tablet"):
 		if self.name == str(multiplayer.get_unique_id()):
 			manage_deans_tablet()
+	if event.is_action_pressed("kick_student"):
+		if self.name == str(multiplayer.get_unique_id()) and body.can_move == false:
+			student_picked.emit()
+				
 	if body!= null and body.can_move == false:
 		return
 	# event do interakcji z obiektami przez dziekana
@@ -28,7 +36,8 @@ func _input(event):
 			for catchable_object in catchable_objects:
 				var student_id = str(catchable_object.name)
 				catchable_object.catch_student.rpc_id(int(student_id))
-
+	
+			
 @rpc("any_peer","call_remote")
 func change_alarm_state():
 	var fire_alarm_reference = get_node_or_null("../thirdFloor/fire_alarm")

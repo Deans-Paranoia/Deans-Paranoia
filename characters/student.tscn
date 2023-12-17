@@ -347,5 +347,5 @@ grow_vertical = 2
 [connection signal="timeout" from="CharacterBody2D/ServerTimer" to="." method="_on_server_timer_timeout"]
 [connection signal="area_entered" from="CharacterBody2D/PlayerArea" to="." method="_on_player_area_area_entered"]
 [connection signal="area_entered" from="CharacterBody2D/PlayerArea" to="." method="_on_task_area_entered"]
-[connection signal="area_exited" from="CharacterBody2D/PlayerArea" to="." method="_on_player_area_area_exited"]
 [connection signal="area_exited" from="CharacterBody2D/PlayerArea" to="." method="_on_task_area_exited"]
+[connection signal="area_exited" from="CharacterBody2D/PlayerArea" to="." method="_on_player_area_area_exited"]
