@@ -2,12 +2,12 @@ extends Node2D
 @onready var npcScene = load("res://characters/npc.tscn")
 @onready var deanScene = load("res://characters/dean.tscn")
 var counter = 1
+var clicked = 0
 var kicked_player_number = 1
 var maximum_ammount_to_kick = 1
 var hovered_student
 func on_npc_spawn():
 	if(multiplayer.get_unique_id() ==1):
-		print(globalScript.usedNames)
 		for i in globalScript.usedNames:
 			set_student(i)
 			set_student.rpc(i)
@@ -39,7 +39,7 @@ func set_dean():
 	dean.scale = Vector2(3,3)
 	add_child(dean)
 func on_student_moved():
-	if(hovered_student != null):
+	if(hovered_student != null and clicked<maximum_ammount_to_kick):
 		move_student(hovered_student)
 		move_student.rpc(hovered_student)
 		hovered_student = null
@@ -50,5 +50,6 @@ func move_student(name):
 	student.position = get_node("deathZones/"+str(kicked_player_number)).position
 	student.get_node("CharacterBody2D/KickScript").on_lecture_hall = false
 	kicked_player_number+=1
+	clicked +=1
 func set_hovered_student(name):
 	hovered_student = name

@@ -42,7 +42,7 @@ func _input(event):
 func change_alarm_state():
 	var fire_alarm_reference = get_node_or_null("../thirdFloor/fire_alarm")
 	if fire_alarm_reference:
-		fire_alarm_reference.useable = false	
+		fire_alarm_reference.use_alarm()
 @rpc("any_peer","call_local")
 func remove_obstacle(_obstacle_to_destroy):
 	_obstacle_to_destroy.queue_free()
