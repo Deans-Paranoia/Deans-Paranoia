@@ -14,6 +14,11 @@ func _process(delta):
 
 
 func _on_character_body_2d_direction(velocity:Vector2):
+	run_animation(velocity)
+	run_animation.rpc(velocity)
+			
+@rpc("any_peer","call_remote")
+func run_animation(velocity):
 	if velocity == Vector2.ZERO:
 		if $".".get("parameters/playback").get_current_node() != "Idle":
 			#print($".".get("parameters/playback").get_current_node())
@@ -36,8 +41,6 @@ func _on_character_body_2d_direction(velocity:Vector2):
 			$"../Sprite2DWalkingDown".set("visible", true)
 		else:
 			$"../Sprite2D".set("visible", true)
-			
-
 
 
 
