@@ -1,4 +1,8 @@
 extends Node2D
+
+signal player_task(task_type: String)
+signal disable_player_movement_for_duration(duration: float)
+var current_task_area = "" # pusty string jesli gracz nie w tasku
 var fourthFloor = load("res://map/fourth_floor.tscn")
 var thirdFloor = load("res://map/level.tscn")
 
@@ -78,6 +82,11 @@ func _input(event):
 				removeBooster.rpc()
 				# nadanie boosta
 				acquire_booster()
+				
+		# wykonanie taska przez studenta	
+		if not danger_instance and current_task_area != "":
+			task_execution()
+			
 	elif event.is_action_pressed("dig") and self.name == str(multiplayer.get_unique_id()):
 		dig()
 	elif event.is_action_released("dig") and self.name == str(multiplayer.get_unique_id()):
@@ -97,6 +106,11 @@ func sabotage_alarm():
 	print("Alarm sabotaged")
 	stop_player_movement()
 	body.get_node("FreezeTimer").start()
+
+func task_execution():
+	# funkcja do wykonywania taska przez studenta
+	player_task.emit(current_task_area)
+	disable_player_movement_for_duration.emit(1.0) # zatrzymanie ruchu gracza na 1s
 	
 func use_server():
 	# funkcja do uzywania serwera przez studenta
@@ -118,7 +132,6 @@ func use_elevator():
 			self.add_to_group("FourthFloor")
 			self.remove_from_group("ThirdFloor")
 			teleport.rpc(3000)
-			
 			
 		else:
 			self.add_to_group("ThirdFloor")
@@ -153,7 +166,7 @@ func dig():
 func stop_dig():
 	_is_space_pressed = false
 	body.get_node("DiggingTimer").stop()
-
+		
 func _on_player_area_area_entered(area):
 	#funkcja do rejestrowanie aktualnie area, do ktorej weszlismy
 	var area_entered = area.get_name()
@@ -248,21 +261,25 @@ func _on_task_area_exited(area):
 		danger_instance = dangerScene.instantiate()
 		add_child(danger_instance)
 		catchable = true
+		current_task_area = ""
 		
 	if (area_exited == "VendingMachine2Area" and self.name == str(multiplayer.get_unique_id())):
 		danger_instance = dangerScene.instantiate()
 		add_child(danger_instance)
 		catchable = true
+		current_task_area = ""
 		
 	if (area_exited == "ComputersArea" and self.name == str(multiplayer.get_unique_id())):
 		danger_instance = dangerScene.instantiate()
 		add_child(danger_instance)
 		catchable = true
+		current_task_area = ""
 		
 	if (area_exited == "NotesArea" and self.name == str(multiplayer.get_unique_id())):
 		danger_instance = dangerScene.instantiate()
 		add_child(danger_instance)
 		catchable = true
+		current_task_area = ""
 		
 	if (area_exited == "WalkingArea" and self.name == str(multiplayer.get_unique_id())):
 		danger_instance = dangerScene.instantiate()
@@ -276,19 +293,24 @@ func _on_task_area_entered(area):
 	if (area_entered == "VendingMachine1Area" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
 		danger_instance.queue_free()
 		catchable = false
+		current_task_area = "vendingMachine"
 		
 	if (area_entered == "VendingMachine2Area" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
 		danger_instance.queue_free()
 		catchable = false
+		current_task_area = "vendingMachine"
 		
 	if (area_entered == "ComputersArea" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
 		danger_instance.queue_free()
 		catchable = false
+		current_task_area = "computer"
 		
 	if (area_entered == "NotesArea" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
 		danger_instance.queue_free()
 		catchable = false
+		current_task_area = "takingNotes"
 		
 	if (area_entered == "WalkingArea" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
 		danger_instance.queue_free()
 		catchable = false
+
