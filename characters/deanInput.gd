@@ -31,7 +31,8 @@ func _input(event):
 				ring_fire_alarm()
 				fire_alarm_reference.useable = false
 				change_alarm_state.rpc()
-				
+	if event.is_action_pressed("catch_student"):	
+		if self.name == str(multiplayer.get_unique_id()):		
 			var catchable_objects = get_tree().get_nodes_in_group("Catchable_Students")
 			for catchable_object in catchable_objects:
 				var student_id = str(catchable_object.name)
