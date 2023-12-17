@@ -55,17 +55,17 @@ func _ready():
 func _process(delta):
 	if(multiplayer.get_unique_id()==1):
 		var timeLeft = str(int($RoundTimer.time_left))
-		if timeLeft != "0":
-			timeUi.get_node("Control/VBoxContainer/Label").text =timeLeft
-			set_time_ui.rpc(timeLeft)
-		else:
-			timeUi.get_node("Control/VBoxContainer/Label").visible = false
+		set_time_ui(timeLeft)
+		set_time_ui.rpc(timeLeft)
+		
 @rpc("any_peer","call_remote")
 func set_time_ui(time):
+	var label = timeUi.get_node("Control/VBoxContainer/Label")
 	if time == "0":
-		timeUi.get_node("Control/VBoxContainer/Label").visible = false
+		label.visible = false
 	else:
-		timeUi.get_node("Control/VBoxContainer/Label").text= time
+		label.visible = true
+		label.text= time
 @rpc("any_peer","call_remote")
 func setNpc(name,task_number):
 	var task_data = globalScript.get_task_data(task_number)
@@ -116,8 +116,6 @@ func _on_round_timer_timeout():
 @rpc("any_peer","call_remote")
 func change_view():
 	var camera:Camera2D = get_node("lecture_hall/Camera2D")
-	timeUi.visible = false;
-	$RoundTimer.stop()
 	isVotingProcess = true
 	camera.enabled = true
 	camera.make_current()
