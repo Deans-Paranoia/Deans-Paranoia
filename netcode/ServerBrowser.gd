@@ -56,12 +56,12 @@ func setUp():
 	if ok == OK:
 		print("Bound to listen port " + str(listenPort) + "succesfull")
 		
-		$"Host".visible = false
+		$ip_panel.visible = false
 	else:
 		print("Failed to bind to listen port")
 		
 		$"../Title".visible = false
-		$ServerIp.visible = true
+		#$ServerIp.visible = true
 func setupBroadcast(name):
 	RoomInfo.name = name
 	RoomInfo.playerCount = globalScript.Players.size()
