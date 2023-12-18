@@ -6,13 +6,14 @@ var clicked = 0
 var kicked_player_number = 1
 var maximum_ammount_to_kick = 1
 var hovered_student
+var students_to_kick = []
 func on_npc_spawn():
 	if(multiplayer.get_unique_id() ==1):
 		for i in globalScript.usedNames:
 			set_student(i)
 			set_student.rpc(i)
-			set_dean()
-			set_dean.rpc()
+		set_dean()
+		set_dean.rpc()
 @rpc("any_peer","call_remote")
 func set_student(name):
 	#if(counter>14):
@@ -48,11 +49,32 @@ func on_student_moved():
 		else:
 			print("he was bot")
 		if clicked == maximum_ammount_to_kick:
+			
 			back_to_game()
 			back_to_game.rpc()
-			
+@rpc("any_peer","call_remote")
+func quit_game():
+	get_tree().quit()		
 @rpc("any_peer","call_remote")
 func back_to_game():
+	for i in students_to_kick:
+		var isPlayer = false
+		var lecture_hall_node = get_node(str(i))
+		lecture_hall_node.queue_free()
+		kicked_player_number = 1
+		for j in globalScript.Players:
+			if globalScript.Players[j].fakeName == i:
+				isPlayer = true
+				var playerNode = get_tree().root.get_node("Map/"+str(j))
+				if globalScript.deanId == multiplayer.get_unique_id():
+					quit_game.rpc_id(j)
+				if playerNode != null:
+					playerNode.queue_free()
+				print(globalScript.Players)
+		if isPlayer == false:
+			var npcNode = get_tree().root.get_node("Map/"+i)
+			npcNode.queue_free()
+	students_to_kick = []
 	clicked = 0
 	maximum_ammount_to_kick = 1
 	$"../Camera2D".enabled = false
@@ -78,6 +100,7 @@ func back_to_game():
 		
 @rpc("any_peer","call_remote")
 func move_student(name):
+	students_to_kick.append(name)
 	var student = get_node(str(name))
 	student.position = get_node("deathZones/"+str(kicked_player_number)).position
 	student.get_node("CharacterBody2D/KickScript").on_lecture_hall = false
