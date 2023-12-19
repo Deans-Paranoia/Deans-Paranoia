@@ -1,11 +1,11 @@
 [gd_scene load_steps=14 format=3 uid="uid://cyi3a61e0ng54"]
 
-[ext_resource type="Texture2D" uid="uid://dmkqd7m6liam5" path="res://map/MapAssets/Modern tiles_Free/Interiors_free/48x48/Interiors_free_48x48.png" id="1_lgoua"]
-[ext_resource type="Texture2D" uid="uid://c0kv32hoh5ymc" path="res://map/MapAssets/Modern tiles_Free/Interiors_free/48x48/Room_Builder_free_48x48.png" id="2_j3oak"]
-[ext_resource type="Texture2D" uid="uid://bgouxsasy8e68" path="res://map/MapAssets/Grafika_bez_nazwy 3.png" id="3_fvbaj"]
+[ext_resource type="Texture2D" uid="uid://dmkqd7m6liam5" path="res://assets/MapAssets/Modern tiles_Free/Interiors_free/48x48/Interiors_free_48x48.png" id="1_lgoua"]
+[ext_resource type="Texture2D" uid="uid://c0kv32hoh5ymc" path="res://assets/MapAssets/Modern tiles_Free/Interiors_free/48x48/Room_Builder_free_48x48.png" id="2_j3oak"]
+[ext_resource type="Texture2D" uid="uid://bgouxsasy8e68" path="res://assets/MapAssets/Grafika_bez_nazwy 3.png" id="3_fvbaj"]
 [ext_resource type="PackedScene" uid="uid://bhbxcxlls2ing" path="res://map/MapThirdFloor.tscn" id="3_gq3cj"]
-[ext_resource type="Texture2D" uid="uid://clgg8dvn2x702" path="res://map/MapAssets/Art/Texture/TX Struct.png" id="4_c2n3o"]
-[ext_resource type="Texture2D" uid="uid://brwmlrpxiwy30" path="res://map/MapAssets/Art/Texture/TX Props.png" id="5_e1bvl"]
+[ext_resource type="Texture2D" uid="uid://clgg8dvn2x702" path="res://assets/MapAssets/Art/Texture/TX Struct.png" id="4_c2n3o"]
+[ext_resource type="Texture2D" uid="uid://brwmlrpxiwy30" path="res://assets/MapAssets/Art/Texture/TX Props.png" id="5_e1bvl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wiytd"]
 texture = ExtResource("1_lgoua")
