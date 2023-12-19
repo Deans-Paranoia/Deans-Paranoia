@@ -1,5 +1,6 @@
 extends Node2D
 signal student_picked()
+signal student_catched(name)
 var is_tablet_open: bool = false
 # sprawdza czy wywołana została akcja "open_tablet" i wywołuje odpowiednią funkcję
 var body:CharacterBody2D
@@ -10,7 +11,7 @@ func _ready():
 	body = get_node_or_null(str(self.name))
 	if globalScript.deanId == multiplayer.get_unique_id() and get_parent().name != "lecture_hall":
 		student_picked.connect(hall.on_student_moved)
-		
+		student_catched.connect(hall.on_student_catched)
 func _input(event):
 	# event do obslugi tabletu przez dziekana
 	if event.is_action_pressed("open_tablet"):
@@ -35,6 +36,8 @@ func _input(event):
 			for catchable_object in catchable_objects:
 				var student_id = str(catchable_object.name)
 				catchable_object.catch_student.rpc_id(int(student_id))
+				#print(globalScript.Players[])
+				student_catched.emit(globalScript.Players[int(student_id)].fakeName)
 	
 			
 @rpc("any_peer","call_remote")

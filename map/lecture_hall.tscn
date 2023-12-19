@@ -10,6 +10,7 @@ script = ExtResource("1_8j4cy")
 texture = ExtResource("1_p0gvo")
 
 [node name="spawnPoints" type="Node2D" parent="."]
+position = Vector2(-3, -8)
 
 [node name="1" type="Node2D" parent="spawnPoints"]
 position = Vector2(-316, -516)
@@ -56,11 +57,31 @@ position = Vector2(-1472, -524)
 [node name="deanSpawn" type="Node2D" parent="spawnPoints"]
 position = Vector2(1272, -428)
 
+[node name="15" type="Node2D" parent="spawnPoints"]
+position = Vector2(105, 240)
+
+[node name="16" type="Node2D" parent="spawnPoints"]
+position = Vector2(-334, 243)
+
+[node name="17" type="Node2D" parent="spawnPoints"]
+position = Vector2(-314, -249)
+
+[node name="18" type="Node2D" parent="spawnPoints"]
+position = Vector2(105, -489)
+
+[node name="19" type="Node2D" parent="spawnPoints"]
+position = Vector2(99, -255)
+
+[node name="20" type="Node2D" parent="spawnPoints"]
+position = Vector2(122, 495)
+
 [node name="Camera2D" type="Camera2D" parent="."]
 enabled = false
 zoom = Vector2(0.3, 0.3)
+metadata/_edit_lock_ = true
 
 [node name="deathZones" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="1" type="Node2D" parent="deathZones"]
 position = Vector2(1386, 279)
@@ -73,3 +94,15 @@ position = Vector2(1070, 251)
 
 [node name="4" type="Node2D" parent="deathZones"]
 position = Vector2(1205, 104)
+
+[node name="5" type="Node2D" parent="deathZones"]
+position = Vector2(1307, 197)
+
+[node name="6" type="Node2D" parent="deathZones"]
+position = Vector2(1329, 364)
+
+[node name="7" type="Node2D" parent="deathZones"]
+position = Vector2(1106, 381)
+
+[node name="8" type="Node2D" parent="deathZones"]
+position = Vector2(1120, 158)

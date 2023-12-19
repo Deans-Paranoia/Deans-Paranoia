@@ -1,7 +1,8 @@
 extends Node2D
 @onready var npcScene = load("res://characters/npc.tscn")
 @onready var deanScene = load("res://characters/dean.tscn")
-var counter = 1
+var rng = RandomNumberGenerator.new()
+var available_spots = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
 var clicked = 0
 var kicked_player_number = 1
 var maximum_ammount_to_kick = 1
@@ -25,13 +26,14 @@ func set_student(name):
 	scene.name = name;
 	var label = scene.get_node("CharacterBody2D/Label")
 	label.text = name
-	var spawnpoint = get_node("spawnPoints/"+str(counter))
+	var spot = rng.randi_range(0,available_spots.size()-1)
+	var spawnpoint = get_node("spawnPoints/"+str(available_spots[spot]))
+	available_spots.pop_at(spot)
 	scene.position = spawnpoint.position
 	scene.get_node("CharacterBody2D/KickScript").on_lecture_hall = true
 	scene.get_node("CharacterBody2D/KickScript").on_student_hovered.connect(set_hovered_student)
 	scene.scale = Vector2(1,1)
 	add_child(scene)
-	counter+=1
 @rpc("any_peer","call_remote")
 func set_dean():
 	var dean = deanScene.instantiate()
@@ -55,9 +57,21 @@ func on_student_moved():
 		else:
 			print("he was bot")
 		hovered_student = null
+		clicked +=1
 		if clicked == maximum_ammount_to_kick:
+			await get_tree().create_timer(3.0).timeout
 			back_to_game()
 			back_to_game.rpc()
+func on_student_catched(name):
+	hovered_student = name
+	move_student(hovered_student)
+	move_student.rpc(hovered_student)
+	playersCount -=1
+	print("catched")
+	if playersCount <1:
+		show_end_screen()
+		show_end_screen.rpc()
+	hovered_student = null
 @rpc("any_peer","call_remote")
 func quit_game():
 	get_tree().quit()
@@ -83,8 +97,9 @@ func back_to_game():
 					playerNode.queue_free()
 					globalScript.Players.erase(j)
 		if isPlayer == false:
-			var npcNode = get_tree().root.get_node("Map/"+i)
-			npcNode.queue_free()
+			var npcNode = get_tree().root.get_node_or_null("Map/"+i)
+			if npcNode != null:
+				npcNode.queue_free()
 	
 	students_to_kick = []
 	clicked = 0
@@ -119,7 +134,6 @@ func move_student(name):
 	student.position = get_node("deathZones/"+str(kicked_player_number)).position
 	student.get_node("CharacterBody2D/KickScript").on_lecture_hall = false
 	kicked_player_number+=1
-	clicked +=1
 func set_hovered_student(name):
 	hovered_student = name
 func check_if_was_player(name):
