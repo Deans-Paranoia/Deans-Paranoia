@@ -26,7 +26,7 @@ func _ready():
 				set_npc_for_host(name_number,task_number)
 				j+=1
 		if i==globalScript.deanId:
-			currentPlayer = deanScene.instantiate()
+			currentPlayer = studentScene.instantiate()
 			label = currentPlayer.get_node_or_null("CharacterBody2D/Label")
 			if(label != null):
 				label.text = "Dean"

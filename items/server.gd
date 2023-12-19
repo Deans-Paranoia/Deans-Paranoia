@@ -1,4 +1,5 @@
 extends Node2D
+var endgame = load("res://ui/endgame.tscn")
 var rng = RandomNumberGenerator.new()
 @onready var terminal1 = get_node("terminal1")
 @onready var terminal2 = get_node("terminal2")
@@ -17,10 +18,10 @@ func set_server_value(value):
 	
 func calculate_value():
 	if (100 * terminal1.actual_value + 10 * terminal2.actual_value + terminal3.actual_value) == serverValue:
-		print("koniec gry")
+		show_end_screen.rpc()
+		show_end_screen()
 		return true
 	else:
-		print("kod niepoprawny")
 		return false
 		
 
@@ -43,8 +44,14 @@ func set_terminals_position_for_host():
 @rpc("any_peer","call_remote")
 func set_terminals_position(position1, position2, position3):
 	terminal1.global_position = position1
-	terminal1.modulate = Color(0.9,0.9,0.7)
+	terminal1.modulate = Color(0.9,0.9,0.1)
 	terminal2.global_position = position2
 	terminal2.modulate = Color(0.1,0.1,0.9)
 	terminal3.global_position = position3
 	terminal3.modulate = Color(0.1,1,0.1)
+@rpc("any_peer","call_remote")
+func show_end_screen():
+	var endgame_instance = endgame.instantiate()
+	get_tree().root.add_child(endgame_instance)
+	endgame_instance.get_node("ColorRect/VBoxContainer2/Label").text = "Wygrali studenci"
+	self.hide()		

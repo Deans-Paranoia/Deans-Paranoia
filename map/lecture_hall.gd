@@ -17,7 +17,6 @@ func on_npc_spawn():
 		set_dean()
 		set_dean.rpc()
 	playersCount = get_tree().get_nodes_in_group("Student").size()
-	print(str(playersCount))
 @rpc("any_peer","call_remote")
 func set_student(name):
 	#if(counter>14):
@@ -125,8 +124,6 @@ func set_hovered_student(name):
 	hovered_student = name
 func check_if_was_player(name):
 	for i in globalScript.Players:
-		print(globalScript.Players[i].fakeName)
-		print(name)
 		if globalScript.Players[i].fakeName == name:
 			return true
 	return false
