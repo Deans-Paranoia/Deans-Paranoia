@@ -7,7 +7,7 @@ func _ready():
 		
 var Players ={}
 var deanId:int
-var player_type: String
+
 
 class Task:
 	var positionX: float

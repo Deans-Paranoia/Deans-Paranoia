@@ -91,7 +91,7 @@ func _input(event):
 @rpc("any_peer","call_remote")
 func change_alarm_state():
 	var fire_alarm_reference = get_node_or_null("../thirdFloor/fire_alarm")
-	fire_alarm_reference.use_alarm()
+	fire_alarm_reference.use_alarm(true)
 @rpc("any_peer","call_local")
 func removeBooster():
 	var booster = get_node_or_null("../thirdFloor/booster")

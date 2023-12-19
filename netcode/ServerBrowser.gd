@@ -14,7 +14,7 @@ func _ready():
 	setUp()
 	pass
 func _process(delta):
-	if listener.get_available_packet_count() > 0:
+	if listener != null and listener.get_available_packet_count() > 0:
 		
 		$"../Title".visible = false
 		var serverIp = listener.get_packet_ip()
@@ -85,15 +85,20 @@ func _on_broadcast_timer_timeout():
 	pass
 func exit_tree():
 	cleanUp()
+
 func cleanUp():
 	print("broadcaster closed")
 	listener.close()
 	$BroadcastTimer.stop()
 	if broadcaster != null:
 		broadcaster.close()
-		
-		for i in $VBoxContainer.get_children():
-			i.queue_free()
+	broadcaster = null
+	listener = null
+	playerCount = 0
+	RoomInfo = {"name":"name","playerCount":0}
+	broadcastAddress = ""
+	for i in $VBoxContainer.get_children():
+		i.queue_free()
 func joinByIp(ip):
 	joinGame.emit(ip)
 

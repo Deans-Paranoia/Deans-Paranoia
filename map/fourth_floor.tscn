@@ -1,6 +1,5 @@
 [gd_scene load_steps=10 format=3 uid="uid://tyedsi7liv1g"]
 
-
 [ext_resource type="PackedScene" uid="uid://ci4moycif5owm" path="res://items/elevator.tscn" id="2_1m5us"]
 [ext_resource type="PackedScene" uid="uid://dmqsyy0b226i3" path="res://items/terminal.tscn" id="3_ao6qd"]
 [ext_resource type="Texture2D" uid="uid://bbbsbm8u5isa4" path="res://assets/TX Tileset Wall.png" id="4_57b0q"]
@@ -103,13 +102,11 @@ one_way_collision_margin = 0.0
 [node name="elevator" parent="." instance=ExtResource("2_1m5us")]
 position = Vector2(660, 162)
 
-
 [node name="elevator2" parent="." instance=ExtResource("2_1m5us")]
 position = Vector2(-653, 160)
 
 [node name="server" parent="." instance=ExtResource("6_tg2ad")]
 position = Vector2(-3, 192)
-
 scale = Vector2(0.3, 0.3)
 
 [node name="terminal1" parent="server" instance=ExtResource("3_ao6qd")]

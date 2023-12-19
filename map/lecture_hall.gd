@@ -7,6 +7,8 @@ var kicked_player_number = 1
 var maximum_ammount_to_kick = 1
 var hovered_student
 var students_to_kick = []
+var playersCount=0
+var endgame = load("res://ui/endgame.tscn")
 func on_npc_spawn():
 	if(multiplayer.get_unique_id() ==1):
 		for i in globalScript.usedNames:
@@ -14,6 +16,8 @@ func on_npc_spawn():
 			set_student.rpc(i)
 		set_dean()
 		set_dean.rpc()
+	playersCount = get_tree().get_nodes_in_group("Student").size()
+	print(str(playersCount))
 @rpc("any_peer","call_remote")
 func set_student(name):
 	#if(counter>14):
@@ -43,18 +47,26 @@ func on_student_moved():
 	if(hovered_student != null and clicked<maximum_ammount_to_kick):
 		move_student(hovered_student)
 		move_student.rpc(hovered_student)
-		hovered_student = null
 		if(check_if_was_player(hovered_student)):
 			print("he was player")
+			playersCount -=1
+			if playersCount <1:
+				show_end_screen()
+				show_end_screen.rpc()
 		else:
 			print("he was bot")
+		hovered_student = null
 		if clicked == maximum_ammount_to_kick:
-			
 			back_to_game()
 			back_to_game.rpc()
 @rpc("any_peer","call_remote")
 func quit_game():
-	get_tree().quit()		
+	get_tree().quit()
+@rpc("any_peer","call_remote")
+func show_end_screen():
+	var endgame_instance = endgame.instantiate()
+	get_tree().root.add_child(endgame_instance)
+	self.hide()		
 @rpc("any_peer","call_remote")
 func back_to_game():
 	for i in students_to_kick:
@@ -70,16 +82,19 @@ func back_to_game():
 					quit_game.rpc_id(j)
 				if playerNode != null:
 					playerNode.queue_free()
-				print(globalScript.Players)
+					globalScript.Players.erase(j)
 		if isPlayer == false:
 			var npcNode = get_tree().root.get_node("Map/"+i)
 			npcNode.queue_free()
+	
 	students_to_kick = []
 	clicked = 0
 	maximum_ammount_to_kick = 1
 	$"../Camera2D".enabled = false
 	var map = get_node("../")
 	map.isVotingProcess = false
+	
+		
 	if(multiplayer.get_unique_id()!=1):
 		var body = map.get_node(str(multiplayer.get_unique_id())+"/"+str(multiplayer.get_unique_id()))
 		body.can_move = true
@@ -110,6 +125,8 @@ func set_hovered_student(name):
 	hovered_student = name
 func check_if_was_player(name):
 	for i in globalScript.Players:
+		print(globalScript.Players[i].fakeName)
+		print(name)
 		if globalScript.Players[i].fakeName == name:
 			return true
 	return false

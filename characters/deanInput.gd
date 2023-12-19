@@ -28,8 +28,6 @@ func _input(event):
 		if self.name == str(multiplayer.get_unique_id()):
 			var fire_alarm_reference = get_node_or_null("../thirdFloor/fire_alarm")
 			if fire_alarm_reference and fire_alarm_reference.useable and can_use_alarm and self.name == str(multiplayer.get_unique_id()):
-				ring_fire_alarm()
-				fire_alarm_reference.useable = false
 				change_alarm_state.rpc()
 	if event.is_action_pressed("catch_student"):	
 		if self.name == str(multiplayer.get_unique_id()):		
@@ -43,7 +41,7 @@ func _input(event):
 func change_alarm_state():
 	var fire_alarm_reference = get_node_or_null("../thirdFloor/fire_alarm")
 	if fire_alarm_reference:
-		fire_alarm_reference.use_alarm()
+		fire_alarm_reference.use_alarm(false)
 @rpc("any_peer","call_local")
 func remove_obstacle(_obstacle_to_destroy):
 	_obstacle_to_destroy.queue_free()
@@ -57,9 +55,7 @@ func manage_deans_tablet():
 			print("Tablet closed")
 			is_tablet_open = false
 
-func ring_fire_alarm():
-	# funkcja do obsługi alarmu przez dziekana
-	print("Alarm rang")
+
 	
 func catch_student():
 	pass

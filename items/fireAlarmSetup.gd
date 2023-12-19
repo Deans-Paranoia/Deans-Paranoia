@@ -10,10 +10,12 @@ func _ready():
 func _process(_delta):
 	pass
 	
-func use_alarm():
-	useable = false
-	set_lecture_hall()
-	set_lecture_hall.rpc()
+func use_alarm(isSabotaged):
+	if useable:
+		useable = false
+		if isSabotaged == false:
+			set_lecture_hall()
+			set_lecture_hall.rpc()
 @rpc("any_peer","call_remote")
 func set_lecture_hall():
 	var hall = get_node("../../lecture_hall")
