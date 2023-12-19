@@ -31,6 +31,15 @@ project/assembly_name="Dean-s Paranoia"
 
 import/blender/enabled=false
 
+[importer_defaults]
+
+texture={
+"compress/mode": 2
+}
+2d_array_texture={
+"compress/mode": 2
+}
+
 [input]
 
 up={
