@@ -26,7 +26,7 @@ func _ready():
 				set_npc_for_host(name_number,task_number)
 				j+=1
 		if i==globalScript.deanId:
-			currentPlayer = studentScene.instantiate()
+			currentPlayer = deanScene.instantiate()
 			label = currentPlayer.get_node_or_null("CharacterBody2D/Label")
 			if(label != null):
 				label.text = "Dean"
@@ -39,6 +39,8 @@ func _ready():
 		currentPlayer.name = str(globalScript.Players[i].id)
 		currentPlayer.add_to_group("ThirdFloor")
 		if(i == multiplayer.get_unique_id()):
+			label.modulate = Color(0.2,1,0.2)
+		elif multiplayer.get_unique_id() != globalScript.deanId:
 			label.modulate = Color(0.2,1,0.2)
 		var body = currentPlayer.get_node("CharacterBody2D")
 		if body != null:	
