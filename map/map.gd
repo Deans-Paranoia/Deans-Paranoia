@@ -4,6 +4,7 @@ extends Node2D
 @export var npcScene:PackedScene
 @onready var timeUi = load("res://ui/time.tscn").instantiate()
 var isVotingProcess = false
+var rand = RandomNumberGenerator.new()
 signal taskType(taskType)
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,18 +19,19 @@ func _ready():
 		var label
 		if multiplayer.get_unique_id() ==1:
 			while j < 13-globalScript.Players.size():
-				var rand = RandomNumberGenerator.new()
+				
 				var task_number = rand.randi() % globalScript.Tasks.size()
 				var name_number = rand.randi() % globalScript.studentsNames.size()
 				#setNpc(name_number,task_number)
-				setNpc.rpc(name_number,task_number)
-				set_npc_for_host(name_number,task_number)
+				setNpc.rpc(globalScript.studentsNames[name_number],task_number,false)
+				set_npc_for_host(globalScript.studentsNames[name_number],task_number,false)
 				j+=1
 		if i==globalScript.deanId:
 			currentPlayer = deanScene.instantiate()
 			label = currentPlayer.get_node_or_null("CharacterBody2D/Label")
 			if(label != null):
 				label.text = "Dean"
+			currentPlayer.position = Vector2(600,-1200)
 		else:
 			currentPlayer = studentScene.instantiate()
 			label = currentPlayer.get_node_or_null("CharacterBody2D/Label")
@@ -59,7 +61,51 @@ func _process(delta):
 		var timeLeft = str(int($RoundTimer.time_left))
 		set_time_ui(timeLeft)
 		set_time_ui.rpc(timeLeft)
-		
+@rpc("any_peer","call_remote")
+func restart_tasks():
+	globalScript.resetTasks()
+	#print(str(get_tree().get_nodes_in_group("npc").size()))
+	if multiplayer.get_unique_id() ==1:
+		for x in get_tree().get_nodes_in_group("npc"):
+			var name = x.name
+			var task_number = rand.randi() % globalScript.Tasks.size()
+			restart_npc.rpc(name,task_number)
+			restart_npc(name,task_number)
+		for i in globalScript.Players:
+			if i != globalScript.deanId:
+				var task_number = rand.randi() % globalScript.Tasks.size()
+				setPlayer(i,task_number)
+				setPlayer.rpc(i,task_number)
+			else:
+				var player:Node2D = get_node_or_null(str(i))
+				player.position = Vector2(600,-1200)
+@rpc("any_peer","call_remote")
+func restart_npc(name,task_number):
+	var npc = get_tree().root.get_node_or_null("Map/"+name)
+	if npc != null:
+		var body = npc.get_node("CharacterBody2D")
+		var prevTask = npc.get_groups()[1]
+		npc.remove_from_group("vendingMachine")
+		npc.remove_from_group("walking")
+		npc.remove_from_group("takingNotes")
+		npc.remove_from_group("computer")
+		body.can_move = false
+		body.walking_task = false
+		body.get_node("Sprite2D").continue_loop = false
+		var task_data = globalScript.get_task_data(task_number)
+		var position = Vector2(task_data.positionX, task_data.positionY)
+		var taskscript = npc.get_node("CharacterBody2D/TaskScript")
+		npc.global_transform.origin = position
+		npc.add_to_group(task_data.taskType)
+		if multiplayer.get_unique_id() ==1 and prevTask != task_data.taskType:
+			body.can_move = false
+			body.walking_task = false
+			body.get_node("Sprite2D").continue_loop = false
+			body.position = Vector2(0,0)
+			taskType.connect(taskscript.on_npc_task_type_emitted)
+			taskType.emit(task_data.taskType)
+			taskType.disconnect(taskscript.on_npc_task_type_emitted)
+		globalScript.manage_task(task_number)
 @rpc("any_peer","call_remote")
 func set_time_ui(time):
 	var label = timeUi.get_node("Control/VBoxContainer/Label")
@@ -69,18 +115,20 @@ func set_time_ui(time):
 		label.visible = true
 		label.text= time
 @rpc("any_peer","call_remote")
-func setNpc(name,task_number):
+func setNpc(name,task_number,has_name):
 	var task_data = globalScript.get_task_data(task_number)
 	var position = Vector2(task_data.positionX, task_data.positionY)
 	var npc = npcScene.instantiate()
 	npc.global_transform.origin = position
 	var node = npc.get_node("CharacterBody2D/Label")
-	node.text=globalScript.studentsNames[name]
-	npc.name = globalScript.studentsNames[name]
+	node.text=name
+	npc.name =name
+	npc.add_to_group("npc")
 	add_child(npc)
-	npc.visible = false
+	#npc.visible = false
 	npc.add_to_group(task_data.taskType)
-	globalScript.remove_name(name)
+	if has_name ==false:
+		globalScript.remove_name(globalScript.studentsNames.find(name))
 	globalScript.manage_task(task_number)
 @rpc("any_peer","call_remote")		
 func setPlayer(i,task_number):
@@ -91,7 +139,7 @@ func setPlayer(i,task_number):
 		player.global_position = position
 		globalScript.manage_task(task_number)
 
-func set_npc_for_host(name,task_number):
+func set_npc_for_host(name,task_number,has_name):
 	var task_data = globalScript.get_task_data(task_number)
 	var position = Vector2(task_data.positionX, task_data.positionY)
 	var npc = npcScene.instantiate()
@@ -99,14 +147,16 @@ func set_npc_for_host(name,task_number):
 	taskType.connect(taskscript.on_npc_task_type_emitted)
 	npc.global_transform.origin = position
 	var node = npc.get_node("CharacterBody2D/Label")
-	node.text=globalScript.studentsNames[name]
-	npc.name =globalScript.studentsNames[name]
+	node.text=name
+	npc.name =name
+	npc.add_to_group("npc")
 	add_child(npc)
-	npc.visible = false
+	#npc.visible = false
 	npc.add_to_group(task_data.taskType)
 	taskType.emit(task_data.taskType)
 	taskType.disconnect(taskscript.on_npc_task_type_emitted)
-	globalScript.remove_name(name)
+	if has_name == false:
+		globalScript.remove_name(globalScript.studentsNames.find(name))
 	globalScript.manage_task(task_number)
 func _on_round_timer_timeout():
 	#tymczasowo disabled zeby mozna bylo testowac, aby uruchomic wystaczy usunąć # dla linjki nizej

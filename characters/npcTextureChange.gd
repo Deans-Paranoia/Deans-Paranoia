@@ -7,10 +7,11 @@ var vendingSprite = preload("res://assets/npc_vending.png")
 var backSprite = preload("res://assets/npc_back.png")
 
 var basicSprite = preload("res://assets/student_new.png")
-
+var continue_loop = false
 func on_task_script_npc_sprite_task(task_type):
 	var time = float(randi_range(0,40))/10
 	await get_tree().create_timer(time).timeout
+	continue_loop =true
 	match task_type:
 		"takingNotes":
 			taking_notes_loop()
@@ -20,32 +21,35 @@ func on_task_script_npc_sprite_task(task_type):
 			vending_machine_loop()
 
 func taking_notes_loop():
-	while true:
+	while continue_loop and get_parent().get_parent().is_in_group("takingNotes"):
 		var time = float(randi_range(0,20))/10
-		await get_tree().create_timer(4.0 + time).timeout
-		texture = notesSprite
-		scale = Vector2(1,1)
-		await get_tree().create_timer(0.5).timeout
-		texture = basicSprite
-		scale = Vector2(0.07,0.07)
+		await get_tree().create_timer(2.5 + time).timeout
+		if continue_loop:
+			texture = notesSprite
+			scale = Vector2(1,1)
+			await get_tree().create_timer(0.3).timeout
+			texture = basicSprite
+			scale = Vector2(0.07,0.07)
 func computer_loop():
-	while true:
+	while continue_loop and get_parent().get_parent().is_in_group("computer"):
 		var time = float(randi_range(0,20))/10
 		await get_tree().create_timer(3.0+time).timeout
-		texture = computerSprite
-		scale = Vector2(1,1)
-		await get_tree().create_timer(0.4).timeout
-		texture = basicSprite
-		scale = Vector2(0.07,0.07)
+		if continue_loop:
+			texture = computerSprite
+			scale = Vector2(1,1)
+			await get_tree().create_timer(0.4).timeout
+			texture = basicSprite
+			scale = Vector2(0.07,0.07)
 func vending_machine_loop():
-	while true:
+	while continue_loop and get_parent().get_parent().is_in_group("vendingMachine"):
 		var time = float(randi_range(0,20))/10
 		await get_tree().create_timer(2.0+time).timeout
-		texture = vendingSprite
-		scale = Vector2(1,1)
-		await get_tree().create_timer(0.3).timeout
-		texture = basicSprite
-		scale = Vector2(0.07,0.07)
+		if continue_loop:
+			texture = vendingSprite
+			scale = Vector2(1,1)
+			await get_tree().create_timer(0.3).timeout
+			texture = basicSprite
+			scale = Vector2(0.07,0.07)
 
 func _on_character_body_2d_rotate(direction):
 	match direction:

@@ -13,20 +13,18 @@ var endgame = load("res://ui/endgame.tscn")
 func on_npc_spawn():
 	if(multiplayer.get_unique_id() ==1):
 		for i in globalScript.usedNames:
-			set_student(i)
-			set_student.rpc(i)
+			var spot = rng.randi_range(0,available_spots.size()-1)
+			set_student(i,spot)
+			set_student.rpc(i,spot)
 		set_dean()
 		set_dean.rpc()
 	playersCount = get_tree().get_nodes_in_group("Student").size()
 @rpc("any_peer","call_remote")
-func set_student(name):
-	#if(counter>14):
-		#return
+func set_student(name,spot):
 	var scene = npcScene.instantiate()
 	scene.name = name;
 	var label = scene.get_node("CharacterBody2D/Label")
 	label.text = name
-	var spot = rng.randi_range(0,available_spots.size()-1)
 	var spawnpoint = get_node("spawnPoints/"+str(available_spots[spot]))
 	available_spots.pop_at(spot)
 	scene.position = spawnpoint.position
@@ -60,8 +58,9 @@ func on_student_moved():
 		clicked +=1
 		if clicked == maximum_ammount_to_kick:
 			await get_tree().create_timer(3.0).timeout
-			back_to_game()
 			back_to_game.rpc()
+			back_to_game()
+			
 func on_student_catched(name):
 	hovered_student = name
 	move_student(hovered_student)
@@ -79,7 +78,14 @@ func quit_game():
 func show_end_screen():
 	var endgame_instance = endgame.instantiate()
 	get_tree().root.add_child(endgame_instance)
-	self.hide()		
+	self.hide()	
+@rpc("any_peer","call_remote")
+func send_restart_task_call():
+	if multiplayer.get_unique_id() ==1:
+		get_parent().restart_tasks.rpc()
+		get_parent().restart_tasks()
+		restart_map.rpc()
+		restart_map()		
 @rpc("any_peer","call_remote")
 func back_to_game():
 	for i in students_to_kick:
@@ -99,8 +105,20 @@ func back_to_game():
 		if isPlayer == false:
 			var npcNode = get_tree().root.get_node_or_null("Map/"+i)
 			if npcNode != null:
+				npcNode.remove_from_group("npc")
+				npcNode.remove_from_group("vendingMachine")
+				npcNode.remove_from_group("walking")
+				npcNode.remove_from_group("takingNotes")
+				npcNode.remove_from_group("computer")
+				var npc_body = npcNode.get_node("CharacterBody2D")
+				npc_body.can_move = false
+				npc_body.walking_task = false
+				npc_body.get_node("Sprite2D").continue_loop = false
 				npcNode.queue_free()
+	send_restart_task_call()
 	
+@rpc("any_peer","call_remote")
+func restart_map():
 	students_to_kick = []
 	clicked = 0
 	maximum_ammount_to_kick = 1

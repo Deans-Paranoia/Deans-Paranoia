@@ -47,7 +47,11 @@ func remove_name(nameNumber:int):
 	usedNames.append(studentsNames[nameNumber])
 	studentsNames.pop_at(nameNumber)
 	
-
+func resetTasks():
+	for i in UsedTasks:
+		Tasks.append(i)
+	UsedTasks = []
+	
 func get_task_data(task_number: int) -> Task:
 	# zwraca taska, ktorego wylosowal npc
 	return Tasks[task_number]
