@@ -68,24 +68,21 @@ func _input(event):
 			use_server()
 			
 		# obsluga windy przez studenta
-		var elevator_reference = get_node_or_null("../thirdFloor/elevator")
-		var elevators = get_tree().get_nodes_in_group("elevator")
+		var elevatorsThird = get_tree().get_nodes_in_group("elevator")
 		var elevatorsFourth = get_tree().get_nodes_in_group("elevatorFourth")
 		if can_use_elevator and self.name == str(multiplayer.get_unique_id()):
 			if level == 3:
-				if (abs(body.global_position - elevators[1].global_position) < abs(body.global_position - elevators[0].global_position)):
-					print("Winda lewa")
+				if (abs(body.global_position - elevatorsThird[1].global_position) < abs(body.global_position - elevatorsThird[0].global_position)):
+					use_elevator("left")
 				else:
-					print("Prawa winda")
+					use_elevator("right")
 				level = 4
-				use_elevator()
 			elif level == 4:
 				if (abs(body.global_position - elevatorsFourth[1].global_position) < abs(body.global_position - elevatorsFourth[0].global_position)):
-					print("Winda lewa")
+					use_elevator("left")
 				else:
-					print("Prawa winda")
+					use_elevator("right")
 				level = 3
-				use_elevator()
 				
 			
 			
@@ -138,7 +135,7 @@ func use_server():
 			body.get_node("ServerTimer").start()
 
 	
-func use_elevator():
+func use_elevator(side):
 	var fourth = get_node_or_null("../fourthFloor")
 	var third = get_node_or_null("../thirdFloor")
 	if(fourth != null and third!=null):
@@ -147,15 +144,20 @@ func use_elevator():
 			self.remove_from_group("ThirdFloor")
 			fourth.visible = true
 			third.visible = false
-			teleport.rpc(3000)
-			
-			
+			if (side == "left"):
+				body.global_position = Vector2(2970, -800)
+			elif (side == "right"):
+				body.global_position = Vector2(4283, -800)
+				
 		else:
 			self.add_to_group("ThirdFloor")
 			self.remove_from_group("FourthFloor")
 			fourth.visible = false
 			third.visible = true
-			teleport.rpc(-3000)
+			if (side == "left"):
+				body.global_position = Vector2(-40, -830)
+			elif (side == "right"):
+				body.global_position = Vector2(1250, -847)
 func acquire_booster():
 	# funkcja nadajaca booster dla studenta
 	has_booster = true
