@@ -99,10 +99,10 @@ scale = Vector2(1.01314, 0.378047)
 polygon = PackedVector2Array(2085.27, -945.131, 2068.49, -638.291, 172.405, -638.291, 173.392, 2665.53, 2070.46, 2665.53, 2068.49, -699.13, 2172.13, -699.13, 2175.09, 2781.92, 113.183, 2890.37, 106.274, -987.454)
 one_way_collision_margin = 0.0
 
-[node name="elevator" parent="." instance=ExtResource("2_1m5us")]
+[node name="elevator" parent="." groups=["elevatorFourth"] instance=ExtResource("2_1m5us")]
 position = Vector2(660, 162)
 
-[node name="elevator2" parent="." instance=ExtResource("2_1m5us")]
+[node name="elevator2" parent="." groups=["elevatorFourth"] instance=ExtResource("2_1m5us")]
 position = Vector2(-653, 160)
 
 [node name="server" parent="." instance=ExtResource("6_tg2ad")]
