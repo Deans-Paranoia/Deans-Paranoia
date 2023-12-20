@@ -42,5 +42,23 @@ func run_animation(velocity):
 		else:
 			$"../Sprite2D".set("visible", true)
 
+func run_animation_task_faking(task):
+	$".".get("parameters/playback").travel("Idle")
+	
+	$"../Sprite2DWalkingRight".set("visible", false)
+	$"../Sprite2DWalkingLeft".set("visible", false)
+	$"../Sprite2DWalkingDown".set("visible", false)
+	$"../Sprite2D".set("visible", false)
+	
+	var taskVector =
+	$".".get("parameters/playback").travel("FakingTask")
+	set("parameters/FakingTasks/blend_position", taskVector)
+	$"../Sprite2DFakingTasks".set("visible", true)
+	
+	
+	#faking ended - cleaning
+	$".".get("parameters/playback").travel("Idle")
+	
+	$"../Sprite2DFakingTasks".set("visible", false)
 
 
