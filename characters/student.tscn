@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://y4kbm2l282iy"]
+[gd_scene load_steps=42 format=3 uid="uid://y4kbm2l282iy"]
 
 [ext_resource type="PackedScene" uid="uid://ctspysrhlil1i" path="res://characters/player.tscn" id="1_6lj7h"]
 [ext_resource type="Script" path="res://characters/studentInput.gd" id="2_vaos0"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cqyquwb2hcmkk" path="res://assets/student_assets/tyl-sprite-combine.png" id="3_w4h8j"]
 [ext_resource type="Texture2D" uid="uid://br11rbr0lxmeu" path="res://assets/student_assets/lewy-sprite-combine.png" id="4_eherf"]
 [ext_resource type="Texture2D" uid="uid://c2m7hb6mbijhf" path="res://assets/student_assets/przod-sprite-combine.png" id="6_qmyhb"]
+[ext_resource type="Texture2D" uid="uid://chk0ye2ai6j1d" path="res://assets/student_assets/student-faking-tasksPLACEHOLDER.png" id="8_aycfn"]
 
 [sub_resource type="Animation" id="Animation_hnehq"]
 length = 0.001
@@ -57,6 +58,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2DFakingTasks:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
 }
 
 [sub_resource type="Animation" id="Animation_tf2e4"]
@@ -195,9 +208,57 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 7, 8, 9, 10, 11, 12, 11, 10, 9, 7, 7]
 }
 
+[sub_resource type="Animation" id="Animation_uv04j"]
+resource_name = "faking_task_computer"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DFakingTasks:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_u17cn"]
+resource_name = "faking_task_vending"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DFakingTasks:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_7ormc"]
+resource_name = "faking_task_notes"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DFakingTasks:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sav45"]
 _data = {
 "RESET": SubResource("Animation_hnehq"),
+"faking_task_computer": SubResource("Animation_uv04j"),
+"faking_task_notes": SubResource("Animation_7ormc"),
+"faking_task_vending": SubResource("Animation_u17cn"),
 "idle_down": SubResource("Animation_tf2e4"),
 "idle_left": SubResource("Animation_x5v45"),
 "idle_right": SubResource("Animation_tk5j6"),
@@ -207,6 +268,24 @@ _data = {
 "walking_right": SubResource("Animation_l6awf"),
 "walking_up": SubResource("Animation_0cn4d")
 }
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pkkbo"]
+animation = &"faking_task_computer"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cr0cs"]
+animation = &"faking_task_notes"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7hwyh"]
+animation = &"faking_task_vending"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_0g37y"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_pkkbo")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_cr0cs")
+blend_point_1/pos = Vector2(-1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_7hwyh")
+blend_point_2/pos = Vector2(1, 0)
+blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1lk70"]
 animation = &"idle_left"
@@ -264,14 +343,25 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ysjbg"]
 switch_mode = 1
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vql2w"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qjpie"]
+switch_mode = 2
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_23wr1"]
 states/End/position = Vector2(743, 98)
+states/FakingTasks/node = SubResource("AnimationNodeBlendSpace2D_0g37y")
+states/FakingTasks/position = Vector2(312, -7)
 states/Idle/node = SubResource("AnimationNodeBlendSpace2D_la2ey")
 states/Idle/position = Vector2(310, 115)
 states/Start/position = Vector2(157, 115)
 states/Walking/node = SubResource("AnimationNodeBlendSpace2D_aisff")
 states/Walking/position = Vector2(537, 115)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_afr7b"), "Idle", "Walking", SubResource("AnimationNodeStateMachineTransition_jn718"), "Walking", "Idle", SubResource("AnimationNodeStateMachineTransition_ysjbg")]
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_afr7b"), "Idle", "Walking", SubResource("AnimationNodeStateMachineTransition_jn718"), "Walking", "Idle", SubResource("AnimationNodeStateMachineTransition_ysjbg"), "Idle", "FakingTasks", SubResource("AnimationNodeStateMachineTransition_vql2w"), "FakingTasks", "Idle", SubResource("AnimationNodeStateMachineTransition_qjpie")]
+graph_offset = Vector2(-63, -74)
 
 [node name="Student" groups=["Student"] instance=ExtResource("1_6lj7h")]
 scale = Vector2(0.3, 0.3)
@@ -288,7 +378,8 @@ libraries = {
 }
 tree_root = SubResource("AnimationNodeStateMachine_23wr1")
 anim_player = NodePath("../AnimationPlayer")
-parameters/Idle/blend_position = Vector2(-0.00630063, -0.85022)
+parameters/FakingTasks/blend_position = Vector2(0.0560472, 0.264822)
+parameters/Idle/blend_position = Vector2(0.00491643, -0.0220264)
 parameters/Walking/blend_position = Vector2(0.00540066, 2)
 script = ExtResource("3_8lqqm")
 
@@ -315,24 +406,29 @@ scale = Vector2(0.37, 0.37)
 texture = ExtResource("3_w4h8j")
 hframes = 13
 
-[node name="DiggingTimer" type="Timer" parent="CharacterBody2D" index="7"]
+[node name="Sprite2DFakingTasks" type="Sprite2D" parent="CharacterBody2D" index="6"]
+texture = ExtResource("8_aycfn")
+vframes = 3
+frame = 1
 
-[node name="FreezeTimer" type="Timer" parent="CharacterBody2D" index="8"]
+[node name="DiggingTimer" type="Timer" parent="CharacterBody2D" index="8"]
+
+[node name="FreezeTimer" type="Timer" parent="CharacterBody2D" index="9"]
 process_callback = 0
 wait_time = 2.0
 
-[node name="ServerTimer" type="Timer" parent="CharacterBody2D" index="9"]
+[node name="ServerTimer" type="Timer" parent="CharacterBody2D" index="10"]
 
-[node name="CollisionShape2D" parent="CharacterBody2D" index="10"]
+[node name="CollisionShape2D" parent="CharacterBody2D" index="11"]
 visible = false
 
-[node name="PlayerArea" parent="CharacterBody2D" index="11"]
+[node name="PlayerArea" parent="CharacterBody2D" index="12"]
 visible = false
 
 [node name="CollisionShape2D" parent="CharacterBody2D/PlayerArea" index="0"]
 visible = false
 
-[node name="Label" parent="CharacterBody2D" index="12"]
+[node name="Label" parent="CharacterBody2D" index="13"]
 anchors_preset = -1
 offset_bottom = -115.0
 
