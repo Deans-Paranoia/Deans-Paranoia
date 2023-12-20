@@ -20,6 +20,8 @@ var can_use_server : bool = false
 var can_use_server_again : bool = true
 # sprawdza czy gracz moze juz ponownie uzyc servera
 
+var level: int = 3
+
 var can_use_elevator: bool = false
 # sprawdza czy znajduje sie w strefie gdzie mozna uzyc windy
 
