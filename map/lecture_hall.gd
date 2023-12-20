@@ -13,20 +13,18 @@ var endgame = load("res://ui/endgame.tscn")
 func on_npc_spawn():
 	if(multiplayer.get_unique_id() ==1):
 		for i in globalScript.usedNames:
-			set_student(i)
-			set_student.rpc(i)
+			var spot = rng.randi_range(0,available_spots.size()-1)
+			set_student(i,spot)
+			set_student.rpc(i,spot)
 		set_dean()
 		set_dean.rpc()
 	playersCount = get_tree().get_nodes_in_group("Student").size()
 @rpc("any_peer","call_remote")
-func set_student(name):
-	#if(counter>14):
-		#return
+func set_student(name,spot):
 	var scene = npcScene.instantiate()
 	scene.name = name;
 	var label = scene.get_node("CharacterBody2D/Label")
 	label.text = name
-	var spot = rng.randi_range(0,available_spots.size()-1)
 	var spawnpoint = get_node("spawnPoints/"+str(available_spots[spot]))
 	available_spots.pop_at(spot)
 	scene.position = spawnpoint.position
@@ -140,7 +138,7 @@ func restart_map():
 	else:
 		var timer = map.get_node("RoundTimer")
 		timer.stop()
-		timer.wait_time = 600.0
+		timer.wait_time = 15.0
 		timer.start()
 		map.set_time_ui.rpc("15")
 		var cam = map.get_node("Camera2D")

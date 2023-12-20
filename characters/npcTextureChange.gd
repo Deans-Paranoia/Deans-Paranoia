@@ -30,7 +30,6 @@ func taking_notes_loop():
 			await get_tree().create_timer(0.3).timeout
 			texture = basicSprite
 			scale = Vector2(0.07,0.07)
-	print("czy to sie skonczy? " + get_parent().get_parent().name)
 func computer_loop():
 	while continue_loop and get_parent().get_parent().is_in_group("computer"):
 		var time = float(randi_range(0,20))/10
@@ -41,7 +40,6 @@ func computer_loop():
 			await get_tree().create_timer(0.4).timeout
 			texture = basicSprite
 			scale = Vector2(0.07,0.07)
-	print("czy to komp sie skonczy? " + get_parent().get_parent().name)
 func vending_machine_loop():
 	while continue_loop and get_parent().get_parent().is_in_group("vendingMachine"):
 		var time = float(randi_range(0,20))/10
@@ -52,7 +50,6 @@ func vending_machine_loop():
 			await get_tree().create_timer(0.3).timeout
 			texture = basicSprite
 			scale = Vector2(0.07,0.07)
-	print("czy to vending sie skonczy? " + get_parent().get_parent().name)
 
 func _on_character_body_2d_rotate(direction):
 	match direction:

@@ -18,17 +18,13 @@ func run_task(task_type):
 			vending_machine()
 
 func task_computer():
-	print(get_parent().get_parent().name + "computer")
 	npc_sprite_task.emit("computer")
 
 func task_taking_notes():
-	print(get_parent().get_parent().name + " notes")
 	npc_sprite_task.emit("takingNotes")
 
 func task_walking():
-	print(get_parent().get_parent().name + " walking")
 	npc_walking_task.emit()
 
 func vending_machine():
-	print(get_parent().get_parent().name + "vending")
 	npc_sprite_task.emit("vendingMachine")
