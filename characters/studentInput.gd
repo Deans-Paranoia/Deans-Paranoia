@@ -69,8 +69,25 @@ func _input(event):
 			
 		# obsluga windy przez studenta
 		var elevator_reference = get_node_or_null("../thirdFloor/elevator")
+		var elevators = get_tree().get_nodes_in_group("elevator")
+		var elevatorsFourth = get_tree().get_nodes_in_group("elevatorFourth")
 		if can_use_elevator and self.name == str(multiplayer.get_unique_id()):
-			use_elevator()
+			if level == 3:
+				if (abs(body.global_position - elevators[1].global_position) < abs(body.global_position - elevators[0].global_position)):
+					print("Winda lewa")
+				else:
+					print("Prawa winda")
+				level = 4
+				use_elevator()
+			elif level == 4:
+				if (abs(body.global_position - elevatorsFourth[1].global_position) < abs(body.global_position - elevatorsFourth[0].global_position)):
+					print("Winda lewa")
+				else:
+					print("Prawa winda")
+				level = 3
+				use_elevator()
+				
+			
 			
 		# obsluga terminalu przez studenta
 		if terminal_address != null and self.name == str(multiplayer.get_unique_id()):
