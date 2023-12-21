@@ -133,6 +133,8 @@ func setNpc(name,task_number,has_name):
 @rpc("any_peer","call_remote")		
 func setPlayer(i,task_number):
 	var player:Node2D = get_node_or_null(str(i))
+	var body = player.get_node(str(i))
+	body.position = Vector2(0,0)
 	if player != null and i != globalScript.deanId:
 		var task_data = globalScript.get_task_data(task_number)
 		var position = Vector2(task_data.positionX, task_data.positionY)

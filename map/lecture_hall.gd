@@ -85,11 +85,18 @@ func send_restart_task_call():
 		get_parent().restart_tasks.rpc()
 		get_parent().restart_tasks()
 		restart_map.rpc()
-		restart_map()		
+		restart_map()
+@rpc("any_peer","call_remote")
+func remove_student_from_hall(i):
+	var lecture_hall_node = get_node_or_null(str(i))
+	if lecture_hall_node != null:
+		lecture_hall_node.queue_free()		
 @rpc("any_peer","call_remote")
 func back_to_game():
 	for i in students_to_kick:
 		var isPlayer = false
+		if multiplayer.get_unique_id()==1:
+			remove_student_from_hall.rpc(i)
 		var lecture_hall_node = get_node(str(i))
 		lecture_hall_node.queue_free()
 		kicked_player_number = 1
