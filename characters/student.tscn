@@ -1,5 +1,6 @@
 [gd_scene load_steps=42 format=3 uid="uid://y4kbm2l282iy"]
 
+
 [ext_resource type="PackedScene" uid="uid://ctspysrhlil1i" path="res://characters/player.tscn" id="1_6lj7h"]
 [ext_resource type="Script" path="res://characters/studentInput.gd" id="2_vaos0"]
 [ext_resource type="Script" path="res://characters/student_animation_tree.gd" id="3_8lqqm"]
@@ -7,7 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://cqyquwb2hcmkk" path="res://assets/student_assets/tyl-sprite-combine.png" id="3_w4h8j"]
 [ext_resource type="Texture2D" uid="uid://br11rbr0lxmeu" path="res://assets/student_assets/lewy-sprite-combine.png" id="4_eherf"]
 [ext_resource type="Texture2D" uid="uid://c2m7hb6mbijhf" path="res://assets/student_assets/przod-sprite-combine.png" id="6_qmyhb"]
+
 [ext_resource type="Texture2D" uid="uid://chk0ye2ai6j1d" path="res://assets/student_assets/student-faking-tasksPLACEHOLDER.png" id="8_aycfn"]
+
+[ext_resource type="Script" path="res://characters/studentTextureChange.gd" id="8_mm01a"]
 
 [sub_resource type="Animation" id="Animation_hnehq"]
 length = 0.001
@@ -115,6 +119,74 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_tf2e4"]
+resource_name = "idle_down"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DWalkingDown:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_x5v45"]
+resource_name = "idle_left"
+length = 0.03
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DWalkingLeft:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_tk5j6"]
+resource_name = "idle_right"
+length = 0.03
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DWalkingRight:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_pmtjs"]
+resource_name = "idle_up"
+length = 0.03
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_tf2e4"]
@@ -405,6 +477,7 @@ hframes = 13
 scale = Vector2(0.37, 0.37)
 texture = ExtResource("3_w4h8j")
 hframes = 13
+script = ExtResource("8_mm01a")
 
 [node name="Sprite2DFakingTasks" type="Sprite2D" parent="CharacterBody2D" index="6"]
 texture = ExtResource("8_aycfn")
@@ -432,11 +505,16 @@ visible = false
 anchors_preset = -1
 offset_bottom = -115.0
 
+[connection signal="disable_player_movement_for_duration" from="." to="CharacterBody2D" method="_on_disable_player_movement_for_duration"]
+[connection signal="player_task" from="." to="CharacterBody2D/Sprite2D" method="_on_student_player_task"]
 [connection signal="direction" from="CharacterBody2D" to="CharacterBody2D/AnimationTree" method="_on_character_body_2d_direction"]
+[connection signal="texture_changed" from="CharacterBody2D/Sprite2D" to="CharacterBody2D/Sprite2D" method="_on_texture_changed"]
 [connection signal="timeout" from="CharacterBody2D/DiggingTimer" to="." method="_on_digging_timer_timeout"]
 [connection signal="timeout" from="CharacterBody2D/FreezeTimer" to="." method="_on_freeze_timer_timeout"]
 [connection signal="timeout" from="CharacterBody2D/ServerTimer" to="." method="_on_server_timer_timeout"]
 [connection signal="area_entered" from="CharacterBody2D/PlayerArea" to="." method="_on_player_area_area_entered"]
+
 [connection signal="area_entered" from="CharacterBody2D/PlayerArea" to="." method="_on_task_area_entered"]
+
 [connection signal="area_exited" from="CharacterBody2D/PlayerArea" to="." method="_on_player_area_area_exited"]
 [connection signal="area_exited" from="CharacterBody2D/PlayerArea" to="." method="_on_task_area_exited"]

@@ -9,12 +9,14 @@ var speed = 400
 var move_direction = Vector2(1, 0)
 var can_move: bool
 var walking_task = false
+
 @onready var rng = RandomNumberGenerator.new()
 func _on_task_script_npc_walking_task():
 	var time = rng.randf_range(0.0,2.5)
 	await get_tree().create_timer(time).timeout
 	walking_task = true
 	can_move = true
+	
 func _ready():
 	point_A = position
 	point_B = point_A + Vector2(0, 600)
@@ -31,7 +33,7 @@ func _process(delta):
 				destination = point_B
 			else: 
 				destination = point_A
-
+				
 func wait():
 	var time = rng.randf_range(0.0,2.0)
 	await get_tree().create_timer(1.5+time).timeout
