@@ -69,6 +69,18 @@ tracks/3/keys = {
 "update": 1,
 "values": [1]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_uv04j"]
 resource_name = "faking_task_computer"
@@ -225,6 +237,18 @@ tracks/0/keys = {
 resource_name = "walking_up"
 loop_mode = 1
 step = 0.0435
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0435, 0.087, 0.1305),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 0, 2, 4]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sav45"]
 _data = {
@@ -395,9 +419,9 @@ libraries = {
 }
 tree_root = SubResource("AnimationNodeStateMachine_rd4xr")
 anim_player = NodePath("../AnimationPlayer")
-parameters/FakingTasks/blend_position = Vector2(0.8048, -0.0132159)
+parameters/FakingTasks/blend_position = Vector2(-0.751801, 0.339207)
 parameters/Idle/blend_position = Vector2(0.3744, 0.52381)
-parameters/Walking/blend_position = Vector2(-0.00160003, 1.03175)
+parameters/Walking/blend_position = Vector2(-0.00720578, -0.629956)
 script = ExtResource("7_jrncx")
 
 [node name="Sprite2DWalkingRight" type="Sprite2D" parent="CharacterBody2D"]
@@ -428,7 +452,6 @@ metadata/_edit_lock_ = true
 visible = false
 texture = ExtResource("10_pagym")
 vframes = 3
-frame = 2
 
 [connection signal="mouse_entered" from="CharacterBody2D" to="CharacterBody2D/KickScript" method="_on_character_body_2d_mouse_entered"]
 [connection signal="mouse_exited" from="CharacterBody2D" to="CharacterBody2D/KickScript" method="_on_character_body_2d_mouse_exited"]

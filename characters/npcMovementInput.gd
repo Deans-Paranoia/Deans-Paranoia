@@ -13,7 +13,9 @@ var walking_task = false
 @onready var rng = RandomNumberGenerator.new()
 func _on_task_script_npc_walking_task():
 	var time = rng.randf_range(0.0,2.5)
+	
 	await get_tree().create_timer(time).timeout
+	rotate.emit("start")
 	walking_task = true
 	can_move = true
 	
@@ -21,7 +23,7 @@ func _ready():
 	point_A = position
 	point_B = point_A + Vector2(0, 600)
 	destination = point_B
-
+	
 func _process(delta):
 	if walking_task:
 		if position != destination and can_move: 
@@ -35,6 +37,10 @@ func _process(delta):
 				destination = point_A
 				
 func wait():
+	if destination == point_A:
+		rotate.emit("idle_up")
+	else: 
+		rotate.emit("idle_down")
 	var time = rng.randf_range(0.0,2.0)
 	await get_tree().create_timer(1.5+time).timeout
 	can_move = true

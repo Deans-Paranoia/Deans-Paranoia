@@ -53,15 +53,36 @@ func vending_machine_loop():
 		run_animation.rpc()
 
 func _on_character_body_2d_rotate(direction):
-	pass
-	
-	#match direction:
-		#"up":
-		#	texture = backSprite
-		#	scale = Vector2(0.37, 0.37)
-		#"down":
-		#	texture = basicSprite
-		#	scale = Vector2(0.07,0.07)
+	rotate_npc(direction)
+	rotate_npc.rpc(direction)
+@rpc("any_peer","call_remote")
+func rotate_npc(direction):
+	match direction:
+		"start":
+			
+			$".".get("parameters/playback").travel("Idle")
+			$".".get("parameters/playback").travel("Walking")
+		"idle_up":
+			$".".get("parameters/playback").travel("Idle")
+			print("idleup")
+			
+		"idle_down":
+			$".".get("parameters/playback").travel("Idle")
+			print("idledown")
+			
+			
+		"up":
+			$".".get("parameters/playback").travel("Walking")
+			$"../Sprite2D".set("visible", true)
+			$"../Sprite2DWalkingDown".set("visible", false)
+			set("parameters/Walking/blend_position", Vector2(0,-1))
+			print("up")
+		"down":
+			$".".get("parameters/playback").travel("Walking")
+			$"../Sprite2D".set("visible", false)
+			$"../Sprite2DWalkingDown".set("visible", true)
+			set("parameters/Walking/blend_position", Vector2(0,1))
+			print("down")
 @rpc("any_peer","call_remote")
 func set_vector_and_sprite(sprite, vector):
 	match sprite:
