@@ -14,7 +14,9 @@ func run_task(task_type):
 			task_computer()
 		"walking":
 			task_walking()
-		"vendingMachine":
+		"vendingMachine1":
+			vending_machine()
+		"vendingMachine2":
 			vending_machine()
 
 func task_computer():

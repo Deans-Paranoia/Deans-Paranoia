@@ -64,3 +64,41 @@ func run_animation(velocity):
 	#$"../Sprite2DFakingTasks".set("visible", false)
 
 
+
+
+func _on_student_player_task(task_type):
+	$".".get("parameters/playback").travel("Idle")
+	var taskVector = Vector2.ZERO
+	var sprite_to_back_to = $"../Sprite2DWalkingDown"
+	$"../Sprite2DWalkingRight".set("visible", false)
+	$"../Sprite2DWalkingLeft".set("visible", false)
+	$"../Sprite2DWalkingDown".set("visible", false)
+	$"../Sprite2D".set("visible", false)
+	$".".get("parameters/playback").travel("FakingTasks")
+	
+	match task_type:
+		"computer":
+			taskVector = Vector2(0,1)
+			sprite_to_back_to = $"../Sprite2D"
+			print("computer")
+		"takingNotes":
+			print("Notes")
+			taskVector = Vector2(-1,0)
+			sprite_to_back_to = $"../Sprite2D"
+		"vendingMachine1":
+			print("vending")
+			sprite_to_back_to = $"../Sprite2DWalkingRight"
+			taskVector = Vector2(1,0)
+			
+		"vendingMachine2":
+			print("vending")
+			taskVector = Vector2(1,0)
+			sprite_to_back_to = $"../Sprite2DWalkingLeft"
+		_:
+			print("Something else")
+	set("parameters/FakingTasks/blend_position", taskVector)
+	$"../Sprite2DFakingTasks".set("visible", true)
+	await get_tree().create_timer(1).timeout
+	$".".get("parameters/playback").travel("Idle")
+	$"../Sprite2DFakingTasks".set("visible", false)
+	sprite_to_back_to.set("visible",true)

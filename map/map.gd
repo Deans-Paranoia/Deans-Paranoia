@@ -139,6 +139,7 @@ func setPlayer(i,task_number):
 		var task_data = globalScript.get_task_data(task_number)
 		var position = Vector2(task_data.positionX, task_data.positionY)
 		player.global_position = position
+		player.current_task_area = task_data.taskType
 		globalScript.manage_task(task_number)
 
 func set_npc_for_host(name,task_number,has_name):

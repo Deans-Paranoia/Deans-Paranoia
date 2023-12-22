@@ -9,7 +9,7 @@ var thirdFloor = load("res://map/level.tscn")
 var dangerScene = preload("res://ui/task_exited.tscn")
 var danger_instance
 # pusta zmienna do ktorej przypisywana jest instancja sceny
-
+var task_finished = true
 var catchable: bool = false
 # sprawdza czy student moze zostac zlapany przez dziekana
 
@@ -105,7 +105,7 @@ func _input(event):
 				acquire_booster()
 				
 		# wykonanie taska przez studenta	
-		if not danger_instance and current_task_area != "":
+		if not danger_instance and current_task_area != "" and current_task_area != "walking" and task_finished:
 			task_execution()
 			
 	elif event.is_action_pressed("dig") and self.name == str(multiplayer.get_unique_id()):
@@ -132,6 +132,9 @@ func task_execution():
 	# funkcja do wykonywania taska przez studenta
 	player_task.emit(current_task_area)
 	disable_player_movement_for_duration.emit(1.0) # zatrzymanie ruchu gracza na 1s
+	task_finished = false
+	await get_tree().create_timer(2.0).timeout
+	task_finished = true
 	
 @rpc("any_peer","call_local")
 func catch_student():
@@ -330,12 +333,12 @@ func _on_task_area_entered(area):
 	if (area_entered == "VendingMachine1Area" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
 		danger_instance.queue_free()
 		catchable = false
-		current_task_area = "vendingMachine"
+		current_task_area = "vendingMachine1"
 		
 	if (area_entered == "VendingMachine2Area" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
 		danger_instance.queue_free()
 		catchable = false
-		current_task_area = "vendingMachine"
+		current_task_area = "vendingMachine2"
 		
 	if (area_entered == "ComputersArea" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
 		danger_instance.queue_free()
@@ -350,4 +353,3 @@ func _on_task_area_entered(area):
 	if (area_entered == "WalkingArea" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
 		danger_instance.queue_free()
 		catchable = false
-

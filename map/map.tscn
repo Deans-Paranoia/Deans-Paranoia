@@ -10,16 +10,16 @@
 [ext_resource type="Script" path="res://map/areaNotifiers.gd" id="8_fbx0e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u0pr7"]
-size = Vector2(4.13888, 11)
+size = Vector2(2.22916, 4.19999)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_paxh0"]
-size = Vector2(368, 310)
+size = Vector2(194, 58)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a8eir"]
-size = Vector2(442, 227)
+size = Vector2(339, 62)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rwv1i"]
-size = Vector2(368, 312)
+size = Vector2(249, 275)
 
 [node name="Map" type="Node2D"]
 script = ExtResource("1_dmw7b")
@@ -53,7 +53,7 @@ zoom = Vector2(0.2, 0.2)
 position = Vector2(1238, -633)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TaskAreas/VendingMachine1Area"]
-position = Vector2(1, -6)
+position = Vector2(10.625, -11)
 scale = Vector2(18, 10)
 shape = SubResource("RectangleShape2D_u0pr7")
 
@@ -61,7 +61,7 @@ shape = SubResource("RectangleShape2D_u0pr7")
 position = Vector2(-24, -1343)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TaskAreas/VendingMachine2Area"]
-position = Vector2(4.50001, -12)
+position = Vector2(-3.06246, -17)
 scale = Vector2(18, 10)
 shape = SubResource("RectangleShape2D_u0pr7")
 
@@ -69,21 +69,21 @@ shape = SubResource("RectangleShape2D_u0pr7")
 position = Vector2(631, -1471)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TaskAreas/ComputersArea"]
-position = Vector2(9, 26)
+position = Vector2(41, -100)
 shape = SubResource("RectangleShape2D_paxh0")
 
 [node name="NotesArea" type="Area2D" parent="TaskAreas"]
 position = Vector2(1045, -2119)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TaskAreas/NotesArea"]
-position = Vector2(16, -16.5)
+position = Vector2(-17.5, -45)
 shape = SubResource("RectangleShape2D_a8eir")
 
 [node name="WalkingArea" type="Area2D" parent="TaskAreas"]
 position = Vector2(561, -141)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TaskAreas/WalkingArea"]
-position = Vector2(17, 30)
+position = Vector2(76.5, 11.5)
 shape = SubResource("RectangleShape2D_rwv1i")
 
 [node name="AreaNotifiers" type="Node2D" parent="TaskAreas"]

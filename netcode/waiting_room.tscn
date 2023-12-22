@@ -81,7 +81,7 @@ offset_right = 438.0
 offset_bottom = 468.0
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 1.5
+wait_time = 6.782
 autostart = true
 
 [connection signal="button_down" from="StartGame" to="." method="_on_start_game_button_down"]
