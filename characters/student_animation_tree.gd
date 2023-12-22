@@ -44,26 +44,6 @@ func run_animation(velocity):
 		else:
 			$"../Sprite2D".set("visible", true)
 
-#func run_animation_task_faking(task):
-	#$".".get("parameters/playback").travel("Idle")
-	#
-	#$"../Sprite2DWalkingRight".set("visible", false)
-	#$"../Sprite2DWalkingLeft".set("visible", false)
-	#$"../Sprite2DWalkingDown".set("visible", false)
-	#$"../Sprite2D".set("visible", false)
-	#
-	#var taskVector =
-	#$".".get("parameters/playback").travel("FakingTask")
-	#set("parameters/FakingTasks/blend_position", taskVector)
-	#$"../Sprite2DFakingTasks".set("visible", true)
-	#
-	#
-	##faking ended - cleaning
-	#$".".get("parameters/playback").travel("Idle")
-	#
-	#$"../Sprite2DFakingTasks".set("visible", false)
-
-
 
 
 func _on_student_player_task(task_type):
@@ -80,18 +60,14 @@ func _on_student_player_task(task_type):
 		"computer":
 			taskVector = Vector2(0,1)
 			sprite_to_back_to = $"../Sprite2D"
-			print("computer")
 		"takingNotes":
-			print("Notes")
 			taskVector = Vector2(-1,0)
 			sprite_to_back_to = $"../Sprite2D"
 		"vendingMachine1":
-			print("vending")
 			sprite_to_back_to = $"../Sprite2DWalkingRight"
 			taskVector = Vector2(1,0)
 			
 		"vendingMachine2":
-			print("vending")
 			taskVector = Vector2(1,0)
 			sprite_to_back_to = $"../Sprite2DWalkingLeft"
 		_:

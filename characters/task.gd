@@ -5,7 +5,7 @@ signal npc_sprite_task(task_type: String)
 
 func on_npc_task_type_emitted(task_type):
 	run_task(task_type)
-
+	pass
 func run_task(task_type):
 	match task_type:
 		"takingNotes":
@@ -14,7 +14,7 @@ func run_task(task_type):
 			task_computer()
 		"walking":
 			task_walking()
-		"vendingMachine1":
+		"vendingMachine":
 			vending_machine()
 		"vendingMachine2":
 			vending_machine()
