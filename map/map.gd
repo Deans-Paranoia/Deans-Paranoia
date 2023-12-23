@@ -77,9 +77,14 @@ func restart_tasks():
 				setPlayer(i,task_number)
 				setPlayer.rpc(i,task_number)
 			else:
-				var player:Node2D = get_node_or_null(str(i))
-				player.get_node(str(i)).position = Vector2(0,0)
-				player.position = Vector2(600,-1200)
+				set_dean_position(globalScript.deanId,Vector2(600,-1200))
+				set_dean_position.rpc(globalScript.deanId, Vector2(600,-1200))
+				#player.position = Vector2(600,-1200)
+@rpc("any_peer","call_remote")
+func set_dean_position(deanId, vector):
+	var dean = get_node(str(deanId))
+	dean.get_node(str(deanId)).position = Vector2(0,0)
+	dean.position =vector
 @rpc("any_peer","call_remote")
 func restart_npc(name,task_number):
 	var npc = get_tree().root.get_node_or_null("Map/"+name)

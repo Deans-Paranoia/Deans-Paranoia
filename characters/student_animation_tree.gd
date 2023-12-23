@@ -47,6 +47,10 @@ func run_animation(velocity):
 
 
 func _on_student_player_task(task_type):
+	task_animation(task_type)
+	task_animation.rpc(task_type)
+@rpc("any_peer","call_remote")
+func task_animation(task_type):
 	$".".get("parameters/playback").travel("Idle")
 	var taskVector = Vector2.ZERO
 	var sprite_to_back_to = $"../Sprite2DWalkingDown"

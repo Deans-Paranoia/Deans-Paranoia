@@ -89,7 +89,7 @@ func set_vector_and_sprite(sprite, vector):
 		"base":
 			sprite_to_back_to = $"../Sprite2D"
 	taskVector = vector
-	$"../Sprite2D".set("visible", false)
+	$"../Sprite2DWalkingDown".set("visible", false)
 	sprite_to_back_to.set("visible",true)
 @rpc("any_peer","call_remote")
 func run_animation():
