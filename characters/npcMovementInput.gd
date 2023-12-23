@@ -16,6 +16,7 @@ func _on_task_script_npc_walking_task():
 	
 	await get_tree().create_timer(time).timeout
 	rotate.emit("start")
+	rotate.emit("down")
 	walking_task = true
 	can_move = true
 	
