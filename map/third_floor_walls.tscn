@@ -1,12 +1,12 @@
 [gd_scene load_steps=10 format=3 uid="uid://bhbxcxlls2ing"]
 
-[ext_resource type="Texture2D" uid="uid://d2oit522f4jjb" path="res://assets/MapAssets/Modern tiles_Free/Interiors_free/16x16/Interiors_free_16x16.png" id="1_g36k7"]
-[ext_resource type="Texture2D" uid="uid://clgg8dvn2x702" path="res://assets/MapAssets/Art/Texture/TX Struct.png" id="1_t0hir"]
-[ext_resource type="Texture2D" uid="uid://brwmlrpxiwy30" path="res://assets/MapAssets/Art/Texture/TX Props.png" id="1_wfa1x"]
-[ext_resource type="Texture2D" uid="uid://dgdctmu1bu3s2" path="res://assets/MapAssets/Art/Texture/TX Tileset Wall.png" id="2_iebap"]
+[ext_resource type="Texture2D" uid="uid://d2oit522f4jjb" path="res://assets/MapAssets/Modern tiles_Free/Interiors_free/16x16/Interiors_free_16x16.png" id="1_sxtmc"]
+[ext_resource type="Texture2D" uid="uid://brwmlrpxiwy30" path="res://assets/MapAssets/Art/Texture/TX Props.png" id="2_4ehnb"]
+[ext_resource type="Texture2D" uid="uid://clgg8dvn2x702" path="res://assets/MapAssets/Art/Texture/TX Struct.png" id="3_ysqk8"]
+[ext_resource type="Texture2D" uid="uid://dgdctmu1bu3s2" path="res://assets/MapAssets/Art/Texture/TX Tileset Wall.png" id="4_pftum"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_htuoe"]
-texture = ExtResource("1_g36k7")
+texture = ExtResource("1_sxtmc")
 texture_region_size = Vector2i(8, 8)
 2:1/0 = 0
 3:1/0 = 0
@@ -3586,7 +3586,7 @@ texture_region_size = Vector2i(8, 8)
 31:176/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x5e8o"]
-texture = ExtResource("1_wfa1x")
+texture = ExtResource("2_4ehnb")
 texture_region_size = Vector2i(8, 8)
 50:0/0 = 0
 51:0/0 = 0
@@ -4662,7 +4662,7 @@ texture_region_size = Vector2i(8, 8)
 6:17/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0p4l2"]
-texture = ExtResource("1_t0hir")
+texture = ExtResource("3_ysqk8")
 25:1/0 = 0
 26:1/0 = 0
 27:1/0 = 0
@@ -4835,7 +4835,7 @@ texture = ExtResource("1_t0hir")
 17:15/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rbr6p"]
-texture = ExtResource("2_iebap")
+texture = ExtResource("4_pftum")
 texture_region_size = Vector2i(8, 8)
 use_texture_padding = false
 19:16/0 = 0

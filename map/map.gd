@@ -78,6 +78,7 @@ func restart_tasks():
 				setPlayer.rpc(i,task_number)
 			else:
 				var player:Node2D = get_node_or_null(str(i))
+				player.get_node(str(i)).position = Vector2(0,0)
 				player.position = Vector2(600,-1200)
 @rpc("any_peer","call_remote")
 func restart_npc(name,task_number):
@@ -91,7 +92,6 @@ func restart_npc(name,task_number):
 		npc.remove_from_group("computer")
 		body.can_move = false
 		body.walking_task = false
-		body.get_node("Sprite2D").continue_loop = false
 		var task_data = globalScript.get_task_data(task_number)
 		var position = Vector2(task_data.positionX, task_data.positionY)
 		var taskscript = npc.get_node("CharacterBody2D/TaskScript")
@@ -100,7 +100,6 @@ func restart_npc(name,task_number):
 		if multiplayer.get_unique_id() ==1 and prevTask != task_data.taskType:
 			body.can_move = false
 			body.walking_task = false
-			body.get_node("Sprite2D").continue_loop = false
 			body.position = Vector2(0,0)
 			taskType.connect(taskscript.on_npc_task_type_emitted)
 			taskType.emit(task_data.taskType)

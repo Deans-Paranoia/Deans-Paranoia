@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://bsldsfbg1mo8e"]
 
 [ext_resource type="Script" path="res://map/map.gd" id="1_dmw7b"]
-[ext_resource type="PackedScene" uid="uid://bm1ngabod5xlp" path="res://map/world.tscn" id="2_cmphr"]
+[ext_resource type="PackedScene" uid="uid://bm1ngabod5xlp" path="res://map/third_floor.tscn" id="2_cmphr"]
 [ext_resource type="PackedScene" uid="uid://y4kbm2l282iy" path="res://characters/student.tscn" id="2_dqx11"]
 [ext_resource type="PackedScene" uid="uid://dm1vrnv5e47gm" path="res://characters/dean.tscn" id="3_h3gah"]
 [ext_resource type="PackedScene" uid="uid://tyedsi7liv1g" path="res://map/fourth_floor.tscn" id="3_xpfht"]

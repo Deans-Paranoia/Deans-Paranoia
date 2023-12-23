@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bm1ngabod5xlp"]
 
 [ext_resource type="PackedScene" uid="uid://ci2w51qx0u74u" path="res://items/fire_alarm.tscn" id="3_citlc"]
-[ext_resource type="PackedScene" uid="uid://cyi3a61e0ng54" path="res://map/mapa3.tscn" id="4_2v8nt"]
+[ext_resource type="PackedScene" uid="uid://cyi3a61e0ng54" path="res://map/third_without_collision.tscn" id="4_2v8nt"]
 [ext_resource type="PackedScene" uid="uid://ci4moycif5owm" path="res://items/elevator.tscn" id="4_s3rto"]
 [ext_resource type="PackedScene" uid="uid://b4jtyggr1i1y5" path="res://items/booster.tscn" id="5_ifp07"]
 

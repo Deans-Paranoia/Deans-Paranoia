@@ -449,12 +449,12 @@ texture = ExtResource("7_6epqa")
 hframes = 12
 
 [node name="Sprite2DWalkingDown" type="Sprite2D" parent="CharacterBody2D"]
-visible = false
 scale = Vector2(0.37, 0.37)
 texture = ExtResource("8_64l48")
 hframes = 13
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+visible = false
 scale = Vector2(0.37, 0.37)
 texture = ExtResource("9_hf7h6")
 hframes = 13

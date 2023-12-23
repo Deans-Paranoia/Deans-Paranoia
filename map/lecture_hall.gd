@@ -120,7 +120,6 @@ func back_to_game():
 				var npc_body = npcNode.get_node("CharacterBody2D")
 				npc_body.can_move = false
 				npc_body.walking_task = false
-				npc_body.get_node("Sprite2D").continue_loop = false
 				npcNode.queue_free()
 	send_restart_task_call()
 	
