@@ -34,6 +34,7 @@ func set_student(name,spot):
 	add_child(scene)
 @rpc("any_peer","call_remote")
 func set_dean():
+	playersCount = get_tree().get_nodes_in_group("Student").size()
 	var dean = deanScene.instantiate()
 	dean.name = "dean"
 	var label = dean.get_node("CharacterBody2D/Label")
@@ -65,15 +66,18 @@ func on_student_catched(name):
 	hovered_student = name
 	move_student(hovered_student)
 	move_student.rpc(hovered_student)
+	change_players_count.rpc_id(1)
+@rpc("any_peer","call_remote")
+func quit_game():
+	get_tree().quit()
+@rpc("any_peer","call_remote")
+func change_players_count():
 	playersCount -=1
 	print("catched")
 	if playersCount <1:
 		show_end_screen()
 		show_end_screen.rpc()
 	hovered_student = null
-@rpc("any_peer","call_remote")
-func quit_game():
-	get_tree().quit()
 @rpc("any_peer","call_remote")
 func show_end_screen():
 	var endgame_instance = endgame.instantiate()
@@ -144,9 +148,9 @@ func restart_map():
 	else:
 		var timer = map.get_node("RoundTimer")
 		timer.stop()
-		timer.wait_time = 15.0
+		timer.wait_time = 60.0
 		timer.start()
-		map.set_time_ui.rpc("15")
+		map.set_time_ui.rpc("60")
 		var cam = map.get_node("Camera2D")
 		cam.enabled = true
 		cam.make_current()

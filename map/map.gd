@@ -186,26 +186,26 @@ func change_view():
 	body.can_move = false
 func npcs_notes(isVisible):
 	var npcs = get_tree().get_nodes_in_group("takingNotes")
-	if(isVisible):
-		for i in npcs:
-			i.visible = true	
-	else:
-		for i in npcs:
-			i.visible = false
+	#if(isVisible):
+	#	for i in npcs:
+	#		i.visible = true	
+	#else:
+	#	for i in npcs:
+	#		i.visible = false
 func npcs_walking(isVisible):
 	var npcs = get_tree().get_nodes_in_group("walking")
-	if(isVisible):
-		for i in npcs:
-			i.visible = true	
-	else:
-		for i in npcs:
-			i.visible = false
+	#if(isVisible):
+	#	for i in npcs:
+	#		i.visible = true	
+	#else:
+	#	for i in npcs:
+	#		i.visible = false
 
 func npcs_computer(isVisible):
 	var npcs = get_tree().get_nodes_in_group("computer")
-	if(isVisible):
-		for i in npcs:
-			i.visible = true	
-	else:
-		for i in npcs:
-			i.visible = false
+	#if(isVisible):
+	#	for i in npcs:
+	#		i.visible = true	
+	#else:
+	#	for i in npcs:
+	#		i.visible = false

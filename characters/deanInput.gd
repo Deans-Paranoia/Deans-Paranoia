@@ -38,7 +38,7 @@ func _input(event):
 				catchable_object.catch_student.rpc_id(int(student_id))
 				#print(globalScript.Players[])
 				student_catched.emit(globalScript.Players[int(student_id)].fakeName)
-	
+				print(globalScript.Players[int(student_id)].fakeName)
 			
 @rpc("any_peer","call_remote")
 func change_alarm_state():
