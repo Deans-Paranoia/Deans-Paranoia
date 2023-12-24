@@ -92,17 +92,19 @@ func restart_npc(name,task_number):
 		var body = npc.get_node("CharacterBody2D")
 		var prevTask = npc.get_groups()[1]
 		npc.remove_from_group("vendingMachine")
+		npc.remove_from_group("vendingMachine2")
 		npc.remove_from_group("walking")
 		npc.remove_from_group("takingNotes")
 		npc.remove_from_group("computer")
-		body.can_move = false
-		body.walking_task = false
+		npc.remove_from_group("walking")
 		var task_data = globalScript.get_task_data(task_number)
 		var position = Vector2(task_data.positionX, task_data.positionY)
 		var taskscript = npc.get_node("CharacterBody2D/TaskScript")
 		npc.global_transform.origin = position
 		npc.add_to_group(task_data.taskType)
 		if multiplayer.get_unique_id() ==1 and prevTask != task_data.taskType:
+			if (prevTask == "vendingMachine" or prevTask == "vendingMachine2") and (task_data.taskType == "vendingMachine" or task_data.taskType == "vendingMachine2"):
+				return
 			body.can_move = false
 			body.walking_task = false
 			body.position = Vector2(0,0)

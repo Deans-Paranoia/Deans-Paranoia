@@ -117,6 +117,7 @@ func back_to_game():
 			var npcNode = get_tree().root.get_node_or_null("Map/"+i)
 			if npcNode != null:
 				npcNode.remove_from_group("npc")
+				npcNode.remove_from_group("vendingMachine2")
 				npcNode.remove_from_group("vendingMachine")
 				npcNode.remove_from_group("walking")
 				npcNode.remove_from_group("takingNotes")

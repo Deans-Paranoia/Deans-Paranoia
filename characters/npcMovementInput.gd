@@ -36,7 +36,11 @@ func _process(delta):
 				destination = point_B
 			else: 
 				destination = point_A
-				
+	elif can_move:
+		if destination == point_A:
+			rotate.emit("idle_up")
+		else: 
+			rotate.emit("idle_down")	
 func wait():
 	if destination == point_A:
 		rotate.emit("idle_up")
