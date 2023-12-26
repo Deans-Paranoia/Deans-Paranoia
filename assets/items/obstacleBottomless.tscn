@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1xgcuwhlgxnu"]
+
+[ext_resource type="Texture2D" uid="uid://chdhffwjnpe65" path="res://assets/ObstacleTop.png" id="1_otr0n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_avtpj"]
+size = Vector2(95.0003, 87.5002)
+
+[node name="obstacleBottomless" type="Node2D"]
+scale = Vector2(0.75, 0.75)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["obstacles"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(2, 45)
+scale = Vector2(0.355556, 0.334548)
+texture = ExtResource("1_otr0n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+visible = false
+scale = Vector2(0.999997, 0.999997)
+shape = SubResource("RectangleShape2D_avtpj")
+metadata/_edit_lock_ = true
+
+[node name="ObstacleArea" type="Area2D" parent="StaticBody2D"]
+visible = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D/ObstacleArea"]
+polygon = PackedVector2Array(-50, 40, -80, 40, -80, -45, -50, -45, -50, -75, 45, -75, 45, -45, 75, -45, 75, 40, 45, 40, 45, 70, -50, 70)
