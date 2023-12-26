@@ -106,25 +106,26 @@ position = Vector2(660, 162)
 position = Vector2(-653, 160)
 
 [node name="server" parent="." instance=ExtResource("6_tg2ad")]
-position = Vector2(-3, 192)
-scale = Vector2(0.3, 0.3)
+position = Vector2(-1, 196)
+scale = Vector2(0.25, 0.25)
 
 [node name="terminal1" parent="server" instance=ExtResource("3_ao6qd")]
 z_index = 1
-position = Vector2(953.333, 663.333)
+position = Vector2(3000, 663.333)
 scale = Vector2(2.5, 2.5)
 
 [node name="terminal2" parent="server" instance=ExtResource("3_ao6qd")]
 z_index = 1
-position = Vector2(-1176.67, -626.667)
+position = Vector2(3000, -626.667)
 scale = Vector2(2.5, 2.5)
 
 [node name="terminal3" parent="server" instance=ExtResource("3_ao6qd")]
 z_index = 1
-position = Vector2(543.333, -1696.67)
+position = Vector2(3000, -1920)
 scale = Vector2(2.5, 2.5)
 
 [node name="Obstacles" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="obstacle87" parent="Obstacles" instance=ExtResource("5_2sept")]
 position = Vector2(-160, -512)

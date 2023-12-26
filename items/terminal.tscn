@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dmqsyy0b226i3"]
+[gd_scene load_steps=6 format=3 uid="uid://dmqsyy0b226i3"]
 
 [ext_resource type="Texture2D" uid="uid://6dvu00j6jjxr" path="res://assets/terminal_0.png" id="1_ujpqw"]
 [ext_resource type="Script" path="res://items/terminal.gd" id="1_x6vuj"]
+[ext_resource type="Texture2D" uid="uid://um7s1birfl87" path="res://assets/terminal_green.png" id="2_besxy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y235l"]
 size = Vector2(200, 200)
@@ -11,13 +12,18 @@ size = Vector2(286, 286)
 
 [node name="terminal" type="Node2D"]
 visible = false
+scale = Vector2(2, 2)
 script = ExtResource("1_x6vuj")
 
 [node name="Terminal" type="StaticBody2D" parent="."]
 scale = Vector2(0.5, 0.5)
 
 [node name="Sprite2D" type="Sprite2D" parent="Terminal"]
-scale = Vector2(0.3, 0.3)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_besxy")
+
+[node name="Sprite2D" type="Sprite2D" parent="Terminal/Sprite2D"]
+position = Vector2(0, -10)
 texture = ExtResource("1_ujpqw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Terminal"]

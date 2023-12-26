@@ -1,6 +1,9 @@
 extends Node2D
 var endgame = load("res://ui/endgame.tscn")
 var rng = RandomNumberGenerator.new()
+@onready var green_terminal = load("res://assets/terminal_green.png")
+@onready var violet_terminal = load("res://assets/terminal_violet.png")
+@onready var yellow_terminal = load("res://assets/terminal_yellow.png")
 @onready var terminal1 = get_node("terminal1")
 @onready var terminal2 = get_node("terminal2")
 @onready var terminal3 = get_node("terminal3")
@@ -8,7 +11,7 @@ var serverValue
 func _ready():
 	if multiplayer.get_unique_id()==1:
 		serverValue = rng.randi_range(100, 999)
-		print("yellow-blue-green:"+str(serverValue))
+		print("yellow-violet-green:"+str(serverValue))
 		set_server_value.rpc(serverValue)
 		set_terminals_position_for_host()
 		
@@ -29,26 +32,26 @@ func set_terminals_position_for_host():
 	var obstacles_top = get_tree().get_nodes_in_group("obstacle_top")
 	var obstacle1 = obstacles_top[randi() % obstacles_top.size()]
 	terminal1.global_position = obstacle1.global_position
-	terminal1.modulate = Color(0.9,0.9,0.6)
+	terminal1.get_node("Terminal/Sprite2D").texture = yellow_terminal
 	var obstacles_middle = get_tree().get_nodes_in_group("obstacle_middle")
 	var obstacle2 = obstacles_middle[randi() % obstacles_middle.size()]
 	terminal2.global_position = obstacle2.global_position
-	terminal2.modulate = Color(0.1,0.1,0.9)
+	terminal2.get_node("Terminal/Sprite2D").texture = violet_terminal
 	var obstacles_bottom = get_tree().get_nodes_in_group("obstacle_bottom")
 	var obstacle3 = obstacles_bottom[randi() % obstacles_bottom.size()]
 	print(obstacle1.name + " "+ obstacle2.name + " " + obstacle3.name)
 	terminal3.global_position = obstacle3.global_position
-	terminal3.modulate = Color(0.1,1,0.1)
+	terminal3.get_node("Terminal/Sprite2D").texture = green_terminal
 	set_terminals_position.rpc(obstacle1.global_position, obstacle2.global_position,obstacle3.global_position)
 	
 @rpc("any_peer","call_remote")
 func set_terminals_position(position1, position2, position3):
 	terminal1.global_position = position1
-	terminal1.modulate = Color(0.9,0.9,0.1)
+	terminal1.get_node("Terminal/Sprite2D").texture = yellow_terminal
 	terminal2.global_position = position2
-	terminal2.modulate = Color(0.1,0.1,0.9)
+	terminal2.get_node("Terminal/Sprite2D").texture = violet_terminal
 	terminal3.global_position = position3
-	terminal3.modulate = Color(0.1,1,0.1)
+	terminal3.get_node("Terminal/Sprite2D").texture = green_terminal
 @rpc("any_peer","call_remote")
 func show_end_screen():
 	var endgame_instance = endgame.instantiate()

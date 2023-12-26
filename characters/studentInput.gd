@@ -147,6 +147,7 @@ func use_server():
 		var serverNode = get_node_or_null("../fourthFloor/server")
 		var czyPoprawnyKod : bool = serverNode.calculate_value()
 		if czyPoprawnyKod == false:
+			print("Błędny kod")
 			can_use_server_again = false
 			body.get_node("ServerTimer").wait_time = 5
 			body.get_node("ServerTimer").start()
