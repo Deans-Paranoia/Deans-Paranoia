@@ -1,12 +1,12 @@
 [gd_scene load_steps=13 format=3 uid="uid://b6xddjxyrw08k"]
 
 [ext_resource type="Texture2D" uid="uid://bywq7jpxw22ue" path="res://assets/MapAssets/Art/Texture/TX_Tileset_Wall 5.png" id="1_2bqqc"]
-[ext_resource type="PackedScene" uid="uid://ci4moycif5owm" path="res://assets/items/elevator.tscn" id="2_1m5us"]
-[ext_resource type="PackedScene" uid="uid://dmqsyy0b226i3" path="res://assets/items/terminal.tscn" id="3_ao6qd"]
+[ext_resource type="PackedScene" uid="uid://ci4moycif5owm" path="res://items/elevator.tscn" id="2_1m5us"]
+[ext_resource type="PackedScene" uid="uid://dmqsyy0b226i3" path="res://items/terminal.tscn" id="3_ao6qd"]
 [ext_resource type="Texture2D" uid="uid://bbbsbm8u5isa4" path="res://assets/TX Tileset Wall.png" id="4_57b0q"]
 [ext_resource type="PackedScene" uid="uid://38ny4g8gl8vm" path="res://assets/items/obstacle.tscn" id="5_2sept"]
 [ext_resource type="Texture2D" uid="uid://dyklgviaa7wyw" path="res://assets/TX Tileset Stone Ground.png" id="5_wbys8"]
-[ext_resource type="PackedScene" uid="uid://bsgmwg36gvtxu" path="res://assets/items/server.tscn" id="6_tg2ad"]
+[ext_resource type="PackedScene" uid="uid://bsgmwg36gvtxu" path="res://items/server.tscn" id="6_tg2ad"]
 [ext_resource type="PackedScene" uid="uid://c1xgcuwhlgxnu" path="res://assets/items/obstacleBottomless.tscn" id="8_u57bw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1nkwe"]
@@ -165,17 +165,17 @@ position = Vector2(-1, 196)
 scale = Vector2(0.25, 0.25)
 
 [node name="terminal1" parent="server" instance=ExtResource("3_ao6qd")]
-z_index = 1
+z_index = 2
 position = Vector2(3000, 663.333)
 scale = Vector2(2.5, 2.5)
 
 [node name="terminal2" parent="server" instance=ExtResource("3_ao6qd")]
-z_index = 1
+z_index = 2
 position = Vector2(3000, -626.667)
 scale = Vector2(2.5, 2.5)
 
 [node name="terminal3" parent="server" instance=ExtResource("3_ao6qd")]
-z_index = 1
+z_index = 2
 position = Vector2(3000, -1920)
 scale = Vector2(2.5, 2.5)
 
