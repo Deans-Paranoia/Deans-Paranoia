@@ -103,14 +103,13 @@ func restart_npc(name,task_number):
 		npc.global_transform.origin = position
 		npc.add_to_group(task_data.taskType)
 		if multiplayer.get_unique_id() ==1 and prevTask != task_data.taskType:
-			if (prevTask == "vendingMachine" or prevTask == "vendingMachine2") and (task_data.taskType == "vendingMachine" or task_data.taskType == "vendingMachine2"):
-				return
-			body.can_move = false
-			body.walking_task = false
-			body.position = Vector2(0,0)
-			taskType.connect(taskscript.on_npc_task_type_emitted)
-			taskType.emit(task_data.taskType)
-			taskType.disconnect(taskscript.on_npc_task_type_emitted)
+			if ((prevTask == "vendingMachine" or prevTask == "vendingMachine2") and (task_data.taskType == "vendingMachine" or task_data.taskType == "vendingMachine2")) == false:
+				body.can_move = false
+				body.walking_task = false
+				body.position = Vector2(0,0)
+				taskType.connect(taskscript.on_npc_task_type_emitted)
+				taskType.emit(task_data.taskType)
+				taskType.disconnect(taskscript.on_npc_task_type_emitted)
 		globalScript.manage_task(task_number)
 @rpc("any_peer","call_remote")
 func set_time_ui(time):

@@ -431,7 +431,7 @@ libraries = {
 }
 tree_root = SubResource("AnimationNodeStateMachine_rd4xr")
 anim_player = NodePath("../AnimationPlayer")
-parameters/FakingTasks/blend_position = Vector2(-0.751801, 0.339207)
+parameters/FakingTasks/blend_position = Vector2(0.00320005, -0.0582011)
 parameters/Idle/blend_position = Vector2(-0.0264211, -0.883598)
 parameters/Walking/blend_position = Vector2(-0.00240195, -0.460317)
 script = ExtResource("7_jrncx")
@@ -464,6 +464,7 @@ metadata/_edit_lock_ = true
 visible = false
 texture = ExtResource("10_pagym")
 vframes = 3
+frame = 1
 
 [connection signal="mouse_entered" from="CharacterBody2D" to="CharacterBody2D/KickScript" method="_on_character_body_2d_mouse_entered"]
 [connection signal="mouse_exited" from="CharacterBody2D" to="CharacterBody2D/KickScript" method="_on_character_body_2d_mouse_exited"]

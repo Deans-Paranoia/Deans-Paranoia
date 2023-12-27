@@ -38,14 +38,14 @@ position = Vector2(3623, -976)
 position = Vector2(-3202, -1211)
 
 [node name="RoundTimer" type="Timer" parent="."]
-wait_time = 1000.0
+wait_time = 60.0
 one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 visible = false
-position = Vector2(1943, -848)
+position = Vector2(640, -1776)
 enabled = false
-zoom = Vector2(0.2, 0.2)
+zoom = Vector2(0.6, 0.6)
 
 [node name="TaskAreas" type="Node2D" parent="."]
 
