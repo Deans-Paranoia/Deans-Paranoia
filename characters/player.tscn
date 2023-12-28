@@ -9,7 +9,7 @@ properties/0/spawn = true
 properties/0/replication_mode = 1
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0nlaq"]
-radius = 49.0918
+radius = 53.5993
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_84uu5"]
 size = Vector2(160, 168)
