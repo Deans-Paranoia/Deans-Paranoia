@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bkpceoqr0p20i"]
 
-[ext_resource type="Script" path="res://ui/pause.gd" id="1_630nl"]
+[ext_resource type="Script" path="res://ui/pause_menu.gd" id="1_jh5fn"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -9,7 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_630nl")
+script = ExtResource("1_jh5fn")
 
 [node name="ResumeButton" type="Button" parent="."]
 layout_mode = 0
