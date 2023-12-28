@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cqyquwb2hcmkk" path="res://assets/student_assets/tyl-sprite-combine.png" id="3_w4h8j"]
 [ext_resource type="Texture2D" uid="uid://br11rbr0lxmeu" path="res://assets/student_assets/lewy-sprite-combine.png" id="4_eherf"]
 [ext_resource type="Texture2D" uid="uid://c2m7hb6mbijhf" path="res://assets/student_assets/przod-sprite-combine.png" id="6_qmyhb"]
-[ext_resource type="Texture2D" uid="uid://dspgt3c8c8d53" path="res://assets/student_assets/FakingTasksGirlALL.png" id="7_ydri3"]
+[ext_resource type="Texture2D" uid="uid://c3fn61kwrnjyb" path="res://assets/student_assets/FakingTasksGirlALL.png" id="7_ydri3"]
 
 [sub_resource type="Animation" id="Animation_hnehq"]
 length = 0.001
@@ -439,12 +439,12 @@ texture = ExtResource("6_qmyhb")
 hframes = 13
 
 [node name="Sprite2D" parent="CharacterBody2D" index="3"]
+visible = false
 scale = Vector2(0.37, 0.37)
 texture = ExtResource("3_w4h8j")
 hframes = 13
 
 [node name="Sprite2DFakingTasks" type="Sprite2D" parent="CharacterBody2D" index="4"]
-visible = false
 position = Vector2(2.11, -2.37)
 scale = Vector2(0.325, 0.325)
 texture = ExtResource("7_ydri3")
