@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bkqthy7g87v03"]
 
-[ext_resource type="Texture2D" path="res://ui/checkmark.png" id="1_r4kn8"]
+[gd_scene load_steps=3 format=3 uid="uid://cf2ewqcmgs8ki"]
+
+[ext_resource type="Texture2D" uid="uid://dfp6mrq5wbaei" path="res://ui/checkmark.png" id="1_r4kn8"]
+
 
 [sub_resource type="LabelSettings" id="LabelSettings_cqflp"]
 font_size = 22

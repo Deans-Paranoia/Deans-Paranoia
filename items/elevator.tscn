@@ -9,7 +9,7 @@ size = Vector2(90, 157)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_52sja"]
 size = Vector2(133, 179.5)
 
-[node name="elevator" type="Node2D"]
+[node name="elevator" type="Node2D" groups=["elevator"]]
 scale = Vector2(0.3, 0.3)
 script = ExtResource("1_sgu5p")
 

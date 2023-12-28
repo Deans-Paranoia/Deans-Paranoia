@@ -4,6 +4,7 @@ signal isServer
 signal gameStart
 @export var Address = ""
 @export var Port = 8909
+@onready var single_ip_info = load("res://ui/single_ip_info.tscn")
 var peer
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,7 +13,14 @@ func _ready():
 	multiplayer.connected_to_server.connect(connected_to_server)
 	multiplayer.connection_failed.connect(connection_failed)
 	$ServerBrowser.joinGame.connect(joinByIp)
-	
+	var panel = get_node("ServerBrowser/ip_panel")
+	for i in IP.get_local_interfaces():
+		var single_ip_info_instance = single_ip_info.instantiate()
+		single_ip_info_instance.name =  str(i.friendly)
+		single_ip_info_instance.get_node("Network Name").text = str(i.friendly)
+		single_ip_info_instance.get_node("Ipv4").text = str(i.addresses[1])
+		single_ip_info_instance.host_down.connect(_on_host_button_down)
+		panel.get_node("VBoxContainer").add_child(single_ip_info_instance)
 	pass	
 
 # called on the server and clients
@@ -95,10 +103,10 @@ func update_dean_id(id):
 	globalScript.deanId = int(id);
 func on_update_id(id):
 	update_dean_id.rpc(id)
-func _on_host_button_down():
-	if $ServerBrowser.setBroadcastAddress($ServerBrowser/ServerIp.text):
+func _on_host_button_down(ip):
+	if $ServerBrowser.setBroadcastAddress(ip):
 		if hostGame():
-			
+			get_node("ServerBrowser/ip_panel").queue_free()
 			$ServerBrowser.setupBroadcast("Dean's Paranoia")
 				
 		pass # Replace with function body.
@@ -120,7 +128,7 @@ func joinByIp(ip):
 			i.get_node("Button").text = "room is full"
 func on_start_game():
 	for i in globalScript.Players:
-		#if i != globalScript.deanId:
+		if i != globalScript.deanId:
 			
 			var rand = RandomNumberGenerator.new()
 			var name_number = rand.randi() % globalScript.studentsNames.size()

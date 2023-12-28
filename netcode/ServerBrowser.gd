@@ -9,12 +9,13 @@ var RoomInfo = {"name":"name","playerCount":0}
 var playerCount = 0
 var broadcaster :PacketPeerUDP
 var listener:PacketPeerUDP
+var is_host = false
 func _ready():
 	broadcastTimer = $BroadcastTimer
 	setUp()
 	pass
 func _process(delta):
-	if listener.get_available_packet_count() > 0:
+	if listener != null and listener.get_available_packet_count() > 0 and is_host == false:
 		
 		$"../Title".visible = false
 		var serverIp = listener.get_packet_ip()
@@ -51,17 +52,20 @@ func setBroadcastAddress(address:String):
 		return false
 
 func setUp():
-	listener = PacketPeerUDP.new()
-	var ok = listener.bind(listenPort)
-	if ok == OK:
-		print("Bound to listen port " + str(listenPort) + "succesfull")
-		
-		$"Host".visible = false
+	if is_host == false:
+		listener = PacketPeerUDP.new()
+		var ok = listener.bind(listenPort)
+		if ok == OK:
+			print("Bound to listen port " + str(listenPort) + "succesfull")
+			$ip_panel.visible = false
+		else:
+			get_tree().quit()
+			
 	else:
 		print("Failed to bind to listen port")
 		
 		$"../Title".visible = false
-		$ServerIp.visible = true
+		#$ServerIp.visible = true
 func setupBroadcast(name):
 	RoomInfo.name = name
 	RoomInfo.playerCount = globalScript.Players.size()
@@ -85,15 +89,20 @@ func _on_broadcast_timer_timeout():
 	pass
 func exit_tree():
 	cleanUp()
+
 func cleanUp():
 	print("broadcaster closed")
 	listener.close()
 	$BroadcastTimer.stop()
 	if broadcaster != null:
 		broadcaster.close()
-		
-		for i in $VBoxContainer.get_children():
-			i.queue_free()
+	broadcaster = null
+	listener = null
+	playerCount = 0
+	RoomInfo = {"name":"name","playerCount":0}
+	broadcastAddress = ""
+	for i in $VBoxContainer.get_children():
+		i.queue_free()
 func joinByIp(ip):
 	joinGame.emit(ip)
 

@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyedvup3llvdp"]
+
+[ext_resource type="Script" path="res://ui/single_ip_info.gd" id="1_e78e4"]
+
+[node name="IpInfo" type="HBoxContainer"]
+script = ExtResource("1_e78e4")
+
+[node name="Network Name" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.2
+theme_override_font_sizes/font_size = 30
+text = "Network Name"
+
+[node name="Ipv4" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.4
+theme_override_font_sizes/font_size = 30
+text = "Ipv4"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "Host"
+
+[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]

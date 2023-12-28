@@ -4,9 +4,10 @@ func _ready():
 	# rejestruje skrypt jako singleton (umożliwia dostęp z innych skryptów)
 	Engine.register_singleton("global", self)
 	
+		
 var Players ={}
 var deanId:int
-var player_type: String
+
 
 class Task:
 	var positionX: float
@@ -36,7 +37,7 @@ var Tasks: = [
 	 Task.new(672.0, -235.0, "walking"),
 	 Task.new(729.0, -235.0, "walking"),
 	 Task.new(1251.0, -631.0, "vendingMachine"),
-	 Task.new(-29.0, -1342.0, "vendingMachine"),
+	 Task.new(-29.0, -1342.0, "vendingMachine2"),
 
 ]
 
@@ -46,7 +47,11 @@ func remove_name(nameNumber:int):
 	usedNames.append(studentsNames[nameNumber])
 	studentsNames.pop_at(nameNumber)
 	
-
+func resetTasks():
+	for i in UsedTasks:
+		Tasks.append(i)
+	UsedTasks = []
+	
 func get_task_data(task_number: int) -> Task:
 	# zwraca taska, ktorego wylosowal npc
 	return Tasks[task_number]

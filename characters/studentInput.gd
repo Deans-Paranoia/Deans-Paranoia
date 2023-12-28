@@ -1,13 +1,20 @@
 extends Node2D
+
+signal player_task(task_type: String)
+signal disable_player_movement_for_duration(duration: float)
+var current_task_area = "" # pusty string jesli gracz nie w tasku
 var fourthFloor = load("res://map/fourth_floor.tscn")
 var thirdFloor = load("res://map/level.tscn")
 
 var dangerScene = preload("res://ui/task_exited.tscn")
 var danger_instance
 # pusta zmienna do ktorej przypisywana jest instancja sceny
-
+var task_finished = true
 var catchable: bool = false
 # sprawdza czy student moze zostac zlapany przez dziekana
+
+var is_catched : bool = false
+# sprawdza czy student zostal juz zlapany
 
 var can_use_alarm : bool = false
 # sprawdza czy znajduje sie w strefie gdzie mozna odpalic alarm
@@ -16,6 +23,8 @@ var can_use_server : bool = false
 # sprawdza czy znajduje sie w strefie gdzie mozna uzyc serwer
 var can_use_server_again : bool = true
 # sprawdza czy gracz moze juz ponownie uzyc servera
+
+var level: int = 3
 
 var can_use_elevator: bool = false
 # sprawdza czy znajduje sie w strefie gdzie mozna uzyc windy
@@ -30,7 +39,7 @@ var can_use_terminal: bool = false
 # sprawdza czy znajduje sie w strefie gdzie mozna uzyc terminalu
 var terminal_address
 
-var can_move: bool
+
 
 var temp_speed
 # zmienna przechowujaca tymczasowa predkosc
@@ -44,9 +53,11 @@ var _dig_speed : float = 1.0
 func _ready():
 	set_process_input(true)
 	if(multiplayer.get_unique_id()!=1):
-		body = get_node_or_null(str(multiplayer.get_unique_id()))
+		body = get_node_or_null(str(self))
 		
 func _input(event):
+	if body!= null and body.can_move == false:
+		return
 	# interakcja z obiektami 
 	if event.is_action_pressed("interaction"):
 		# obsluga alarmu przez studenta
@@ -61,9 +72,23 @@ func _input(event):
 			use_server()
 			
 		# obsluga windy przez studenta
-		var elevator_reference = get_node_or_null("../thirdFloor/elevator")
+		var elevatorsThird = get_tree().get_nodes_in_group("elevator")
+		var elevatorsFourth = get_tree().get_nodes_in_group("elevatorFourth")
 		if can_use_elevator and self.name == str(multiplayer.get_unique_id()):
-			use_elevator()
+			if level == 3:
+				if (abs(body.global_position - elevatorsThird[1].global_position) < abs(body.global_position - elevatorsThird[0].global_position)):
+					use_elevator("left")
+				else:
+					use_elevator("right")
+				level = 4
+			elif level == 4:
+				if (abs(body.global_position - elevatorsFourth[1].global_position) < abs(body.global_position - elevatorsFourth[0].global_position)):
+					use_elevator("left")
+				else:
+					use_elevator("right")
+				level = 3
+				
+			
 			
 		# obsluga terminalu przez studenta
 		if terminal_address != null and self.name == str(multiplayer.get_unique_id()):
@@ -78,6 +103,11 @@ func _input(event):
 				removeBooster.rpc()
 				# nadanie boosta
 				acquire_booster()
+				
+		# wykonanie taska przez studenta	
+		if not danger_instance and current_task_area != "" and current_task_area != "walking" and task_finished:
+			task_execution()
+			
 	elif event.is_action_pressed("dig") and self.name == str(multiplayer.get_unique_id()):
 		dig()
 	elif event.is_action_released("dig") and self.name == str(multiplayer.get_unique_id()):
@@ -86,7 +116,7 @@ func _input(event):
 @rpc("any_peer","call_remote")
 func change_alarm_state():
 	var fire_alarm_reference = get_node_or_null("../thirdFloor/fire_alarm")
-	fire_alarm_reference.useable = false
+	fire_alarm_reference.use_alarm(true)
 @rpc("any_peer","call_local")
 func removeBooster():
 	var booster = get_node_or_null("../thirdFloor/booster")
@@ -97,33 +127,57 @@ func sabotage_alarm():
 	print("Alarm sabotaged")
 	stop_player_movement()
 	body.get_node("FreezeTimer").start()
+
+func task_execution():
+	# funkcja do wykonywania taska przez studenta
+	player_task.emit(current_task_area)
+	disable_player_movement_for_duration.emit(1.0) # zatrzymanie ruchu gracza na 1s
+	task_finished = false
+	await get_tree().create_timer(2.0).timeout
+	task_finished = true
+	
+@rpc("any_peer","call_local")
+func catch_student():
+	if catchable and !is_catched:
+		is_catched = true
+		stop_player_movement()
 	
 func use_server():
 	# funkcja do uzywania serwera przez studenta
 		var serverNode = get_node_or_null("../fourthFloor/server")
 		var czyPoprawnyKod : bool = serverNode.calculate_value()
 		if czyPoprawnyKod == false:
+			print("Błędny kod")
 			can_use_server_again = false
 			body.get_node("ServerTimer").wait_time = 5
 			body.get_node("ServerTimer").start()
 
 	
-func use_elevator():
+func use_elevator(side):
 	var fourth = get_node_or_null("../fourthFloor")
 	var third = get_node_or_null("../thirdFloor")
-	
-	var id = multiplayer.get_unique_id()
 	if(fourth != null and third!=null):
 		if(self.is_in_group("ThirdFloor")):
 			self.add_to_group("FourthFloor")
 			self.remove_from_group("ThirdFloor")
-			teleport.rpc(3000)
-			
-			
+
+			fourth.visible = true
+			third.visible = false
+			if (side == "left"):
+				body.global_position = Vector2(2970, -800)
+			elif (side == "right"):
+				body.global_position = Vector2(4283, -800)
+				
+
 		else:
 			self.add_to_group("ThirdFloor")
 			self.remove_from_group("FourthFloor")
-			teleport.rpc(-3000)
+			fourth.visible = false
+			third.visible = true
+			if (side == "left"):
+				body.global_position = Vector2(-40, -830)
+			elif (side == "right"):
+				body.global_position = Vector2(1250, -847)
 func acquire_booster():
 	# funkcja nadajaca booster dla studenta
 	has_booster = true
@@ -140,6 +194,7 @@ func dig():
 	var _is_facing_obstacle = false
 	var obstacles_nearby = body.get_node("PlayerArea").get_overlapping_bodies()
 	for obstacle in obstacles_nearby:
+		
 		if obstacle.is_in_group("obstacles"):
 			_is_facing_obstacle = _is_student_facing_obstacle(obstacle)
 			if _is_facing_obstacle:
@@ -152,7 +207,7 @@ func dig():
 func stop_dig():
 	_is_space_pressed = false
 	body.get_node("DiggingTimer").stop()
-
+		
 func _on_player_area_area_entered(area):
 	#funkcja do rejestrowanie aktualnie area, do ktorej weszlismy
 	var area_entered = area.get_name()
@@ -204,6 +259,7 @@ func _on_freeze_timer_timeout():
 func _on_digging_timer_timeout():
 	#metoda po skończeniu DiggingTimer niszczy obstacle
 	if (_obstacle_to_destroy != null):
+		
 		remove_obstacle.rpc(_obstacle_to_destroy.get_parent().name)
 		_obstacle_to_destroy = null
 		
@@ -213,7 +269,7 @@ func _on_server_timer_timeout():
 
 @rpc("any_peer","call_local")
 func remove_obstacle(_obstacle_to_destroy):
-	var obstacle = get_node_or_null("../fourthFloor/"+_obstacle_to_destroy)
+	var obstacle = get_node_or_null("../fourthFloor/Obstacles/"+_obstacle_to_destroy)
 	if obstacle:
 		obstacle.queue_free()
 func _is_student_facing_obstacle(obstacle):
@@ -225,41 +281,46 @@ func _is_student_facing_obstacle(obstacle):
 
 	#Obliczamy wektor skierowany znormalizowany
 	var direction_to_obstacle = (obstacle_position - student_position).normalized()
-
-	if direction_to_obstacle.x < -0.95 and student_direction == Vector2(-1,0):
+	if direction_to_obstacle.x < -0.86 and student_direction == Vector2(-1,0):
 		return true
-	elif direction_to_obstacle.x > 0.95 and student_direction == Vector2(1,0):
+	elif direction_to_obstacle.x > 0.86 and student_direction == Vector2(1,0):
 		return true
-	elif direction_to_obstacle.y < -0.95 and student_direction == Vector2(0,-1):
+	elif direction_to_obstacle.y < -0.86 and student_direction == Vector2(0,-1):
 		return true
-	elif direction_to_obstacle.y > 0.95 and student_direction == Vector2(0,1):
+	elif direction_to_obstacle.y > 0.86 and student_direction == Vector2(0,1):
 		return true
 	else:
 		return false
 
 
 func _on_task_area_exited(area):
+	var map = get_node("../../Map")
+	
 	#funkcja  do rejestrowania aktualnie opuszczonej area taska
 	var area_exited = area.get_name()
 	if (area_exited == "VendingMachine1Area" and self.name == str(multiplayer.get_unique_id())):
 		danger_instance = dangerScene.instantiate()
 		add_child(danger_instance)
 		catchable = true
+		current_task_area = ""
 		
 	if (area_exited == "VendingMachine2Area" and self.name == str(multiplayer.get_unique_id())):
 		danger_instance = dangerScene.instantiate()
 		add_child(danger_instance)
 		catchable = true
+		current_task_area = ""
 		
 	if (area_exited == "ComputersArea" and self.name == str(multiplayer.get_unique_id())):
 		danger_instance = dangerScene.instantiate()
 		add_child(danger_instance)
 		catchable = true
+		current_task_area = ""
 		
 	if (area_exited == "NotesArea" and self.name == str(multiplayer.get_unique_id())):
 		danger_instance = dangerScene.instantiate()
 		add_child(danger_instance)
 		catchable = true
+		current_task_area = ""
 		
 	if (area_exited == "WalkingArea" and self.name == str(multiplayer.get_unique_id())):
 		danger_instance = dangerScene.instantiate()
@@ -273,18 +334,22 @@ func _on_task_area_entered(area):
 	if (area_entered == "VendingMachine1Area" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
 		danger_instance.queue_free()
 		catchable = false
+		current_task_area = "vendingMachine1"
 		
 	if (area_entered == "VendingMachine2Area" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
 		danger_instance.queue_free()
 		catchable = false
+		current_task_area = "vendingMachine2"
 		
 	if (area_entered == "ComputersArea" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
 		danger_instance.queue_free()
 		catchable = false
+		current_task_area = "computer"
 		
 	if (area_entered == "NotesArea" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
 		danger_instance.queue_free()
 		catchable = false
+		current_task_area = "takingNotes"
 		
 	if (area_entered == "WalkingArea" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
 		danger_instance.queue_free()

@@ -1,30 +1,30 @@
-[gd_scene load_steps=5 format=3 uid="uid://bsgmwg36gvtxu"]
+[gd_scene load_steps=4 format=3 uid="uid://bsgmwg36gvtxu"]
 
 [ext_resource type="Texture2D" uid="uid://71m2ld2gmwu" path="res://assets/server.png" id="1_mkupf"]
 [ext_resource type="Script" path="res://items/server.gd" id="1_xfjyh"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tvtru"]
-size = Vector2(294, 131)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yc460"]
-size = Vector2(362, 209)
+size = Vector2(138, 99)
 
 [node name="server" type="Node2D"]
+scale = Vector2(0.8, 0.8)
 script = ExtResource("1_xfjyh")
 
 [node name="body" type="StaticBody2D" parent="."]
 
-[node name="server_collision" type="CollisionShape2D" parent="body"]
-position = Vector2(0, 0.5)
-shape = SubResource("RectangleShape2D_tvtru")
+[node name="server_collision" type="CollisionPolygon2D" parent="body"]
+position = Vector2(-7.5, 3)
+polygon = PackedVector2Array(-57.5, -9, -55.5, 54, 39.5, 56, 71.5, 27, 71.5, -10)
 
 [node name="sprite" type="Sprite2D" parent="body"]
+position = Vector2(0, -50)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("1_mkupf")
 
 [node name="ServerArea" type="Area2D" parent="body"]
 
 [node name="CollsionShape2D" type="CollisionShape2D" parent="body/ServerArea"]
-position = Vector2(5, 5.5)
+position = Vector2(1, 9.5)
 shape = SubResource("RectangleShape2D_yc460")
 
 [node name="Timer" type="Timer" parent="."]
