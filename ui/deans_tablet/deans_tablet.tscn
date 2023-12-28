@@ -1,22 +1,23 @@
 [gd_scene load_steps=3 format=3 uid="uid://cf2ewqcmgs8ki"]
 
-[ext_resource type="Texture2D" uid="uid://dfp6mrq5wbaei" path="res://ui/deans_tablet/checkmark.png" id="1_eoyly"]
+[ext_resource type="Script" path="res://ui/deans_tablet/deans_tablet.gd" id="1_7662k"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_cqflp"]
 font_size = 22
 
-[node name="UI - Dean\'s Tablet" type="CanvasLayer"]
+[node name="DeansTablet" type="CanvasLayer"]
+script = ExtResource("1_7662k")
 
 [node name="Tablet" type="Panel" parent="."]
 anchors_preset = -1
-anchor_left = 0.3
-anchor_top = 0.1
-anchor_right = 0.7
-anchor_bottom = 0.9
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+anchor_left = 0.283
+anchor_top = 0.136
+anchor_right = 0.716
+anchor_bottom = 0.793
+offset_left = -2.01602
+offset_top = -0.128006
+offset_right = 0.167969
+offset_bottom = 0.135986
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -31,182 +32,16 @@ label_settings = SubResource("LabelSettings_cqflp")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Player1" type="HBoxContainer" parent="Tablet"]
-custom_minimum_size = Vector2(0, 35)
-layout_mode = 2
-offset_top = 54.0
-offset_right = 500.0
-offset_bottom = 97.0
+[node name="VBoxContainer" type="VBoxContainer" parent="Tablet"]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 64.0
+offset_right = 225.0
+offset_bottom = 538.0
 
-[node name="Label" type="Label" parent="Tablet/Player1"]
-custom_minimum_size = Vector2(420, 35)
-layout_mode = 2
-vertical_alignment = 1
-
-[node name="Button" type="Button" parent="Tablet/Player1"]
-custom_minimum_size = Vector2(35, 35)
-layout_mode = 2
-icon = ExtResource("1_eoyly")
-flat = true
-
-[node name="Player2" type="HBoxContainer" parent="Tablet"]
-custom_minimum_size = Vector2(0, 35)
-layout_mode = 2
-offset_top = 101.0
-offset_right = 500.0
-offset_bottom = 144.0
-
-[node name="Label" type="Label" parent="Tablet/Player2"]
-custom_minimum_size = Vector2(420, 35)
-layout_mode = 2
-vertical_alignment = 1
-
-[node name="Button" type="Button" parent="Tablet/Player2"]
-custom_minimum_size = Vector2(35, 35)
-layout_mode = 2
-icon = ExtResource("1_eoyly")
-flat = true
-
-[node name="Player3" type="HBoxContainer" parent="Tablet"]
-custom_minimum_size = Vector2(0, 35)
-layout_mode = 2
-offset_top = 148.0
-offset_right = 500.0
-offset_bottom = 191.0
-
-[node name="Label" type="Label" parent="Tablet/Player3"]
-custom_minimum_size = Vector2(420, 35)
-layout_mode = 2
-vertical_alignment = 1
-
-[node name="Button" type="Button" parent="Tablet/Player3"]
-custom_minimum_size = Vector2(35, 35)
-layout_mode = 2
-icon = ExtResource("1_eoyly")
-flat = true
-
-[node name="Player4" type="HBoxContainer" parent="Tablet"]
-custom_minimum_size = Vector2(0, 35)
-layout_mode = 2
-offset_top = 195.0
-offset_right = 500.0
-offset_bottom = 238.0
-
-[node name="Label" type="Label" parent="Tablet/Player4"]
-custom_minimum_size = Vector2(420, 35)
-layout_mode = 2
-vertical_alignment = 1
-
-[node name="Button" type="Button" parent="Tablet/Player4"]
-custom_minimum_size = Vector2(35, 35)
-layout_mode = 2
-icon = ExtResource("1_eoyly")
-flat = true
-
-[node name="Player5" type="HBoxContainer" parent="Tablet"]
-custom_minimum_size = Vector2(0, 35)
-layout_mode = 2
-offset_top = 242.0
-offset_right = 500.0
-offset_bottom = 285.0
-
-[node name="Label" type="Label" parent="Tablet/Player5"]
-custom_minimum_size = Vector2(420, 35)
-layout_mode = 2
-vertical_alignment = 1
-
-[node name="Button" type="Button" parent="Tablet/Player5"]
-custom_minimum_size = Vector2(35, 35)
-layout_mode = 2
-icon = ExtResource("1_eoyly")
-flat = true
-
-[node name="Player6" type="HBoxContainer" parent="Tablet"]
-custom_minimum_size = Vector2(0, 35)
-layout_mode = 2
-offset_top = 289.0
-offset_right = 500.0
-offset_bottom = 332.0
-
-[node name="Label" type="Label" parent="Tablet/Player6"]
-custom_minimum_size = Vector2(420, 35)
-layout_mode = 2
-vertical_alignment = 1
-
-[node name="Button" type="Button" parent="Tablet/Player6"]
-custom_minimum_size = Vector2(35, 35)
-layout_mode = 2
-icon = ExtResource("1_eoyly")
-flat = true
-
-[node name="Player7" type="HBoxContainer" parent="Tablet"]
-custom_minimum_size = Vector2(0, 35)
-layout_mode = 2
-offset_top = 336.0
-offset_right = 500.0
-offset_bottom = 379.0
-
-[node name="Label" type="Label" parent="Tablet/Player7"]
-custom_minimum_size = Vector2(420, 35)
-layout_mode = 2
-vertical_alignment = 1
-
-[node name="Button" type="Button" parent="Tablet/Player7"]
-custom_minimum_size = Vector2(35, 35)
-layout_mode = 2
-icon = ExtResource("1_eoyly")
-flat = true
-
-[node name="Player8" type="HBoxContainer" parent="Tablet"]
-custom_minimum_size = Vector2(0, 35)
-layout_mode = 2
-offset_top = 383.0
-offset_right = 500.0
-offset_bottom = 426.0
-
-[node name="Label" type="Label" parent="Tablet/Player8"]
-custom_minimum_size = Vector2(420, 35)
-layout_mode = 2
-vertical_alignment = 1
-
-[node name="Button" type="Button" parent="Tablet/Player8"]
-custom_minimum_size = Vector2(35, 35)
-layout_mode = 2
-icon = ExtResource("1_eoyly")
-flat = true
-
-[node name="Player9" type="HBoxContainer" parent="Tablet"]
-custom_minimum_size = Vector2(0, 35)
-layout_mode = 2
-offset_top = 430.0
-offset_right = 500.0
-offset_bottom = 473.0
-
-[node name="Label" type="Label" parent="Tablet/Player9"]
-custom_minimum_size = Vector2(420, 35)
-layout_mode = 2
-vertical_alignment = 1
-
-[node name="Button" type="Button" parent="Tablet/Player9"]
-custom_minimum_size = Vector2(35, 35)
-layout_mode = 2
-icon = ExtResource("1_eoyly")
-flat = true
-
-[node name="Player10" type="HBoxContainer" parent="Tablet"]
-custom_minimum_size = Vector2(0, 35)
-layout_mode = 2
-offset_top = 477.0
-offset_right = 500.0
-offset_bottom = 520.0
-
-[node name="Label" type="Label" parent="Tablet/Player10"]
-custom_minimum_size = Vector2(420, 35)
-layout_mode = 2
-vertical_alignment = 1
-
-[node name="Button" type="Button" parent="Tablet/Player10"]
-custom_minimum_size = Vector2(35, 35)
-layout_mode = 2
-icon = ExtResource("1_eoyly")
-flat = true
+[node name="VBoxContainer2" type="VBoxContainer" parent="Tablet"]
+layout_mode = 0
+offset_left = 257.0
+offset_top = 65.0
+offset_right = 461.0
+offset_bottom = 538.0
