@@ -2,6 +2,9 @@ extends Node2D
 
 signal player_task(task_type: String)
 signal disable_player_movement_for_duration(duration: float)
+
+signal use_chat
+
 var current_task_area = "" # pusty string jesli gracz nie w tasku
 var fourthFloor = load("res://map/fourth_floor.tscn")
 var thirdFloor = load("res://map/level.tscn")
@@ -112,6 +115,9 @@ func _input(event):
 		dig()
 	elif event.is_action_released("dig") and self.name == str(multiplayer.get_unique_id()):
 		stop_dig()
+		
+	if event.is_action_pressed("use_chat"):
+		use_chat.emit()
 
 @rpc("any_peer","call_remote")
 func change_alarm_state():
