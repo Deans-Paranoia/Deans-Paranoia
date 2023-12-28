@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://htf4mdnxvqkp"]
 
-[node name="HBoxContainer" type="HBoxContainer"]
+[node name="HBoxMessage" type="HBoxContainer"]
 
-[node name="Label" type="Label" parent="."]
+[node name="Message" type="Label" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
