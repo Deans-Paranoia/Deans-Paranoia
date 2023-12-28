@@ -18,8 +18,6 @@ func _ready():
 	for i in range(0,10):
 		var texture = load("res://assets/terminal_"+str(i) +".png")
 		digits_sprites.append(texture)
-		print(str(digits_sprites.size()))
-	$"body/sprite/Digit 1".texture = digits_sprites[1]
 @rpc("any_peer","call_remote")
 func set_server_value(value):
 	serverValue = value
@@ -30,9 +28,24 @@ func calculate_value():
 		show_end_screen()
 		return true
 	else:
+		run_server_error()
+		run_server_error.rpc()
 		return false
-		
-
+@rpc("any_peer","call_remote")		
+func run_server_error():
+	$"body/sprite/Digit 1".texture = digits_sprites[0]
+	$"body/sprite/Digit 2".texture = digits_sprites[0]
+	$"body/sprite/Digit 3".texture = digits_sprites[0]
+	for i in range(1,6):
+		for j in $body/sprite.get_children():
+			j.visible = false
+		await get_tree().create_timer(0.4).timeout
+		for j in $body/sprite.get_children():
+			j.visible = true
+		await  get_tree().create_timer(0.6).timeout
+	$"body/sprite/Digit 1".texture = digits_sprites[terminal1.actual_value]
+	$"body/sprite/Digit 2".texture = digits_sprites[terminal2.actual_value]
+	$"body/sprite/Digit 3".texture = digits_sprites[terminal3.actual_value]
 func set_terminals_position_for_host():
 	var obstacles_top = get_tree().get_nodes_in_group("obstacle_top")
 	var obstacle1 = obstacles_top[randi() % obstacles_top.size()]
@@ -64,13 +77,13 @@ func show_end_screen():
 	endgame_instance.get_node("ColorRect/VBoxContainer2/Label").text = "Wygrali studenci"
 	self.hide()		
 func on_number_changed(name, value):
-	print("emited")
+	print(name)
 	if name == "terminal1":
 		$"body/sprite/Digit 1".texture = digits_sprites[value]
 		print("teminal1 emit")
 	elif name == "terminal2":
 		$"body/sprite/Digit 2".texture = digits_sprites[value]
 		print("teminal2 emit")
-	elif name == "temrinal3":
+	elif name == "terminal3":
 		$"body/sprite/Digit 3".texture = digits_sprites[value]
 		print("teminal3 emit")
