@@ -1,8 +1,6 @@
-
 [gd_scene load_steps=3 format=3 uid="uid://cf2ewqcmgs8ki"]
 
-[ext_resource type="Texture2D" uid="uid://dfp6mrq5wbaei" path="res://ui/checkmark.png" id="1_r4kn8"]
-
+[ext_resource type="Texture2D" uid="uid://dfp6mrq5wbaei" path="res://ui/deans_tablet/checkmark.png" id="1_eoyly"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_cqflp"]
 font_size = 22
@@ -48,7 +46,7 @@ vertical_alignment = 1
 [node name="Button" type="Button" parent="Tablet/Player1"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-icon = ExtResource("1_r4kn8")
+icon = ExtResource("1_eoyly")
 flat = true
 
 [node name="Player2" type="HBoxContainer" parent="Tablet"]
@@ -66,7 +64,7 @@ vertical_alignment = 1
 [node name="Button" type="Button" parent="Tablet/Player2"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-icon = ExtResource("1_r4kn8")
+icon = ExtResource("1_eoyly")
 flat = true
 
 [node name="Player3" type="HBoxContainer" parent="Tablet"]
@@ -84,7 +82,7 @@ vertical_alignment = 1
 [node name="Button" type="Button" parent="Tablet/Player3"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-icon = ExtResource("1_r4kn8")
+icon = ExtResource("1_eoyly")
 flat = true
 
 [node name="Player4" type="HBoxContainer" parent="Tablet"]
@@ -102,7 +100,7 @@ vertical_alignment = 1
 [node name="Button" type="Button" parent="Tablet/Player4"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-icon = ExtResource("1_r4kn8")
+icon = ExtResource("1_eoyly")
 flat = true
 
 [node name="Player5" type="HBoxContainer" parent="Tablet"]
@@ -120,7 +118,7 @@ vertical_alignment = 1
 [node name="Button" type="Button" parent="Tablet/Player5"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-icon = ExtResource("1_r4kn8")
+icon = ExtResource("1_eoyly")
 flat = true
 
 [node name="Player6" type="HBoxContainer" parent="Tablet"]
@@ -138,7 +136,7 @@ vertical_alignment = 1
 [node name="Button" type="Button" parent="Tablet/Player6"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-icon = ExtResource("1_r4kn8")
+icon = ExtResource("1_eoyly")
 flat = true
 
 [node name="Player7" type="HBoxContainer" parent="Tablet"]
@@ -156,7 +154,7 @@ vertical_alignment = 1
 [node name="Button" type="Button" parent="Tablet/Player7"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-icon = ExtResource("1_r4kn8")
+icon = ExtResource("1_eoyly")
 flat = true
 
 [node name="Player8" type="HBoxContainer" parent="Tablet"]
@@ -174,7 +172,7 @@ vertical_alignment = 1
 [node name="Button" type="Button" parent="Tablet/Player8"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-icon = ExtResource("1_r4kn8")
+icon = ExtResource("1_eoyly")
 flat = true
 
 [node name="Player9" type="HBoxContainer" parent="Tablet"]
@@ -192,7 +190,7 @@ vertical_alignment = 1
 [node name="Button" type="Button" parent="Tablet/Player9"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-icon = ExtResource("1_r4kn8")
+icon = ExtResource("1_eoyly")
 flat = true
 
 [node name="Player10" type="HBoxContainer" parent="Tablet"]
@@ -210,5 +208,5 @@ vertical_alignment = 1
 [node name="Button" type="Button" parent="Tablet/Player10"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-icon = ExtResource("1_r4kn8")
+icon = ExtResource("1_eoyly")
 flat = true
