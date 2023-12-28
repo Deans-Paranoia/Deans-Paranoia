@@ -66,3 +66,7 @@ func _on_disable_player_movement_for_duration(duration):
 	await get_tree().create_timer(duration).timeout
 	canMove = true
 
+
+
+func _on_chat_chat_opened(is_opened):
+	canMove = !is_opened

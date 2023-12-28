@@ -452,3 +452,4 @@ new_message = ExtResource("11_u1hi7")
 [connection signal="area_entered" from="CharacterBody2D/PlayerArea" to="." method="_on_task_area_entered"]
 [connection signal="area_exited" from="CharacterBody2D/PlayerArea" to="." method="_on_player_area_area_exited"]
 [connection signal="area_exited" from="CharacterBody2D/PlayerArea" to="." method="_on_task_area_exited"]
+[connection signal="chat_opened" from="CharacterBody2D/Chat" to="CharacterBody2D" method="_on_chat_chat_opened"]
