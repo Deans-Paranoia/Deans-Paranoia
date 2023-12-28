@@ -1,11 +1,12 @@
 extends Node2D 
-
+signal change_number(name,value)
 var actual_value = 0
 var textures = []
 var can_update_value: bool = false
 func _ready():
 	load_textures()
 	update_texture()
+	change_number.connect(get_parent().on_number_changed)
 	
 func load_textures():
 	for i in range(10):
@@ -19,7 +20,7 @@ func use_terminal():
 	if actual_value > 9:
 		actual_value = 0
 	update_texture()
-	
+	change_number.emit(self.name,actual_value)
 	
 func _on_terminal_area_body_exited(body):
 	if body.is_in_group("obstacles"):

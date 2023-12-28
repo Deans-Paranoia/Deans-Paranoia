@@ -8,13 +8,18 @@ var rng = RandomNumberGenerator.new()
 @onready var terminal2 = get_node("terminal2")
 @onready var terminal3 = get_node("terminal3")
 var serverValue
+@onready var digits_sprites = []
 func _ready():
 	if multiplayer.get_unique_id()==1:
 		serverValue = rng.randi_range(100, 999)
 		print("yellow-violet-green:"+str(serverValue))
 		set_server_value.rpc(serverValue)
 		set_terminals_position_for_host()
-		
+	for i in range(0,10):
+		var texture = load("res://assets/terminal_"+str(i) +".png")
+		digits_sprites.append(texture)
+		print(str(digits_sprites.size()))
+	$"body/sprite/Digit 1".texture = digits_sprites[1]
 @rpc("any_peer","call_remote")
 func set_server_value(value):
 	serverValue = value
@@ -58,3 +63,14 @@ func show_end_screen():
 	get_tree().root.add_child(endgame_instance)
 	endgame_instance.get_node("ColorRect/VBoxContainer2/Label").text = "Wygrali studenci"
 	self.hide()		
+func on_number_changed(name, value):
+	print("emited")
+	if name == "terminal1":
+		$"body/sprite/Digit 1".texture = digits_sprites[value]
+		print("teminal1 emit")
+	elif name == "terminal2":
+		$"body/sprite/Digit 2".texture = digits_sprites[value]
+		print("teminal2 emit")
+	elif name == "temrinal3":
+		$"body/sprite/Digit 3".texture = digits_sprites[value]
+		print("teminal3 emit")
