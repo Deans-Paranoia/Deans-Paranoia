@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://y4kbm2l282iy"]
+[gd_scene load_steps=46 format=3 uid="uid://y4kbm2l282iy"]
 
 [ext_resource type="PackedScene" uid="uid://ctspysrhlil1i" path="res://characters/player.tscn" id="1_6lj7h"]
 [ext_resource type="Script" path="res://characters/studentInput.gd" id="2_vaos0"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://chk0ye2ai6j1d" path="res://assets/student_assets/student-faking-tasksPLACEHOLDER.png" id="8_aycfn"]
 [ext_resource type="PackedScene" uid="uid://e6dr2j5nvr1e" path="res://ui/chat/chat.tscn" id="9_o2dvv"]
 [ext_resource type="Script" path="res://ui/chat/chat.gd" id="10_kt83q"]
+[ext_resource type="PackedScene" uid="uid://htf4mdnxvqkp" path="res://ui/chat/chat_message.tscn" id="11_u1hi7"]
 
 [sub_resource type="Animation" id="Animation_hnehq"]
 length = 0.001
@@ -426,6 +427,9 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="CharacterBody2D" index="13"]
+libraries = {
+"": SubResource("AnimationLibrary_sav45")
+}
 tree_root = SubResource("AnimationNodeStateMachine_5hyjn")
 anim_player = NodePath("../AnimationPlayer")
 parameters/FakingTasks/blend_position = Vector2(-0.751801, 0.339207)
@@ -435,6 +439,7 @@ script = ExtResource("3_8lqqm")
 
 [node name="Chat" parent="CharacterBody2D" index="14" instance=ExtResource("9_o2dvv")]
 script = ExtResource("10_kt83q")
+new_message = ExtResource("11_u1hi7")
 
 [connection signal="disable_player_movement_for_duration" from="." to="CharacterBody2D" method="_on_disable_player_movement_for_duration"]
 [connection signal="player_task" from="." to="CharacterBody2D/AnimationTree" method="_on_student_player_task"]
@@ -443,7 +448,7 @@ script = ExtResource("10_kt83q")
 [connection signal="timeout" from="CharacterBody2D/DiggingTimer" to="." method="_on_digging_timer_timeout"]
 [connection signal="timeout" from="CharacterBody2D/FreezeTimer" to="." method="_on_freeze_timer_timeout"]
 [connection signal="timeout" from="CharacterBody2D/ServerTimer" to="." method="_on_server_timer_timeout"]
-[connection signal="area_entered" from="CharacterBody2D/PlayerArea" to="." method="_on_task_area_entered"]
 [connection signal="area_entered" from="CharacterBody2D/PlayerArea" to="." method="_on_player_area_area_entered"]
+[connection signal="area_entered" from="CharacterBody2D/PlayerArea" to="." method="_on_task_area_entered"]
 [connection signal="area_exited" from="CharacterBody2D/PlayerArea" to="." method="_on_player_area_area_exited"]
 [connection signal="area_exited" from="CharacterBody2D/PlayerArea" to="." method="_on_task_area_exited"]
