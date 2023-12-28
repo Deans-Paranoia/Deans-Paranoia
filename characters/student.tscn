@@ -410,7 +410,6 @@ wait_time = 2.0
 [node name="ServerTimer" type="Timer" parent="CharacterBody2D" index="8"]
 
 [node name="CollisionShape2D" parent="CharacterBody2D" index="9"]
-visible = false
 position = Vector2(3, 45)
 shape = SubResource("CapsuleShape2D_npkcv")
 
