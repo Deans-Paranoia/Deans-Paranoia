@@ -34,6 +34,7 @@ func run_animation(velocity):
 		$"../Sprite2DWalkingLeft".set("visible", false)
 		$"../Sprite2DWalkingDown".set("visible", false)
 		$"../Sprite2D".set("visible", false)
+		$"../Sprite2DFakingTasks".set("visible", false)
 
 		if velocity.x<0:
 			$"../Sprite2DWalkingLeft".set("visible", true)
@@ -49,6 +50,7 @@ func run_animation(velocity):
 func _on_student_player_task(task_type):
 	task_animation(task_type)
 	task_animation.rpc(task_type)
+
 @rpc("any_peer","call_remote")
 func task_animation(task_type):
 	$".".get("parameters/playback").travel("Idle")
@@ -58,7 +60,6 @@ func task_animation(task_type):
 	$"../Sprite2DWalkingLeft".set("visible", false)
 	$"../Sprite2DWalkingDown".set("visible", false)
 	$"../Sprite2D".set("visible", false)
-	$".".get("parameters/playback").travel("FakingTasks")
 	
 	match task_type:
 		"computer":
@@ -72,13 +73,16 @@ func task_animation(task_type):
 			taskVector = Vector2(1,0)
 			
 		"vendingMachine2":
-			taskVector = Vector2(1,0)
+			taskVector = Vector2(0,-1)
 			sprite_to_back_to = $"../Sprite2DWalkingLeft"
 		_:
 			print("Something else")
+			
+	$".".get("parameters/playback").travel("FakingTasks")
 	set("parameters/FakingTasks/blend_position", taskVector)
 	$"../Sprite2DFakingTasks".set("visible", true)
 	await get_tree().create_timer(1).timeout
 	$".".get("parameters/playback").travel("Idle")
-	$"../Sprite2DFakingTasks".set("visible", false)
 	sprite_to_back_to.set("visible",true)
+	$"../Sprite2DFakingTasks".set("visible", false)
+
