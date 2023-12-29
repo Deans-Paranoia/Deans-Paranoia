@@ -36,8 +36,8 @@ var Tasks: = [
 	 Task.new(608.0, -235.0, "walking"),
 	 Task.new(672.0, -235.0, "walking"),
 	 Task.new(729.0, -235.0, "walking"),
-	 Task.new(1251.0, -631.0, "vendingMachine"),
-	 Task.new(-29.0, -1342.0, "vendingMachine2"),
+	 Task.new(1251.0, -650.0, "vendingMachine"),
+	 Task.new(-29.0, -1368.0, "vendingMachine2"),
 
 ]
 

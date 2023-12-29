@@ -16,7 +16,6 @@ func on_task_script_npc_sprite_task(task_type):
 func set_npc(time):
 	await get_tree().create_timer(time).timeout
 	$".".get("parameters/playback").travel("Idle")
-	var taskVector = Vector2.ZERO
 	$".".get("parameters/playback").travel("FakingTasks")
 func taking_notes_loop():
 		
@@ -45,11 +44,13 @@ func computer_loop():
 			
 func vending_machine_loop():
 	
-	taskVector = Vector2(1,0)
+	
 	if  get_parent().get_parent().is_in_group("vendingMachine"):
+		taskVector = Vector2(1,0)
 		sprite_to_back_to = $"../Sprite2DWalkingRight"
 		set_vector_and_sprite.rpc("right",taskVector)
 	else:
+		taskVector = Vector2(0,-1)
 		sprite_to_back_to = $"../Sprite2DWalkingLeft"
 		set_vector_and_sprite.rpc("left",taskVector)
 	while  get_parent().get_parent().is_in_group("vendingMachine") or get_parent().get_parent().is_in_group("vendingMachine2"):
@@ -114,22 +115,28 @@ func run_animation(taskVector):
 	$"../Sprite2DWalkingRight".set("visible", false)
 	$"../Sprite2DWalkingLeft".set("visible", false)
 	$"../Sprite2D".set("visible", false)
+	
 	#upewniam się że postacie nie są dziwnie ulozone przez chodzenie
 	set("parameters/Idle/blend_position",  Vector2(0,0))
 	set("parameters/Walking/blend_position",  Vector2(0,0))
+	#pojawiam animacje taska
+	$".".get("parameters/playback").travel("FakingTasks")
+	$"../Sprite2DFakingTasks".set("visible", true)
 	#upewniam sie ze prawidlowe blend position jest przydzielane (w innym miejscu sie upewnilem ze przypisywanie do grup dziala dobrze)
-	if get_parent().get_parent().is_in_group("vendingMachine") or get_parent().get_parent().is_in_group("vendingMachine2"):
+	if get_parent().get_parent().is_in_group("vendingMachine"):
 		set("parameters/FakingTasks/blend_position", Vector2(1,0))
+	elif get_parent().get_parent().is_in_group("vendingMachine2"):
+		set("parameters/FakingTasks/blend_position", Vector2(0,-1))
 	elif get_parent().get_parent().is_in_group("computer"):
 		set("parameters/FakingTasks/blend_position",  Vector2(0,1))
 	elif  get_parent().get_parent().is_in_group("takingNotes"):
 		set("parameters/FakingTasks/blend_position",  Vector2(-1,0))
-	#pojawiam animacje taska
-	$"../Sprite2DFakingTasks".set("visible", true)
+	
+	
 	await get_tree().create_timer(1).timeout
 	#chowam animacje taska po sekundzie
 	$"../Sprite2DFakingTasks".set("visible", false)
 	#wylaczam taska włączam idle
 	$".".get("parameters/playback").travel("Idle")
-	set("parameters/FakingTasks/blend_position",  Vector2(0,0))
+	
 	sprite_to_back_to.set("visible",true)
