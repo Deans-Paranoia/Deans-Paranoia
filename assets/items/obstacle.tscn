@@ -1,29 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://38ny4g8gl8vm"]
+[gd_scene load_steps=2 format=3 uid="uid://38ny4g8gl8vm"]
 
 [ext_resource type="Texture2D" uid="uid://dwljw3jux5q0j" path="res://assets/redobstacle.png" id="1_qihs7"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_avtpj"]
-size = Vector2(95.0003, 87.5002)
-
 [node name="obstacle" type="Node2D"]
+z_index = 1
 scale = Vector2(0.75, 0.75)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." groups=["obstacles"]]
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
-position = Vector2(2, 45)
+position = Vector2(2, 21.525)
 scale = Vector2(0.355556, 0.334548)
 texture = ExtResource("1_qihs7")
+region_enabled = true
+region_rect = Rect2(-1, 0, 451, 507)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-visible = false
-scale = Vector2(0.999997, 0.999997)
-shape = SubResource("RectangleShape2D_avtpj")
-metadata/_edit_lock_ = true
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(-24, 24)
+polygon = PackedVector2Array(-17.3333, 29.3333, -17.3333, 76, 65.3333, 76, 66.6667, 29.3333, 64, 22.6667, 62.7985, -50.6234, 54.6667, -56, -4, -56, -13.4429, -52.0957, -14.6667, 21.3333)
 
 [node name="ObstacleArea" type="Area2D" parent="StaticBody2D"]
-visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D/ObstacleArea"]
 visible = false
-polygon = PackedVector2Array(-50, 40, -80, 40, -80, -45, -50, -45, -50, -75, 45, -75, 45, -45, 75, -45, 75, 40, 45, 40, 45, 70, -50, 70)
+position = Vector2(4, 20)
+polygon = PackedVector2Array(-45.3333, 34.6667, -46.6667, 54.6667, -78.6667, 34.6667, -80, -42.6667, -45.3333, -44, -48, -82.6667, 45.3333, -81.3333, 41.3333, -45.3333, 73.3333, -44, 74.6667, 33.3333, 42.6667, 56, 41.3333, 34.6667)

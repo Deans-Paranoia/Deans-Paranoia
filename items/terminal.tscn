@@ -1,14 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmqsyy0b226i3"]
+[gd_scene load_steps=5 format=3 uid="uid://dmqsyy0b226i3"]
 
 [ext_resource type="Texture2D" uid="uid://6dvu00j6jjxr" path="res://assets/terminal_0.png" id="1_ujpqw"]
 [ext_resource type="Script" path="res://items/terminal.gd" id="1_x6vuj"]
 [ext_resource type="Texture2D" uid="uid://um7s1birfl87" path="res://assets/terminal_green.png" id="2_besxy"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_y235l"]
-size = Vector2(200, 200)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u4aqg"]
-size = Vector2(286, 286)
+size = Vector2(403.333, 336.667)
 
 [node name="terminal" type="Node2D"]
 visible = false
@@ -26,13 +23,14 @@ texture = ExtResource("2_besxy")
 position = Vector2(0, -10)
 texture = ExtResource("1_ujpqw")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Terminal"]
-scale = Vector2(0.3, 0.3)
-shape = SubResource("RectangleShape2D_y235l")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Terminal"]
+scale = Vector2(0.987094, 1)
+polygon = PackedVector2Array(-35, -32, -39, 19, -54, 33, -55.7191, 64, 27.353, 63, 28.3661, 42, 52, 24, 54, -43, -20, -44)
 
 [node name="TerminalArea" type="Area2D" parent="Terminal"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Terminal/TerminalArea"]
+position = Vector2(1.5, -6.5)
 scale = Vector2(0.3, 0.3)
 shape = SubResource("RectangleShape2D_u4aqg")
 

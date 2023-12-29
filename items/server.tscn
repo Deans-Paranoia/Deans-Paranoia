@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://bsgmwg36gvtxu"]
+[gd_scene load_steps=5 format=3 uid="uid://bsgmwg36gvtxu"]
 
 [ext_resource type="Texture2D" uid="uid://71m2ld2gmwu" path="res://assets/server.png" id="1_mkupf"]
 [ext_resource type="Script" path="res://items/server.gd" id="1_xfjyh"]
+[ext_resource type="Texture2D" uid="uid://6dvu00j6jjxr" path="res://assets/terminal_0.png" id="3_ti78j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yc460"]
-size = Vector2(138, 99)
+size = Vector2(138, 207.75)
 
 [node name="server" type="Node2D"]
 scale = Vector2(0.8, 0.8)
@@ -14,17 +15,33 @@ script = ExtResource("1_xfjyh")
 
 [node name="server_collision" type="CollisionPolygon2D" parent="body"]
 position = Vector2(-7.5, 3)
-polygon = PackedVector2Array(-57.5, -9, -55.5, 54, 39.5, 56, 71.5, 27, 71.5, -10)
+polygon = PackedVector2Array(-56.25, -9.25, -55.5, 54, 39.5, 56, 71.5, 27, 72.5, -149.25, -27.5, -149.25, -52.5, -133)
 
 [node name="sprite" type="Sprite2D" parent="body"]
 position = Vector2(0, -50)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("1_mkupf")
 
+[node name="Digit 1" type="Sprite2D" parent="body/sprite"]
+position = Vector2(-90, -20)
+texture = ExtResource("3_ti78j")
+
+[node name="Digit 2" type="Sprite2D" parent="body/sprite"]
+position = Vector2(-35, -20)
+texture = ExtResource("3_ti78j")
+
+[node name="Digit 3" type="Sprite2D" parent="body/sprite"]
+position = Vector2(20, -20)
+texture = ExtResource("3_ti78j")
+
 [node name="ServerArea" type="Area2D" parent="body"]
+visible = false
+position = Vector2(0, -25.265)
+scale = Vector2(1.035, 1.035)
 
 [node name="CollsionShape2D" type="CollisionShape2D" parent="body/ServerArea"]
-position = Vector2(1, 9.5)
+position = Vector2(1, -25.265)
+scale = Vector2(1.035, 1.035)
 shape = SubResource("RectangleShape2D_yc460")
 
 [node name="Timer" type="Timer" parent="."]

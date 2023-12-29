@@ -2,6 +2,8 @@ extends Node2D
 signal student_picked()
 signal student_catched(name)
 var is_tablet_open: bool = false
+@onready var scene = load("res://ui/deans_tablet/deans_tablet.tscn")
+var tablet_scene 
 # sprawdza czy wywołana została akcja "open_tablet" i wywołuje odpowiednią funkcję
 var body:CharacterBody2D
 var can_use_alarm : bool = false
@@ -12,6 +14,7 @@ func _ready():
 	if globalScript.deanId == multiplayer.get_unique_id() and get_parent().name != "lecture_hall":
 		student_picked.connect(hall.on_student_moved)
 		student_catched.connect(hall.on_student_catched)
+		
 func _input(event):
 	# event do obslugi tabletu przez dziekana
 	if event.is_action_pressed("open_tablet"):
@@ -47,13 +50,17 @@ func change_alarm_state():
 		fire_alarm_reference.use_alarm(false)
 
 func manage_deans_tablet():
+	
 	# funkcja do obsługi tabletu przez dziekana
 	match is_tablet_open:
 		false:
-			print("Tablet opened")
+			if get_tree().root.get_node_or_null("DeansTablet")==null:
+				tablet_scene = scene.instantiate()
+				get_tree().root.add_child(tablet_scene)
+			tablet_scene.visible = true
 			is_tablet_open = true
 		true:
-			print("Tablet closed")
+			tablet_scene.visible = false
 			is_tablet_open = false
 
 

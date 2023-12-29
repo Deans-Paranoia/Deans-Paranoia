@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://htf4mdnxvqkp" path="res://ui/chat/chat_message.tscn" id="11_u40et"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u0pr7"]
-size = Vector2(2.22916, 4.19999)
+size = Vector2(1.28124, 4.29999)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_paxh0"]
 size = Vector2(194, 58)
@@ -45,10 +45,9 @@ wait_time = 600.0
 one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-visible = false
-position = Vector2(640, -1776)
+position = Vector2(1697, -1157)
 enabled = false
-zoom = Vector2(0.6, 0.6)
+zoom = Vector2(0.2, 0.2)
 
 [node name="TaskAreas" type="Node2D" parent="."]
 
@@ -56,7 +55,7 @@ zoom = Vector2(0.6, 0.6)
 position = Vector2(1238, -633)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TaskAreas/VendingMachine1Area"]
-position = Vector2(10.625, -11)
+position = Vector2(29.5313, -15.5)
 scale = Vector2(18, 10)
 shape = SubResource("RectangleShape2D_u0pr7")
 

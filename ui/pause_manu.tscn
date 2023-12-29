@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkpceoqr0p20i"]
+
+[ext_resource type="Script" path="res://ui/pause_menu.gd" id="1_jh5fn"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jh5fn")
+
+[node name="ResumeButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 475.0
+offset_top = 185.0
+offset_right = 675.0
+offset_bottom = 225.0
+text = "Wznów"
+
+[node name="OptionsButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 475.0
+offset_top = 249.0
+offset_right = 675.0
+offset_bottom = 289.0
+text = "Opcje"
+
+[node name="ExitButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 475.0
+offset_top = 313.0
+offset_right = 675.0
+offset_bottom = 353.0
+text = "Wyjdź"
+
+[connection signal="pressed" from="ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
