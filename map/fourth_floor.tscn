@@ -151,7 +151,7 @@ scale = Vector2(2, 2)
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/StaticBody2D"]
 position = Vector2(-1103.67, -399.696)
 scale = Vector2(1.01314, 0.378047)
-polygon = PackedVector2Array(1421, -170.095, 1357.83, 126.164, 1247.28, 295.455, 931.431, 295.455, 931.431, 380.101, 899.846, 380.101, 899.846, 634.038, 931.431, 634.038, 931.431, 718.683, 994.601, 718.683, 994.601, 803.329, 836.676, 803.329, 836.676, 1057.27, 741.921, 1057.27, 741.921, 1395.85, 836.676, 1395.85, 836.676, 1649.78, 994.601, 1649.78, 994.601, 1734.43, 931.431, 1734.43, 931.431, 1819.08, 899.846, 1819.08, 899.846, 2073.01, 931.431, 2073.01, 931.431, 2157.66, 1247.28, 2157.66, 1247.28, 2073.01, 1278.87, 2073.01, 1278.87, 1819.08, 1247.28, 1819.08, 1247.28, 1734.43, 1184.11, 1734.43, 1184.11, 1649.78, 1342.04, 1649.78, 1342.04, 1395.85, 1436.79, 1395.85, 1436.79, 1057.27, 1342.04, 1057.27, 1342.04, 803.329, 1184.11, 803.329, 1184.11, 718.683, 1247.28, 718.683, 1247.28, 634.038, 1278.87, 634.038, 1278.87, 380.101, 1247.28, 380.101, 1247.28, 295.455, 1326.24, 168.487, 1618.9, 94.4222, 1531.55, 2199.98, 631.374, 2369.27, 678.751, 337.778)
+polygon = PackedVector2Array(893.43, 194.939, 1247.28, 282.229, 1247.28, 360.262, 932.418, 361.585, 931.925, 446.23, 899.846, 446.23, 899.846, 634.038, 931.431, 634.038, 931.431, 718.683, 994.601, 718.683, 994.108, 868.136, 837.17, 869.458, 836.183, 1119.43, 741.921, 1119.43, 741.921, 1395.85, 836.676, 1395.85, 836.676, 1649.78, 994.601, 1649.78, 994.601, 1797.91, 931.431, 1799.24, 931.431, 1903.72, 899.846, 1903.76, 899.846, 2073.01, 931.431, 2073.01, 931.431, 2157.66, 1247.28, 2157.66, 1247.28, 2073.01, 1278.87, 2073.01, 1279.36, 1882.56, 1247.28, 1882.56, 1247.28, 1797.91, 1184.6, 1799.24, 1184.11, 1649.78, 1342.04, 1649.78, 1342.04, 1395.85, 1436.79, 1395.85, 1436.79, 1122.07, 1343.02, 1122.07, 1342.04, 1057.27, 1342.04, 868.136, 1184.6, 866.813, 1184.11, 718.683, 1247.28, 718.683, 1247.28, 634.038, 1278.87, 634.038, 1278.37, 446.23, 1247.77, 446.23, 1247.77, 295.455, 1591.26, 249.165, 1541.91, 2205.27, 722.674, 2209.24, 678.751, 337.778)
 one_way_collision_margin = 0.0
 
 [node name="elevator" parent="." groups=["elevatorFourth"] instance=ExtResource("2_1m5us")]
@@ -183,1115 +183,859 @@ scale = Vector2(2.5, 2.5)
 position = Vector2(0, -64)
 
 [node name="TopObstacleobstacle" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-288, -480)
 
 [node name="TopObstacleobstacle3" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-224, -480)
 
 [node name="TopObstacleobstacle4" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-160, -480)
 
 [node name="TopObstacleobstacle5" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-96, -480)
 
 [node name="TopObstacleobstacle6" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-32, -480)
 
 [node name="TopObstacleobstacle7" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(32, -480)
 
 [node name="TopObstacleobstacle8" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(96, -480)
 
 [node name="TopObstacleobstacle9" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(160, -480)
 
 [node name="TopObstacleobstacle10" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(224, -480)
 
 [node name="TopObstacleobstacle11" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(288, -480)
 
 [node name="TopObstacleobstacle18" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-288, -416)
 
 [node name="TopObstacleobstacle19" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-224, -416)
 
 [node name="TopObstacleobstacle20" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-160, -416)
 
 [node name="TopObstacleobstacle21" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-96, -416)
 
 [node name="TopObstacleobstacle22" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-32, -416)
 
 [node name="TopObstacleobstacle23" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(32, -416)
 
 [node name="TopObstacleobstacle24" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(96, -416)
 
 [node name="TopObstacleobstacle25" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(160, -416)
 
 [node name="TopObstacleobstacle26" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(224, -416)
 
 [node name="TopObstacleobstacle27" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(288, -416)
 
 [node name="TopObstacleobstacle28" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-288, -352)
 
 [node name="TopObstacleobstacle29" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-224, -352)
 
 [node name="TopObstacleobstacle30" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-160, -352)
 
 [node name="TopObstacleobstacle31" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-96, -352)
 
 [node name="TopObstacleobstacle32" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-32, -352)
 
 [node name="TopObstacleobstacle33" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(32, -352)
 
 [node name="TopObstacleobstacle34" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(96, -352)
 
 [node name="TopObstacleobstacle35" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(160, -352)
 
 [node name="TopObstacleobstacle36" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(224, -352)
 
 [node name="TopObstacleobstacle37" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(288, -352)
 
 [node name="TopObstacleobstacle38" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-288, -288)
 
 [node name="TopObstacleobstacle39" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-224, -288)
 
 [node name="TopObstacleobstacle40" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-160, -288)
 
 [node name="TopObstacleobstacle41" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-96, -288)
 
 [node name="TopObstacleobstacle42" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-32, -288)
 
 [node name="TopObstacleobstacle43" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(32, -288)
 
 [node name="TopObstacleobstacle44" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(96, -288)
 
 [node name="TopObstacleobstacle45" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(160, -288)
 
 [node name="TopObstacleobstacle46" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(224, -288)
 
 [node name="TopObstacleobstacle47" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(288, -288)
 
 [node name="TopObstacleobstacle50" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-160, -224)
 
 [node name="TopObstacleobstacle51" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-96, -224)
 
 [node name="TopObstacleobstacle52" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-32, -224)
 
 [node name="TopObstacleobstacle53" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(32, -224)
 
 [node name="TopObstacleobstacle54" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(96, -224)
 
 [node name="TopObstacleobstacle55" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(160, -224)
 
 [node name="TopObstacleobstacle58" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-160, -160)
 
 [node name="TopObstacleobstacle59" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-96, -160)
 
 [node name="TopObstacleobstacle60" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-32, -160)
 
 [node name="TopObstacleobstacle61" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(32, -160)
 
 [node name="TopObstacleobstacle62" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(96, -160)
 
 [node name="TopObstacleobstacle63" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(160, -160)
 
 [node name="MiddleObstacle_obstacle64" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-160, -96)
 
 [node name="MiddleObstacle_obstacle65" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-96, -96)
 
 [node name="MiddleObstacle_obstacle66" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-32, -96)
 
 [node name="MiddleObstacle_obstacle67" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(32, -96)
 
 [node name="MiddleObstacle_obstacle68" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(96, -96)
 
 [node name="MiddleObstacle_obstacle69" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(160, -96)
 
 [node name="MiddleObstacle_obstacle71" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-480, -96)
 
 [node name="MiddleObstacle_obstacle72" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-416, -96)
 
 [node name="MiddleObstacle_obstacle73" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-352, -96)
 
 [node name="MiddleObstacle_obstacle74" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-288, -96)
 
 [node name="MiddleObstacle_obstacle75" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-224, -96)
 
 [node name="MiddleObstacle_obstacle76" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(224, -96)
 
 [node name="MiddleObstacle_obstacle77" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(288, -96)
 
 [node name="MiddleObstacle_obstacle78" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(352, -96)
 
 [node name="MiddleObstacle_obstacle79" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(416, -96)
 
 [node name="MiddleObstacle_obstacle80" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(480, -96)
 
 [node name="MiddleObstacle_obstacle70" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-160, -32)
 
 [node name="MiddleObstacle_obstacle81" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-96, -32)
 
 [node name="MiddleObstacle_obstacle82" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-32, -32)
 
 [node name="MiddleObstacle_obstacle83" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(32, -32)
 
 [node name="MiddleObstacle_obstacle84" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(96, -32)
 
 [node name="MiddleObstacle_obstacle85" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(160, -32)
 
 [node name="MiddleObstacle_obstacle86" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-480, -32)
 
 [node name="MiddleObstacle_obstacle87" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-416, -32)
 
 [node name="MiddleObstacle_obstacle88" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-352, -32)
 
 [node name="MiddleObstacle_obstacle89" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-288, -32)
 
 [node name="MiddleObstacle_obstacle90" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-224, -32)
 
 [node name="MiddleObstacle_obstacle91" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(224, -32)
 
 [node name="MiddleObstacle_obstacle92" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(288, -32)
 
 [node name="MiddleObstacle_obstacle93" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(352, -32)
 
 [node name="MiddleObstacle_obstacle94" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(416, -32)
 
 [node name="MiddleObstacle_obstacle95" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(480, -32)
 
 [node name="MiddleObstacle_obstacle96" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-160, 32)
 
 [node name="MiddleObstacle_obstacle97" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-96, 32)
 
 [node name="MiddleObstacle_obstacle98" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-32, 32)
 
 [node name="MiddleObstacle_obstacle99" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(32, 32)
 
 [node name="MiddleObstacle_obstacle100" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(96, 32)
 
 [node name="MiddleObstacle_obstacle101" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(160, 32)
 
 [node name="MiddleObstacle_obstacle102" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-480, 32)
 
 [node name="MiddleObstacle_obstacle103" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-416, 32)
 
 [node name="MiddleObstacle_obstacle104" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-352, 32)
 
 [node name="MiddleObstacle_obstacle105" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-288, 32)
 
 [node name="MiddleObstacle_obstacle106" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-224, 32)
 
 [node name="MiddleObstacle_obstacle107" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(224, 32)
 
 [node name="MiddleObstacle_obstacle108" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(288, 32)
 
 [node name="MiddleObstacle_obstacle109" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(352, 32)
 
 [node name="MiddleObstacle_obstacle110" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(416, 32)
 
 [node name="MiddleObstacle_obstacle111" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(480, 32)
 
 [node name="MiddleObstacle_obstacle112" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-160, 96)
 
 [node name="MiddleObstacle_obstacle113" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-96, 96)
 
 [node name="MiddleObstacle_obstacle114" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-32, 96)
 
 [node name="MiddleObstacle_obstacle115" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(32, 96)
 
 [node name="MiddleObstacle_obstacle116" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(96, 96)
 
 [node name="MiddleObstacle_obstacle117" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(160, 96)
 
 [node name="MiddleObstacle_obstacle118" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-480, 96)
 
 [node name="MiddleObstacle_obstacle128" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-544, 96)
 
 [node name="MiddleObstacle_obstacle129" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(544, 96)
 
 [node name="MiddleObstacle_obstacle119" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-416, 96)
 
 [node name="MiddleObstacle_obstacle120" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-352, 96)
 
 [node name="MiddleObstacle_obstacle121" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-288, 96)
 
 [node name="MiddleObstacle_obstacle122" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-224, 96)
 
 [node name="MiddleObstacle_obstacle123" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(224, 96)
 
 [node name="MiddleObstacle_obstacle124" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(288, 96)
 
 [node name="MiddleObstacle_obstacle125" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(352, 96)
 
 [node name="MiddleObstacle_obstacle126" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(416, 96)
 
 [node name="MiddleObstacle_obstacle127" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(480, 96)
 
 [node name="MiddleObstacle_obstacle130" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-160, 160)
 
 [node name="MiddleObstacle_obstacle131" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-96, 160)
 
 [node name="MiddleObstacle_obstacle134" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(96, 160)
 
 [node name="MiddleObstacle_obstacle135" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(160, 160)
 
 [node name="MiddleObstacle_obstacle136" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-480, 160)
 
 [node name="MiddleObstacle_obstacle137" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-544, 160)
 
 [node name="MiddleObstacle_obstacle138" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(544, 160)
 
 [node name="MiddleObstacle_obstacle139" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-416, 160)
 
 [node name="MiddleObstacle_obstacle140" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-352, 160)
 
 [node name="MiddleObstacle_obstacle141" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-288, 160)
 
 [node name="MiddleObstacle_obstacle142" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-224, 160)
 
 [node name="MiddleObstacle_obstacle143" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(224, 160)
 
 [node name="MiddleObstacle_obstacle144" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(288, 160)
 
 [node name="MiddleObstacle_obstacle145" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(352, 160)
 
 [node name="MiddleObstacle_obstacle146" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(416, 160)
 
 [node name="MiddleObstacle_obstacle147" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(480, 160)
 
 [node name="MiddleObstacle_obstacle148" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-160, 224)
 
 [node name="MiddleObstacle_obstacle149" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-96, 224)
 
 [node name="MiddleObstacle_obstacle152" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(96, 224)
 
 [node name="MiddleObstacle_obstacle153" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(160, 224)
 
 [node name="MiddleObstacle_obstacle154" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-480, 224)
 
 [node name="MiddleObstacle_obstacle155" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-544, 224)
 
 [node name="MiddleObstacle_obstacle156" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(544, 224)
 
 [node name="MiddleObstacle_obstacle157" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-416, 224)
 
 [node name="MiddleObstacle_obstacle158" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-352, 224)
 
 [node name="MiddleObstacle_obstacle159" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-288, 224)
 
 [node name="MiddleObstacle_obstacle160" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-224, 224)
 
 [node name="MiddleObstacle_obstacle161" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(224, 224)
 
 [node name="MiddleObstacle_obstacle162" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(288, 224)
 
 [node name="MiddleObstacle_obstacle163" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(352, 224)
 
 [node name="MiddleObstacle_obstacle164" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(416, 224)
 
 [node name="MiddleObstacle_obstacle165" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(480, 224)
 
 [node name="MiddleObstacle_obstacle166" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-160, 288)
 
 [node name="MiddleObstacle_obstacle167" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-96, 288)
 
 [node name="MiddleObstacle_obstacle170" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(96, 288)
 
 [node name="MiddleObstacle_obstacle171" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(160, 288)
 
 [node name="MiddleObstacle_obstacle172" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-480, 288)
 
 [node name="MiddleObstacle_obstacle175" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-416, 288)
 
 [node name="MiddleObstacle_obstacle176" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-352, 288)
 
 [node name="MiddleObstacle_obstacle177" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-288, 288)
 
 [node name="MiddleObstacle_obstacle178" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-224, 288)
 
 [node name="MiddleObstacle_obstacle179" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(224, 288)
 
 [node name="MiddleObstacle_obstacle180" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(288, 288)
 
 [node name="MiddleObstacle_obstacle181" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(352, 288)
 
 [node name="MiddleObstacle_obstacle182" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(416, 288)
 
 [node name="MiddleObstacle_obstacle183" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(480, 288)
 
 [node name="MiddleObstacle_obstacle184" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-160, 352)
 
 [node name="MiddleObstacle_obstacle185" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-96, 352)
 
 [node name="MiddleObstacle_obstacle186" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-32, 352)
 
 [node name="MiddleObstacle_obstacle187" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(32, 352)
 
 [node name="MiddleObstacle_obstacle188" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(96, 352)
 
 [node name="MiddleObstacle_obstacle189" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(160, 352)
 
 [node name="MiddleObstacle_obstacle190" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-480, 352)
 
 [node name="MiddleObstacle_obstacle193" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-416, 352)
 
 [node name="MiddleObstacle_obstacle194" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-352, 352)
 
 [node name="MiddleObstacle_obstacle195" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-288, 352)
 
 [node name="MiddleObstacle_obstacle196" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-224, 352)
 
 [node name="MiddleObstacle_obstacle197" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(224, 352)
 
 [node name="MiddleObstacle_obstacle198" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(288, 352)
 
 [node name="MiddleObstacle_obstacle199" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(352, 352)
 
 [node name="MiddleObstacle_obstacle200" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(416, 352)
 
 [node name="MiddleObstacle_obstacle201" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(480, 352)
 
 [node name="MiddleObstacle_obstacle202" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-160, 416)
 
 [node name="MiddleObstacle_obstacle203" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-96, 416)
 
 [node name="MiddleObstacle_obstacle204" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-32, 416)
 
 [node name="MiddleObstacle_obstacle205" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(32, 416)
 
 [node name="MiddleObstacle_obstacle206" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(96, 416)
 
 [node name="MiddleObstacle_obstacle207" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(160, 416)
 
 [node name="MiddleObstacle_obstacle208" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-480, 416)
 
 [node name="MiddleObstacle_obstacle209" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-416, 416)
 
 [node name="MiddleObstacle_obstacle210" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-352, 416)
 
 [node name="MiddleObstacle_obstacle211" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-288, 416)
 
 [node name="MiddleObstacle_obstacle212" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-224, 416)
 
 [node name="MiddleObstacle_obstacle213" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(224, 416)
 
 [node name="MiddleObstacle_obstacle214" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(288, 416)
 
 [node name="MiddleObstacle_obstacle215" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(352, 416)
 
 [node name="MiddleObstacle_obstacle216" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(416, 416)
 
 [node name="MiddleObstacle_obstacle217" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(480, 416)
 
 [node name="MiddleObstacle_obstacle218" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-160, 480)
 
 [node name="MiddleObstacle_obstacle219" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-96, 480)
 
 [node name="MiddleObstacle_obstacle220" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-32, 480)
 
 [node name="MiddleObstacle_obstacle221" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(32, 480)
 
 [node name="MiddleObstacle_obstacle222" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(96, 480)
 
 [node name="MiddleObstacle_obstacle223" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(160, 480)
 
 [node name="BottomObstacle_obstacle234" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-160, 544)
 
 [node name="BottomObstacle_obstacle235" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-96, 544)
 
 [node name="BottomObstacle_obstacle236" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-32, 544)
 
 [node name="BottomObstacle_obstacle237" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(32, 544)
 
 [node name="BottomObstacle_obstacle238" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(96, 544)
 
 [node name="BottomObstacle_obstacle239" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(160, 544)
 
 [node name="BottomObstacle_obstacle240" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-160, 608)
 
 [node name="BottomObstacle_obstacle246" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-224, 608)
 
 [node name="BottomObstacle_obstacle247" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-288, 608)
 
 [node name="BottomObstacle_obstacle248" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(224, 608)
 
 [node name="BottomObstacle_obstacle249" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(288, 608)
 
 [node name="BottomObstacle_obstacle241" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-96, 608)
 
 [node name="BottomObstacle_obstacle242" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-32, 608)
 
 [node name="BottomObstacle_obstacle243" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(32, 608)
 
 [node name="BottomObstacle_obstacle244" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(96, 608)
 
 [node name="BottomObstacle_obstacle245" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(160, 608)
 
 [node name="BottomObstacle_obstacle250" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-160, 672)
 
 [node name="BottomObstacle_obstacle251" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-224, 672)
 
 [node name="BottomObstacle_obstacle252" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-288, 672)
 
 [node name="BottomObstacle_obstacle253" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(224, 672)
 
 [node name="BottomObstacle_obstacle254" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(288, 672)
 
 [node name="BottomObstacle_obstacle255" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-96, 672)
 
 [node name="BottomObstacle_obstacle256" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-32, 672)
 
 [node name="BottomObstacle_obstacle257" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(32, 672)
 
 [node name="BottomObstacle_obstacle258" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(96, 672)
 
 [node name="BottomObstacle_obstacle259" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(160, 672)
 
 [node name="BottomObstacle_obstacle260" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-160, 736)
 
 [node name="BottomObstacle_obstacle261" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-224, 736)
 
 [node name="BottomObstacle_obstacle262" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-288, 736)
 
 [node name="BottomObstacle_obstacle263" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(224, 736)
 
 [node name="BottomObstacle_obstacle264" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(288, 736)
 
 [node name="BottomObstacle_obstacle265" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-96, 736)
 
 [node name="BottomObstacle_obstacle266" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-32, 736)
 
 [node name="BottomObstacle_obstacle267" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(32, 736)
 
 [node name="BottomObstacle_obstacle268" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(96, 736)
 
 [node name="BottomObstacle_obstacle269" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(160, 736)
 
 [node name="BottomObstacle_obstacle270" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-160, 800)
 
 [node name="BottomObstacle_obstacle271" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-224, 800)
 
 [node name="BottomObstacle_obstacle272" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-288, 800)
 
 [node name="BottomObstacle_obstacle290" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-352, 672)
 
 [node name="BottomObstacle_obstacle291" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-352, 736)
 
 [node name="BottomObstacle_obstacle293" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(352, 672)
 
 [node name="BottomObstacle_obstacle294" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(352, 736)
 
 [node name="BottomObstacle_obstacle273" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(224, 800)
 
 [node name="BottomObstacle_obstacle274" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(288, 800)
 
 [node name="BottomObstacle_obstacle275" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-96, 800)
 
 [node name="BottomObstacle_obstacle276" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-32, 800)
 
 [node name="BottomObstacle_obstacle277" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(32, 800)
 
 [node name="BottomObstacle_obstacle278" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(96, 800)
 
 [node name="BottomObstacle_obstacle279" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(160, 800)
 
 [node name="TopObstacleobstacle12" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(352, -416)
 
 [node name="TopObstacleobstacle16" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(352, -352)
 
 [node name="TopObstacleobstacle2" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-352, -416)
 
 [node name="TopObstacleobstacle13" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("5_2sept")]
-z_index = 1
 position = Vector2(-352, -352)
 
 [node name="MiddleObstacle_obstacleBottomless" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("8_u57bw")]
-z_index = 1
+z_index = 2
 position = Vector2(-480, 480)
 
 [node name="MiddleObstacle_obstacleBottomless2" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("8_u57bw")]
-z_index = 1
+z_index = 2
 position = Vector2(-416, 480)
 
 [node name="MiddleObstacle_obstacleBottomless3" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("8_u57bw")]
-z_index = 1
+z_index = 2
 position = Vector2(-352, 480)
 
 [node name="MiddleObstacle_obstacleBottomless4" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("8_u57bw")]
-z_index = 1
+z_index = 2
 position = Vector2(-288, 480)
 
 [node name="MiddleObstacle_obstacleBottomless5" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("8_u57bw")]
-z_index = 1
+z_index = 2
 position = Vector2(-224, 480)
 
 [node name="MiddleObstacle_obstacleBottomless6" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("8_u57bw")]
-z_index = 1
+z_index = 2
 position = Vector2(224, 480)
 
 [node name="MiddleObstacle_obstacleBottomless7" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("8_u57bw")]
-z_index = 1
+z_index = 2
 position = Vector2(288, 480)
 
 [node name="MiddleObstacle_obstacleBottomless8" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("8_u57bw")]
-z_index = 1
+z_index = 2
 position = Vector2(352, 480)
 
 [node name="MiddleObstacle_obstacleBottomless9" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("8_u57bw")]
-z_index = 1
+z_index = 2
 position = Vector2(416, 480)
 
 [node name="MiddleObstacle_obstacleBottomless10" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("8_u57bw")]
-z_index = 1
+z_index = 2
 position = Vector2(480, 480)
 
 [node name="BottomObstacle_obstacleBottomless11" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("8_u57bw")]
-z_index = 1
+z_index = 2
 position = Vector2(-288, 864)
 
 [node name="BottomObstacle_obstacleBottomless12" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("8_u57bw")]
-z_index = 1
+z_index = 2
 position = Vector2(-224, 864)
 
 [node name="BottomObstacle_obstacleBottomless13" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("8_u57bw")]
-z_index = 1
+z_index = 2
 position = Vector2(-160, 864)
 
 [node name="BottomObstacle_obstacleBottomless14" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("8_u57bw")]
-z_index = 1
+z_index = 2
 position = Vector2(-96, 864)
 
 [node name="BottomObstacle_obstacleBottomless15" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("8_u57bw")]
-z_index = 1
+z_index = 2
 position = Vector2(-32, 864)
 
 [node name="BottomObstacle_obstacleBottomless16" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("8_u57bw")]
-z_index = 1
+z_index = 2
 position = Vector2(32, 864)
 
 [node name="BottomObstacle_obstacleBottomless17" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("8_u57bw")]
-z_index = 1
+z_index = 2
 position = Vector2(96, 864)
 
 [node name="BottomObstacle_obstacleBottomless18" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("8_u57bw")]
-z_index = 1
+z_index = 2
 position = Vector2(158, 864)
 
 [node name="BottomObstacle_obstacleBottomless19" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("8_u57bw")]
-z_index = 1
+z_index = 2
 position = Vector2(222, 864)
 
 [node name="BottomObstacle_obstacleBottomless20" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("8_u57bw")]
-z_index = 1
+z_index = 2
 position = Vector2(293, 864)
 
 [node name="BottomObstacle_obstacleBottomless21" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("8_u57bw")]
-z_index = 1
+z_index = 2
 position = Vector2(357, 800)
 
 [node name="BottomObstacle_obstacleBottomless22" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("8_u57bw")]
-z_index = 1
+z_index = 2
 position = Vector2(-354, 800)
 
 [node name="TopObstacleobstacleBottomless24" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("8_u57bw")]
