@@ -18,6 +18,7 @@ func _ready():
 		var currentPlayer
 		var label
 		if multiplayer.get_unique_id() ==1:
+			$Chat.visible = false
 			while j < 13-globalScript.Players.size():
 				
 				var task_number = rand.randi() % globalScript.Tasks.size()
@@ -55,7 +56,8 @@ func _ready():
 			setPlayer.rpc(i,task_number)
 	if(multiplayer.get_unique_id()==1):
 		get_node("lecture_hall").on_npc_spawn()
-	pass # Replace with function body.
+	elif multiplayer.get_unique_id()==globalScript.deanId:
+		$Chat.visible = false
 func _process(delta):
 	if(multiplayer.get_unique_id()==1):
 		var timeLeft = str(int($RoundTimer.time_left))

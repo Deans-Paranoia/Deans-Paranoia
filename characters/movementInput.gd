@@ -7,7 +7,7 @@ var player_name: String
 var can_move: bool = true
 #zmienna która pozwala określić w którą stronę zwrócony jest gracz (jego wektor przed zatrzymaniem)
 var last_direction = Vector2.ZERO
-
+var temp_speed
 #speed zostało dodane dodatkowo tymczasowo (bez tego ruch jest niezauważalny)
 var speed: int = 250
 
@@ -67,6 +67,15 @@ func _on_disable_player_movement_for_duration(duration):
 	canMove = true
 
 
-
+@rpc("any_peer","call_remote")
+func stop_walking_animation():
+	get_node_or_null("AnimationTree").get("parameters/playback").travel("Idle")
 func _on_chat_chat_opened(is_opened):
+	if is_opened:
+		temp_speed = speed
+		speed = 0
+		stop_walking_animation()
+		stop_walking_animation.rpc()
+	else:
+		speed = temp_speed
 	canMove = !is_opened

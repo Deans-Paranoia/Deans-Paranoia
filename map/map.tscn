@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bsldsfbg1mo8e"]
+[gd_scene load_steps=16 format=3 uid="uid://bsldsfbg1mo8e"]
 
 [ext_resource type="Script" path="res://map/map.gd" id="1_dmw7b"]
 [ext_resource type="PackedScene" uid="uid://bm1ngabod5xlp" path="res://map/third_floor.tscn" id="2_cmphr"]
@@ -8,6 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://cw8354n8rrb6q" path="res://characters/npc.tscn" id="4_8xdmr"]
 [ext_resource type="PackedScene" uid="uid://ctkxjg73cfako" path="res://map/lecture_hall.tscn" id="7_tmh0k"]
 [ext_resource type="Script" path="res://map/areaNotifiers.gd" id="8_fbx0e"]
+[ext_resource type="PackedScene" uid="uid://e6dr2j5nvr1e" path="res://ui/chat/chat.tscn" id="9_8epgx"]
+[ext_resource type="Script" path="res://ui/chat/chat.gd" id="10_nc5fj"]
+[ext_resource type="PackedScene" uid="uid://htf4mdnxvqkp" path="res://ui/chat/chat_message.tscn" id="11_u40et"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u0pr7"]
 size = Vector2(2.22916, 4.19999)
@@ -38,7 +41,7 @@ position = Vector2(3623, -976)
 position = Vector2(-3202, -1211)
 
 [node name="RoundTimer" type="Timer" parent="."]
-wait_time = 60.0
+wait_time = 600.0
 one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -100,6 +103,10 @@ scale = Vector2(21, 21.85)
 [node name="WalkingNotifier" type="VisibleOnScreenNotifier2D" parent="TaskAreas/AreaNotifiers"]
 position = Vector2(579, -153)
 scale = Vector2(19.3, 22.4)
+
+[node name="Chat" parent="." instance=ExtResource("9_8epgx")]
+script = ExtResource("10_nc5fj")
+new_message = ExtResource("11_u40et")
 
 [connection signal="timeout" from="RoundTimer" to="." method="_on_round_timer_timeout"]
 [connection signal="screen_entered" from="TaskAreas/AreaNotifiers/NotesAreaNotifier" to="TaskAreas/AreaNotifiers" method="_on_notes_area_notifier_screen_entered"]
