@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://e6dr2j5nvr1e"]
+
+[node name="Chat" type="CanvasLayer"]
+scale = Vector2(0.5, 0.5)
+transform = Transform2D(0.5, 0, 0, 0.5, 0, 0)
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color(1, 1, 1, 0.5)
+offset_right = 300.0
+offset_bottom = 300.0
+size_flags_horizontal = 0
+size_flags_vertical = 10
+
+[node name="VBoxMessages" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -298.0
+offset_bottom = -35.0
+grow_horizontal = 2
+grow_vertical = 0
+metadata/_edit_lock_ = true
+
+[node name="VBoxInput" type="VBoxContainer" parent="Panel"]
+modulate = Color(1, 1, 1, 0.784314)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 2
+metadata/_edit_lock_ = true
+
+[node name="Input" type="LineEdit" parent="Panel/VBoxInput"]
+layout_mode = 2
+size_flags_vertical = 8
+placeholder_text = "Press ENTER to type"
+alignment = 1
