@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://items/elevatorSetup.gd" id="1_sgu5p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6lwfo"]
-size = Vector2(90, 157)
+size = Vector2(123.333, 190)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_52sja"]
 size = Vector2(133, 179.5)
@@ -17,6 +17,7 @@ script = ExtResource("1_sgu5p")
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Elevator"]
+position = Vector2(1.66667, 1.66667)
 shape = SubResource("RectangleShape2D_6lwfo")
 
 [node name="Elevator" type="Sprite2D" parent="Elevator"]
@@ -27,5 +28,4 @@ texture = ExtResource("1_iro4j")
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Elevator/ElevatorArea"]
-position = Vector2(-1.5, 11.25)
 shape = SubResource("RectangleShape2D_52sja")
