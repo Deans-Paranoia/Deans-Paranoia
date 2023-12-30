@@ -7,6 +7,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0hrm5"]
 size = Vector2(472, 448)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p3gj2"]
+size = Vector2(120, 128)
+
 [node name="Dean" instance=ExtResource("1_hbpgo")]
 scale = Vector2(0.25, 0.25)
 script = ExtResource("2_14kl1")
@@ -19,6 +22,9 @@ shape = SubResource("RectangleShape2D_0hrm5")
 [node name="Sprite2D" parent="CharacterBody2D" index="1"]
 scale = Vector2(0.42, 0.42)
 texture = ExtResource("3_rxgh1")
+
+[node name="CollisionShape2D" parent="CharacterBody2D" index="3"]
+shape = SubResource("RectangleShape2D_p3gj2")
 
 [node name="Label" parent="CharacterBody2D" index="5"]
 offset_left = -100.0
