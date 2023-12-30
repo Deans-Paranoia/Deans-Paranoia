@@ -56,8 +56,8 @@ func _ready():
 			setPlayer.rpc(i,task_number)
 	if(multiplayer.get_unique_id()==1):
 		get_node("lecture_hall").on_npc_spawn()
-	elif multiplayer.get_unique_id()==globalScript.deanId:
-		$Chat.visible = false
+	#elif multiplayer.get_unique_id()==globalScript.deanId:
+		#$Chat.visible = false
 func _process(delta):
 	if(multiplayer.get_unique_id()==1):
 		var timeLeft = str(int($RoundTimer.time_left))
