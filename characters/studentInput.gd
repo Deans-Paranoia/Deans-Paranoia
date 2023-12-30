@@ -239,27 +239,32 @@ func _on_player_area_area_entered(area):
 		
 	if (area_entered == "VendingMachine1Area" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
 		danger_instance.queue_free()
-		catchable = false
+		change_catchable(false)
+		change_catchable.rpc(false)
 		current_task_area = "vendingMachine1"
 		
 	if (area_entered == "VendingMachine2Area" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
 		danger_instance.queue_free()
-		catchable = false
+		change_catchable(false)
+		change_catchable.rpc(false)
 		current_task_area = "vendingMachine2"
 		
 	if (area_entered == "ComputersArea" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
 		danger_instance.queue_free()
-		catchable = false
+		change_catchable(false)
+		change_catchable.rpc(false)
 		current_task_area = "computer"
 		
 	if (area_entered == "NotesArea" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
 		danger_instance.queue_free()
-		catchable = false
+		change_catchable(false)
+		change_catchable.rpc(false)
 		current_task_area = "takingNotes"
 		
 	if (area_entered == "WalkingArea" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
 		danger_instance.queue_free()
-		catchable = false
+		change_catchable(false)
+		change_catchable.rpc(false)
 func _on_player_area_area_exited(area):
 	#funkcja  do rejestrowania aktualnie opuszczonej area
 	var area_exited = area.get_name()
@@ -281,32 +286,39 @@ func _on_player_area_area_exited(area):
 	if (area_exited == "VendingMachine1Area" and self.name == str(multiplayer.get_unique_id())):
 		danger_instance = dangerScene.instantiate()
 		add_child(danger_instance)
-		catchable = true
+		change_catchable(true)
+		change_catchable.rpc(true)
 		current_task_area = ""
 		
 	if (area_exited == "VendingMachine2Area" and self.name == str(multiplayer.get_unique_id())):
 		danger_instance = dangerScene.instantiate()
 		add_child(danger_instance)
-		catchable = true
+		change_catchable(true)
+		change_catchable.rpc(true)
 		current_task_area = ""
 		
 	if (area_exited == "ComputersArea" and self.name == str(multiplayer.get_unique_id())):
 		danger_instance = dangerScene.instantiate()
 		add_child(danger_instance)
-		catchable = true
+		change_catchable(true)
+		change_catchable.rpc(true)
 		current_task_area = ""
 		
 	if (area_exited == "NotesArea" and self.name == str(multiplayer.get_unique_id())):
 		danger_instance = dangerScene.instantiate()
 		add_child(danger_instance)
-		catchable = true
+		change_catchable(true)
+		change_catchable.rpc(true)
 		current_task_area = ""
 		
 	if (area_exited == "WalkingArea" and self.name == str(multiplayer.get_unique_id())):
 		danger_instance = dangerScene.instantiate()
 		add_child(danger_instance)
-		catchable = true
-
+		change_catchable(true)
+		change_catchable.rpc(true)
+@rpc("any_peer","call_remote")
+func change_catchable(boolean):
+	catchable = boolean
 func stop_player_movement():
 	#funkcja  do zatrzymania movementu studenta, zbiera aktualna predkosc i przechowuje ja w temp_speed
 	temp_speed = body.take_current_speed_value()
