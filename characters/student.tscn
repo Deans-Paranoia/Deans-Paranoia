@@ -11,7 +11,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_npkcv"]
 radius = 30.0
-height = 100.0
+height = 106.667
 
 [sub_resource type="Animation" id="Animation_hnehq"]
 length = 0.001
@@ -468,9 +468,6 @@ wait_time = 2.0
 position = Vector2(3.33333, 3.33333)
 shape = SubResource("CapsuleShape2D_npkcv")
 
-[node name="CollisionShape2D" parent="CharacterBody2D/PlayerArea" index="0"]
-position = Vector2(0, 1.66666)
-
 [node name="Label" parent="CharacterBody2D" index="11"]
 anchors_preset = -1
 offset_bottom = -115.0
@@ -481,9 +478,6 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="CharacterBody2D" index="13"]
-libraries = {
-"": SubResource("AnimationLibrary_sav45")
-}
 tree_root = SubResource("AnimationNodeStateMachine_5hyjn")
 anim_player = NodePath("../AnimationPlayer")
 parameters/FakingTasks/blend_position = Vector2(0.00479996, -0.992857)
