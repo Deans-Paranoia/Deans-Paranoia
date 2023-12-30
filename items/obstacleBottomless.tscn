@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://chdhffwjnpe65" path="res://assets/ObstacleTop.png" id="1_vsg0t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_avtpj"]
-size = Vector2(80.0002, 78.6669)
+size = Vector2(92.0003, 90.6669)
 
 [node name="obstacleBottomless" type="Node2D"]
 scale = Vector2(0.75, 0.75)
@@ -16,7 +16,7 @@ scale = Vector2(0.355556, 0.334548)
 texture = ExtResource("1_vsg0t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(1.33333, 0.666664)
+position = Vector2(0.666664, 3.17891e-07)
 scale = Vector2(0.999997, 0.999997)
 shape = SubResource("RectangleShape2D_avtpj")
 metadata/_edit_lock_ = true
