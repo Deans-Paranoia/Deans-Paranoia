@@ -79,13 +79,9 @@ func show_end_screen():
 		endgame_instance.get_node("ColorRect/VBoxContainer2/Label").text = "Wygrałeś!"
 	self.hide()		
 func on_number_changed(name, value):
-	print(name)
 	if name == "terminal1":
 		$"body/sprite/Digit 1".texture = digits_sprites[value]
-		print("teminal1 emit")
 	elif name == "terminal2":
 		$"body/sprite/Digit 2".texture = digits_sprites[value]
-		print("teminal2 emit")
 	elif name == "terminal3":
 		$"body/sprite/Digit 3".texture = digits_sprites[value]
-		print("teminal3 emit")

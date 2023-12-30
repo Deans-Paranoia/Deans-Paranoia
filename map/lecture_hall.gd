@@ -20,6 +20,7 @@ func on_npc_spawn():
 		set_dean()
 		set_dean.rpc()
 	playersCount = get_tree().get_nodes_in_group("Student").size()
+	print("Students-real players count: " + str(playersCount))
 @rpc("any_peer","call_remote")
 func set_student(name,spot):
 	var scene = npcScene.instantiate()
@@ -77,6 +78,7 @@ func quit_game():
 @rpc("any_peer","call_remote")
 func change_players_count():
 	playersCount -=1
+	print("Students-real players count: " + str(playersCount))
 	print("catched")
 	if playersCount <1:
 		show_end_screen()
