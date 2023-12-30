@@ -13,7 +13,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4hyxi"]
 radius = 40.0
-height = 160.0
+height = 120.0
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_fipmk"]
 properties/0/path = NodePath(".:position")
@@ -438,7 +438,7 @@ collision_layer = 2
 script = ExtResource("3_8jnpr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(3.33333, -6.66667)
+position = Vector2(3.33333, 0)
 shape = SubResource("CapsuleShape2D_4hyxi")
 
 [node name="TaskScript" type="Node2D" parent="CharacterBody2D"]
