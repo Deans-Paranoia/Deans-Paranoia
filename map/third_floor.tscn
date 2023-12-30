@@ -95,7 +95,7 @@ metadata/_edit_lock_ = true
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Borders3"]
 position = Vector2(1731, -162)
 scale = Vector2(1.01314, 0.378047)
-polygon = PackedVector2Array(1004.8, -978.714, 1004.8, 201.033, 646.505, 201.033, 645.518, 256.582, 641.57, 253.937, 634.661, 222.195, 634.661, 34.3875, 808.378, 34.3875, 809.365, -626.906, 790.611, -626.906, 754.091, -626.906, 753.104, -579.293, 563.594, -579.293, 562.607, -624.261, 524.113, -626.906, 524.113, -645.423, 445.151, -642.777, 445.151, 34.3875, 594.192, 37.0325, 595.179, 198.388, 185.562, 201.033, 185.562, -978.714)
+polygon = PackedVector2Array(1004.8, -978.714, 1004.8, 201.033, 646.505, 201.033, 645.518, 256.582, 641.57, 253.937, 634.661, 222.195, 634.661, 34.3875, 808.378, 34.3875, 809.365, -626.906, 790.611, -626.906, 754.091, -626.906, 753.104, -579.293, 563.594, -579.293, 562.607, -624.261, 524.113, -626.906, 524.113, -645.423, 445.151, -642.777, 445.151, 34.3875, 593.205, 34.3875, 593.205, 208.969, 188.523, 208.969, 185.562, -978.714)
 one_way_collision_margin = 0.0
 
 [node name="Borders2" type="StaticBody2D" parent="."]
@@ -122,3 +122,14 @@ position = Vector2(-51, -830)
 
 [node name="booster" parent="." instance=ExtResource("5_ifp07")]
 position = Vector2(446, -1189)
+
+[node name="MiddleRightSofas" type="StaticBody2D" parent="."]
+position = Vector2(-1726, -1195)
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="MiddleRightSofas"]
+position = Vector2(1726, 1195)
+polygon = PackedVector2Array(1473, -523, 1488, -523, 1490, -533, 1493, -536, 1499, -535, 1502, -531, 1502, -422, 1499, -422, 1499, -419, 1491, -418, 1490, -421, 1481, -422, 1481, -419, 1473, -418, 1472, -423, 1472, -477, 1469, -479, 1470, -521)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MiddleRightSofas"]
+polygon = PackedVector2Array(3044, 663, 3044, 666, 3033, 667, 3033, 664, 3030, 663, 3030, 626, 3033, 627, 3174, 627, 3174, 662, 3171, 665, 3171, 667, 3161, 667, 3160, 664)
