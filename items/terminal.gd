@@ -24,7 +24,6 @@ func use_terminal():
 	
 func _on_terminal_area_body_exited(body):
 	if body.is_in_group("obstacles"):
-			print("visibility change")
 			can_update_value = true
 			$".".visible = true
 			show_terminal.rpc($".".name)

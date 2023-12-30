@@ -167,7 +167,8 @@ func use_elevator(side):
 		if(self.is_in_group("ThirdFloor")):
 			self.add_to_group("FourthFloor")
 			self.remove_from_group("ThirdFloor")
-
+			danger_instance.queue_free()
+		
 			fourth.visible = true
 			third.visible = false
 			if (side == "left"):
@@ -181,6 +182,8 @@ func use_elevator(side):
 			self.remove_from_group("FourthFloor")
 			fourth.visible = false
 			third.visible = true
+			danger_instance = dangerScene.instantiate()
+			add_child(danger_instance)
 			if (side == "left"):
 				body.global_position = Vector2(-40, -830)
 			elif (side == "right"):
@@ -234,7 +237,29 @@ func _on_player_area_area_entered(area):
 		can_use_terminal = true
 		terminal_address = area.get_parent().get_parent()
 		
-
+	if (area_entered == "VendingMachine1Area" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
+		danger_instance.queue_free()
+		catchable = false
+		current_task_area = "vendingMachine1"
+		
+	if (area_entered == "VendingMachine2Area" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
+		danger_instance.queue_free()
+		catchable = false
+		current_task_area = "vendingMachine2"
+		
+	if (area_entered == "ComputersArea" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
+		danger_instance.queue_free()
+		catchable = false
+		current_task_area = "computer"
+		
+	if (area_entered == "NotesArea" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
+		danger_instance.queue_free()
+		catchable = false
+		current_task_area = "takingNotes"
+		
+	if (area_entered == "WalkingArea" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
+		danger_instance.queue_free()
+		catchable = false
 func _on_player_area_area_exited(area):
 	#funkcja  do rejestrowania aktualnie opuszczonej area
 	var area_exited = area.get_name()
@@ -253,6 +278,34 @@ func _on_player_area_area_exited(area):
 	if (area_exited == "TerminalArea" and self.name == str(multiplayer.get_unique_id())):
 		can_use_terminal = false
 		terminal_address = null
+	if (area_exited == "VendingMachine1Area" and self.name == str(multiplayer.get_unique_id())):
+		danger_instance = dangerScene.instantiate()
+		add_child(danger_instance)
+		catchable = true
+		current_task_area = ""
+		
+	if (area_exited == "VendingMachine2Area" and self.name == str(multiplayer.get_unique_id())):
+		danger_instance = dangerScene.instantiate()
+		add_child(danger_instance)
+		catchable = true
+		current_task_area = ""
+		
+	if (area_exited == "ComputersArea" and self.name == str(multiplayer.get_unique_id())):
+		danger_instance = dangerScene.instantiate()
+		add_child(danger_instance)
+		catchable = true
+		current_task_area = ""
+		
+	if (area_exited == "NotesArea" and self.name == str(multiplayer.get_unique_id())):
+		danger_instance = dangerScene.instantiate()
+		add_child(danger_instance)
+		catchable = true
+		current_task_area = ""
+		
+	if (area_exited == "WalkingArea" and self.name == str(multiplayer.get_unique_id())):
+		danger_instance = dangerScene.instantiate()
+		add_child(danger_instance)
+		catchable = true
 
 func stop_player_movement():
 	#funkcja  do zatrzymania movementu studenta, zbiera aktualna predkosc i przechowuje ja w temp_speed
@@ -300,64 +353,6 @@ func _is_student_facing_obstacle(obstacle):
 		return false
 
 
-func _on_task_area_exited(area):
-	var map = get_node("../../Map")
 	
-	#funkcja  do rejestrowania aktualnie opuszczonej area taska
-	var area_exited = area.get_name()
-	if (area_exited == "VendingMachine1Area" and self.name == str(multiplayer.get_unique_id())):
-		danger_instance = dangerScene.instantiate()
-		add_child(danger_instance)
-		catchable = true
-		current_task_area = ""
-		
-	if (area_exited == "VendingMachine2Area" and self.name == str(multiplayer.get_unique_id())):
-		danger_instance = dangerScene.instantiate()
-		add_child(danger_instance)
-		catchable = true
-		current_task_area = ""
-		
-	if (area_exited == "ComputersArea" and self.name == str(multiplayer.get_unique_id())):
-		danger_instance = dangerScene.instantiate()
-		add_child(danger_instance)
-		catchable = true
-		current_task_area = ""
-		
-	if (area_exited == "NotesArea" and self.name == str(multiplayer.get_unique_id())):
-		danger_instance = dangerScene.instantiate()
-		add_child(danger_instance)
-		catchable = true
-		current_task_area = ""
-		
-	if (area_exited == "WalkingArea" and self.name == str(multiplayer.get_unique_id())):
-		danger_instance = dangerScene.instantiate()
-		add_child(danger_instance)
-		catchable = true
 
 
-func _on_task_area_entered(area):
-	#funkcja  do rejestrowania aktualnie odwiedzonej area taska
-	var area_entered = area.get_name()
-	if (area_entered == "VendingMachine1Area" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
-		danger_instance.queue_free()
-		catchable = false
-		current_task_area = "vendingMachine1"
-		
-	if (area_entered == "VendingMachine2Area" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
-		danger_instance.queue_free()
-		catchable = false
-		current_task_area = "vendingMachine2"
-		
-	if (area_entered == "ComputersArea" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
-		danger_instance.queue_free()
-		catchable = false
-		current_task_area = "computer"
-		
-	if (area_entered == "NotesArea" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
-		danger_instance.queue_free()
-		catchable = false
-		current_task_area = "takingNotes"
-		
-	if (area_entered == "WalkingArea" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
-		danger_instance.queue_free()
-		catchable = false

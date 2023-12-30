@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://um7s1birfl87" path="res://assets/terminal_green.png" id="2_besxy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u4aqg"]
-size = Vector2(403.333, 336.667)
+size = Vector2(363.333, 296.667)
 
 [node name="terminal" type="Node2D"]
 visible = false
@@ -25,12 +25,12 @@ texture = ExtResource("1_ujpqw")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Terminal"]
 scale = Vector2(0.987094, 1)
-polygon = PackedVector2Array(-35, -32, -39, 19, -54, 33, -55.7191, 64, 27.353, 63, 28.3661, 42, 52, 24, 54, -43, -20, -44)
+polygon = PackedVector2Array(-35, -32, -39, 19, -54, 33, -53.693, 43, 29.3792, 41, 28.3661, 42, 36.4926, 36.2244, 53.693, 24, 54, -43, -20, -44)
 
 [node name="TerminalArea" type="Area2D" parent="Terminal"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Terminal/TerminalArea"]
-position = Vector2(1.5, -6.5)
+position = Vector2(0.499999, -0.499975)
 scale = Vector2(0.3, 0.3)
 shape = SubResource("RectangleShape2D_u4aqg")
 
