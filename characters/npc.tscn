@@ -11,13 +11,15 @@
 [ext_resource type="Texture2D" uid="uid://cqyquwb2hcmkk" path="res://assets/student_assets/tyl-sprite-combine.png" id="9_hf7h6"]
 [ext_resource type="Texture2D" uid="uid://c3fn61kwrnjyb" path="res://assets/student_assets/FakingTasksGirlALL.png" id="10_80x0j"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3im3k"]
-size = Vector2(148, 156)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4hyxi"]
+radius = 40.0
+height = 160.0
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_fipmk"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
-properties/0/replication_mode = 1
+properties/0/sync = true
+properties/0/watch = false
 
 [sub_resource type="Animation" id="Animation_hnehq"]
 length = 0.001
@@ -436,8 +438,8 @@ collision_layer = 2
 script = ExtResource("3_8jnpr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(0, 1)
-shape = SubResource("RectangleShape2D_3im3k")
+position = Vector2(3.33333, -6.66667)
+shape = SubResource("CapsuleShape2D_4hyxi")
 
 [node name="TaskScript" type="Node2D" parent="CharacterBody2D"]
 script = ExtResource("3_avpwc")
@@ -510,9 +512,6 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="CharacterBody2D"]
-libraries = {
-"": SubResource("AnimationLibrary_sav45")
-}
 tree_root = SubResource("AnimationNodeStateMachine_g77ql")
 anim_player = NodePath("../AnimationPlayer")
 parameters/FakingTasks/blend_position = Vector2(-0.8256, 0.502645)
