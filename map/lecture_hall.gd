@@ -10,6 +10,7 @@ var hovered_student
 var students_to_kick = []
 var playersCount=0
 var endgame = load("res://ui/endgame.tscn")
+var kicked_notification = load("res://ui/kick_notification.tscn")
 func on_npc_spawn():
 	if(multiplayer.get_unique_id() ==1):
 		for i in globalScript.usedNames:
@@ -69,7 +70,9 @@ func on_student_catched(name):
 	change_players_count.rpc_id(1)
 @rpc("any_peer","call_remote")
 func quit_game():
-	get_tree().quit()
+	var kicked_notification_instance = kicked_notification.instantiate()
+	get_tree().root.add_child(kicked_notification_instance)
+	self.hide
 @rpc("any_peer","call_remote")
 func change_players_count():
 	playersCount -=1
@@ -82,7 +85,10 @@ func change_players_count():
 func show_end_screen():
 	var endgame_instance = endgame.instantiate()
 	get_tree().root.add_child(endgame_instance)
+	if globalScript.deanId == multiplayer.get_unique_id():
+		endgame_instance.get_node("ColorRect/VBoxContainer/Label2").text = "Wygrałeś!"
 	self.hide()	
+	
 @rpc("any_peer","call_remote")
 func send_restart_task_call():
 	if multiplayer.get_unique_id() ==1:

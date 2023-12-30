@@ -74,7 +74,8 @@ func set_terminals_position(position1, position2, position3):
 func show_end_screen():
 	var endgame_instance = endgame.instantiate()
 	get_tree().root.add_child(endgame_instance)
-	endgame_instance.get_node("ColorRect/VBoxContainer2/Label").text = "Wygrali studenci"
+	if globalScript.deanId != multiplayer.get_unique_id():
+		endgame_instance.get_node("ColorRect/VBoxContainer/Label2").text = "Wygrałeś!"
 	self.hide()		
 func on_number_changed(name, value):
 	print(name)
