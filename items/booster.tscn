@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c00t5e6ckeu4s" path="res://assets/kawa.png" id="2_ycvw5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f1shx"]
-size = Vector2(84, 72)
+size = Vector2(84, 69.3333)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fo15n"]
 size = Vector2(116, 106)
@@ -21,10 +21,10 @@ scale = Vector2(0.153333, 0.153333)
 texture = ExtResource("2_ycvw5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Booster"]
+position = Vector2(0, -1.33333)
 shape = SubResource("RectangleShape2D_f1shx")
 
 [node name="BoosterArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BoosterArea"]
-position = Vector2(-4, -2)
 shape = SubResource("RectangleShape2D_fo15n")
