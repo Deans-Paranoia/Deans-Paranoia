@@ -15,9 +15,9 @@ func use_alarm(isSabotaged):
 	if useable:
 		emit_signal("zmienTeksture")
 		useable = false
-		#if isSabotaged == false:
-			#set_lecture_hall()
-			#set_lecture_hall.rpc()
+		if isSabotaged == false:
+			set_lecture_hall()
+			set_lecture_hall.rpc()
 			
 @rpc("any_peer","call_remote")
 func set_lecture_hall():
