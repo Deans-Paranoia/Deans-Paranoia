@@ -2,20 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dur1x7juguii1"
-path="res://.godot/imported/fireAlarm.jpg-09ad8edf31a070aadc3997903aa626c9.ctex"
+uid="uid://g3loygbklhe7"
+path.s3tc="res://.godot/imported/alarm.png-5926ff1fcd7d84d65ced596622dc4470.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
-source_file="res://assets/fireAlarm.jpg"
-dest_files=["res://.godot/imported/fireAlarm.jpg-09ad8edf31a070aadc3997903aa626c9.ctex"]
+source_file="res://assets/alarm.png"
+dest_files=["res://.godot/imported/alarm.png-5926ff1fcd7d84d65ced596622dc4470.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

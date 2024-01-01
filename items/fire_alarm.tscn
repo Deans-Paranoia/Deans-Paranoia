@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://ci2w51qx0u74u"]
+[gd_scene load_steps=6 format=3 uid="uid://ci2w51qx0u74u"]
 
 [ext_resource type="Script" path="res://items/fireAlarmSetup.gd" id="1_55pn0"]
-[ext_resource type="Texture2D" uid="uid://dur1x7juguii1" path="res://assets/fireAlarm.jpg" id="2_ofswb"]
+[ext_resource type="Texture2D" uid="uid://g3loygbklhe7" path="res://assets/alarm.png" id="2_yffod"]
+[ext_resource type="Script" path="res://items/FireAlarm.gd" id="3_2kghy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t8uc6"]
 size = Vector2(85, 78.5)
@@ -16,8 +17,10 @@ script = ExtResource("1_55pn0")
 [node name="FireAlarm" type="StaticBody2D" parent="."]
 
 [node name="FireAlarm" type="Sprite2D" parent="FireAlarm"]
-scale = Vector2(0.0823334, 0.065)
-texture = ExtResource("2_ofswb")
+position = Vector2(0, -5.72205e-06)
+scale = Vector2(0.401167, 0.31671)
+texture = ExtResource("2_yffod")
+script = ExtResource("3_2kghy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FireAlarm"]
 shape = SubResource("RectangleShape2D_t8uc6")
@@ -26,3 +29,5 @@ shape = SubResource("RectangleShape2D_t8uc6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FireAlarm/FireAlarmArea"]
 shape = SubResource("RectangleShape2D_iqthm")
+
+[connection signal="zmienTeksture" from="." to="FireAlarm/FireAlarm" method="_on_fire_alarm_zmien_teksture"]

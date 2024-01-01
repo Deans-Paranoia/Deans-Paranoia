@@ -1,6 +1,7 @@
 extends Node2D
 
 var useable: bool = true
+signal zmienTeksture
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,10 +13,12 @@ func _process(_delta):
 	
 func use_alarm(isSabotaged):
 	if useable:
+		emit_signal("zmienTeksture")
 		useable = false
 		if isSabotaged == false:
 			set_lecture_hall()
 			set_lecture_hall.rpc()
+			
 @rpc("any_peer","call_remote")
 func set_lecture_hall():
 	var hall = get_node("../../lecture_hall")

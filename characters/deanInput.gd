@@ -1,6 +1,7 @@
 extends Node2D
 signal student_picked()
 signal student_catched(name)
+
 var is_tablet_open: bool = false
 @onready var scene = load("res://ui/deans_tablet/deans_tablet.tscn")
 var tablet_scene 
