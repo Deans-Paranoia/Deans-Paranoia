@@ -143,7 +143,7 @@ func task_execution():
 	await get_tree().create_timer(2.0).timeout
 	task_finished = true
 	
-@rpc("any_peer","call_local")
+@rpc("any_peer","call_remote")
 func catch_student():
 	if catchable and !is_catched:
 		is_catched = true

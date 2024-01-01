@@ -50,6 +50,7 @@ enabled = false
 zoom = Vector2(0.2, 0.2)
 
 [node name="TaskAreas" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="VendingMachine1Area" type="Area2D" parent="TaskAreas"]
 position = Vector2(1238, -633)
@@ -90,6 +91,7 @@ shape = SubResource("RectangleShape2D_rwv1i")
 
 [node name="AreaNotifiers" type="Node2D" parent="TaskAreas"]
 script = ExtResource("8_fbx0e")
+metadata/_edit_lock_ = true
 
 [node name="NotesAreaNotifier" type="VisibleOnScreenNotifier2D" parent="TaskAreas/AreaNotifiers"]
 position = Vector2(1063, -2120.5)

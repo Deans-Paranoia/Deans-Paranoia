@@ -36,7 +36,6 @@ func set_student(name,spot):
 	add_child(scene)
 @rpc("any_peer","call_remote")
 func set_dean():
-	playersCount = get_tree().get_nodes_in_group("Student").size()
 	var dean = deanScene.instantiate()
 	dean.name = "dean"
 	var label = dean.get_node("CharacterBody2D/Label")
@@ -51,10 +50,7 @@ func on_student_moved():
 		move_student.rpc(hovered_student)
 		if(check_if_was_player(hovered_student)):
 			print("he was player")
-			playersCount -=1
-			if playersCount <1:
-				show_end_screen()
-				show_end_screen.rpc()
+			change_players_count.rpc_id(1)
 		else:
 			print("he was bot")
 		hovered_student = null
@@ -79,7 +75,6 @@ func quit_game():
 func change_players_count():
 	playersCount -=1
 	print("Students-real players count: " + str(playersCount))
-	print("catched")
 	if playersCount <1:
 		show_end_screen()
 		show_end_screen.rpc()

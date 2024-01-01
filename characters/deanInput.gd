@@ -38,8 +38,6 @@ func _input(event):
 		if self.name == str(multiplayer.get_unique_id()):		
 			var catchable_objects = get_tree().get_nodes_in_group("Catchable_Students")
 			for catchable_object in catchable_objects:
-				print(catchable_object.catchable)
-				print(catchable_object.is_catched)
 				if catchable_object.catchable and catchable_object.is_catched ==false:
 					var student_id = str(catchable_object.name)
 					catchable_object.catch_student.rpc_id(int(student_id))
