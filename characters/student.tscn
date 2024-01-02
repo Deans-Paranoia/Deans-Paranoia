@@ -462,8 +462,8 @@ vframes = 3
 frame = 1
 
 [node name="MultiplayerSynchronizer" parent="CharacterBody2D" index="5"]
-replication_interval = 0.1
-delta_interval = 0.1
+replication_interval = 0.01
+delta_interval = 0.01
 
 [node name="DiggingTimer" type="Timer" parent="CharacterBody2D" index="6"]
 
