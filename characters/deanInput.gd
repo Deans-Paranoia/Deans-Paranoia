@@ -41,9 +41,9 @@ func _input(event):
 				if catchable_object.catchable and catchable_object.is_catched ==false:
 					var student_id = str(catchable_object.name)
 					catchable_object.catch_student.rpc_id(int(student_id))
+					print("catched")
 					#print(globalScript.Players[])
 					student_catched.emit(globalScript.Players[int(student_id)].fakeName)
-					print(globalScript.Players[int(student_id)].fakeName)
 			
 @rpc("any_peer","call_remote")
 func change_alarm_state():

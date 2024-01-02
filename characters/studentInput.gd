@@ -148,6 +148,7 @@ func catch_student():
 	if catchable and !is_catched:
 		is_catched = true
 		stop_player_movement()
+		change_is_catched.rpc()
 	
 func use_server():
 	# funkcja do uzywania serwera przez studenta
@@ -319,6 +320,9 @@ func _on_player_area_area_exited(area):
 @rpc("any_peer","call_remote")
 func change_catchable(boolean):
 	catchable = boolean
+@rpc("any_peer","call_remote")
+func change_is_catched():
+	is_catched = true
 func stop_player_movement():
 	#funkcja  do zatrzymania movementu studenta, zbiera aktualna predkosc i przechowuje ja w temp_speed
 	temp_speed = body.take_current_speed_value()
