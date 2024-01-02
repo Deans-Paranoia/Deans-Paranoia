@@ -20,6 +20,10 @@ shape = SubResource("RectangleShape2D_0hrm5")
 scale = Vector2(0.42, 0.42)
 texture = ExtResource("3_rxgh1")
 
+[node name="MultiplayerSynchronizer" parent="CharacterBody2D" index="2"]
+replication_interval = 0.1
+delta_interval = 0.1
+
 [node name="Label" parent="CharacterBody2D" index="5"]
 offset_left = -100.0
 offset_top = -185.0
