@@ -15,9 +15,10 @@ func _process(delta):
 
 func _on_character_body_2d_direction(velocity:Vector2):
 	run_animation(velocity)
-	if $"../../Timer/".get("wait_time")==0.0:
+	if $"../../Timer/".is_stopped():
 		run_animation.rpc(velocity)
-		$"../../Timer".start(0.1)
+		$"../../Timer".set("wait_time", 0.1)
+		$"../../Timer".start()
 			
 @rpc("any_peer","call_remote")
 func run_animation(velocity):
