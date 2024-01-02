@@ -168,9 +168,8 @@ func use_elevator(side):
 		if(self.is_in_group("ThirdFloor")):
 			self.add_to_group("FourthFloor")
 			self.remove_from_group("ThirdFloor")
-			var danger = get_tree().get_node_or_null("CanvasLayer")
-			if danger!=null:
-				danger.visible = false
+			danger_instance.queue_free()
+		
 			fourth.visible = true
 			third.visible = false
 			if (side == "left"):
@@ -184,9 +183,8 @@ func use_elevator(side):
 			self.remove_from_group("FourthFloor")
 			fourth.visible = false
 			third.visible = true
-			var danger = get_tree().get_node_or_null("CanvasLayer")
-			if danger!=null:
-				danger.visible = true
+			danger_instance = dangerScene.instantiate()
+			add_child(danger_instance)
 			if (side == "left"):
 				body.global_position = Vector2(-40, -830)
 			elif (side == "right"):
@@ -241,37 +239,36 @@ func _on_player_area_area_entered(area):
 		terminal_address = area.get_parent().get_parent()
 		
 	if (area_entered == "VendingMachine1Area" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
-		print(danger_instance)
-		danger_instance.queue_free()
+		if danger_instance != null:
+			danger_instance.queue_free()
 		change_catchable(false)
 		change_catchable.rpc(false)
 		current_task_area = "vendingMachine1"
 		
 	if (area_entered == "VendingMachine2Area" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
-		print(danger_instance)
-		danger_instance.queue_free()
+		if danger_instance != null:
+			danger_instance.queue_free()
 		change_catchable(false)
 		change_catchable.rpc(false)
 		current_task_area = "vendingMachine2"
 		
 	if (area_entered == "ComputersArea" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
-		print(danger_instance)
-		danger_instance.queue_free()
+		if danger_instance != null:
+			danger_instance.queue_free()
 		change_catchable(false)
 		change_catchable.rpc(false)
 		current_task_area = "computer"
 		
 	if (area_entered == "NotesArea" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
-		print(danger_instance)
-		danger_instance.queue_free()
+		if danger_instance != null:
+			danger_instance.queue_free()
 		change_catchable(false)
 		change_catchable.rpc(false)
 		current_task_area = "takingNotes"
 		
 	if (area_entered == "WalkingArea" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
-		print(danger_instance)
-		
-		danger_instance.queue_free()
+		if danger_instance != null:
+			danger_instance.queue_free()
 		change_catchable(false)
 		change_catchable.rpc(false)
 func _on_player_area_area_exited(area):
