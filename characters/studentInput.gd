@@ -49,7 +49,7 @@ var temp_speed
 var body:CharacterBody2D
 var _obstacle_to_destroy
 var _is_space_pressed = false	
-var _dig_speed : float = 1.0
+var _dig_speed : float = 0.1
 
 #dfunc _process(_delta):
 	#dig()
