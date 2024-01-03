@@ -1,7 +1,7 @@
 extends Node2D
 signal student_picked()
 signal student_catched(name)
-
+@onready var catch_info_instance = load("res://ui/dean_catch_info.tscn").instantiate()
 var is_tablet_open: bool = false
 @onready var scene = load("res://ui/deans_tablet/deans_tablet.tscn")
 var tablet_scene 
@@ -15,7 +15,8 @@ func _ready():
 	if globalScript.deanId == multiplayer.get_unique_id() and get_parent().name != "lecture_hall":
 		student_picked.connect(hall.on_student_moved)
 		student_catched.connect(hall.on_student_catched)
-		
+		catch_info_instance.visible = false
+		add_child(catch_info_instance)
 func _input(event):
 	# event do obslugi tabletu przez dziekana
 	if event.is_action_pressed("open_tablet"):
@@ -92,8 +93,11 @@ func _on_catch_student_area_area_entered(area):
 	var object = area.get_parent().get_parent()
 	if object.is_in_group("Student"):
 		object.add_to_group("Catchable_Students")
-		
+	if get_tree().get_nodes_in_group("Catchable_Students").size()==1:
+		catch_info_instance.visible = true
 func _on_catch_student_area_area_exited(area):
 	var object = area.get_parent().get_parent()
 	if object.is_in_group("Student"):
 		object.remove_from_group("Catchable_Students")
+	if get_tree().get_nodes_in_group("Catchable_Students").size()==0:
+		catch_info_instance.visible = false
