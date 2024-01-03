@@ -143,8 +143,6 @@ scale = Vector2(0.285714, 0.163194)
 texture = ExtResource("13_yjs1e")
 metadata/_edit_lock_ = true
 
-[node name="Student" parent="." instance=ExtResource("2_dqx11")]
-
 [connection signal="timeout" from="RoundTimer" to="." method="_on_round_timer_timeout"]
 [connection signal="screen_entered" from="TaskAreas/AreaNotifiers/NotesAreaNotifier" to="TaskAreas/AreaNotifiers" method="_on_notes_area_notifier_screen_entered"]
 [connection signal="screen_exited" from="TaskAreas/AreaNotifiers/NotesAreaNotifier" to="TaskAreas/AreaNotifiers" method="_on_notes_area_notifier_screen_exited"]
