@@ -140,12 +140,21 @@ func restart_map():
 	clicked = 0
 	maximum_ammount_to_kick = 1
 	$"../Camera2D".enabled = false
+	
+	
 	var map = get_node("../")
 	map.isVotingProcess = false
 	if multiplayer.get_unique_id()==1:
 		map.change_code()	
 	if(multiplayer.get_unique_id()!=1):
-		var body = map.get_node(str(multiplayer.get_unique_id())+"/"+str(multiplayer.get_unique_id()))
+		var player =map.get_node(str(multiplayer.get_unique_id()))
+		var third = map.get_node("thirdFloor")
+		var fourth = map.get_node("fourthFloor")
+		player.add_to_group("ThirdFloor")
+		player.remove_from_group("FourthFloor")
+		fourth.visible = false
+		third.visible = true
+		var body = player.get_node(str(multiplayer.get_unique_id()))
 		body.can_move = true
 		var camera = body.get_node("camera "+str(multiplayer.get_unique_id()))
 		camera.make_current()
