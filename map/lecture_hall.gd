@@ -142,8 +142,8 @@ func restart_map():
 	$"../Camera2D".enabled = false
 	var map = get_node("../")
 	map.isVotingProcess = false
-	
-		
+	if multiplayer.get_unique_id()==1:
+		map.change_code()	
 	if(multiplayer.get_unique_id()!=1):
 		var body = map.get_node(str(multiplayer.get_unique_id())+"/"+str(multiplayer.get_unique_id()))
 		body.can_move = true
