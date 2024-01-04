@@ -49,7 +49,7 @@ var temp_speed
 var body:CharacterBody2D
 var _obstacle_to_destroy
 var _is_space_pressed = false	
-var _dig_speed : float = 0.1
+var _dig_speed : float = 1
 
 #dfunc _process(_delta):
 	#dig()
@@ -192,7 +192,7 @@ func use_elevator(side):
 func acquire_booster():
 	# funkcja nadajaca booster dla studenta
 	has_booster = true
-	_dig_speed = 0.7
+	_dig_speed = 0.6
 	print("Boost taken, current dig speed: ",_dig_speed)
 	
 
