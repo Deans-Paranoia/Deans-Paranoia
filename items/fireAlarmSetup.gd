@@ -1,7 +1,7 @@
 extends Node2D
 
 var useable: bool = true
-signal zmienTeksture
+signal change_texture
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,7 +13,7 @@ func _process(_delta):
 	
 func use_alarm(isSabotaged):
 	if useable:
-		emit_signal("zmienTeksture")
+		emit_signal("change_texture")
 		useable = false
 		if isSabotaged == false:
 			set_lecture_hall()
