@@ -122,4 +122,4 @@ position = Vector2(1265, -847)
 position = Vector2(-51, -830)
 
 [node name="booster" parent="." instance=ExtResource("5_ifp07")]
-position = Vector2(446, -1189)
+position = Vector2(475, -1101)
