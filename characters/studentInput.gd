@@ -42,7 +42,7 @@ var can_use_terminal: bool = false
 # sprawdza czy znajduje sie w strefie gdzie mozna uzyc terminalu
 var terminal_address
 
-
+var fire_alarm_reference;
 
 var temp_speed
 # zmienna przechowujaca tymczasowa predkosc
@@ -66,11 +66,9 @@ func _input(event):
 	# interakcja z obiektami 
 	if event.is_action_pressed("interaction"):
 		# obsluga alarmu przez studenta
-		var fire_alarm_reference = get_node_or_null("../thirdFloor/fire_alarm")
+		fire_alarm_reference = get_node_or_null("../thirdFloor/fire_alarm")
 		if fire_alarm_reference !=null and fire_alarm_reference.useable and can_use_alarm and self.name == str(multiplayer.get_unique_id()):
 			sabotage_alarm()
-			fire_alarm_reference.useable = false
-			change_alarm_state.rpc()
 
 		# obsluga serwera przez studenta
 		if can_use_server and can_use_server_again and self.name == str(multiplayer.get_unique_id()):
@@ -335,6 +333,8 @@ func stop_player_movement():
 
 func _on_freeze_timer_timeout():
 	#funkcja, ktora po skonczeniu timera przywraca stary movement studentowi
+	fire_alarm_reference.useable = false
+	change_alarm_state.rpc()
 	body.restore_player_movement(temp_speed)
 	
 func _on_digging_timer_timeout():
