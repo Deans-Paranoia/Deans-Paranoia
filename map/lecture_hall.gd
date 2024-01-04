@@ -33,6 +33,8 @@ func set_student(name,spot):
 	scene.get_node("CharacterBody2D/KickScript").on_lecture_hall = true
 	scene.get_node("CharacterBody2D/KickScript").on_student_hovered.connect(set_hovered_student)
 	scene.scale = Vector2(1,1)
+	scene.get_node("CharacterBody2D/Sprite2D").visible = false
+	scene.get_node("CharacterBody2D/Sprite2DWalkingDown").visible = true
 	add_child(scene)
 @rpc("any_peer","call_remote")
 func set_dean():
