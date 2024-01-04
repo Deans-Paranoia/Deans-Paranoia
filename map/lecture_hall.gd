@@ -59,8 +59,8 @@ func on_student_moved():
 		clicked +=1
 		if clicked == maximum_ammount_to_kick:
 			await get_tree().create_timer(3.0).timeout
-			back_to_game.rpc()
-			back_to_game()
+			back_to_game.rpc(students_to_kick)
+			back_to_game(students_to_kick)
 			
 func on_student_catched(name):
 	hovered_student = name
@@ -104,8 +104,8 @@ func remove_student_from_hall(i):
 	if lecture_hall_node != null:
 		lecture_hall_node.queue_free()		
 @rpc("any_peer","call_remote")
-func back_to_game():
-	for i in students_to_kick:
+func back_to_game(to_kick):
+	for i in to_kick:
 		var isPlayer = false
 		if multiplayer.get_unique_id()==1:
 			remove_student_from_hall.rpc(i)
@@ -150,6 +150,8 @@ func restart_map():
 		map.change_code()	
 	if(multiplayer.get_unique_id()!=1):
 		var player =map.get_node(str(multiplayer.get_unique_id()))
+		if player.is_in_group("Student"):
+			player.level = 3
 		var third = map.get_node("thirdFloor")
 		var fourth = map.get_node("fourthFloor")
 		player.add_to_group("ThirdFloor")
