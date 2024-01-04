@@ -65,11 +65,11 @@ func set_terminals_position_for_host():
 @rpc("any_peer","call_remote")
 func set_terminals_position(position1, position2, position3):
 	terminal1.global_position = position1
-	terminal1.get_node("Terminal/Sprite2D").texture = yellow_terminal
+	terminal1.get_node("Terminal/Sprite2D").texture =  green_terminal
 	terminal2.global_position = position2
 	terminal2.get_node("Terminal/Sprite2D").texture = violet_terminal
 	terminal3.global_position = position3
-	terminal3.get_node("Terminal/Sprite2D").texture = green_terminal
+	terminal3.get_node("Terminal/Sprite2D").texture = yellow_terminal
 @rpc("any_peer","call_remote")
 func show_end_screen():
 	var endgame_instance = endgame.instantiate()
