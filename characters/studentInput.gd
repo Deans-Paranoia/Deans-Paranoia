@@ -366,9 +366,9 @@ func _is_student_facing_obstacle(obstacle):
 		return true
 	elif direction_to_obstacle.x > 0.86 and student_direction == Vector2(1,0):
 		return true
-	elif direction_to_obstacle.y < -0.86 and student_direction == Vector2(0,-1):
+	elif direction_to_obstacle.y < -0.91 and student_direction == Vector2(0,-1):
 		return true
-	elif direction_to_obstacle.y > 0.86 and student_direction == Vector2(0,1):
+	elif direction_to_obstacle.y > 0.8 and student_direction == Vector2(0,1):
 		return true
 	else:
 		return false
