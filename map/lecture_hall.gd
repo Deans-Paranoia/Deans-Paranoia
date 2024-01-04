@@ -109,8 +109,9 @@ func back_to_game(to_kick):
 		var isPlayer = false
 		if multiplayer.get_unique_id()==1:
 			remove_student_from_hall.rpc(i)
-		var lecture_hall_node = get_node(str(i))
-		lecture_hall_node.queue_free()
+		var lecture_hall_node = get_node_or_null(str(i))
+		if lecture_hall_node != null:
+			lecture_hall_node.queue_free()
 		kicked_player_number = 1
 		for j in globalScript.Players:
 			if globalScript.Players[j].fakeName == i:
