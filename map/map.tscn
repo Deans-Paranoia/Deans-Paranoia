@@ -127,7 +127,7 @@ position = Vector2(-457, -131)
 metadata/_edit_lock_ = true
 
 [node name="Code" type="Node2D" parent="."]
-z_index = 2
+z_index = 1
 position = Vector2(-189, -2244)
 metadata/_edit_lock_ = true
 
