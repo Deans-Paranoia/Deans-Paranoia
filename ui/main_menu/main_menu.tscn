@@ -55,18 +55,21 @@ alignment = 1
 [node name="Host" type="Button" parent="ColorRectMenu/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme = ExtResource("2_iwnu6")
 text = "Stwórz grę"
 
 [node name="Join" type="Button" parent="ColorRectMenu/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme = ExtResource("2_iwnu6")
 text = "Dołącz"
 
 [node name="QuitGame" type="Button" parent="ColorRectMenu/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme = ExtResource("2_iwnu6")
 text = "Wyjdź z gry"
 
