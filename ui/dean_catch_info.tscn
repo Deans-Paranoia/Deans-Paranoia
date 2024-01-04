@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://nu6u2v38wkxf"]
+
+[ext_resource type="Texture2D" uid="uid://dd3d63n171l1n" path="res://assets/space-button-icon.png" id="1_15l7b"]
+
+[node name="dean_catch_info" type="CanvasLayer"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 993.0
+offset_top = 568.0
+offset_right = 1141.0
+offset_bottom = 633.0
+texture = ExtResource("1_15l7b")
+expand_mode = 2

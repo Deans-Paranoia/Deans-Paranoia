@@ -105,10 +105,10 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3, 4, 5]
 }
 
-[sub_resource type="Animation" id="Animation_7ormc"]
+[sub_resource type="Animation" id="Animation_x2k35"]
 resource_name = "faking_task_notes"
-length = 0.3
 loop_mode = 1
+step = 0.1667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -116,10 +116,10 @@ tracks/0/path = NodePath("Sprite2DFakingTasks:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.1667, 0.3334, 0.5001, 0.6668, 0.8335),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0]
+"values": [0, 1, 2, 3, 4, 5]
 }
 
 [sub_resource type="Animation" id="Animation_u17cn"]
@@ -319,7 +319,7 @@ tracks/0/keys = {
 _data = {
 "RESET": SubResource("Animation_hnehq"),
 "faking_task_computer": SubResource("Animation_uv04j"),
-"faking_task_notes": SubResource("Animation_7ormc"),
+"faking_task_notes": SubResource("Animation_x2k35"),
 "faking_task_vending": SubResource("Animation_u17cn"),
 "faking_task_vending_2": SubResource("Animation_63cu8"),
 "idle_down": SubResource("Animation_tf2e4"),
@@ -418,11 +418,16 @@ states/Start/position = Vector2(159, 115)
 states/Walking/node = SubResource("AnimationNodeBlendSpace2D_aisff")
 states/Walking/position = Vector2(538, 115)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_afr7b")]
-graph_offset = Vector2(-63, -74)
+graph_offset = Vector2(-52, -42)
 
 [node name="Student" groups=["Student"] instance=ExtResource("1_6lj7h")]
 scale = Vector2(0.3, 0.3)
 script = ExtResource("2_vaos0")
+
+[node name="Timer" type="Timer" parent="." index="0"]
+wait_time = 0.1
+one_shot = true
+autostart = true
 
 [node name="Sprite2DWalkingRight" type="Sprite2D" parent="CharacterBody2D" index="0"]
 visible = false
@@ -469,7 +474,7 @@ position = Vector2(3, 45)
 shape = SubResource("CapsuleShape2D_npkcv")
 
 [node name="CollisionShape2D" parent="CharacterBody2D/PlayerArea" index="0"]
-position = Vector2(0, 1.66666)
+position = Vector2(1.66675, 5.00008)
 
 [node name="Label" parent="CharacterBody2D" index="11"]
 anchors_preset = -1
@@ -486,9 +491,9 @@ libraries = {
 }
 tree_root = SubResource("AnimationNodeStateMachine_5hyjn")
 anim_player = NodePath("../AnimationPlayer")
-parameters/FakingTasks/blend_position = Vector2(0.00479996, -0.992857)
-parameters/Idle/blend_position = Vector2(-0.0264211, -0.883598)
-parameters/Walking/blend_position = Vector2(0.1056, -0.492857)
+parameters/FakingTasks/blend_position = Vector2(0.0102249, -0.915344)
+parameters/Idle/blend_position = Vector2(0.0361248, 0.037037)
+parameters/Walking/blend_position = Vector2(-0.0163599, 0.142857)
 script = ExtResource("3_8lqqm")
 
 [connection signal="disable_player_movement_for_duration" from="." to="CharacterBody2D" method="_on_disable_player_movement_for_duration"]

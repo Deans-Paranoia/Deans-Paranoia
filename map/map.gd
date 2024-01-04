@@ -2,16 +2,27 @@ extends Node2D
 @export var studentScene:PackedScene
 @export var deanScene:PackedScene
 @export var npcScene:PackedScene
+var textures = []
 @onready var timeUi = load("res://ui/time.tscn").instantiate()
 var isVotingProcess = false
+var day = 1
 var rand = RandomNumberGenerator.new()
 signal taskType(taskType)
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	for i in range(10):
+		textures.append(load("res://assets/terminal_" + str(i) + ".png"))
+	textures.append(load("res://assets/green.png"))
+	textures.append(load("res://assets/purple.png"))
+	textures.append(load("res://assets/yellow.png"))
 	if multiplayer.get_unique_id() ==1:
 		$Camera2D.enabled = true
 		$RoundTimer.start()
+		var random = rand.randi_range(1,3)
+		set_code_number.rpc(random,day)
+		set_code_number(random,day)
 	timeUi.get_node("Control/VBoxContainer/Label").text = "60"
+	
 	add_child(timeUi)
 	var j = 0
 	for i in globalScript.Players:
@@ -56,8 +67,8 @@ func _ready():
 			setPlayer.rpc(i,task_number)
 	if(multiplayer.get_unique_id()==1):
 		get_node("lecture_hall").on_npc_spawn()
-	#elif multiplayer.get_unique_id()==globalScript.deanId:
-		#$Chat.visible = false
+	elif multiplayer.get_unique_id()==globalScript.deanId:
+		$Chat.visible = false
 func _process(delta):
 	if(multiplayer.get_unique_id()==1):
 		var timeLeft = str(int($RoundTimer.time_left))
@@ -148,7 +159,33 @@ func setPlayer(i,task_number):
 		player.global_position = position
 		player.current_task_area = task_data.taskType
 		globalScript.manage_task(task_number)
-
+@rpc("any_peer","call_remote")
+func set_code_number(random,day):
+	var code_node = get_node("Code")
+	var position = get_node("CodeSpawnpoints/"+str(random))
+	code_node.position = position.position
+	var serverValue:int = get_node("fourthFloor/server").serverValue
+	var first_digit = serverValue/100
+	var second_digit = (serverValue/10)%10
+	var third_digit = serverValue%10
+	match day%3:
+		1:
+			code_node.get_node("Line").texture = textures[10]
+			code_node.get_node("Number").texture = textures[first_digit]
+			
+		2:
+			code_node.get_node("Line").texture = textures[11]
+			code_node.get_node("Number").texture = textures[second_digit]
+		0:
+			code_node.get_node("Line").texture = textures[12]
+			code_node.get_node("Number").texture = textures[third_digit]
+	
+@rpc("any_peer","call_remote")
+func change_code():
+	day+=1
+	var random = rand.randi_range(1,3)
+	set_code_number(random,day)
+	set_code_number.rpc(random,day)
 func set_npc_for_host(name,task_number,has_name):
 	var task_data = globalScript.get_task_data(task_number)
 	var position = Vector2(task_data.positionX, task_data.positionY)

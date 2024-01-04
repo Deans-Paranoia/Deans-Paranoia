@@ -8,7 +8,7 @@
 size = Vector2(85, 78.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iqthm"]
-size = Vector2(128, 97)
+size = Vector2(128, 116.667)
 
 [node name="fire_alarm" type="Node2D"]
 scale = Vector2(0.3, 0.3)
@@ -18,16 +18,18 @@ script = ExtResource("1_55pn0")
 
 [node name="FireAlarm" type="Sprite2D" parent="FireAlarm"]
 position = Vector2(0, -5.72205e-06)
-scale = Vector2(0.401167, 0.31671)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_yffod")
 script = ExtResource("3_2kghy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FireAlarm"]
+visible = false
 shape = SubResource("RectangleShape2D_t8uc6")
 
 [node name="FireAlarmArea" type="Area2D" parent="FireAlarm"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FireAlarm/FireAlarmArea"]
+position = Vector2(0, 8.33333)
 shape = SubResource("RectangleShape2D_iqthm")
 
-[connection signal="zmienTeksture" from="." to="FireAlarm/FireAlarm" method="_on_fire_alarm_zmien_teksture"]
+[connection signal="change_texture" from="." to="FireAlarm/FireAlarm" method="_on_fire_alarm_change_texture"]

@@ -49,7 +49,7 @@ var temp_speed
 var body:CharacterBody2D
 var _obstacle_to_destroy
 var _is_space_pressed = false	
-var _dig_speed : float = 1.0
+var _dig_speed : float = 1
 
 #dfunc _process(_delta):
 	#dig()
@@ -192,7 +192,7 @@ func use_elevator(side):
 func acquire_booster():
 	# funkcja nadajaca booster dla studenta
 	has_booster = true
-	_dig_speed = 0.7
+	_dig_speed = 0.6
 	print("Boost taken, current dig speed: ",_dig_speed)
 	
 
@@ -239,31 +239,36 @@ func _on_player_area_area_entered(area):
 		terminal_address = area.get_parent().get_parent()
 		
 	if (area_entered == "VendingMachine1Area" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
-		danger_instance.queue_free()
+		if danger_instance != null:
+			danger_instance.queue_free()
 		change_catchable(false)
 		change_catchable.rpc(false)
 		current_task_area = "vendingMachine1"
 		
 	if (area_entered == "VendingMachine2Area" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
-		danger_instance.queue_free()
+		if danger_instance != null:
+			danger_instance.queue_free()
 		change_catchable(false)
 		change_catchable.rpc(false)
 		current_task_area = "vendingMachine2"
 		
 	if (area_entered == "ComputersArea" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
-		danger_instance.queue_free()
+		if danger_instance != null:
+			danger_instance.queue_free()
 		change_catchable(false)
 		change_catchable.rpc(false)
 		current_task_area = "computer"
 		
 	if (area_entered == "NotesArea" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
-		danger_instance.queue_free()
+		if danger_instance != null:
+			danger_instance.queue_free()
 		change_catchable(false)
 		change_catchable.rpc(false)
 		current_task_area = "takingNotes"
 		
 	if (area_entered == "WalkingArea" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
-		danger_instance.queue_free()
+		if danger_instance != null:
+			danger_instance.queue_free()
 		change_catchable(false)
 		change_catchable.rpc(false)
 func _on_player_area_area_exited(area):
@@ -361,9 +366,9 @@ func _is_student_facing_obstacle(obstacle):
 		return true
 	elif direction_to_obstacle.x > 0.86 and student_direction == Vector2(1,0):
 		return true
-	elif direction_to_obstacle.y < -0.86 and student_direction == Vector2(0,-1):
+	elif direction_to_obstacle.y < -0.91 and student_direction == Vector2(0,-1):
 		return true
-	elif direction_to_obstacle.y > 0.86 and student_direction == Vector2(0,1):
+	elif direction_to_obstacle.y > 0.8 and student_direction == Vector2(0,1):
 		return true
 	else:
 		return false
