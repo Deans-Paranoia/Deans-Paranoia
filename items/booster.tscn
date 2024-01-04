@@ -1,26 +1,27 @@
 [gd_scene load_steps=5 format=3 uid="uid://b4jtyggr1i1y5"]
 
 [ext_resource type="Script" path="res://items/booster.gd" id="1_wv6eh"]
-[ext_resource type="Texture2D" uid="uid://c00t5e6ckeu4s" path="res://assets/kawa.png" id="2_ycvw5"]
+[ext_resource type="Texture2D" uid="uid://4uh0hmr7vcy8" path="res://assets/booster.png" id="2_8eb8w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f1shx"]
-size = Vector2(84, 72)
+size = Vector2(30, 29.3333)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fo15n"]
 size = Vector2(116, 106)
 
 [node name="booster" type="Node2D"]
-scale = Vector2(0.3, 0.3)
+scale = Vector2(0.4, 0.4)
 script = ExtResource("1_wv6eh")
 
 [node name="Booster" type="StaticBody2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="Booster"]
 position = Vector2(-1, 0)
-scale = Vector2(0.153333, 0.153333)
-texture = ExtResource("2_ycvw5")
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_8eb8w")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Booster"]
+position = Vector2(-1.66667, 21.3333)
 shape = SubResource("RectangleShape2D_f1shx")
 
 [node name="BoosterArea" type="Area2D" parent="."]
