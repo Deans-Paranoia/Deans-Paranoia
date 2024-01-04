@@ -952,120 +952,121 @@ position = Vector2(-352, -352)
 
 [node name="MiddleObstacle_obstacleBottomless" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("8_u57bw")]
 z_index = 2
-position = Vector2(-487, 487)
+position = Vector2(-483, 487)
 
 [node name="MiddleObstacle_obstacleBottomless2" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("8_u57bw")]
 z_index = 2
-position = Vector2(-423, 487)
+position = Vector2(-415, 487)
 
 [node name="MiddleObstacle_obstacleBottomless3" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("8_u57bw")]
 z_index = 2
-position = Vector2(-359, 487)
+position = Vector2(-351, 487)
 
 [node name="MiddleObstacle_obstacleBottomless4" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("8_u57bw")]
 z_index = 2
-position = Vector2(-295, 487)
+position = Vector2(-287, 487)
 
 [node name="MiddleObstacle_obstacleBottomless5" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("8_u57bw")]
 z_index = 2
-position = Vector2(-231, 487)
+position = Vector2(-223, 487)
 
 [node name="MiddleObstacle_obstacleBottomless6" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("8_u57bw")]
 z_index = 2
-position = Vector2(217, 487)
+position = Vector2(225, 483)
 
 [node name="MiddleObstacle_obstacleBottomless7" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("8_u57bw")]
 z_index = 2
-position = Vector2(281, 487)
+position = Vector2(290, 484)
 
 [node name="MiddleObstacle_obstacleBottomless8" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("8_u57bw")]
 z_index = 2
-position = Vector2(345, 487)
+position = Vector2(353, 484)
 
 [node name="MiddleObstacle_obstacleBottomless9" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("8_u57bw")]
 z_index = 2
-position = Vector2(409, 487)
+position = Vector2(416, 484)
 
 [node name="MiddleObstacle_obstacleBottomless10" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("8_u57bw")]
 z_index = 2
-position = Vector2(473, 487)
+position = Vector2(480, 484)
 
 [node name="BottomObstacle_obstacleBottomless11" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("8_u57bw")]
 z_index = 2
-position = Vector2(-295, 871)
+position = Vector2(-292, 866)
 
 [node name="BottomObstacle_obstacleBottomless12" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("8_u57bw")]
 z_index = 2
-position = Vector2(-231, 871)
+position = Vector2(-227, 866)
 
 [node name="BottomObstacle_obstacleBottomless13" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("8_u57bw")]
 z_index = 2
-position = Vector2(-167, 871)
+position = Vector2(-162, 866)
 
 [node name="BottomObstacle_obstacleBottomless14" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("8_u57bw")]
 z_index = 2
-position = Vector2(-103, 871)
+position = Vector2(-97, 866)
 
 [node name="BottomObstacle_obstacleBottomless15" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("8_u57bw")]
 z_index = 2
-position = Vector2(-39, 871)
+position = Vector2(-32, 866)
 
 [node name="BottomObstacle_obstacleBottomless16" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("8_u57bw")]
 z_index = 2
-position = Vector2(25, 871)
+position = Vector2(34, 866)
 
 [node name="BottomObstacle_obstacleBottomless17" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("8_u57bw")]
 z_index = 2
-position = Vector2(89, 871)
+position = Vector2(99, 866)
 
 [node name="BottomObstacle_obstacleBottomless18" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("8_u57bw")]
 z_index = 2
-position = Vector2(151, 871)
+position = Vector2(165, 866)
 
 [node name="BottomObstacle_obstacleBottomless19" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("8_u57bw")]
 z_index = 2
-position = Vector2(215, 871)
+position = Vector2(231, 866)
 
 [node name="BottomObstacle_obstacleBottomless20" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("8_u57bw")]
 z_index = 2
-position = Vector2(286, 871)
+position = Vector2(293, 866)
+scale = Vector2(0.68, 0.75)
 
 [node name="BottomObstacle_obstacleBottomless21" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("8_u57bw")]
 z_index = 2
-position = Vector2(350, 807)
+position = Vector2(351, 801)
 
 [node name="BottomObstacle_obstacleBottomless22" parent="Obstacles" groups=["obstacle_bottom"] instance=ExtResource("8_u57bw")]
 z_index = 2
-position = Vector2(-361, 807)
+position = Vector2(-354, 803)
 
 [node name="TopObstacleobstacleBottomless24" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("8_u57bw")]
 z_index = 2
-position = Vector2(-359, -281)
+position = Vector2(-354, -283)
 
 [node name="TopObstacleobstacleBottomless25" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("8_u57bw")]
 z_index = 2
-position = Vector2(-295, -217)
+position = Vector2(-289, -219)
 
 [node name="TopObstacleobstacleBottomless26" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("8_u57bw")]
 z_index = 2
-position = Vector2(-231, -217)
+position = Vector2(-226, -219)
 
 [node name="TopObstacleobstacleBottomless27" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("8_u57bw")]
 z_index = 2
-position = Vector2(217, -217)
+position = Vector2(224, -222)
 
 [node name="TopObstacleobstacleBottomless28" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("8_u57bw")]
 z_index = 2
-position = Vector2(281, -217)
+position = Vector2(288, -222)
 
 [node name="MiddleObstacle_obstacleBottomless30" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("8_u57bw")]
 z_index = 2
-position = Vector2(537, 295)
+position = Vector2(543, 291)
 
 [node name="MiddleObstacle_obstacleBottomless31" parent="Obstacles" groups=["obstacle_middle"] instance=ExtResource("8_u57bw")]
 z_index = 2
-position = Vector2(-551, 295)
+position = Vector2(-546, 293)
 
 [node name="TopObstacleobstacleBottomless29" parent="Obstacles" groups=["obstacle_top"] instance=ExtResource("8_u57bw")]
 z_index = 2
-position = Vector2(345, -281)
+position = Vector2(352, -285)

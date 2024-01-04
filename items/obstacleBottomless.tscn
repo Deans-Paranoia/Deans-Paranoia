@@ -19,10 +19,9 @@ texture = ExtResource("1_vsg0t")
 position = Vector2(1.33333, 0.666664)
 scale = Vector2(0.999997, 0.999997)
 shape = SubResource("RectangleShape2D_avtpj")
-metadata/_edit_lock_ = true
 
 [node name="ObstacleArea" type="Area2D" parent="StaticBody2D"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D/ObstacleArea"]
-visible = false
+position = Vector2(2.66667, 1.33333)
 polygon = PackedVector2Array(-50, 40, -80, 40, -80, -45, -50, -45, -50, -75, 45, -75, 45, -45, 75, -45, 75, 40, 45, 40, 45, 70, -50, 70)
