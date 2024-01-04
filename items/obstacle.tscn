@@ -17,10 +17,10 @@ region_rect = Rect2(-1, 0, 451, 507)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 position = Vector2(-24, 24)
-polygon = PackedVector2Array(-17.3333, 29.3333, -14.6667, 52, 62.6667, 52, 66.6667, 29.3333, 64, 22.6667, 62.7985, -50.6234, 54.6667, -56, -4, -56, -13.4429, -52.0957, -14.6667, 21.3333)
+polygon = PackedVector2Array(-17.3333, 29.3333, -14.6667, 52, 62.6667, 52, 66.6667, 29.3333, 64, 22.6667, 62.6667, -50.6667, 54.6667, -53.3333, -4, -53.3333, -13.3333, -50.6667, -14.6667, 21.3333)
 
 [node name="ObstacleArea" type="Area2D" parent="StaticBody2D"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D/ObstacleArea"]
 position = Vector2(4, 20)
-polygon = PackedVector2Array(-45.3333, 34.6667, -61.3333, 34.6667, -60, -44, -45.3333, -44, -38.6667, -90.6667, 37.3333, -89.3333, 41.3333, -45.3333, 58.6667, -45.3333, 57.3333, 34.6667, 41.3333, 34.6667)
+polygon = PackedVector2Array(-45.3333, 34.6667, -61.3333, 34.6667, -60, -44, -45.3333, -44, -41.3333, -64, 38.6667, -64, 41.3333, -45.3333, 58.6667, -45.3333, 57.3333, 34.6667, 41.3333, 34.6667)
