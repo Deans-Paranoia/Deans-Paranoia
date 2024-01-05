@@ -54,6 +54,7 @@ var _dig_speed : float = 1
 #dfunc _process(_delta):
 	#dig()
 func _ready():
+	## Ta funkcja jest wywoływana w każdej klatce gry, służy do aktualizacji elementów gry.
 	dig_info_instance.visible = false
 	get_node("UI/UIContainer").add_child(dig_info_instance)
 	set_process_input(true)
@@ -62,6 +63,7 @@ func _ready():
 	use_chat.connect(get_tree().root.get_node("Map/Chat")._on_student_use_chat)
 	exit_chat.connect(get_tree().root.get_node("Map/Chat")._on_student_exit_chat)
 func _input(event):
+	## Ta funkcja obsługuje wejście użytkownika, np. naciśnięcie klawisza czy ruch myszką.
 	if event.is_action_pressed("use_chat") and self.name == str(multiplayer.get_unique_id()):
 		use_chat.emit(self.name)
 	if event.is_action_pressed("exit_chat") and self.name == str(multiplayer.get_unique_id()):
@@ -125,21 +127,26 @@ func _input(event):
 
 @rpc("any_peer","call_remote")
 func change_alarm_state():
+	## Ta funkcja obsługuje włączanie alarmu przeciwpożarowego.
 	var fire_alarm_reference = get_node_or_null("../thirdFloor/fire_alarm")
 	fire_alarm_reference.use_alarm(true)
+	
 @rpc("any_peer","call_local")
 func removeBooster():
+	## Ta funkcja usuwa boostera z gry, jeśli istnieje.
 	var booster = get_node_or_null("../thirdFloor/booster")
 	if booster!= null:
 		booster.on_boost_requested()
+		
 func sabotage_alarm():
-	# funkcja do sabotowania alarmu przez studenta
+	## funkcja do sabotowania alarmu przez studenta, zatrzymuje na chwile ruch gracza
 	print("Alarm sabotaged")
 	stop_player_movement()
 	body.get_node("FreezeTimer").start()
 
 func task_execution():
-	# funkcja do wykonywania taska przez studenta
+	## funkcja do wykonywania taska przez studenta, wysyła sygnał w jakiej area 
+	## znajduje sie gracz
 	player_task.emit(current_task_area)
 	disable_player_movement_for_duration.emit(1.0) # zatrzymanie ruchu gracza na 1s
 	task_finished = false
@@ -148,13 +155,16 @@ func task_execution():
 	
 @rpc("any_peer","call_remote")
 func catch_student():
+	## Fukcja służąca do łapania studenta, jeśli da się złapać studenta 
+	## łapie go i zatrzymuje mu ruch
 	if catchable and !is_catched:
 		is_catched = true
 		stop_player_movement()
 		change_is_catched.rpc()
 	
 func use_server():
-	# funkcja do uzywania serwera przez studenta
+	## funkcja do uzywania serwera przez studenta, sprawdza czy
+	## wpisany kod jest poprawny
 		var serverNode = get_node_or_null("../fourthFloor/server")
 		var czyPoprawnyKod : bool = serverNode.calculate_value()
 		if czyPoprawnyKod == false:
@@ -165,6 +175,8 @@ func use_server():
 
 	
 func use_elevator(side):
+	## Funkcja do używania windy, przenosi gracza na odpowiednie piętro, bierze 
+	## pod uwagę z której strony gracz wsiada do windy
 	var fourth = get_node_or_null("../fourthFloor")
 	var third = get_node_or_null("../thirdFloor")
 	if(fourth != null and third!=null):
@@ -194,8 +206,9 @@ func use_elevator(side):
 				body.global_position = Vector2(-40, -830)
 			elif (side == "right"):
 				body.global_position = Vector2(1250, -847)
+				
 func acquire_booster():
-	# funkcja nadajaca booster dla studenta
+	## funkcja nadajaca booster dla studenta
 	has_booster = true
 	_dig_speed = 0.6
 	print("Boost taken, current dig speed: ",_dig_speed)
@@ -203,10 +216,12 @@ func acquire_booster():
 
 @rpc("any_peer","call_local")
 func teleport(ammount):
+	## teleportuje gracza o wybrane ammount
 	self.global_position.x += ammount
 
-#metoda usuwa obstacle po przytrzymaniu spacji, jeśli gracz znajduje się blisko przeszkody i jest zwrócony przodem do niej
 func dig():
+	## Wyszukuje przeszkody w pobliżu i uruchamia kopanie, jeśli gracz 
+	## jest skierowany w stronę przeszkody i nie naciśnięto przycisku spacji.
 	var _is_facing_obstacle = false
 	var obstacles_nearby = body.get_node("PlayerArea").get_overlapping_bodies()
 	for obstacle in obstacles_nearby:
@@ -221,11 +236,13 @@ func dig():
 					body.get_node("DiggingTimer").start()
 		
 func stop_dig():
+	## Zatrzymuje proces kopania i wyłącza związany z nim timer.
 	_is_space_pressed = false
 	body.get_node("DiggingTimer").stop()
 		
 func _on_player_area_area_entered(area):
-	#funkcja do rejestrowanie aktualnie area, do ktorej weszlismy
+	## Rejestruje, gdy gracz wchodzi do określonego obszaru, umożliwiając korzystanie 
+	## z różnych funkcji w zależności od obszaru.
 	var area_entered = area.get_name()
 	if (area_entered == "FireAlarmArea" and self.name == str(multiplayer.get_unique_id())):
 		can_use_alarm = true
@@ -277,7 +294,7 @@ func _on_player_area_area_entered(area):
 		change_catchable(false)
 		change_catchable.rpc(false)
 func _on_player_area_area_exited(area):
-	#funkcja  do rejestrowania aktualnie opuszczonej area
+	## Rejestruje, gdy gracz opuszcza obszar, wyłączając dostęp do funkcji powiązanych z tym obszarem.
 	var area_exited = area.get_name()
 	if (area_exited == "FireAlarmArea" and self.name == str(multiplayer.get_unique_id())):
 		can_use_alarm = false
@@ -329,39 +346,45 @@ func _on_player_area_area_exited(area):
 		change_catchable.rpc(true)
 @rpc("any_peer","call_remote")
 func change_catchable(boolean):
+	## funkcja zdalna zmieniająca stan zmiennej catchable.
 	catchable = boolean
+	
 @rpc("any_peer","call_remote")
 func change_is_catched():
+	## funkcja zdalna zmieniająca stan zmiennej is_catched na true.
 	is_catched = true
 func stop_player_movement():
-	#funkcja  do zatrzymania movementu studenta, zbiera aktualna predkosc i przechowuje ja w temp_speed
+	## funkcja  do zatrzymania movementu studenta, zbiera aktualna predkosc 
+	## i przechowuje ja w temp_speed
 	temp_speed = body.take_current_speed_value()
 	body.stop_player_movement()
 
 func _on_freeze_timer_timeout():
-	#funkcja, ktora po skonczeniu timera przywraca stary movement studentowi
+	## funkcja, ktora po skonczeniu timera przywraca stary movement studentowi
 	fire_alarm_reference.useable = false
 	change_alarm_state.rpc()
 	body.restore_player_movement(temp_speed)
 	
 func _on_digging_timer_timeout():
-	#metoda po skończeniu DiggingTimer niszczy obstacle
+	## metoda po skończeniu DiggingTimer niszczy obstacle
 	if (_obstacle_to_destroy != null):
 		
 		remove_obstacle.rpc(_obstacle_to_destroy.get_parent().name)
 		_obstacle_to_destroy = null
 		
 func _on_server_timer_timeout():
-	# metoda, ktora po skonczeniu timera przywraca mozliwosc ponownego uzycia servera
+	## funkcja, ktora po skonczeniu timera przywraca mozliwosc ponownego uzycia servera
 	can_use_server_again = true
 
 @rpc("any_peer","call_local")
 func remove_obstacle(_obstacle_to_destroy):
+	## jesli przekazany obiekt istnieje to funkcja go usuwa
 	var obstacle = get_node_or_null("../fourthFloor/Obstacles/"+_obstacle_to_destroy)
 	if obstacle:
 		obstacle.queue_free()
+		
 func _is_student_facing_obstacle(obstacle):
-	#metoda sprawdza czy student jest zwrócony w strone przeszkody
+	## metoda sprawdza czy student jest zwrócony w strone przeszkody
 	
 	var obstacle_position = obstacle.global_position
 	var student_position = body.global_position
@@ -379,8 +402,3 @@ func _is_student_facing_obstacle(obstacle):
 		return true
 	else:
 		return false
-
-
-	
-
-
