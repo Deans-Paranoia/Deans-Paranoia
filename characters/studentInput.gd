@@ -221,7 +221,6 @@ func task_entered(text):
 	current_task_area = text
 	text_interaction("Fake task")
 	
-	
 func task_exited():
 	danger_instance = dangerScene.instantiate()
 	add_child(danger_instance)

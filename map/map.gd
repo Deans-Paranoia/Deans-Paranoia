@@ -226,6 +226,7 @@ func change_view():
 	body.can_move = false
 	if player.is_in_group("Student"):
 		player.dig_info_instance.visible = false
+		player.ui_interaction_instance.visible = false
 	if player.is_in_group("Dean"):
 		player.catch_info_instance.visible = false
 func npcs_notes(isVisible):
