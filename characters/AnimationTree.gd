@@ -74,23 +74,28 @@ func rotate_npc(direction):
 	match direction:
 		#wywoluje na poczatku taska chodzenia
 		"start":
+			
 			$".".get("parameters/playback").travel("Idle")
 			set("parameters/Idle/blend_position",  Vector2(0,1))
 			$".".get("parameters/playback").travel("Walking")
 		#gdy postac sie zatrzyma na gorze
 		"idle_up":
+			
 			$".".get("parameters/playback").travel("Idle")
 			set("parameters/Idle/blend_position",  Vector2(0,-1))
 		#gdy postac sie zatrzyma na dole
 		"idle_down":
+			
 			$".".get("parameters/playback").travel("Idle")
 			set("parameters/Idle/blend_position",  Vector2(0,1))
 		#gdy postac idzie w gore
 		"up":
+			
 			$".".get("parameters/playback").travel("Walking")
 			set("parameters/Walking/blend_position", Vector2(0,-1))
 		#gdy postac idzie w dol
 		"down":
+			
 			$".".get("parameters/playback").travel("Walking")
 			set("parameters/Walking/blend_position", Vector2(0,1))
 #ustawiam sprite idle zeby postac byla skierowana w strone taska (potem usune zmienna vector)

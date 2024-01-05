@@ -49,7 +49,7 @@ one_shot = true
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1697, -1157)
 enabled = false
-zoom = Vector2(0.2, 0.2)
+zoom = Vector2(0.3, 0.3)
 
 [node name="TaskAreas" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
