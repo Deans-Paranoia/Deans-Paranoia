@@ -43,70 +43,58 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2DWalkingDown:frame")
+tracks/2/path = NodePath("Sprite2DFakingTasks:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
+"values": [1]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2DFakingTasks:frame")
+tracks/3/path = NodePath("Sprite2D:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [1]
+"values": [0]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Sprite2D:frame")
+tracks/4/path = NodePath("Sprite2DFakingTasks:flip_h")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
+"values": [false]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Sprite2DFakingTasks:flip_h")
+tracks/5/path = NodePath("Sprite2DWalkingStudentGirlAnimations:frame")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [0]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Sprite2DWalkingStudentGirlAnimations:frame")
+tracks/6/path = NodePath("Sprite2DWalkingStudentGirlAnimations:frame_coords")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Sprite2DWalkingStudentGirlAnimations:frame_coords")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -211,14 +199,14 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2DWalkingDown:frame")
+tracks/0/path = NodePath("Sprite2DWalkingStudentGirlAnimations:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
+"values": [Vector2i(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_x5v45"]
@@ -228,14 +216,14 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2DWalkingLeft:frame")
+tracks/0/path = NodePath("Sprite2DWalkingStudentGirlAnimations:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
+"values": [Vector2i(0, 2)]
 }
 
 [sub_resource type="Animation" id="Animation_tk5j6"]
@@ -245,14 +233,14 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2DWalkingRight:frame")
+tracks/0/path = NodePath("Sprite2DWalkingStudentGirlAnimations:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
+"values": [Vector2i(0, 3)]
 }
 
 [sub_resource type="Animation" id="Animation_pmtjs"]
@@ -262,14 +250,14 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2DWalkingStudentGirlAnimations:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.00458977),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
+"values": [Vector2i(0, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_asw14"]
@@ -427,7 +415,6 @@ blend_point_2/pos = Vector2(1, 0)
 blend_point_3/node = SubResource("AnimationNodeAnimation_78ymg")
 blend_point_3/pos = Vector2(0, -1)
 blend_mode = 1
-sync = true
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f8dug"]
 animation = &"idle_left"
@@ -451,7 +438,6 @@ blend_point_2/pos = Vector2(1, 0)
 blend_point_3/node = SubResource("AnimationNodeAnimation_n1qr8")
 blend_point_3/pos = Vector2(0, 1)
 blend_mode = 1
-sync = true
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pivsp"]
 animation = &"walking_left"
@@ -476,7 +462,6 @@ blend_point_3/node = SubResource("AnimationNodeAnimation_5o0w6")
 blend_point_3/pos = Vector2(0, -1)
 snap = Vector2(0.01, 0.1)
 blend_mode = 1
-sync = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_afr7b"]
 advance_mode = 2
@@ -484,7 +469,7 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_5hyjn"]
 states/End/position = Vector2(743, 98)
 states/FakingTasks/node = SubResource("AnimationNodeBlendSpace2D_0g37y")
-states/FakingTasks/position = Vector2(312, -7)
+states/FakingTasks/position = Vector2(312, -8)
 states/Idle/node = SubResource("AnimationNodeBlendSpace2D_la2ey")
 states/Idle/position = Vector2(312, 115)
 states/Start/position = Vector2(159, 115)
@@ -571,9 +556,9 @@ libraries = {
 }
 tree_root = SubResource("AnimationNodeStateMachine_5hyjn")
 anim_player = NodePath("../AnimationPlayer")
-parameters/FakingTasks/blend_position = Vector2(0.0102249, -0.915344)
-parameters/Idle/blend_position = Vector2(0.0361248, 0.037037)
-parameters/Walking/blend_position = Vector2(0.00631201, 1.08466)
+parameters/FakingTasks/blend_position = Vector2(-0.0255009, -0.132275)
+parameters/Idle/blend_position = Vector2(-0.010929, -1.07407)
+parameters/Walking/blend_position = Vector2(0.0710382, -1.17989)
 script = ExtResource("3_8lqqm")
 
 [node name="UI" type="CanvasLayer" parent="." index="2"]
