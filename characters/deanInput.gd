@@ -107,5 +107,5 @@ func _on_catch_student_area_area_exited(area):
 	var object = area.get_parent().get_parent()
 	if object.is_in_group("Student"):
 		object.remove_from_group("Catchable_Students")
-	if get_tree().get_nodes_in_group("Catchable_Students").size()==0:
+	if get_tree().get_nodes_in_group("Catchable_Students").size()==0 and is_task_area:
 		catch_info_instance.visible = false
