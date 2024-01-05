@@ -1,28 +1,41 @@
-[gd_scene load_steps=2 format=3 uid="uid://cyedvup3llvdp"]
+[gd_scene load_steps=3 format=3 uid="uid://cyedvup3llvdp"]
 
+[ext_resource type="Theme" uid="uid://clry0vicpsvk4" path="res://ui/style/buttons.tres" id="1_2pkbj"]
 [ext_resource type="Script" path="res://ui/single_ip_info.gd" id="1_e78e4"]
 
 [node name="IpInfo" type="HBoxContainer"]
+custom_minimum_size = Vector2(1053, 40)
+offset_right = 1053.0
+offset_bottom = 38.0
+theme = ExtResource("1_2pkbj")
+theme_override_constants/separation = 5
 script = ExtResource("1_e78e4")
 
 [node name="Network Name" type="Label" parent="."]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.2
-theme_override_font_sizes/font_size = 30
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
 text = "Network Name"
+clip_text = true
 
 [node name="Ipv4" type="Label" parent="."]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 1.4
-theme_override_font_sizes/font_size = 30
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
 text = "Ipv4"
+clip_text = true
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 30
-text = "Host"
+theme = ExtResource("1_2pkbj")
+theme_override_font_sizes/font_size = 15
+text = " Hostuj "
 
 [connection signal="button_down" from="Button" to="." method="_on_button_button_down"]

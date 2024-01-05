@@ -17,7 +17,7 @@ func _ready():
 func _process(delta):
 	if listener != null and listener.get_available_packet_count() > 0 and is_host == false:
 		
-		$"../Title".visible = false
+		$"../BowserWindow/Title".visible = false
 		var serverIp = listener.get_packet_ip()
 		var serverPort = listener.get_packet_port()
 		var bytes = listener.get_packet()
@@ -64,7 +64,7 @@ func setUp():
 	else:
 		print("Failed to bind to listen port")
 		
-		$"../Title".visible = false
+		$"../BowserWindow/Title".visible = false
 		#$ServerIp.visible = true
 func setupBroadcast(name):
 	RoomInfo.name = name

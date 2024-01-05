@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://elehcsjwwhtm"]
+[gd_scene load_steps=2 format=3 uid="uid://elehcsjwwhtm"]
+
+[ext_resource type="FontFile" uid="uid://duw2x2g18tmee" path="res://ui/style/joystix monospace.otf" id="1_4qpbi"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
@@ -23,6 +25,13 @@ alignment = 1
 [node name="Label" type="Label" parent="Control/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
-text = "DANGER"
+theme_override_colors/font_color = Color(0.741176, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_4qpbi")
+text = "WRACAJ DO NAUKI!"
 horizontal_alignment = 1
 vertical_alignment = 1

@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://cqlkebqsmdn0k"]
 
 [ext_resource type="Script" path="res://ui/main_menu/main_menu.gd" id="1_3kbqu"]
-[ext_resource type="Texture2D" uid="uid://cc13w0jhc2gc2" path="res://ui/main_menu/style/placeholder.jpg" id="2_alroi"]
-[ext_resource type="Theme" uid="uid://clry0vicpsvk4" path="res://ui/main_menu/style/buttons.tres" id="2_iwnu6"]
+[ext_resource type="Theme" uid="uid://clry0vicpsvk4" path="res://ui/style/buttons.tres" id="2_iwnu6"]
+[ext_resource type="Texture2D" uid="uid://dg47a32g22ceu" path="res://ui/style/placeholder.png" id="2_kcmq0"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -19,11 +19,14 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = -4.0
+offset_right = 6.0
+offset_bottom = 372.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_alroi")
+texture = ExtResource("2_kcmq0")
 flip_h = true
-metadata/_edit_lock_ = true
 
 [node name="ColorRectMenu" type="ColorRect" parent="."]
 layout_mode = 2
@@ -65,11 +68,12 @@ layout_mode = 2
 theme = ExtResource("2_iwnu6")
 text = "Dołącz"
 
-[node name="Options" type="Button" parent="ColorRectMenu/MarginContainer/VBoxContainer"]
+[node name="Team" type="Button" parent="ColorRectMenu/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme = ExtResource("2_iwnu6")
-text = "Opcje"
+text = "Twórcy
+"
 
 [node name="QuitGame" type="Button" parent="ColorRectMenu/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
@@ -115,7 +119,7 @@ metadata/_edit_lock_ = true
 [connection signal="button_down" from="ColorRectMenu/MarginContainer/VBoxContainer/Host" to="." method="_on_host_game_pressed"]
 [connection signal="mouse_entered" from="ColorRectMenu/MarginContainer/VBoxContainer/Host" to="." method="_on_host_game_mouse_entered"]
 [connection signal="button_down" from="ColorRectMenu/MarginContainer/VBoxContainer/Join" to="." method="_on_join_game_pressed"]
-[connection signal="button_down" from="ColorRectMenu/MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
-[connection signal="mouse_entered" from="ColorRectMenu/MarginContainer/VBoxContainer/Options" to="." method="_on_options_mouse_entered"]
-[connection signal="mouse_exited" from="ColorRectMenu/MarginContainer/VBoxContainer/Options" to="." method="_on_options_mouse_exited"]
+[connection signal="button_down" from="ColorRectMenu/MarginContainer/VBoxContainer/Team" to="." method="_on_options_pressed"]
+[connection signal="mouse_entered" from="ColorRectMenu/MarginContainer/VBoxContainer/Team" to="." method="_on_options_mouse_entered"]
+[connection signal="mouse_exited" from="ColorRectMenu/MarginContainer/VBoxContainer/Team" to="." method="_on_options_mouse_exited"]
 [connection signal="button_down" from="ColorRectMenu/MarginContainer/VBoxContainer/QuitGame" to="." method="_on_quit_game_pressed"]

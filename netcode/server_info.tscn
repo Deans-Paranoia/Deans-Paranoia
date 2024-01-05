@@ -1,34 +1,39 @@
-[gd_scene load_steps=2 format=3 uid="uid://bjahfyp48dpwn"]
+[gd_scene load_steps=3 format=3 uid="uid://bjahfyp48dpwn"]
 
 [ext_resource type="Script" path="res://netcode/ServerInfo.gd" id="1_lno7d"]
+[ext_resource type="Theme" uid="uid://clry0vicpsvk4" path="res://ui/style/buttons.tres" id="1_teeit"]
 
 [node name="ServerInfo" type="HBoxContainer" groups=["server"]]
 size_flags_stretch_ratio = 0.61
+theme = ExtResource("1_teeit")
 script = ExtResource("1_lno7d")
 
 [node name="name" type="Label" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 25
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
 text = "test label"
 
 [node name="ip" type="Label" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 25
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
 text = "192.168.0.1
 "
 
 [node name="playerCount" type="Label" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 25
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
 text = "5/8"
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 25
-text = "Join"
+theme_override_font_sizes/font_size = 20
+text = " Dołącz "
 
 [connection signal="button_down" from="Button" to="." method="_on_button_button_down"]

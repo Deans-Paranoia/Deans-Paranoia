@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://q2lsd33tnhbe"]
+
+[ext_resource type="Theme" uid="uid://clry0vicpsvk4" path="res://ui/style/buttons.tres" id="1_els57"]
+[ext_resource type="Script" path="res://ui/deans_tablet/tablet_single_student.gd" id="1_fjfnx"]
+[ext_resource type="Texture2D" uid="uid://cw350t3xam6r5" path="res://assets/cross.png" id="2_uuqvq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ve06q"]
+bg_color = Color(0.486275, 0.698039, 0.882353, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+corner_detail = 9
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+
+[node name="Player" type="Panel"]
+offset_right = 146.0
+offset_bottom = 62.0
+theme = ExtResource("1_els57")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ve06q")
+script = ExtResource("1_fjfnx")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 20
+text = "Imie1"
+metadata/_edit_lock_ = true
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("2_uuqvq")
+flat = true
+metadata/_edit_lock_ = true
+
+[connection signal="button_down" from="HBoxContainer/Button" to="." method="_on_button_button_down"]

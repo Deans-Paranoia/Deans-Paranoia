@@ -142,3 +142,7 @@ func on_start_game():
 func signName(name_number,i):
 	globalScript.Players[i].fakeName = globalScript.studentsNames[name_number]
 	globalScript.remove_name(name_number)
+
+
+
+

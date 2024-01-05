@@ -1,36 +1,50 @@
-[gd_scene format=3 uid="uid://cbojdoijafiyk"]
+[gd_scene load_steps=2 format=3 uid="uid://cbojdoijafiyk"]
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[ext_resource type="Theme" uid="uid://clry0vicpsvk4" path="res://ui/style/buttons.tres" id="1_pbo25"]
+
+[node name="CanvasLayer" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+scale = Vector2(0.945586, 0.928157)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
 offset_left = 33.0
 offset_top = 107.0
 offset_right = 1119.0
 offset_bottom = 633.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
 offset_left = 37.0
-offset_top = 27.0
-offset_right = 1110.0
-offset_bottom = 69.0
+offset_top = 58.0
+offset_right = 1090.0
+offset_bottom = 96.0
+theme = ExtResource("1_pbo25")
+theme_type_variation = &"um"
 
 [node name="Network Name" type="Label" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 1.9
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 30
-text = "Network Name"
+text = "Nazwa sieci"
 
 [node name="Ipv4" type="Label" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 1.2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 30
 text = "Ipv4"
+horizontal_alignment = 1
 
 [node name="Host on Ip" type="Label" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 30
-text = "Host on this Ip"
+text = "hostuj na tym ip"
+horizontal_alignment = 2
