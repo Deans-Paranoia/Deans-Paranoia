@@ -28,6 +28,7 @@ script = ExtResource("2_4kyfb")
 serverInfo = ExtResource("3_8utcf")
 
 [node name="BroadcastTimer" type="Timer" parent="ServerBrowser"]
+wait_time = 0.5
 
 [node name="ip_panel" parent="ServerBrowser" instance=ExtResource("4_5v8nh")]
 

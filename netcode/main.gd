@@ -133,8 +133,8 @@ func on_start_game():
 			var rand = RandomNumberGenerator.new()
 			var name_number = rand.randi() % globalScript.studentsNames.size()
 			signName(name_number,i)
-			signName.rpc(name_number,i)
-			
+			signName.rpc(name_number,i)		
+	globalScript.game_started = true
 	StartGame.rpc()
 	StartGame()
 	pass
