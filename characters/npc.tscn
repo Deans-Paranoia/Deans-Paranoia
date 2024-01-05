@@ -149,22 +149,71 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_tf2e4"]
 resource_name = "idle_down"
+length = 0.03
 loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DWalkingStudentGirlAnimations:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_x5v45"]
 resource_name = "idle_left"
 length = 0.03
 loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DWalkingStudentGirlAnimations:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 2)]
+}
 
 [sub_resource type="Animation" id="Animation_tk5j6"]
 resource_name = "idle_right"
 length = 0.03
 loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DWalkingStudentGirlAnimations:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 3)]
+}
 
 [sub_resource type="Animation" id="Animation_pmtjs"]
 resource_name = "idle_up"
 length = 0.03
 loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DWalkingStudentGirlAnimations:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_asw14"]
 resource_name = "walking_down"
@@ -391,6 +440,7 @@ hframes = 13
 vframes = 4
 
 [node name="Sprite2DFakingTasks" type="Sprite2D" parent="CharacterBody2D"]
+visible = false
 position = Vector2(2.11, -2.37)
 scale = Vector2(0.325, 0.325)
 texture = ExtResource("10_80x0j")
@@ -409,9 +459,9 @@ libraries = {
 }
 tree_root = SubResource("AnimationNodeStateMachine_bxvf6")
 anim_player = NodePath("../AnimationPlayer")
-parameters/FakingTasks/blend_position = Vector2(0.519463, 0.00529099)
-parameters/Idle/blend_position = Vector2(0.0791947, 0.470899)
-parameters/Walking/blend_position = Vector2(0.0630872, 1.03175)
+parameters/FakingTasks/blend_position = Vector2(-0.0048309, 0.015873)
+parameters/Idle/blend_position = Vector2(0.233494, -0.0158731)
+parameters/Walking/blend_position = Vector2(0.0257353, -0.343915)
 script = ExtResource("7_2lg36")
 
 [connection signal="mouse_entered" from="CharacterBody2D" to="CharacterBody2D/KickScript" method="_on_character_body_2d_mouse_entered"]
