@@ -105,7 +105,7 @@ metadata/_edit_lock_ = true
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Borders2"]
 position = Vector2(1830.69, 578.989)
 scale = Vector2(0.842072, 0.490449)
-polygon = PackedVector2Array(1020.47, -958.283, 1016.91, 73.4246, 186.813, 79.5414, 182.063, -958.283)
+polygon = PackedVector2Array(1020.47, -958.283, 1016.91, 73.4246, 180.875, 81.5803, 182.063, -958.283)
 one_way_collision_margin = 0.0
 
 [node name="Node2D" parent="." instance=ExtResource("4_2v8nt")]
