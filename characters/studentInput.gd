@@ -4,7 +4,7 @@ signal player_task(task_type: String)
 signal disable_player_movement_for_duration(duration: float)
 
 signal use_chat(name)
-
+signal exit_chat(name)
 var current_task_area = "" # pusty string jesli gracz nie w tasku
 var fourthFloor = load("res://map/fourth_floor.tscn")
 var thirdFloor = load("res://map/level.tscn")
@@ -58,9 +58,12 @@ func _ready():
 	if(multiplayer.get_unique_id()!=1):
 		body = get_node_or_null(str(self))
 	use_chat.connect(get_tree().root.get_node("Map/Chat")._on_student_use_chat)
+	exit_chat.connect(get_tree().root.get_node("Map/Chat")._on_student_exit_chat)
 func _input(event):
 	if event.is_action_pressed("use_chat") and self.name == str(multiplayer.get_unique_id()):
 		use_chat.emit(self.name)
+	if event.is_action_pressed("exit_chat") and self.name == str(multiplayer.get_unique_id()):
+		exit_chat.emit(self.name)
 	if body!= null and body.can_move == false:
 		return
 	# interakcja z obiektami 

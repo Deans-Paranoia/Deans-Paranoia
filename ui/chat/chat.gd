@@ -33,6 +33,18 @@ func _on_student_use_chat(name):
 		$".".scale = Vector2(1,1)
 		$"Panel".modulate = Color(1,1,1,1)
 	chat_opened.disconnect(get_parent().get_node(str(name)+"/"+str(name))._on_chat_chat_opened)
+func _on_student_exit_chat(name):
+	if chat_in_use:
+		chat_opened.connect(get_parent().get_node(str(name)+"/"+str(name))._on_chat_chat_opened)
+		line_edit.release_focus()
+		chat_in_use = false
+		chat_opened.emit(false)
+		$".".scale = Vector2(0.5,0.5)
+		$"Panel".modulate = Color(1,1,1,0.5)
+		chat_opened.disconnect(get_parent().get_node(str(name)+"/"+str(name))._on_chat_chat_opened)
+		chat_in_use = false
+		line_edit.text = ""
+		line_edit.placeholder_text = "Press ENTER to type"
 @rpc("any_peer","call_remote"	)
 func add_message_to_chat(message_content,name):
 	var new_message_instance = new_message.instantiate()
