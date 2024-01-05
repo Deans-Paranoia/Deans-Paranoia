@@ -123,3 +123,12 @@ position = Vector2(-51, -830)
 
 [node name="booster" parent="." instance=ExtResource("5_ifp07")]
 position = Vector2(475, -1101)
+
+[node name="MiddleRightSofas" type="StaticBody2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MiddleRightSofas"]
+polygon = PackedVector2Array(1317, -531, 1317, -528, 1307, -528, 1307, -531, 1304, -533, 1304, -566, 1308, -568, 1445, -568, 1448, -565, 1448, -534, 1445, -531, 1445, -529, 1444, -528, 1435, -528, 1435, -531)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="MiddleRightSofas"]
+polygon = PackedVector2Array(1492, -534, 1499, -534, 1502, -531, 1502, -423, 1500, -421, 1499, -418, 1491, -418, 1491, -421, 1482, -421, 1482, -418, 1473, -418, 1472, -422, 1472, -476, 1470, -479, 1469, -519, 1473, -523, 1488, -523, 1489, -525, 1489, -531)
