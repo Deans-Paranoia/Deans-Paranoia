@@ -4,7 +4,8 @@ signal student_catched(name)
 @onready var catch_info_instance = load("res://ui/dig_and_dean_catch_info.tscn").instantiate()
 var is_tablet_open: bool = false
 @onready var scene = load("res://ui/deans_tablet/deans_tablet.tscn")
-var tablet_scene 
+var tablet_scene
+var is_task_area 
 # sprawdza czy wywołana została akcja "open_tablet" i wywołuje odpowiednią funkcję
 var body:CharacterBody2D
 var can_use_alarm : bool = false
@@ -88,10 +89,12 @@ func _on_area_2d_area_exited(area):
 	var area_exited = area.get_name()
 	if (area_exited == "FireAlarmArea"):
 		can_use_alarm = false
-
-
+	else:
+		if(area_exited == "TerminalArea" or area_exited == "VendingMachine1Area" or area_exited == "VendingMachine2Area" or area_exited == "ComputersArea" or area_exited == "NotesArea"  or area_exited == "WalkingArea"):
+			
 func _on_catch_student_area_area_entered(area):
 	var object = area.get_parent().get_parent()
+	
 	if object.is_in_group("Student"):
 		object.add_to_group("Catchable_Students")
 	if get_tree().get_nodes_in_group("Catchable_Students").size()==1:
