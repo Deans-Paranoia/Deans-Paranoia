@@ -111,23 +111,6 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3, 4, 5]
 }
 
-[sub_resource type="Animation" id="Animation_7ormc"]
-resource_name = "faking_task_notes"
-length = 0.3
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2DFakingTasks:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
 [sub_resource type="Animation" id="Animation_u17cn"]
 resource_name = "faking_task_vending"
 loop_mode = 1
@@ -188,6 +171,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_tf2e4"]
 resource_name = "idle_down"
+length = 0.03
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -321,11 +305,28 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 7, 8, 9, 10, 11, 12, 11, 10, 9, 7, 7]
 }
 
+[sub_resource type="Animation" id="Animation_iq1af"]
+resource_name = "faking_task_notes"
+loop_mode = 1
+step = 0.1667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DFakingTasks:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1667, 0.3334, 0.5001, 0.6668, 0.8335),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sav45"]
 _data = {
 "RESET": SubResource("Animation_hnehq"),
 "faking_task_computer": SubResource("Animation_uv04j"),
-"faking_task_notes": SubResource("Animation_7ormc"),
+"faking_task_notes": SubResource("Animation_iq1af"),
 "faking_task_vending": SubResource("Animation_u17cn"),
 "faking_task_vending_2": SubResource("Animation_63cu8"),
 "idle_down": SubResource("Animation_tf2e4"),
