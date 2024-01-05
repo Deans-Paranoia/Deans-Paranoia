@@ -546,6 +546,7 @@ frame = 1
 [node name="FreezeTimer" type="Timer" parent="CharacterBody2D" index="8"]
 process_callback = 0
 wait_time = 2.0
+one_shot = true
 
 [node name="ServerTimer" type="Timer" parent="CharacterBody2D" index="9"]
 
