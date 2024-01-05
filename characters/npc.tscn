@@ -1,10 +1,11 @@
-[gd_scene load_steps=40 format=3 uid="uid://cw8354n8rrb6q"]
+[gd_scene load_steps=41 format=3 uid="uid://cw8354n8rrb6q"]
 
 [ext_resource type="Script" path="res://characters/npc.gd" id="1_638kx"]
 [ext_resource type="Script" path="res://characters/npcMovementInput.gd" id="3_8jnpr"]
 [ext_resource type="Script" path="res://characters/task.gd" id="3_avpwc"]
 [ext_resource type="Texture2D" uid="uid://c4tqn41158126" path="res://assets/student_assets/StudentsGirlWalkingAnimationsALL.png" id="5_4ts74"]
 [ext_resource type="Script" path="res://characters/kickScript.gd" id="6_urb1a"]
+[ext_resource type="Script" path="res://characters/AnimationTree.gd" id="7_2lg36"]
 [ext_resource type="Texture2D" uid="uid://c3fn61kwrnjyb" path="res://assets/student_assets/FakingTasksGirlALL.png" id="10_80x0j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3im3k"]
@@ -411,7 +412,9 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/FakingTasks/blend_position = Vector2(0.519463, 0.00529099)
 parameters/Idle/blend_position = Vector2(0.0791947, 0.470899)
 parameters/Walking/blend_position = Vector2(0.0630872, 1.03175)
+script = ExtResource("7_2lg36")
 
 [connection signal="mouse_entered" from="CharacterBody2D" to="CharacterBody2D/KickScript" method="_on_character_body_2d_mouse_entered"]
 [connection signal="mouse_exited" from="CharacterBody2D" to="CharacterBody2D/KickScript" method="_on_character_body_2d_mouse_exited"]
+[connection signal="npc_sprite_task" from="CharacterBody2D/TaskScript" to="CharacterBody2D/AnimationTree" method="_on_task_script_npc_sprite_task"]
 [connection signal="npc_walking_task" from="CharacterBody2D/TaskScript" to="CharacterBody2D" method="_on_task_script_npc_walking_task"]
