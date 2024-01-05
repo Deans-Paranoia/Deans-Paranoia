@@ -82,7 +82,10 @@ func _on_area_2d_area_entered(area):
 	var area_entered = area.get_name()
 	if (area_entered == "FireAlarmArea"):
 		can_use_alarm = true
-
+	else:
+		if (area_entered == "TerminalArea" or area_entered == "VendingMachine1Area" or area_entered == "VendingMachine2Area" or area_entered == "ComputersArea" or area_entered == "NotesArea"  or area_entered == "WalkingArea"):
+			is_task_area = true
+			catch_info_instance.visible = false
 
 func _on_area_2d_area_exited(area):
 	#funkcja  do rejestrowania aktualnie opuszczonej are
@@ -90,14 +93,15 @@ func _on_area_2d_area_exited(area):
 	if (area_exited == "FireAlarmArea"):
 		can_use_alarm = false
 	else:
-		if(area_exited == "TerminalArea" or area_exited == "VendingMachine1Area" or area_exited == "VendingMachine2Area" or area_exited == "ComputersArea" or area_exited == "NotesArea"  or area_exited == "WalkingArea"):
-			
+		if (area_exited == "TerminalArea" or area_exited == "VendingMachine1Area" or area_exited == "VendingMachine2Area" or area_exited == "ComputersArea" or area_exited == "NotesArea"  or area_exited == "WalkingArea"):
+			is_task_area = false
+			catch_info_instance.visible = false
 func _on_catch_student_area_area_entered(area):
 	var object = area.get_parent().get_parent()
 	
 	if object.is_in_group("Student"):
 		object.add_to_group("Catchable_Students")
-	if get_tree().get_nodes_in_group("Catchable_Students").size()==1:
+	if get_tree().get_nodes_in_group("Catchable_Students").size()==1 and is_task_area:
 		catch_info_instance.visible = true
 func _on_catch_student_area_area_exited(area):
 	var object = area.get_parent().get_parent()
