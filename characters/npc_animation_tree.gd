@@ -135,7 +135,6 @@ func run_animation(taskVector):
 	
 	await get_tree().create_timer(1).timeout
 	#chowam animacje taska po sekundzie
-	set("parameters/FakingTasks/blend_position", Vector2(0,0))
 	$"../Sprite2DFakingTasks".set("visible", false)
 	#wylaczam taska włączam idle
 	$".".get("parameters/playback").travel("Idle")
