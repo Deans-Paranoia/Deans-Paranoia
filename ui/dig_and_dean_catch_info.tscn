@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://nu6u2v38wkxf"]
+
+[ext_resource type="Texture2D" uid="uid://dd3d63n171l1n" path="res://assets/space-button-icon.png" id="1_cwgux"]
+
+[node name="HBoxContainer" type="HBoxContainer"]
+offset_right = 131.0
+offset_bottom = 134.0
+
+[node name="dean_catch_and_dig_info" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="dean_catch_and_dig_info"]
+layout_mode = 2
+texture = ExtResource("1_cwgux")
+expand_mode = 5
+
+[node name="Label" type="Label" parent="dean_catch_and_dig_info"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Kopanie"
+horizontal_alignment = 1

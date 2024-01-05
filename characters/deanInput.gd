@@ -1,7 +1,7 @@
 extends Node2D
 signal student_picked()
 signal student_catched(name)
-@onready var catch_info_instance = load("res://ui/dean_catch_info.tscn").instantiate()
+@onready var catch_info_instance = load("res://ui/dig_and_dean_catch_info.tscn").instantiate()
 var is_tablet_open: bool = false
 @onready var scene = load("res://ui/deans_tablet/deans_tablet.tscn")
 var tablet_scene 
@@ -16,7 +16,8 @@ func _ready():
 		student_picked.connect(hall.on_student_moved)
 		student_catched.connect(hall.on_student_catched)
 		catch_info_instance.visible = false
-		add_child(catch_info_instance)
+		catch_info_instance.get_node("dean_catch_and_dig_info/Label").text = "Złap"
+		get_node("UI/UIContainer").add_child(catch_info_instance)
 func _input(event):
 	# event do obslugi tabletu przez dziekana
 	if event.is_action_pressed("open_tablet"):

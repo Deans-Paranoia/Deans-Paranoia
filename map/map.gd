@@ -224,6 +224,10 @@ func change_view():
 		canvas.visible = false
 	var body = player.get_node(str(multiplayer.get_unique_id()))
 	body.can_move = false
+	if player.is_in_group("Student"):
+		player.dig_info_instance.visible = false
+	if player.is_in_group("Dean"):
+		player.catch_info_instance.visible = false
 func npcs_notes(isVisible):
 	var npcs = get_tree().get_nodes_in_group("takingNotes")
 	#if(isVisible):

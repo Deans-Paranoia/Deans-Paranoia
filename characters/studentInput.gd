@@ -2,7 +2,7 @@ extends Node2D
 
 signal player_task(task_type: String)
 signal disable_player_movement_for_duration(duration: float)
-
+@onready var dig_info_instance = load("res://ui/dig_and_dean_catch_info.tscn").instantiate()
 signal use_chat(name)
 signal exit_chat(name)
 var current_task_area = "" # pusty string jesli gracz nie w tasku
@@ -54,6 +54,8 @@ var _dig_speed : float = 1
 #dfunc _process(_delta):
 	#dig()
 func _ready():
+	dig_info_instance.visible = false
+	get_node("UI/UIContainer").add_child(dig_info_instance)
 	set_process_input(true)
 	if(multiplayer.get_unique_id()!=1):
 		body = get_node_or_null(str(self))
@@ -169,6 +171,7 @@ func use_elevator(side):
 		if(self.is_in_group("ThirdFloor")):
 			self.add_to_group("FourthFloor")
 			self.remove_from_group("ThirdFloor")
+			dig_info_instance.visible = true
 			danger_instance.queue_free()
 		
 			fourth.visible = true
@@ -182,6 +185,7 @@ func use_elevator(side):
 		else:
 			self.add_to_group("ThirdFloor")
 			self.remove_from_group("FourthFloor")
+			dig_info_instance.visible = false
 			fourth.visible = false
 			third.visible = true
 			danger_instance = dangerScene.instantiate()
