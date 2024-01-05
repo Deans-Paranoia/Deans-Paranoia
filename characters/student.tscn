@@ -521,12 +521,12 @@ texture = ExtResource("6_qmyhb")
 hframes = 13
 
 [node name="Sprite2D" parent="CharacterBody2D" index="3"]
-visible = false
 scale = Vector2(0.37, 0.37)
 texture = ExtResource("3_w4h8j")
 hframes = 13
 
 [node name="Sprite2DWalkingStudentGirlAnimations" type="Sprite2D" parent="CharacterBody2D" index="4"]
+visible = false
 scale = Vector2(0.37, 0.37)
 texture = ExtResource("7_rrcgu")
 hframes = 13
