@@ -30,8 +30,6 @@ var body: CharacterBody2D
 var can_use_alarm : bool = false
 
 func _ready():
-	## Parametry: None
-	## Return: None
 	## Funkcja wywoływana przy inicjalizacji obiektu.
 	var hall = get_tree().root.get_node("Map/lecture_hall")
 	body = get_node_or_null(str(self.name))
@@ -45,8 +43,6 @@ func _ready():
 		get_node("UI/UIContainer").add_child(catch_info_instance)
 
 func _input(event):
-	## Parametry: None
-	## Return: None
 	## Funkcja obsługująca wejścia z klawiatury i myszy.
 
 	# Obsługa otwierania tabletu przez dziekana.
@@ -84,16 +80,12 @@ func _input(event):
 
 @rpc("any_peer","call_remote")
 func change_alarm_state():
-	## Parametry: None
-	## Return: None
 	## Funkcja zdalna obsługująca zmianę stanu alarmu przeciwpożarowego.
 	var fire_alarm_reference = get_node_or_null("../thirdFloor/fire_alarm")
 	if fire_alarm_reference:
 		fire_alarm_reference.use_alarm(false)
 
 func manage_deans_tablet():
-	## Parametry: None
-	## Return: None
 	## Funkcja zarządzająca widżetem tabletu dziekana.
 	# Obsługa otwierania i zamykania tabletu przez dziekana.
 	match is_tablet_open:
