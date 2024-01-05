@@ -3,6 +3,7 @@ extends Node2D
 signal player_task(task_type: String)
 signal disable_player_movement_for_duration(duration: float)
 @onready var dig_info_instance = load("res://ui/dig_and_dean_catch_info.tscn").instantiate()
+@onready var ui_interaction_instance = load("res://ui/ui_interaction.tscn").instantiate()
 signal use_chat(name)
 signal exit_chat(name)
 var current_task_area = "" # pusty string jesli gracz nie w tasku
@@ -55,7 +56,9 @@ var _dig_speed : float = 1
 	#dig()
 func _ready():
 	dig_info_instance.visible = false
+	ui_interaction_instance.visible = false
 	get_node("UI/UIContainer").add_child(dig_info_instance)
+	get_node("UI/UIContainer").add_child(ui_interaction_instance)
 	set_process_input(true)
 	if(multiplayer.get_unique_id()!=1):
 		body = get_node_or_null(str(self))
@@ -204,6 +207,28 @@ func acquire_booster():
 @rpc("any_peer","call_local")
 func teleport(ammount):
 	self.global_position.x += ammount
+	
+func text_interaction(text):
+	ui_interaction_instance.visible = true
+	var label = ui_interaction_instance.get_node("ui_interaction/Label")
+	label.text = text
+	
+func task_entered(text):
+	if danger_instance != null:
+		danger_instance.queue_free()
+	change_catchable(false)
+	change_catchable.rpc(false)
+	current_task_area = text
+	text_interaction("Fake task")
+	
+	
+func task_exited():
+	danger_instance = dangerScene.instantiate()
+	add_child(danger_instance)
+	change_catchable(true)
+	change_catchable.rpc(true)
+	current_task_area = ""
+	ui_interaction_instance.visible = false
 
 #metoda usuwa obstacle po przytrzymaniu spacji, jeśli gracz znajduje się blisko przeszkody i jest zwrócony przodem do niej
 func dig():
@@ -229,47 +254,34 @@ func _on_player_area_area_entered(area):
 	var area_entered = area.get_name()
 	if (area_entered == "FireAlarmArea" and self.name == str(multiplayer.get_unique_id())):
 		can_use_alarm = true
+		text_interaction("Alarm")
 
 	if (area_entered == "ServerArea" and self.name == str(multiplayer.get_unique_id())):
 		can_use_server = true
 
 	if (area_entered == "ElevatorArea" and self.name == str(multiplayer.get_unique_id())):
 		can_use_elevator = true
+		text_interaction("Winda")
 		
 	if (area_entered == "BoosterArea" and self.name == str(multiplayer.get_unique_id())):
 		can_use_booster = true
+		text_interaction("Booster")
 		
 	if (area_entered == "TerminalArea" and self.name == str(multiplayer.get_unique_id())):
 		can_use_terminal = true
 		terminal_address = area.get_parent().get_parent()
 		
 	if (area_entered == "VendingMachine1Area" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
-		if danger_instance != null:
-			danger_instance.queue_free()
-		change_catchable(false)
-		change_catchable.rpc(false)
-		current_task_area = "vendingMachine1"
+		task_entered("vendingMachine1")
 		
 	if (area_entered == "VendingMachine2Area" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
-		if danger_instance != null:
-			danger_instance.queue_free()
-		change_catchable(false)
-		change_catchable.rpc(false)
-		current_task_area = "vendingMachine2"
+		task_entered("vendingMachine2")
 		
 	if (area_entered == "ComputersArea" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
-		if danger_instance != null:
-			danger_instance.queue_free()
-		change_catchable(false)
-		change_catchable.rpc(false)
-		current_task_area = "computer"
+		task_entered("computer")
 		
 	if (area_entered == "NotesArea" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
-		if danger_instance != null:
-			danger_instance.queue_free()
-		change_catchable(false)
-		change_catchable.rpc(false)
-		current_task_area = "takingNotes"
+		task_entered("takingNotes")
 		
 	if (area_entered == "WalkingArea" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
 		if danger_instance != null:
@@ -281,46 +293,33 @@ func _on_player_area_area_exited(area):
 	var area_exited = area.get_name()
 	if (area_exited == "FireAlarmArea" and self.name == str(multiplayer.get_unique_id())):
 		can_use_alarm = false
+		ui_interaction_instance.visible = false
 
 	if (area_exited == "ServerArea" and self.name == str(multiplayer.get_unique_id())):
 		can_use_server = false
 
 	if (area_exited == "ElevatorArea" and self.name == str(multiplayer.get_unique_id())):
 		can_use_elevator = false
+		ui_interaction_instance.visible = false
 		
 	if (area_exited == "BoosterArea" and self.name == str(multiplayer.get_unique_id())):
 		can_use_booster = false
+		ui_interaction_instance.visible = false
 	
 	if (area_exited == "TerminalArea" and self.name == str(multiplayer.get_unique_id())):
 		can_use_terminal = false
 		terminal_address = null
 	if (area_exited == "VendingMachine1Area" and self.name == str(multiplayer.get_unique_id())):
-		danger_instance = dangerScene.instantiate()
-		add_child(danger_instance)
-		change_catchable(true)
-		change_catchable.rpc(true)
-		current_task_area = ""
+		task_exited()
 		
 	if (area_exited == "VendingMachine2Area" and self.name == str(multiplayer.get_unique_id())):
-		danger_instance = dangerScene.instantiate()
-		add_child(danger_instance)
-		change_catchable(true)
-		change_catchable.rpc(true)
-		current_task_area = ""
+		task_exited()
 		
 	if (area_exited == "ComputersArea" and self.name == str(multiplayer.get_unique_id())):
-		danger_instance = dangerScene.instantiate()
-		add_child(danger_instance)
-		change_catchable(true)
-		change_catchable.rpc(true)
-		current_task_area = ""
+		task_exited()
 		
 	if (area_exited == "NotesArea" and self.name == str(multiplayer.get_unique_id())):
-		danger_instance = dangerScene.instantiate()
-		add_child(danger_instance)
-		change_catchable(true)
-		change_catchable.rpc(true)
-		current_task_area = ""
+		task_exited()
 		
 	if (area_exited == "WalkingArea" and self.name == str(multiplayer.get_unique_id())):
 		danger_instance = dangerScene.instantiate()
