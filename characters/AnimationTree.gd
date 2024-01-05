@@ -43,7 +43,6 @@ func computer_loop():
 			
 func vending_machine_loop():
 	
-	
 	if  get_parent().get_parent().is_in_group("vendingMachine"):
 		taskVector = Vector2(1,0)
 		sprite_to_back_to = $"../Sprite2DWalkingStudentGirlAnimations"
@@ -66,10 +65,11 @@ func _on_character_body_2d_rotate(direction):
 	rotate_npc.rpc(direction)
 @rpc("any_peer","call_remote")
 func rotate_npc(direction):
+	$"../Sprite2DFakingTasks".set("visible", false)
+	$"../Sprite2DWalkingStudentGirlAnimations".set("visible", true)
 	match direction:
 		#wywoluje na poczatku taska chodzenia
 		"start":
-			
 			$".".get("parameters/playback").travel("Idle")
 			$".".get("parameters/playback").travel("Walking")
 		#gdy postac sie zatrzyma na gorze
@@ -78,22 +78,18 @@ func rotate_npc(direction):
 		#gdy postac sie zatrzyma na dole
 		"idle_down":
 			$".".get("parameters/playback").travel("Idle")
-			
 		#gdy postac idzie w gore
 		"up":
 			$".".get("parameters/playback").travel("Walking")
-			$"../Sprite2D".set("visible", true)
-			$"../Sprite2DWalkingDown".set("visible", false)
 			set("parameters/Walking/blend_position", Vector2(0,-1))
 		#gdy postac idzie w dol
 		"down":
 			$".".get("parameters/playback").travel("Walking")
-			$"../Sprite2D".set("visible", false)
-			$"../Sprite2DWalkingDown".set("visible", true)
 			set("parameters/Walking/blend_position", Vector2(0,1))
 #ustawiam sprite idle zeby postac byla skierowana w strone taska (potem usune zmienna vector)
 @rpc("any_peer","call_remote")
 func set_vector_and_sprite(sprite, vector):
+	$"../Sprite2DWalkingStudentGirlAnimations".set("visible", false)
 	match sprite:
 		"right":
 			sprite_to_back_to = $"../Sprite2DWalkingStudentGirlAnimations"
@@ -106,6 +102,7 @@ func set_vector_and_sprite(sprite, vector):
 @rpc("any_peer","call_remote")
 func run_animation(taskVector):
 	#upewniam się że postacie nie są dziwnie ulozone przez chodzenie
+	$"../Sprite2DWalkingStudentGirlAnimations".set("visible", false)
 	set("parameters/Idle/blend_position",  Vector2(0,0))
 	set("parameters/Walking/blend_position",  Vector2(0,0))
 	#pojawiam animacje taska
