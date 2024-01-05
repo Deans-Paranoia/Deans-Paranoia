@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://y4kbm2l282iy"]
+[gd_scene load_steps=42 format=3 uid="uid://y4kbm2l282iy"]
 
 [ext_resource type="PackedScene" uid="uid://ctspysrhlil1i" path="res://characters/player.tscn" id="1_6lj7h"]
 [ext_resource type="Script" path="res://characters/studentInput.gd" id="2_vaos0"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cqyquwb2hcmkk" path="res://assets/student_assets/tyl-sprite-combine.png" id="3_w4h8j"]
 [ext_resource type="Texture2D" uid="uid://br11rbr0lxmeu" path="res://assets/student_assets/lewy-sprite-combine.png" id="4_eherf"]
 [ext_resource type="Texture2D" uid="uid://c2m7hb6mbijhf" path="res://assets/student_assets/przod-sprite-combine.png" id="6_qmyhb"]
+[ext_resource type="Texture2D" uid="uid://c4tqn41158126" path="res://assets/student_assets/StudentsGirlWalkingAnimationsALL.png" id="7_rrcgu"]
 [ext_resource type="Texture2D" uid="uid://c3fn61kwrnjyb" path="res://assets/student_assets/FakingTasksGirlALL.png" id="7_ydri3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_npkcv"]
@@ -86,6 +87,30 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprite2DWalkingStudentGirlAnimations:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Sprite2DWalkingStudentGirlAnimations:frame_coords")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_uv04j"]
@@ -254,14 +279,26 @@ step = 0.0435
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2DWalkingDown:frame")
+tracks/0/path = NodePath("Sprite2DWalkingStudentGirlAnimations:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0435, 0.087, 0.1305, 0.174, 0.2175, 0.261, 0.3045, 0.348, 0.3915, 0.435, 0.4785, 0.522, 0.5655, 0.609, 0.6525, 0.696, 0.7395, 0.783, 0.8265, 0.87, 0.9135, 0.957),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 7, 8, 9, 10, 11, 12, 11, 10, 9, 8, 7]
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2DWalkingStudentGirlAnimations:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0435, 0.087, 0.1305, 0.174, 0.2175, 0.261, 0.3045, 0.348, 0.3915, 0.435, 0.4785, 0.522, 0.5655, 0.609, 0.6525, 0.696, 0.7395, 0.783, 0.8265, 0.87, 0.9135),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0), Vector2i(4, 0), Vector2i(5, 0), Vector2i(6, 0), Vector2i(5, 0), Vector2i(4, 0), Vector2i(3, 0), Vector2i(2, 0), Vector2i(1, 0), Vector2i(7, 0), Vector2i(8, 0), Vector2i(9, 0), Vector2i(10, 0), Vector2i(11, 0), Vector2i(11, 0), Vector2i(10, 0), Vector2i(9, 0), Vector2i(8, 0), Vector2i(7, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_cxddg"]
@@ -270,7 +307,7 @@ loop_mode = 1
 step = 0.0435
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath("Sprite2DWalkingLeft:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -280,6 +317,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [0, 0, 1, 2, 3, 4, 5, 5, 4, 3, 2, 1, 0, 6, 7, 8, 9, 10, 11, 10, 9, 8, 7]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2DWalkingStudentGirlAnimations:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0435, 0.087, 0.1305, 0.174, 0.2175, 0.261, 0.3045, 0.348, 0.3915, 0.435, 0.4785, 0.522, 0.5655, 0.609, 0.6525, 0.696, 0.7395, 0.783, 0.8265, 0.87, 0.9135, 0.957),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 2), Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2), Vector2i(3, 2), Vector2i(4, 2), Vector2i(5, 2), Vector2i(5, 2), Vector2i(4, 2), Vector2i(3, 2), Vector2i(2, 2), Vector2i(1, 2), Vector2i(0, 2), Vector2i(6, 2), Vector2i(7, 2), Vector2i(8, 2), Vector2i(9, 2), Vector2i(10, 2), Vector2i(11, 2), Vector2i(10, 2), Vector2i(9, 2), Vector2i(8, 2), Vector2i(7, 2)]
+}
 
 [sub_resource type="Animation" id="Animation_l6awf"]
 resource_name = "walking_right"
@@ -287,7 +336,7 @@ loop_mode = 1
 step = 0.0435
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath("Sprite2DWalkingRight:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -297,6 +346,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 4, 3, 2, 1, 0, 6, 7, 8, 9, 10, 11, 10, 9, 8, 7, 6]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2DWalkingStudentGirlAnimations:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0435, 0.087, 0.1305, 0.174, 0.2175, 0.261, 0.3045, 0.348, 0.3915, 0.435, 0.4785, 0.522, 0.5655, 0.609, 0.6525, 0.696, 0.7395, 0.783, 0.8265, 0.87, 0.9135),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 3), Vector2i(1, 3), Vector2i(2, 3), Vector2i(3, 3), Vector2i(4, 3), Vector2i(5, 3), Vector2i(4, 3), Vector2i(3, 3), Vector2i(2, 3), Vector2i(1, 3), Vector2i(0, 3), Vector2i(6, 3), Vector2i(7, 3), Vector2i(8, 3), Vector2i(9, 3), Vector2i(10, 3), Vector2i(11, 3), Vector2i(10, 3), Vector2i(9, 3), Vector2i(8, 3), Vector2i(7, 3), Vector2i(6, 3)]
+}
 
 [sub_resource type="Animation" id="Animation_0cn4d"]
 resource_name = "walking_up"
@@ -304,7 +365,7 @@ loop_mode = 1
 step = 0.0435
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -313,6 +374,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 7, 8, 9, 10, 11, 12, 11, 10, 9, 7, 7]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2DWalkingStudentGirlAnimations:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0435, 0.087, 0.1305, 0.174, 0.2175, 0.261, 0.3045, 0.348, 0.3915, 0.435, 0.4785, 0.522, 0.5655, 0.609, 0.6525, 0.696, 0.7395, 0.783, 0.8265, 0.87, 0.9135, 0.957),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1), Vector2i(5, 1), Vector2i(6, 1), Vector2i(5, 1), Vector2i(4, 1), Vector2i(3, 1), Vector2i(2, 1), Vector2i(1, 1), Vector2i(7, 1), Vector2i(8, 1), Vector2i(9, 1), Vector2i(10, 1), Vector2i(11, 1), Vector2i(12, 1), Vector2i(11, 1), Vector2i(10, 1), Vector2i(9, 1), Vector2i(8, 1), Vector2i(7, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sav45"]
@@ -448,11 +521,18 @@ texture = ExtResource("6_qmyhb")
 hframes = 13
 
 [node name="Sprite2D" parent="CharacterBody2D" index="3"]
+visible = false
 scale = Vector2(0.37, 0.37)
 texture = ExtResource("3_w4h8j")
 hframes = 13
 
-[node name="Sprite2DFakingTasks" type="Sprite2D" parent="CharacterBody2D" index="4"]
+[node name="Sprite2DWalkingStudentGirlAnimations" type="Sprite2D" parent="CharacterBody2D" index="4"]
+scale = Vector2(0.37, 0.37)
+texture = ExtResource("7_rrcgu")
+hframes = 13
+vframes = 4
+
+[node name="Sprite2DFakingTasks" type="Sprite2D" parent="CharacterBody2D" index="5"]
 visible = false
 position = Vector2(2.11, -2.37)
 scale = Vector2(0.325, 0.325)
@@ -461,31 +541,31 @@ hframes = 13
 vframes = 3
 frame = 1
 
-[node name="DiggingTimer" type="Timer" parent="CharacterBody2D" index="6"]
+[node name="DiggingTimer" type="Timer" parent="CharacterBody2D" index="7"]
 
-[node name="FreezeTimer" type="Timer" parent="CharacterBody2D" index="7"]
+[node name="FreezeTimer" type="Timer" parent="CharacterBody2D" index="8"]
 process_callback = 0
 wait_time = 2.0
 
-[node name="ServerTimer" type="Timer" parent="CharacterBody2D" index="8"]
+[node name="ServerTimer" type="Timer" parent="CharacterBody2D" index="9"]
 
-[node name="CollisionShape2D" parent="CharacterBody2D" index="9"]
+[node name="CollisionShape2D" parent="CharacterBody2D" index="10"]
 position = Vector2(3, 45)
 shape = SubResource("CapsuleShape2D_npkcv")
 
 [node name="CollisionShape2D" parent="CharacterBody2D/PlayerArea" index="0"]
 position = Vector2(1.66675, 5.00008)
 
-[node name="Label" parent="CharacterBody2D" index="11"]
+[node name="Label" parent="CharacterBody2D" index="12"]
 anchors_preset = -1
 offset_bottom = -115.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D" index="12"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D" index="13"]
 libraries = {
 "": SubResource("AnimationLibrary_sav45")
 }
 
-[node name="AnimationTree" type="AnimationTree" parent="CharacterBody2D" index="13"]
+[node name="AnimationTree" type="AnimationTree" parent="CharacterBody2D" index="14"]
 libraries = {
 "": SubResource("AnimationLibrary_sav45")
 }
@@ -493,7 +573,7 @@ tree_root = SubResource("AnimationNodeStateMachine_5hyjn")
 anim_player = NodePath("../AnimationPlayer")
 parameters/FakingTasks/blend_position = Vector2(0.0102249, -0.915344)
 parameters/Idle/blend_position = Vector2(0.0361248, 0.037037)
-parameters/Walking/blend_position = Vector2(-0.0163599, 0.142857)
+parameters/Walking/blend_position = Vector2(0.00631201, 1.08466)
 script = ExtResource("3_8lqqm")
 
 [connection signal="disable_player_movement_for_duration" from="." to="CharacterBody2D" method="_on_disable_player_movement_for_duration"]
