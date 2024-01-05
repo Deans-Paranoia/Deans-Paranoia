@@ -15191,4 +15191,3 @@ layer_1/tile_data = PackedInt32Array(-13434819, 0, 44, -13369283, 0, 45, -133037
 
 [node name="Node2D" parent="." instance=ExtResource("3_y3ufo")]
 show_behind_parent = true
-z_index = -2
