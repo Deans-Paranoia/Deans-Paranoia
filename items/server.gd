@@ -75,11 +75,8 @@ func show_end_screen():
 	var endgame_instance = endgame.instantiate()
 	get_tree().root.add_child(endgame_instance)
 	get_tree().root.get_node("Map").queue_free()
-	if 1 == multiplayer.get_unique_id():
-		endgame_instance.get_node("ColorRect/VBoxContainer2/Label").text = "Studenci wygrali!"
-	elif globalScript.deanId != multiplayer.get_unique_id():
+	if globalScript.deanId != multiplayer.get_unique_id():
 		endgame_instance.get_node("ColorRect/VBoxContainer2/Label").text = "Wygrałeś!"
-	
 	self.hide()		
 func on_number_changed(name, value):
 	if name == "terminal1":

@@ -30,15 +30,6 @@ func peer_connected(id):
 # called on the server and clients
 func peer_disconnected(id):
 	print("Player disconnected " + str(id))
-	var map = get_tree().root.get_node_or_null("Map")
-	if id == globalScript.deanId and get_tree().root.get_node_or_null("Map") != null:
-		map.get_node("fourthFloor/server").show_end_screen()
-		map.get_node("fourthFloor/server").show_end_screen.rpc()
-	elif map != null and id != 1:
-		var name = globalScript.Players[id].fakeName
-		map.get_node("lecture_hall/"+name).queue_free()
-		map.get_node("lecture_hall").change_players_count()
-		map.get_node("lecture_hall").change_players_count.rpc()
 	globalScript.Players.erase(id)
 	
 	var players = get_tree().get_nodes_in_group("Player")
