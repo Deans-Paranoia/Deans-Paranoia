@@ -22,7 +22,7 @@ func _on_join_game_pressed():
 	
 	
 func _on_options_pressed():
-	var scene = load("res://netcode/main.tscn").instantiate()
+	var scene = load("res://ui/team.tscn").instantiate()
 	get_tree().root.add_child(scene)
 	#It looks better without hiding it, cuz I styled it like a web browser
 	#self.hide()

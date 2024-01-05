@@ -4,7 +4,8 @@
 [ext_resource type="Theme" uid="uid://clry0vicpsvk4" path="res://ui/style/buttons.tres" id="1_xrsno"]
 [ext_resource type="PackedScene" uid="uid://br8gcsc0qn7l6" path="res://netcode/PlayerInfo.tscn" id="2_7ksot"]
 [ext_resource type="PackedScene" uid="uid://b01mi8vx1flxo" path="res://ui/style/BowserWindow.tscn" id="3_hht5l"]
-[ext_resource type="StyleBox" uid="uid://c4c8awj6tg2bn" path="res://ui/style/button_normal.tres" id="5_wkux7"]
+
+[sub_resource type="SystemFont" id="SystemFont_84n1s"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7as1u"]
 bg_color = Color(0.0352941, 0.196078, 0.247059, 1)
@@ -32,16 +33,14 @@ offset_right = 1003.11
 offset_bottom = 695.242
 scale = Vector2(1.38235, 1.38235)
 
-[node name="StartGame" type="Button" parent="."]
+[node name="Adress" type="Label" parent="BowserWindow"]
 layout_mode = 0
-offset_left = 446.0
-offset_top = 573.0
-offset_right = 658.0
-offset_bottom = 634.0
-theme = ExtResource("1_xrsno")
-theme_override_styles/normal = ExtResource("5_wkux7")
-disabled = true
-text = "Start Game"
+offset_left = 46.2959
+offset_top = 10.8501
+offset_right = 1061.3
+offset_bottom = 33.8501
+theme_override_fonts/font = SubResource("SystemFont_84n1s")
+text = "https://e-dziekan.edu.pl/sggw/wzim/deans-paranoia/aula_poczekalnia_nr_34"
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
@@ -106,5 +105,13 @@ offset_bottom = 468.0
 wait_time = 5.393
 autostart = true
 
-[connection signal="button_down" from="StartGame" to="." method="_on_start_game_button_down"]
+[node name="StartGame" type="Button" parent="."]
+layout_mode = 0
+offset_left = 452.0
+offset_top = 582.0
+offset_right = 656.0
+offset_bottom = 622.0
+text = "Rozpocznij Grę"
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="button_down" from="StartGame" to="." method="_on_start_game_button_down"]

@@ -1,0 +1,88 @@
+[gd_scene load_steps=4 format=3 uid="uid://dkecl0aa7ex1y"]
+
+[ext_resource type="Theme" uid="uid://clry0vicpsvk4" path="res://ui/style/buttons.tres" id="1_uu7dm"]
+[ext_resource type="PackedScene" uid="uid://b01mi8vx1flxo" path="res://ui/style/BowserWindow.tscn" id="2_wmy4o"]
+
+[sub_resource type="SystemFont" id="SystemFont_2a86g"]
+
+[node name="Team" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_uu7dm")
+
+[node name="BowserWindow" parent="." instance=ExtResource("2_wmy4o")]
+layout_mode = 1
+anchor_left = -0.015625
+anchor_top = -0.012179
+anchor_right = 0.660375
+anchor_bottom = 0.654821
+offset_left = 111.0
+offset_top = 51.892
+offset_right = 111.248
+offset_bottom = 51.676
+
+[node name="Team" type="Label" parent="BowserWindow"]
+layout_mode = 0
+offset_left = 289.0
+offset_top = 46.0
+offset_right = 439.0
+offset_bottom = 82.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Twórcy"
+
+[node name="Label" type="Label" parent="BowserWindow"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 92.0
+offset_right = 357.0
+offset_bottom = 423.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Maurycy Farski
+Patryk Prokopski
+Adam Ropelewski
+Kacper Rybarczyk
+Dawid Rychlik
+Asia Sienkiewicz
+Mateusz Sobiech
+Stanisław Stankiewicz
+Oliwia Strzelec
+"
+vertical_alignment = 3
+autowrap_mode = 2
+
+[node name="Label2" type="Label" parent="BowserWindow"]
+layout_mode = 0
+offset_left = 399.0
+offset_top = 92.0
+offset_right = 688.0
+offset_bottom = 424.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Jakub Szala
+Kacper Sznejder
+Bartek	 Tański
+Mateusz Tarnowski
+Wiktor Toczyłowski
+Karolina Trzaskulska
+Wojciech Twarowski
+Rafał Urzędowski
+Patryk	 Welkier
+Adrian Wierzchowski
+Maja Wiśniewska
+"
+vertical_alignment = 3
+autowrap_mode = 2
+
+[node name="Label3" type="Label" parent="BowserWindow"]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 9.99999
+offset_right = 684.0
+offset_bottom = 33.0
+theme_override_fonts/font = SubResource("SystemFont_2a86g")
+text = "https://e-dziekan.edu.pl/sggw/wzim/semsestr3/inzynieriaoprogramowania/projekt"
+metadata/_edit_group_ = true

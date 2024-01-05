@@ -46,6 +46,14 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 30
 text = "OCZEKIWANIE NA SERWER..."
 
+[node name="Adress" type="Label" parent="BowserWindow"]
+layout_mode = 0
+offset_left = 45.4064
+offset_top = 9.58805
+offset_right = 684.406
+offset_bottom = 32.5881
+text = "https://e-dziekan.edu.pl/sggw/wzim/deansparanoia/wyszukiwarka-gier"
+
 [node name="ServerBrowser" type="Control" parent="."]
 anchors_preset = 0
 offset_left = 89.0
