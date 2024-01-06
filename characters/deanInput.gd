@@ -19,7 +19,7 @@ func _ready():
 		ui_hints_instance.get_node("e_key").visible = false
 		ui_hints_instance.get_node("space_key").visible = false
 		ui_hints_instance.get_node("space_key/Label2").text = "Złap"
-		ui_hints_instance.get_node("e_key").text = "alarm"
+		ui_hints_instance.get_node("e_key/Label").text = "alarm"
 		add_child(ui_hints_instance)
 func _input(event):
 	# event do obslugi tabletu przez dziekana
