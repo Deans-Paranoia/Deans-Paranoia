@@ -77,6 +77,9 @@ func show_end_screen():
 	get_tree().root.get_node("Map").queue_free()
 	if globalScript.deanId != multiplayer.get_unique_id():
 		endgame_instance.get_node("ColorRectMessage/Message").text = "Wygrałeś! Teraz Dziekan już Cię nie dosięgnie."
+	else:
+		endgame_instance.get_node("ColorRectMessage/Message").text = "Przegrałeś! Poszukaj innej pracy."
+		
 		
 	self.hide()		
 func on_number_changed(name, value):
