@@ -1,5 +1,5 @@
 extends Node2D
-var endgame = load("res://ui/endgame.tscn")
+var endgame = load("res://ui/game_result_screens/endgame.tscn")
 var rng = RandomNumberGenerator.new()
 @onready var green_terminal = load("res://assets/terminal_green.png")
 @onready var violet_terminal = load("res://assets/terminal_violet.png")

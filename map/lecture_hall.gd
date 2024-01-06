@@ -9,8 +9,8 @@ var maximum_ammount_to_kick = 1
 var hovered_student
 var students_to_kick = []
 var playersCount=0
-var endgame = load("res://ui/endgame.tscn")
-var kicked_notification = load("res://ui/kick_notification.tscn")
+var endgame = load("res://ui/game_result_screens/endgame.tscn")
+var kicked_notification = load("res://ui/game_result_screens/kick_notification.tscn")
 func on_npc_spawn():
 	if(multiplayer.get_unique_id() ==1):
 		for i in globalScript.usedNames:

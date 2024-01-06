@@ -1,12 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://q2lsd33tnhbe"]
+[gd_scene load_steps=5 format=3 uid="uid://q2lsd33tnhbe"]
 
 [ext_resource type="Script" path="res://ui/deans_tablet/tablet_single_student.gd" id="1_fjfnx"]
 [ext_resource type="FontFile" uid="uid://duw2x2g18tmee" path="res://ui/style/joystix monospace.otf" id="2_5b2yk"]
 [ext_resource type="Texture2D" uid="uid://cgg7qps61iytn" path="res://assets/questionmark.png" id="3_ht5h1"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ve06q"]
-bg_color = Color(0.0352941, 0.196078, 0.247059, 0)
-corner_detail = 9
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_htesa"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -20,24 +16,18 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="Player" type="Panel"]
-offset_right = 392.0
-offset_bottom = 62.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_ve06q")
-script = ExtResource("1_fjfnx")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer"]
 custom_minimum_size = Vector2(384, 0)
-layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -22.5
+offset_top = -22.0
 offset_right = 384.0
-offset_bottom = 22.5
+offset_bottom = 23.0
 grow_vertical = 2
+script = ExtResource("1_fjfnx")
 
-[node name="Label" type="Label" parent="HBoxContainer"]
+[node name="Label" type="Label" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -45,25 +35,20 @@ theme_override_fonts/font = ExtResource("2_5b2yk")
 theme_override_font_sizes/font_size = 20
 text = " Imie1"
 
-[node name="Panel" type="Panel" parent="HBoxContainer"]
+[node name="Panel" type="Panel" parent="."]
 custom_minimum_size = Vector2(45, 45)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_htesa")
 
-[node name="Button" type="Button" parent="HBoxContainer/Panel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -17.5
-offset_top = -20.0
-offset_right = 17.5
-offset_bottom = 20.0
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 2
+offset_left = 2.0
+offset_top = 1.0
+offset_right = 45.0
+offset_bottom = 44.0
 grow_horizontal = 2
 grow_vertical = 2
 icon = ExtResource("3_ht5h1")
 flat = true
 
-[connection signal="button_down" from="HBoxContainer/Panel/Button" to="." method="_on_button_button_down"]
+[connection signal="button_down" from="Panel/Button" to="." method="_on_button_button_down"]

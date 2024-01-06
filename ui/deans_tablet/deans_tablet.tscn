@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b01mi8vx1flxo" path="res://ui/style/BowserWindow.tscn" id="3_hkgli"]
 
 [sub_resource type="GDScript" id="GDScript_kf4a7"]
-script/source = "extends Control
+script/source = "extends CanvasLayer
 @onready var single_scene = load(\"res://ui/deans_tablet/tablet_single_student.tscn\")
 func _ready():
 	var i = 1
@@ -15,9 +15,9 @@ func _ready():
 		var scene = single_scene.instantiate()
 		scene.get_node(\"Label\").text = str(j)
 		if i%2 ==1:
-			get_node(\"$Tablet/BowserWindow/VBoxContainer\").add_child(scene)
+			get_node(\"Tablet/BowserWindow/VBoxContainer\").add_child(scene)
 		else:
-			get_node(\"$Tablet/BowserWindow/VBoxContainer2\").add_child(scene)
+			get_node(\"Tablet/BowserWindow/VBoxContainer2\").add_child(scene)
 		i+=1
 "
 
@@ -42,21 +42,10 @@ corner_radius_bottom_left = 30
 shadow_color = Color(0.447059, 0.67451, 0.866667, 1)
 shadow_size = 2
 
-[node name="DeansTablet" type="Control"]
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+[node name="DeansTablet" type="CanvasLayer"]
 script = SubResource("GDScript_kf4a7")
 
 [node name="Tablet" type="Panel" parent="."]
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -166,17 +155,17 @@ offset_bottom = 89.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Tablet/BowserWindow"]
 layout_mode = 2
-offset_left = 3.0
-offset_top = 89.0
-offset_right = 390.0
-offset_bottom = 428.0
+offset_left = 11.0
+offset_top = 95.0
+offset_right = 375.0
+offset_bottom = 425.0
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Tablet/BowserWindow"]
 layout_mode = 2
-offset_left = 387.0
-offset_top = 89.0
-offset_right = 777.0
-offset_bottom = 428.0
+offset_left = 396.0
+offset_top = 95.0
+offset_right = 756.0
+offset_bottom = 425.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Tablet/BowserWindow"]
 layout_mode = 0

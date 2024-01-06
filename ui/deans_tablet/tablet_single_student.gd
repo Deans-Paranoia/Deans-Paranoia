@@ -1,4 +1,4 @@
-extends Panel
+extends HBoxContainer
 
 @onready var questionmark = load("res://assets/questionmark.png")
 @onready var checkmark = load("res://assets/checkmark.png")
@@ -10,7 +10,7 @@ var CheckNumber = 0
 
 func _on_button_button_down():
 	CheckNumber = (CheckNumber + 1) % 3
-	$HBoxContainer/Panel/Button.icon = Checks[CheckNumber]
+	$Panel/Button.icon = Checks[CheckNumber]
 
 
 	

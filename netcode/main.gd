@@ -70,6 +70,7 @@ func SendPlayerInformation(name, id):
 			SendPlayerInformation.rpc(globalScript.Players[i].name, i)
 @rpc("any_peer","call_remote")
 func StartGame():
+	get_tree().root.get_node("MainMenu").hide()
 	var sceneMain = load("res://map/map.tscn").instantiate()
 	self.hide()
 	#print(control)
@@ -134,7 +135,7 @@ func on_start_game():
 			var name_number = rand.randi() % globalScript.studentsNames.size()
 			signName(name_number,i)
 			signName.rpc(name_number,i)
-			
+	
 	StartGame.rpc()
 	StartGame()
 	pass
