@@ -86,7 +86,7 @@ func show_end_screen():
 	get_tree().root.add_child(endgame_instance)
 	get_tree().root.get_node("Map").queue_free()
 	if globalScript.deanId == multiplayer.get_unique_id():
-		endgame_instance.get_node("ColorRectMessage/Message").text = "Wygrałeś! Renoma uczelni pozostaje niezachwiana "
+		endgame_instance.get_node("ColorRectMessage/Message").text = "Wygrałeś! Renoma uczelni pozostaje niezachwiana!"
 	self.hide()	
 	
 @rpc("any_peer","call_remote")
