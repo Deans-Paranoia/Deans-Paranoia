@@ -159,6 +159,8 @@ func setPlayer(i,task_number):
 		player.global_position = position
 		player.current_task_area = task_data.taskType
 		globalScript.manage_task(task_number)
+		if task_data.taskType != "walking":
+			player.task_entered(task_data.taskType)
 @rpc("any_peer","call_remote")
 func set_code_number(random,day):
 	var code_node = get_node("Code")

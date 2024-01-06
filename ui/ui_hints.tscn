@@ -8,8 +8,8 @@
 [node name="e_key" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 10.0
-offset_right = 50.0
+offset_left = -18.0
+offset_right = 22.0
 offset_bottom = 40.0
 
 [node name="TextureRect" type="TextureRect" parent="e_key"]
@@ -19,9 +19,9 @@ anchor_left = 0.924
 anchor_top = 0.838
 anchor_right = 0.968
 anchor_bottom = 0.915
-offset_left = 1028.04
+offset_left = 1038.04
 offset_top = 509.48
-offset_right = 1076.28
+offset_right = 1086.28
 offset_bottom = 556.4
 texture = ExtResource("1_oc3ni")
 expand_mode = 4
@@ -36,7 +36,7 @@ anchor_right = 0.974
 anchor_bottom = 0.974
 offset_left = 1002.84
 offset_top = 558.2
-offset_right = 1101.04
+offset_right = 1119.04
 offset_bottom = 584.04
 theme_override_font_sizes/font_size = 20
 text = "Text"
@@ -46,8 +46,8 @@ vertical_alignment = 1
 [node name="space_key" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = -5.0
-offset_right = 35.0
+offset_left = -15.0
+offset_right = 25.0
 offset_bottom = 40.0
 
 [node name="TextureRect2" type="TextureRect" parent="space_key"]
