@@ -6,6 +6,8 @@ var current:int
 var dean:int
 var isServer = false
 func _ready():
+	if multiplayer.is_server():
+		$HBoxContainer/GoBack.disabled = true
 	pass
 func _process(delta):
 	#for i in GameManager.Players:
@@ -39,7 +41,6 @@ func refresh_table():
 	for j in $Panel/VBoxContainer.get_children():
 		j.hide()
 	for i in globalScript.Players:
-		print(str(multiplayer.get_unique_id()) + str(globalScript.Players.size()))
 		var currentInfo = serverInfo.instantiate()
 		currentInfo.name = str(i)
 		currentInfo.get_node("HBoxContainer/Name").text = "Player "+str(i)
@@ -66,7 +67,6 @@ func delete_player(id):
 	globalScript.Players.erase(id)
 	var player = get_node_or_null("Panel/VBoxContainer/"+str(id))
 	if player !=null:
-		print("usunieto z " + str(multiplayer.get_unique_id()))
 		player.queue_free()
 
 func _on_go_back_button_down():
