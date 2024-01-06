@@ -11,6 +11,7 @@ script = ExtResource("1_yy3gl")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 custom_minimum_size = Vector2(630, 0)
+layout_mode = 0
 offset_right = 309.0
 offset_bottom = 31.0
 
