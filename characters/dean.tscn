@@ -26,21 +26,6 @@ offset_top = -185.0
 offset_right = 85.0
 offset_bottom = -125.0
 
-[node name="UI" type="CanvasLayer" parent="." index="1"]
-
-[node name="UIContainer" type="VBoxContainer" parent="UI" index="0"]
-anchors_preset = -1
-anchor_left = 0.892
-anchor_top = 0.765
-anchor_right = 0.991
-anchor_bottom = 0.988
-offset_left = 0.416016
-offset_top = 0.279968
-offset_right = 0.36792
-offset_bottom = 7.776
-size_flags_horizontal = 3
-metadata/_edit_use_anchors_ = true
-
 [connection signal="area_entered" from="CharacterBody2D/CatchStudentArea" to="." method="_on_catch_student_area_area_entered"]
 [connection signal="area_exited" from="CharacterBody2D/CatchStudentArea" to="." method="_on_catch_student_area_area_exited"]
 [connection signal="area_entered" from="CharacterBody2D/PlayerArea" to="." method="_on_area_2d_area_entered"]

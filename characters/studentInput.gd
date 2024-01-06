@@ -2,8 +2,7 @@ extends Node2D
 
 signal player_task(task_type: String)
 signal disable_player_movement_for_duration(duration: float)
-@onready var dig_info_instance = load("res://ui/dig_and_dean_catch_info.tscn").instantiate()
-@onready var ui_interaction_instance = load("res://ui/ui_interaction.tscn").instantiate()
+@onready var ui_hints_instance = load("res://ui/ui_hints.tscn").instantiate()
 signal use_chat(name)
 signal exit_chat(name)
 var current_task_area = "" # pusty string jesli gracz nie w tasku
@@ -210,7 +209,7 @@ func teleport(ammount):
 	
 func text_interaction(text):
 	ui_interaction_instance.visible = true
-	var label = ui_interaction_instance.get_node("ui_interaction/Label")
+	var label = ui_interaction_instance.get_node("Label")
 	label.text = text
 	
 func task_entered(text):
