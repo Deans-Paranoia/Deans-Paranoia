@@ -39,6 +39,7 @@ func refresh_table():
 	for j in $Panel/VBoxContainer.get_children():
 		j.hide()
 	for i in globalScript.Players:
+		print(str(multiplayer.get_unique_id()) + str(globalScript.Players.size()))
 		var currentInfo = serverInfo.instantiate()
 		currentInfo.name = str(i)
 		currentInfo.get_node("HBoxContainer/Name").text = "Player "+str(i)
@@ -59,3 +60,20 @@ func on_current_player(id):
 	current = id
 func _on_timer_timeout():
 	refresh_table()
+
+@rpc("any_peer","call_remote")
+func delete_player(id):
+	globalScript.Players.erase(id)
+	var player = get_node_or_null("Panel/VBoxContainer/"+str(id))
+	if player !=null:
+		print("usunieto z " + str(multiplayer.get_unique_id()))
+		player.queue_free()
+
+func _on_go_back_button_down():
+	var id = multiplayer.get_unique_id()
+	delete_player.rpc(id)
+	delete_player(id)
+	multiplayer.multiplayer_peer.disconnect_peer(id)
+	get_tree().root.get_node("MainMenu").visible = true
+	get_tree().root.get_node("main").queue_free()
+	get_tree().root.get_node("Waiting_room").queue_free()

@@ -147,3 +147,7 @@ func signName(name_number,i):
 
 
 
+func _on_back_to_menu_button_button_down():
+	get_tree().root.get_node("MainMenu").visible = true
+	get_tree().root.get_node("main").queue_free()
+	
