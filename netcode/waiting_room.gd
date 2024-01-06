@@ -6,8 +6,8 @@ var current:int
 var dean:int
 var isServer = false
 func _ready():
-	if multiplayer.is_server():
-		$HBoxContainer/GoBack.disabled = true
+	#if multiplayer.is_server():
+		#$HBoxContainer/GoBack.disabled = true
 	pass
 func _process(delta):
 	#for i in GameManager.Players:
@@ -68,7 +68,8 @@ func delete_player(id):
 	var player = get_node_or_null("Panel/VBoxContainer/"+str(id))
 	if player !=null:
 		player.queue_free()
-
+	if id==1:
+		get_tree().root.get_node("main/ServerBrowser").cleanUp()
 func _on_go_back_button_down():
 	var id = multiplayer.get_unique_id()
 	delete_player.rpc(id)

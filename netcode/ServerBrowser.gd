@@ -91,14 +91,18 @@ func exit_tree():
 	cleanUp()
 
 func cleanUp():
-	print("broadcaster closed")
-	listener.close()
+	for i in globalScript.Players:
+		get_tree().root.get_node_or_null("Waiting_room").delete_player(i)
+		get_tree().root.get_node_or_null("Waiting_room").delete_player.rpc(i)
+	if listener != null:
+		listener.close()
 	$BroadcastTimer.stop()
 	if broadcaster != null:
 		broadcaster.close()
 	broadcaster = null
 	listener = null
 	playerCount = 0
+	get_tree().root.get_node("main").peer.close()
 	RoomInfo = {"name":"name","playerCount":0}
 	broadcastAddress = ""
 	for i in $VBoxContainer.get_children():
