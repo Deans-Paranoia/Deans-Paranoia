@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://ui/single_ip_info.gd" id="1_e78e4"]
 
 [node name="IpInfo" type="HBoxContainer"]
-custom_minimum_size = Vector2(1053, 40)
+custom_minimum_size = Vector2(1053, 70)
 offset_right = 1053.0
 offset_bottom = 38.0
 theme = ExtResource("1_2pkbj")
@@ -32,8 +32,10 @@ text = "Ipv4"
 clip_text = true
 
 [node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 45)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 6
+size_flags_vertical = 4
 theme = ExtResource("1_2pkbj")
 theme_override_font_sizes/font_size = 15
 text = " Hostuj "

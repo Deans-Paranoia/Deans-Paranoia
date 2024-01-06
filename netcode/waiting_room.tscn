@@ -105,13 +105,23 @@ offset_bottom = 468.0
 wait_time = 5.393
 autostart = true
 
-[node name="StartGame" type="Button" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 452.0
-offset_top = 582.0
-offset_right = 656.0
-offset_bottom = 622.0
+offset_left = 315.0
+offset_top = 577.0
+offset_right = 825.0
+offset_bottom = 615.0
+theme_override_constants/separation = 30
+
+[node name="StartGame" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
 text = "Rozpocznij Grę"
 
+[node name="GoBack" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+text = "CofNIJ"
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="button_down" from="StartGame" to="." method="_on_start_game_button_down"]
+[connection signal="button_down" from="HBoxContainer/StartGame" to="." method="_on_start_game_button_down"]

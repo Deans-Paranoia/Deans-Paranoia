@@ -1,47 +1,69 @@
-[gd_scene load_steps=5 format=3 uid="uid://q2lsd33tnhbe"]
+[gd_scene load_steps=6 format=3 uid="uid://q2lsd33tnhbe"]
 
-[ext_resource type="Theme" uid="uid://clry0vicpsvk4" path="res://ui/style/buttons.tres" id="1_els57"]
 [ext_resource type="Script" path="res://ui/deans_tablet/tablet_single_student.gd" id="1_fjfnx"]
-[ext_resource type="Texture2D" uid="uid://cw350t3xam6r5" path="res://assets/cross.png" id="2_uuqvq"]
+[ext_resource type="FontFile" uid="uid://duw2x2g18tmee" path="res://ui/style/joystix monospace.otf" id="2_5b2yk"]
+[ext_resource type="Texture2D" uid="uid://cgg7qps61iytn" path="res://assets/questionmark.png" id="3_ht5h1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ve06q"]
-bg_color = Color(0.486275, 0.698039, 0.882353, 1)
-corner_radius_top_left = 30
-corner_radius_top_right = 30
-corner_radius_bottom_right = 30
-corner_radius_bottom_left = 30
+bg_color = Color(0.0352941, 0.196078, 0.247059, 0)
 corner_detail = 9
-expand_margin_left = 10.0
-expand_margin_top = 10.0
-expand_margin_right = 10.0
-expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_htesa"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.196078, 0.603922, 0.737255, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="Player" type="Panel"]
-offset_right = 146.0
+offset_right = 392.0
 offset_bottom = 62.0
-theme = ExtResource("1_els57")
 theme_override_styles/panel = SubResource("StyleBoxFlat_ve06q")
 script = ExtResource("1_fjfnx")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(384, 0)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -22.5
+offset_right = 384.0
+offset_bottom = 22.5
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_5b2yk")
 theme_override_font_sizes/font_size = 20
-text = "Imie1"
-metadata/_edit_lock_ = true
+text = " Imie1"
 
-[node name="Button" type="Button" parent="HBoxContainer"]
+[node name="Panel" type="Panel" parent="HBoxContainer"]
+custom_minimum_size = Vector2(45, 45)
 layout_mode = 2
-icon = ExtResource("2_uuqvq")
-flat = true
-metadata/_edit_lock_ = true
+theme_override_styles/panel = SubResource("StyleBoxFlat_htesa")
 
-[connection signal="button_down" from="HBoxContainer/Button" to="." method="_on_button_button_down"]
+[node name="Button" type="Button" parent="HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -17.5
+offset_top = -20.0
+offset_right = 17.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+icon = ExtResource("3_ht5h1")
+flat = true
+
+[connection signal="button_down" from="HBoxContainer/Panel/Button" to="." method="_on_button_button_down"]

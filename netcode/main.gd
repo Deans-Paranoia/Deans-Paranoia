@@ -20,7 +20,7 @@ func _ready():
 		single_ip_info_instance.get_node("Network Name").text = str(i.friendly)
 		single_ip_info_instance.get_node("Ipv4").text = str(i.addresses[1])
 		single_ip_info_instance.host_down.connect(_on_host_button_down)
-		panel.get_node("VBoxContainer").add_child(single_ip_info_instance)
+		panel.get_node("ScrollContainer/VBoxContainer").add_child(single_ip_info_instance)
 	pass	
 
 # called on the server and clients
@@ -88,7 +88,7 @@ func hostGame():
 	multiplayer.set_multiplayer_peer(peer)
 	print("waiting for players...")
 	var scene:Node = load("res://netcode/waiting_room.tscn").instantiate()
-	var node:Button = scene.get_node("StartGame")
+	var node:Button = scene.get_node("HBoxContainer/StartGame")
 	node.disabled = false
 	scene.button_pressed.connect(on_start_game)
 	scene.dean_picked.connect(on_update_id)
@@ -124,7 +124,7 @@ func joinByIp(ip):
 		peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER)
 		multiplayer.set_multiplayer_peer(peer)
 	else:
-		for i in $ServerBrowser/VBoxContainer.get_children():
+		for i in $ServerBrowser/ScrollContainer/VBoxContainer.get_children():
 			i.get_node("Button").text = "room is full"
 func on_start_game():
 	for i in globalScript.Players:
