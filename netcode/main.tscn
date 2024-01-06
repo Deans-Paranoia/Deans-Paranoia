@@ -56,18 +56,19 @@ text = "https://e-dziekan.edu.pl/sggw/wzim/deansparanoia/wyszukiwarka-gier"
 
 [node name="ServerBrowser" type="Control" parent="."]
 anchors_preset = 0
-offset_left = 89.0
-offset_top = -89.0
-offset_right = 138.0
+offset_left = 46.0
+offset_top = -88.0
+offset_right = 481.0
 offset_bottom = -51.0
+scale = Vector2(0.895, 0.895)
 script = ExtResource("2_4kyfb")
 serverInfo = ExtResource("4_8y5yr")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ServerBrowser"]
 layout_mode = 0
-offset_left = -635.0
+offset_left = -675.0
 offset_top = -98.0
-offset_right = 389.0
+offset_right = 524.0
 offset_bottom = 340.0
 
 [node name="BroadcastTimer" type="Timer" parent="ServerBrowser"]
@@ -77,12 +78,13 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -656.0
-offset_top = -155.0
-offset_right = 441.0
-offset_bottom = 425.0
+offset_left = -679.0
+offset_top = -158.0
+offset_right = 163.0
+offset_bottom = 422.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.966, 0.948)
 
 [node name="BackToMenuButton" type="Button" parent="."]
 layout_mode = 0

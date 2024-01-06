@@ -4,15 +4,15 @@
 [ext_resource type="Script" path="res://ui/single_ip_info.gd" id="1_e78e4"]
 
 [node name="IpInfo" type="HBoxContainer"]
-custom_minimum_size = Vector2(1053, 70)
+custom_minimum_size = Vector2(1050.06, 70)
 offset_right = 1053.0
-offset_bottom = 38.0
+offset_bottom = 70.0
 theme = ExtResource("1_2pkbj")
 theme_override_constants/separation = 5
 script = ExtResource("1_e78e4")
 
 [node name="Network Name" type="Label" parent="."]
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(559, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.2
@@ -22,7 +22,7 @@ text = "Network Name"
 clip_text = true
 
 [node name="Ipv4" type="Label" parent="."]
-custom_minimum_size = Vector2(400, 0)
+custom_minimum_size = Vector2(380, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 1.4
