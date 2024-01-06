@@ -64,12 +64,16 @@ func _on_timer_timeout():
 
 @rpc("any_peer","call_remote")
 func delete_player(id):
-	globalScript.Players.erase(id)
+	if globalScript.Players.has(id):
+		globalScript.Players.erase(id)
 	var player = get_node_or_null("Panel/VBoxContainer/"+str(id))
 	if player !=null:
 		player.queue_free()
 	if id==1:
+		for i in globalScript.Players:
+			get_tree().root.get_node_or_null("Waiting_room").delete_player(i)
 		get_tree().root.get_node("main/ServerBrowser").cleanUp()
+		_on_go_back_button_down()
 func _on_go_back_button_down():
 	var id = multiplayer.get_unique_id()
 	delete_player.rpc(id)

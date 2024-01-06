@@ -91,9 +91,7 @@ func exit_tree():
 	cleanUp()
 
 func cleanUp():
-	for i in globalScript.Players:
-		get_tree().root.get_node_or_null("Waiting_room").delete_player(i)
-		get_tree().root.get_node_or_null("Waiting_room").delete_player.rpc(i)
+	
 	if listener != null:
 		listener.close()
 	$BroadcastTimer.stop()
