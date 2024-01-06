@@ -17,12 +17,12 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [node name="HBoxContainer" type="HBoxContainer"]
-custom_minimum_size = Vector2(384, 0)
+custom_minimum_size = Vector2(256.795, 0)
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_top = -22.0
-offset_right = 384.0
+offset_right = 371.0
 offset_bottom = 23.0
 grow_vertical = 2
 script = ExtResource("1_fjfnx")
