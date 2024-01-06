@@ -19,9 +19,9 @@ script = ExtResource("2_6f5ci")
 [node name="BowserWindow" parent="." instance=ExtResource("2_wmy4o")]
 layout_mode = 1
 anchor_left = -0.015625
-anchor_top = -0.012179
+anchor_top = -0.0214383
 anchor_right = 0.660375
-anchor_bottom = 0.654821
+anchor_bottom = 0.645562
 offset_left = 111.0
 offset_top = 51.892
 offset_right = 111.248

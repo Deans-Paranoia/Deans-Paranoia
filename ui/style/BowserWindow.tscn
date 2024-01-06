@@ -55,12 +55,13 @@ corner_radius_bottom_left = 50
 layout_mode = 3
 anchor_right = 0.676
 anchor_bottom = 0.667
-offset_left = 195.0
-offset_top = 88.0
-offset_right = 195.248
-offset_bottom = 87.784
+offset_left = 108.0
+offset_top = 58.0
+offset_right = 108.248
+offset_bottom = 57.784
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1.275, 1.275)
 metadata/_edit_use_anchors_ = true
 
 [node name="BowserPage" type="Panel" parent="."]
