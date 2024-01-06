@@ -1,0 +1,82 @@
+[gd_scene load_steps=3 format=3 uid="uid://wo8q0em6lqbr"]
+
+[ext_resource type="Texture2D" uid="uid://08ivt6tnb017" path="res://assets/e-button-icon.png" id="1_oc3ni"]
+[ext_resource type="Texture2D" uid="uid://dd3d63n171l1n" path="res://assets/space-button-icon.png" id="2_dy625"]
+
+[node name="ui_hints" type="CanvasLayer"]
+
+[node name="e_key" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 10.0
+offset_right = 50.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="e_key"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.924
+anchor_top = 0.838
+anchor_right = 0.968
+anchor_bottom = 0.915
+offset_left = 1028.04
+offset_top = 509.48
+offset_right = 1076.28
+offset_bottom = 556.4
+texture = ExtResource("1_oc3ni")
+expand_mode = 4
+
+[node name="Label" type="Label" parent="e_key"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.929
+anchor_top = 0.92
+anchor_right = 0.974
+anchor_bottom = 0.974
+offset_left = 1002.84
+offset_top = 558.2
+offset_right = 1101.04
+offset_bottom = 584.04
+theme_override_font_sizes/font_size = 20
+text = "Text"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="space_key" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -5.0
+offset_right = 35.0
+offset_bottom = 40.0
+
+[node name="TextureRect2" type="TextureRect" parent="space_key"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.803
+anchor_top = 0.838
+anchor_right = 0.9
+anchor_bottom = 0.915
+offset_left = 892.88
+offset_top = 509.48
+offset_right = 896.088
+offset_bottom = 556.4
+texture = ExtResource("2_dy625")
+expand_mode = 3
+
+[node name="Label2" type="Label" parent="space_key"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.798
+anchor_top = 0.915
+anchor_right = 0.894
+anchor_bottom = 0.969
+offset_left = 898.08
+offset_top = 558.4
+offset_right = 994.24
+offset_bottom = 584.24
+theme_override_font_sizes/font_size = 20
+text = "Kopanie"
+horizontal_alignment = 1
+vertical_alignment = 1

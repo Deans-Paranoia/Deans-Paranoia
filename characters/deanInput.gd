@@ -1,7 +1,7 @@
 extends Node2D
 signal student_picked()
 signal student_catched(name)
-@onready var catch_info_instance = load("res://ui/dig_and_dean_catch_info.tscn").instantiate()
+@onready var ui_hints_instance = load("res://ui/ui_hints.tscn").instantiate()
 var is_tablet_open: bool = false
 @onready var scene = load("res://ui/deans_tablet/deans_tablet.tscn")
 var tablet_scene
@@ -16,9 +16,11 @@ func _ready():
 	if globalScript.deanId == multiplayer.get_unique_id() and get_parent().name != "lecture_hall":
 		student_picked.connect(hall.on_student_moved)
 		student_catched.connect(hall.on_student_catched)
-		catch_info_instance.visible = false
-		catch_info_instance.get_node("dean_catch_and_dig_info/Label").text = "Złap"
-		get_node("UI/UIContainer").add_child(catch_info_instance)
+		ui_hints_instance.get_node("e_key").visible = false
+		ui_hints_instance.get_node("space_key").visible = false
+		ui_hints_instance.get_node("space_key/Label2").text = "Złap"
+		ui_hints_instance.get_node("e_key/Label").text = "alarm"
+		add_child(ui_hints_instance)
 func _input(event):
 	# event do obslugi tabletu przez dziekana
 	if event.is_action_pressed("open_tablet"):
@@ -82,12 +84,14 @@ func _on_area_2d_area_entered(area):
 	var area_entered = area.get_name()
 	if (area_entered == "FireAlarmArea"):
 		can_use_alarm = true
+		ui_hints_instance.get_node("e_key").visible = true
 
 func _on_area_2d_area_exited(area):
 	#funkcja  do rejestrowania aktualnie opuszczonej are
 	var area_exited = area.get_name()
 	if (area_exited == "FireAlarmArea"):
 		can_use_alarm = false
+		ui_hints_instance.get_node("e_key").visible = false
 func _on_catch_student_area_area_entered(area):
 	var object = area.get_parent().get_parent()
 	
@@ -96,18 +100,20 @@ func _on_catch_student_area_area_entered(area):
 	if get_tree().get_nodes_in_group("Catchable_Students").size()>=1:
 		for i in get_tree().get_nodes_in_group("Catchable_Students"):
 			if i.catchable == true:
-				catch_info_instance.visible = true
+				ui_hints_instance.get_node("space_key").visible = true
 				return
 func _on_catch_student_area_area_exited(area):
 	var object = area.get_parent().get_parent()
 	if object.is_in_group("Student"):
 		object.remove_from_group("Catchable_Students")
 	if get_tree().get_nodes_in_group("Catchable_Students").size()==0:
-		catch_info_instance.visible = false
+		ui_hints_instance.get_node("space_key").visible = false
 	else:
 		var is_one_catchable = false
 		for i in get_tree().get_nodes_in_group("Catchable_Students"):
 			if i.catchable == true:
 				is_one_catchable = true
 		if is_one_catchable == false:
-			catch_info_instance.visible = false
+			ui_hints_instance.get_node("space_key").visible = true
+		else:
+			ui_hints_instance.get_node("space_key").visible = false
