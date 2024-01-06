@@ -43,17 +43,17 @@ func refresh_table():
 	for i in globalScript.Players:
 		var currentInfo = serverInfo.instantiate()
 		currentInfo.name = str(i)
-		currentInfo.get_node("HBoxContainer/Name").text = "Player "+str(i)
+		currentInfo.get_node("Name").text = "Player "+str(i)
 		if i == current:
-			currentInfo.get_node("HBoxContainer/Name").modulate = Color(0,0.9,0)
+			currentInfo.get_node("Name").modulate = Color(0,0.9,0)
 		if i == deanId:
-			currentInfo.get_node("HBoxContainer/Role").text = "Dziekan"
-			currentInfo.get_node("HBoxContainer/MakeAsDean").disabled = true
+			currentInfo.get_node("Role").text = "Dziekan"
+			currentInfo.get_node("MakeAsDean").disabled = true
 		else:
-			currentInfo.get_node("HBoxContainer/Role").text = "Student"
-			currentInfo.get_node("HBoxContainer/MakeAsDean").disabled = false
+			currentInfo.get_node("Role").text = "Student"
+			currentInfo.get_node("MakeAsDean").disabled = false
 		if isServer:
-			currentInfo.get_node("HBoxContainer/MakeAsDean").disabled = false
+			currentInfo.get_node("MakeAsDean").disabled = false
 		$Panel/VBoxContainer.add_child(currentInfo)
 		currentInfo.makeAsDean.connect(makeAsDean)	
 	dean_picked.emit(deanId)	
