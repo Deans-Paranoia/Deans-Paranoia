@@ -49,7 +49,7 @@ var temp_speed
 var body:CharacterBody2D
 var _obstacle_to_destroy
 var _is_space_pressed = false	
-var _dig_speed : float = 1
+var _dig_speed : float = 0.1
 
 #dfunc _process(_delta):
 	#dig()
@@ -255,6 +255,7 @@ func _on_player_area_area_entered(area):
 
 	if (area_entered == "ServerArea" and self.name == str(multiplayer.get_unique_id())):
 		can_use_server = true
+		text_interaction("Uruchom")
 
 	if (area_entered == "ElevatorArea" and self.name == str(multiplayer.get_unique_id())):
 		can_use_elevator = true
@@ -266,6 +267,7 @@ func _on_player_area_area_entered(area):
 		
 	if (area_entered == "TerminalArea" and self.name == str(multiplayer.get_unique_id())):
 		can_use_terminal = true
+		text_interaction("Ustaw kod")
 		terminal_address = area.get_parent().get_parent()
 		
 	if (area_entered == "VendingMachine1Area" and self.name == str(multiplayer.get_unique_id()) and danger_instance):
@@ -294,6 +296,7 @@ func _on_player_area_area_exited(area):
 
 	if (area_exited == "ServerArea" and self.name == str(multiplayer.get_unique_id())):
 		can_use_server = false
+		ui_hints_instance.get_node("e_key").visible = false
 
 	if (area_exited == "ElevatorArea" and self.name == str(multiplayer.get_unique_id())):
 		can_use_elevator = false
@@ -306,6 +309,7 @@ func _on_player_area_area_exited(area):
 	if (area_exited == "TerminalArea" and self.name == str(multiplayer.get_unique_id())):
 		can_use_terminal = false
 		terminal_address = null
+		ui_hints_instance.get_node("e_key").visible = false
 	if (area_exited == "VendingMachine1Area" and self.name == str(multiplayer.get_unique_id())):
 		task_exited()
 		
