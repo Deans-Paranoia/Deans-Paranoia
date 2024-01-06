@@ -54,10 +54,9 @@ var _dig_speed : float = 1
 #dfunc _process(_delta):
 	#dig()
 func _ready():
-	dig_info_instance.visible = false
-	ui_interaction_instance.visible = false
-	get_node("UI/UIContainer").add_child(dig_info_instance)
-	get_node("UI/UIContainer").add_child(ui_interaction_instance)
+	ui_hints_instance.get_node("e_key").visible = false
+	ui_hints_instance.get_node("space_key").visible = false
+	add_child(ui_hints_instance)
 	set_process_input(true)
 	if(multiplayer.get_unique_id()!=1):
 		body = get_node_or_null(str(self))
@@ -173,7 +172,7 @@ func use_elevator(side):
 		if(self.is_in_group("ThirdFloor")):
 			self.add_to_group("FourthFloor")
 			self.remove_from_group("ThirdFloor")
-			dig_info_instance.visible = true
+			ui_hints_instance.get_node("space_key").visible = true
 			danger_instance.queue_free()
 		
 			fourth.visible = true
@@ -187,7 +186,7 @@ func use_elevator(side):
 		else:
 			self.add_to_group("ThirdFloor")
 			self.remove_from_group("FourthFloor")
-			dig_info_instance.visible = false
+			ui_hints_instance.get_node("space_key").visible = false
 			fourth.visible = false
 			third.visible = true
 			danger_instance = dangerScene.instantiate()
@@ -208,8 +207,8 @@ func teleport(ammount):
 	self.global_position.x += ammount
 	
 func text_interaction(text):
-	ui_interaction_instance.visible = true
-	var label = ui_interaction_instance.get_node("Label")
+	ui_hints_instance.get_node("e_key").visible = true
+	var label = ui_hints_instance.get_node("e_key/Label")
 	label.text = text
 	
 func task_entered(text):
@@ -218,7 +217,7 @@ func task_entered(text):
 	change_catchable(false)
 	change_catchable.rpc(false)
 	current_task_area = text
-	text_interaction("Fake task")
+	text_interaction("Zrób zadanie")
 	
 func task_exited():
 	danger_instance = dangerScene.instantiate()
@@ -226,7 +225,7 @@ func task_exited():
 	change_catchable(true)
 	change_catchable.rpc(true)
 	current_task_area = ""
-	ui_interaction_instance.visible = false
+	ui_hints_instance.get_node("e_key").visible = false
 
 #metoda usuwa obstacle po przytrzymaniu spacji, jeśli gracz znajduje się blisko przeszkody i jest zwrócony przodem do niej
 func dig():
@@ -263,7 +262,7 @@ func _on_player_area_area_entered(area):
 		
 	if (area_entered == "BoosterArea" and self.name == str(multiplayer.get_unique_id())):
 		can_use_booster = true
-		text_interaction("Booster")
+		text_interaction("Podnieś")
 		
 	if (area_entered == "TerminalArea" and self.name == str(multiplayer.get_unique_id())):
 		can_use_terminal = true
@@ -291,18 +290,18 @@ func _on_player_area_area_exited(area):
 	var area_exited = area.get_name()
 	if (area_exited == "FireAlarmArea" and self.name == str(multiplayer.get_unique_id())):
 		can_use_alarm = false
-		ui_interaction_instance.visible = false
+		ui_hints_instance.get_node("e_key").visible = false
 
 	if (area_exited == "ServerArea" and self.name == str(multiplayer.get_unique_id())):
 		can_use_server = false
 
 	if (area_exited == "ElevatorArea" and self.name == str(multiplayer.get_unique_id())):
 		can_use_elevator = false
-		ui_interaction_instance.visible = false
+		ui_hints_instance.get_node("e_key").visible = false
 		
 	if (area_exited == "BoosterArea" and self.name == str(multiplayer.get_unique_id())):
 		can_use_booster = false
-		ui_interaction_instance.visible = false
+		ui_hints_instance.get_node("e_key").visible = false
 	
 	if (area_exited == "TerminalArea" and self.name == str(multiplayer.get_unique_id())):
 		can_use_terminal = false
