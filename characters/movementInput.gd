@@ -25,7 +25,6 @@ var canMove = true
 
 func _ready():
 	## Funkcja wywoływana przy inicjalizacji obiektu.
-	#dodaj to do klasy movementinput, also dodaj multiplayerSychronizer ( nie wiem czy do deana i studenta czy tez playera)
 	# Ustawienie autorytetu dla synchronizacji wieloosobowej.
 	$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
 	
@@ -43,8 +42,7 @@ func _ready():
 			add_child(camera)
 
 func _physics_process(_delta):
-	## Parametry: _delta - "fajny parametr ze wzoru"
-	## Return: None
+	## Parametry: _delta
 	## Funkcja wywoływana w każdej klatce fizyki.
 	# Sprawdzenie, czy obecny gracz posiada autorytet do synchronizacji.
 	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id() and can_move:
@@ -67,7 +65,6 @@ func calculate_velocity():
 	return direction.normalized() * speed
 
 func take_current_speed_value() -> int:
-	## Parametry: None
 	## Return: Prędkość gracza
 	## Metoda zwracająca aktualną wartość prędkości gracza.
 	return speed
@@ -78,19 +75,16 @@ func stop_player_movement():
 
 func restore_player_movement(tempspeed):
 	## Parametry: tempspeed
-	## Return = None
 	## Metoda przywracająca ruch gracza.
 	speed = tempspeed
 
 func emit_direction_signal(velocity):
 	## Parametry: velocity - wektor prędkości
-	## Output: None
 	## Funkcja emitująca sygnał informujący o kierunku ruchu.
 	direction.emit(velocity)
 
 func _on_disable_player_movement_for_duration(duration):
 	## Parametry: duration - czas wyłaczenia ruchu
-	## Output: None
 	## Metoda wyłączająca ruch gracza na określony czas.
 	canMove = false
 	await get_tree().create_timer(duration).timeout
@@ -103,7 +97,6 @@ func stop_walking_animation():
 
 func _on_chat_chat_opened(is_opened):
 	## Parametry: is_opened - flaga przechowująca stan okna chatu (otwarty/zamknięty)
-	## Return: None
 	## Metoda obsługująca otwieranie i zamykanie okna czatu.
 	if is_opened:
 		temp_speed = speed

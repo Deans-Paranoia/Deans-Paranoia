@@ -145,8 +145,8 @@ func sabotage_alarm():
 	body.get_node("FreezeTimer").start()
 
 func task_execution():
-	## funkcja do wykonywania taska przez studenta, wysyła sygnał w jakiej area 
-	## znajduje sie gracz
+	## Funkcja do wykonywania taska przez studenta, wysyła sygnał w jakiej area 
+	## znajduje sie gracz.
 	player_task.emit(current_task_area)
 	disable_player_movement_for_duration.emit(1.0) # zatrzymanie ruchu gracza na 1s
 	task_finished = false
@@ -156,15 +156,15 @@ func task_execution():
 @rpc("any_peer","call_remote")
 func catch_student():
 	## Fukcja służąca do łapania studenta, jeśli da się złapać studenta 
-	## łapie go i zatrzymuje mu ruch
+	## łapie go i zatrzymuje mu ruch.
 	if catchable and !is_catched:
 		is_catched = true
 		stop_player_movement()
 		change_is_catched.rpc()
 	
 func use_server():
-	## funkcja do uzywania serwera przez studenta, sprawdza czy
-	## wpisany kod jest poprawny
+	## Funkcja do uzywania serwera przez studenta, sprawdza czy
+	## wpisany kod jest poprawny.
 		var serverNode = get_node_or_null("../fourthFloor/server")
 		var czyPoprawnyKod : bool = serverNode.calculate_value()
 		if czyPoprawnyKod == false:
@@ -176,7 +176,7 @@ func use_server():
 	
 func use_elevator(side):
 	## Funkcja do używania windy, przenosi gracza na odpowiednie piętro, bierze 
-	## pod uwagę z której strony gracz wsiada do windy
+	## pod uwagę z której strony gracz wsiada do windy.
 	var fourth = get_node_or_null("../fourthFloor")
 	var third = get_node_or_null("../thirdFloor")
 	if(fourth != null and third!=null):
@@ -208,7 +208,7 @@ func use_elevator(side):
 				body.global_position = Vector2(1250, -847)
 				
 func acquire_booster():
-	## funkcja nadajaca booster dla studenta
+	## Funkcja nadajaca booster dla studenta.
 	has_booster = true
 	_dig_speed = 0.6
 	print("Boost taken, current dig speed: ",_dig_speed)
@@ -216,7 +216,7 @@ func acquire_booster():
 
 @rpc("any_peer","call_local")
 func teleport(ammount):
-	## teleportuje gracza o wybrane ammount
+	## Teleportuje gracza o wybrane położenie w zmiennej ammount
 	self.global_position.x += ammount
 
 func dig():

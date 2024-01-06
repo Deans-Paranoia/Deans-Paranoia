@@ -10,10 +10,9 @@ func _ready():
 func _process(delta):
 	pass
 
-
-
-
 func _on_character_body_2d_direction(velocity:Vector2):
+	## Parametry: velocity:Vector2 - prędkość animacji
+	## Funkcja do włączania animacji gracza
 	run_animation(velocity)
 	if $"../../Timer/".is_stopped():
 		run_animation.rpc(velocity)
@@ -22,6 +21,8 @@ func _on_character_body_2d_direction(velocity:Vector2):
 			
 @rpc("any_peer","call_remote")
 func run_animation(velocity):
+	## Parametry: velocity:Vector2 - prędkość animacji
+	## Funkcja animacji gracza, przełącza między animacją chodzenia a staniem
 	if velocity == Vector2.ZERO:
 		if $".".get("parameters/playback").get_current_node() != "Idle":
 			#print($".".get("parameters/playback").get_current_node())
@@ -38,11 +39,16 @@ func run_animation(velocity):
 
 
 func _on_student_player_task(task_type):
+	## Parametry: task_type - typ tasku
+	## Funkcja do przekierowania typu taska, odpala animacje konkretnego taska 
+	## dla gracza.
 	task_animation(task_type)
 	task_animation.rpc(task_type)
 
 @rpc("any_peer","call_remote")
 func task_animation(task_type):
+	## Parametry: task_type - typ tasku
+	## Funkcja do odtwarzania animacji tasków gracza
 	$".".get("parameters/playback").travel("Idle")
 	var taskVector = Vector2.ZERO
 	$"../Sprite2DWalkingStudentGirlAnimations".set("visible", false)

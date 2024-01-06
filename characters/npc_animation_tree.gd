@@ -1,11 +1,9 @@
-## Klasa AnimationTaskHandler - skrypt obsługujący animacje zadań postaci NPC.
-
 extends AnimationTree
 
-## Wektor związany z bieżącym zadaniem postaci NPC.
+# Wektor związany z bieżącym zadaniem postaci NPC.
 var taskVector = Vector2.ZERO
 
-## Sprite, do którego zostanie przywrócony animowany sprite po zakończeniu zadania.
+# Sprite, do którego zostanie przywrócony animowany sprite po zakończeniu zadania.
 @onready var sprite_to_back_to: Sprite2D = $"../Sprite2D"
 
 func taking_notes_loop():
@@ -63,7 +61,6 @@ func _on_character_body_2d_rotate(direction):
 @rpc("any_peer", "call_remote")
 func rotate_npc(direction):
 	## Parametry: direction
-	## Return: direction
 	## Metoda zdalna obsługująca obrót postaci NPC.
 	match direction:
 		"start":
@@ -87,7 +84,6 @@ func rotate_npc(direction):
 @rpc("any_peer", "call_remote")
 func set_vector_and_sprite(sprite, vector):
 	## Parametry: sprite, vector
-	## Return: None
 	## Metoda zdalna ustawiająca wektor i sprite postaci NPC.
 	$"../Sprite2DWalkingDown".set("visible", false)
 	$"../Sprite2DWalkingRight".set("visible", false)
@@ -107,7 +103,6 @@ func set_vector_and_sprite(sprite, vector):
 @rpc("any_peer", "call_remote")
 func run_animation(taskVector):
 	## Parametry: taskVector
-	## Return: None
 	## Metoda zdalna uruchamiająca odpowiednią animację postaci NPC.
 	$"../Sprite2DWalkingDown".set("visible", false)
 	$"../Sprite2DWalkingRight".set("visible", false)
