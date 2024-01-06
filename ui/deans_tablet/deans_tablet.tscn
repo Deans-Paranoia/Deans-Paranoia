@@ -145,6 +145,8 @@ anchor_left = -0.150393
 anchor_top = -0.0566406
 anchor_right = 0.525607
 anchor_bottom = 0.61036
+offset_top = 74.375
+offset_bottom = 74.159
 
 [node name="HSeparator" type="HSeparator" parent="Tablet/BowserWindow"]
 layout_mode = 0
