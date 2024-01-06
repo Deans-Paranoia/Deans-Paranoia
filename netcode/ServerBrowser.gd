@@ -17,7 +17,7 @@ func _ready():
 func _process(delta):
 	if listener != null and listener.get_available_packet_count() > 0 and is_host == false:
 		
-		$"../Title".visible = false
+		$"../BowserWindow/Title".visible = false
 		var serverIp = listener.get_packet_ip()
 		var serverPort = listener.get_packet_port()
 		var bytes = listener.get_packet()
@@ -64,7 +64,7 @@ func setUp():
 	else:
 		print("Failed to bind to listen port")
 		
-		$"../Title".visible = false
+		$"../BowserWindow/Title".visible = false
 		#$ServerIp.visible = true
 func setupBroadcast(name):
 	RoomInfo.name = name
@@ -91,14 +91,16 @@ func exit_tree():
 	cleanUp()
 
 func cleanUp():
-	print("broadcaster closed")
-	listener.close()
+	
+	if listener != null:
+		listener.close()
 	$BroadcastTimer.stop()
 	if broadcaster != null:
 		broadcaster.close()
 	broadcaster = null
 	listener = null
 	playerCount = 0
+	get_tree().root.get_node("main").peer.close()
 	RoomInfo = {"name":"name","playerCount":0}
 	broadcastAddress = ""
 	for i in $VBoxContainer.get_children():

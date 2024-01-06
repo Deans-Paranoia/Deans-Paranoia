@@ -6,6 +6,8 @@ var current:int
 var dean:int
 var isServer = false
 func _ready():
+	#if multiplayer.is_server():
+		#$HBoxContainer/GoBack.disabled = true
 	pass
 func _process(delta):
 	#for i in GameManager.Players:
@@ -45,10 +47,10 @@ func refresh_table():
 		if i == current:
 			currentInfo.get_node("Name").modulate = Color(0,0.9,0)
 		if i == deanId:
-			currentInfo.get_node("Role").text = "Dean"
+			currentInfo.get_node("Role").text = "Dziekan"
 			currentInfo.get_node("MakeAsDean").disabled = true
 		else:
-			currentInfo.get_node("Role").text = "Player"
+			currentInfo.get_node("Role").text = "Student"
 			currentInfo.get_node("MakeAsDean").disabled = false
 		if isServer:
 			currentInfo.get_node("MakeAsDean").disabled = false
@@ -59,3 +61,24 @@ func on_current_player(id):
 	current = id
 func _on_timer_timeout():
 	refresh_table()
+
+@rpc("any_peer","call_remote")
+func delete_player(id):
+	if globalScript.Players.has(id):
+		globalScript.Players.erase(id)
+	var player = get_node_or_null("Panel/VBoxContainer/"+str(id))
+	if player !=null:
+		player.queue_free()
+	if id==1:
+		for i in globalScript.Players:
+			get_tree().root.get_node_or_null("Waiting_room").delete_player(i)
+		get_tree().root.get_node("main/ServerBrowser").cleanUp()
+		_on_go_back_button_down()
+func _on_go_back_button_down():
+	var id = multiplayer.get_unique_id()
+	delete_player.rpc(id)
+	delete_player(id)
+	multiplayer.multiplayer_peer.disconnect_peer(id)
+	get_tree().root.get_node("MainMenu").visible = true
+	get_tree().root.get_node("main").queue_free()
+	get_tree().root.get_node("Waiting_room").queue_free()

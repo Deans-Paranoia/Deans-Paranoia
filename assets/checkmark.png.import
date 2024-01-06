@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dfp6mrq5wbaei"
-path="res://.godot/imported/checkmark.png-7a53c48e2e3c80a99b46679008f37274.ctex"
+path="res://.godot/imported/checkmark.png-5a88961c1c72d2a83fb11a78bf485998.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/deans_tablet/checkmark.png"
-dest_files=["res://.godot/imported/checkmark.png-7a53c48e2e3c80a99b46679008f37274.ctex"]
+source_file="res://assets/checkmark.png"
+dest_files=["res://.godot/imported/checkmark.png-5a88961c1c72d2a83fb11a78bf485998.ctex"]
 
 [params]
 

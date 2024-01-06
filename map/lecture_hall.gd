@@ -9,8 +9,8 @@ var maximum_ammount_to_kick = 1
 var hovered_student
 var students_to_kick = []
 var playersCount=0
-var endgame = load("res://ui/endgame.tscn")
-var kicked_notification = load("res://ui/kick_notification.tscn")
+var endgame = load("res://ui/game_result_screens/endgame.tscn")
+var kicked_notification = load("res://ui/game_result_screens/kick_notification.tscn")
 func on_npc_spawn():
 	if(multiplayer.get_unique_id() ==1):
 		for i in globalScript.usedNames:
@@ -88,7 +88,7 @@ func show_end_screen():
 	get_tree().root.add_child(endgame_instance)
 	get_tree().root.get_node("Map").queue_free()
 	if globalScript.deanId == multiplayer.get_unique_id():
-		endgame_instance.get_node("ColorRect/VBoxContainer2/Label").text = "Wygrałeś!"
+		endgame_instance.get_node("ColorRectMessage/Message").text = "Wygrałeś! Renoma uczelni pozostaje niezachwiana!"
 	self.hide()	
 	
 @rpc("any_peer","call_remote")

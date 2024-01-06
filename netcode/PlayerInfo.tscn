@@ -1,24 +1,31 @@
-[gd_scene load_steps=2 format=3 uid="uid://br8gcsc0qn7l6"]
+[gd_scene load_steps=3 format=3 uid="uid://br8gcsc0qn7l6"]
 
+[ext_resource type="Theme" uid="uid://clry0vicpsvk4" path="res://ui/style/buttons.tres" id="1_037bl"]
 [ext_resource type="Script" path="res://netcode/PlayerInfo.gd" id="1_yy3gl"]
 
 [node name="HBoxContainer" type="HBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+offset_right = 751.0
+offset_bottom = 23.0
 script = ExtResource("1_yy3gl")
 
 [node name="Name" type="Label" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.25
 text = "Player 69"
+clip_text = true
 
 [node name="Role" type="Label" parent="."]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 2
 text = "Student"
 
 [node name="MakeAsDean" type="Button" parent="."]
+custom_minimum_size = Vector2(208, 0)
 layout_mode = 2
-size_flags_horizontal = 3
-disabled = true
-text = "Make As Dean"
-
-[connection signal="button_down" from="MakeAsDean" to="." method="_on_make_as_dean_button_down"]
+size_flags_horizontal = 2
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.0
+theme = ExtResource("1_037bl")
+text = "Uczyń dziekanem"

@@ -1,0 +1,103 @@
+[gd_scene load_steps=3 format=3 uid="uid://csmor510ievw7"]
+
+[ext_resource type="Script" path="res://ui/main_menu/main_menu.gd" id="1_v7gyo"]
+[ext_resource type="Theme" uid="uid://clry0vicpsvk4" path="res://ui/style/buttons.tres" id="3_jq8xg"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+script = ExtResource("1_v7gyo")
+
+[node name="ColorRectMenu" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -255.0
+offset_top = 263.0
+offset_right = 245.0
+offset_bottom = 541.0
+grow_horizontal = 2
+color = Color(0.0352941, 0.196078, 0.247059, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRectMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -152.0
+offset_top = -112.0
+offset_right = 152.0
+offset_bottom = 112.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRectMenu/MarginContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 30
+
+[node name="Resume" type="Button" parent="ColorRectMenu/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme = ExtResource("3_jq8xg")
+text = "Wznów
+"
+
+[node name="Team" type="Button" parent="ColorRectMenu/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme = ExtResource("3_jq8xg")
+text = "Twórcy
+"
+
+[node name="QuitGame" type="Button" parent="ColorRectMenu/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme = ExtResource("3_jq8xg")
+text = "Wyjdź z gry"
+
+[node name="ColorRectTitle" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -255.0
+offset_top = 83.0
+offset_right = 245.0
+offset_bottom = 213.0
+grow_horizontal = 2
+color = Color(0.0352941, 0.196078, 0.247059, 1)
+
+[node name="Pause" type="Label" parent="ColorRectTitle"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -99.5
+offset_top = -10.0
+offset_right = 99.5
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_jq8xg")
+theme_override_font_sizes/font_size = 30
+text = "Zatrzymano Grę"
+metadata/_edit_lock_ = true
+
+[connection signal="button_down" from="ColorRectMenu/MarginContainer/VBoxContainer/Resume" to="." method="_on_host_game_pressed"]
+[connection signal="mouse_entered" from="ColorRectMenu/MarginContainer/VBoxContainer/Resume" to="." method="_on_host_game_mouse_entered"]
+[connection signal="button_down" from="ColorRectMenu/MarginContainer/VBoxContainer/Team" to="." method="_on_options_pressed"]
+[connection signal="mouse_entered" from="ColorRectMenu/MarginContainer/VBoxContainer/Team" to="." method="_on_options_mouse_entered"]
+[connection signal="mouse_exited" from="ColorRectMenu/MarginContainer/VBoxContainer/Team" to="." method="_on_options_mouse_exited"]
+[connection signal="button_down" from="ColorRectMenu/MarginContainer/VBoxContainer/QuitGame" to="." method="_on_quit_game_pressed"]
