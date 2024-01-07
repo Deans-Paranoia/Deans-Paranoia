@@ -2,7 +2,10 @@ extends AnimationTree
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-		$"../Sprite2DFakingTasks".set("visible", false)
+	$"../Sprite2DFakingTasks".set("visible", false)
+	
+
+	#$".".get("parameters/playback").travel("CatchStudentGirl")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -17,13 +20,13 @@ func _on_character_body_2d_direction(velocity:Vector2):
 
 @rpc("any_peer","call_remote")
 func run_animation(velocity):
-	$"../Sprite2DCatchGirlStudent".set("visible", false)
 	if velocity == Vector2.ZERO:
-		if $".".get("parameters/playback").get_current_node() != "Idle":
+		if $".".get("parameters/playback").get_current_node() != "Idle" and get_parent().get_parent().is_catched == false:
 			#print($".".get("parameters/playback").get_current_node())
-
+			$"../Sprite2DCatchGirlStudent".set("visible", false)
 			$".".get("parameters/playback").travel("Idle")
 	else:
+		$"../Sprite2DCatchGirlStudent".set("visible", false)
 		$".".get("parameters/playback").travel("Walking")
 		velocity = velocity.normalized()
 		set("parameters/Walking/blend_position", velocity)
