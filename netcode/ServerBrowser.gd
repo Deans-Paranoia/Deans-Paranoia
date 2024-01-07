@@ -41,7 +41,10 @@ func _process(delta):
 			currentInfo.joinGame.connect(joinByIp)
 		
 	
-		#$"../Host".disabled = true
+
+## Parametry: address - ciąg znaków z adresem IP hostującego
+## Return: bool
+## Funckja ustawiająca adres strumieniowanie informacji związanych z aktualnym serwerem gry
 func setBroadcastAddress(address:String):
 	var parts = address.split('.')
 	if parts.size() == 4:
@@ -50,7 +53,7 @@ func setBroadcastAddress(address:String):
 		return true
 	else:
 		return false
-
+## funkcja ustawiająca port dla użytkownika, który planuje dołączyć do gry
 func setUp():
 	if is_host == false:
 		listener = PacketPeerUDP.new()
@@ -66,6 +69,7 @@ func setUp():
 		
 		$"../Title".visible = false
 		#$ServerIp.visible = true
+## funkcja ustawiająca strumieniowanie informacji z serwera do graczy
 func setupBroadcast(name):
 	RoomInfo.name = name
 	RoomInfo.playerCount = globalScript.Players.size()
@@ -79,6 +83,7 @@ func setupBroadcast(name):
 	else:
 		print("Failed to bind to broadcast port")
 	$BroadcastTimer.start()
+## funkcja, która wysyła informacje do graczy z serwera co określoną ilość czasu
 func _on_broadcast_timer_timeout():
 	#print("Broadcasting game!")
 	RoomInfo.playerCount = globalScript.Players.size()
@@ -87,9 +92,10 @@ func _on_broadcast_timer_timeout():
 	broadcaster.put_packet(packet)
 	
 	pass
+## funkcja wywoływana w momencie zamknięcia serwera
 func exit_tree():
 	cleanUp()
-
+## funkcja czyszcząca informacje związane z serwerem
 func cleanUp():
 	print("broadcaster closed")
 	listener.close()
@@ -103,6 +109,7 @@ func cleanUp():
 	broadcastAddress = ""
 	for i in $VBoxContainer.get_children():
 		i.queue_free()
+## funckja wysyłająca sygnał w momencie dołąćzenia do gry
 func joinByIp(ip):
 	joinGame.emit(ip)
 
