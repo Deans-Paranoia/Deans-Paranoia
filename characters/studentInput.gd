@@ -162,11 +162,15 @@ func catch_student():
 		change_is_catched.rpc()
 @rpc("any_peer","call_remote")
 func change_actionInfo_label_visibility(action):
-	if (action == "alarm"): await get_tree().create_timer(2.0).timeout
-	action.visible = true
-	await get_tree().create_timer(3.5).timeout
-	action.visible = false
-
+	if (action == "alarm"): 
+		await get_tree().create_timer(2.0).timeout
+		label_alarm_sabotage.visible = true
+		await get_tree().create_timer(3.5).timeout
+		label_alarm_sabotage.visible = false
+	else:
+		label_energizer.visible = true
+		await get_tree().create_timer(3.5).timeout
+		label_energizer.visible = false
 func use_server():
 	# funkcja do uzywania serwera przez studenta
 		var serverNode = get_node_or_null("../fourthFloor/server")
