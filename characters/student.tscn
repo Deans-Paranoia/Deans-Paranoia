@@ -637,6 +637,7 @@ metadata/_edit_use_anchors_ = true
 
 [connection signal="disable_player_movement_for_duration" from="." to="CharacterBody2D" method="_on_disable_player_movement_for_duration"]
 [connection signal="player_task" from="." to="CharacterBody2D/AnimationTree" method="_on_student_player_task"]
+[connection signal="direction" from="CharacterBody2D" to="CharacterBody2D/AnimationTree" method="_on_character_body_2d_direction"]
 [connection signal="timeout" from="CharacterBody2D/DiggingTimer" to="." method="_on_digging_timer_timeout"]
 [connection signal="timeout" from="CharacterBody2D/FreezeTimer" to="." method="_on_freeze_timer_timeout"]
 [connection signal="timeout" from="CharacterBody2D/ServerTimer" to="." method="_on_server_timer_timeout"]
