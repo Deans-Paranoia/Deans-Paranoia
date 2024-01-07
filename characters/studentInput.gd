@@ -160,7 +160,7 @@ func catch_student():
 		is_catched = true
 		stop_player_movement()
 		change_is_catched.rpc()
-	body.get_node("AnimationTree")._on_student_catched()
+		body.get_node("AnimationTree")._on_student_catched()
 
 @rpc("any_peer","call_remote")
 func change_actionInfo_label_visibility(action):
