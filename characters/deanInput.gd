@@ -41,10 +41,8 @@ func _input(event):
 		if self.name == str(multiplayer.get_unique_id()):
 			var fire_alarm_reference = get_node_or_null("../thirdFloor/fire_alarm")
 			if fire_alarm_reference and fire_alarm_reference.useable and can_use_alarm and self.name == str(multiplayer.get_unique_id()):
-				for i in get_tree().get_nodes_in_group("Student"):
-					label_alarm_use.visible = true
-					await get_tree().create_timer(3.5).timeout
-					label_alarm_use.visible = false
+				display_info_alarm()
+				display_info_alarm.rpc()
 				change_alarm_state.rpc()
 	if event.is_action_pressed("catch_student"):	
 		if self.name == str(multiplayer.get_unique_id()):		
@@ -56,6 +54,12 @@ func _input(event):
 					print("catched")
 					#print(globalScript.Players[])
 					student_catched.emit(globalScript.Players[int(student_id)].fakeName)
+
+@rpc("any_peer","call_remote")
+func display_info_alarm():
+	label_alarm_use.visible = true
+	await get_tree().create_timer(3.5).timeout
+	label_alarm_use.visible = false
 			
 @rpc("any_peer","call_remote")
 func change_alarm_state():

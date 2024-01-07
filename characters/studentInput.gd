@@ -143,8 +143,8 @@ func sabotage_alarm():
 	print("Alarm sabotaged")
 	stop_player_movement()
 	body.get_node("FreezeTimer").start()
+	change_actionInfo_label_visibility.rpc(label_alarm_sabotage)
 	change_actionInfo_label_visibility(label_alarm_sabotage)
-
 func task_execution():
 	# funkcja do wykonywania taska przez studenta
 	player_task.emit(current_task_area)
@@ -159,7 +159,7 @@ func catch_student():
 		is_catched = true
 		stop_player_movement()
 		change_is_catched.rpc()
-
+@rpc("any_peer","call_remote")
 func change_actionInfo_label_visibility(action):
 	if (action == label_alarm_sabotage): await get_tree().create_timer(2.0).timeout
 	action.visible = true
