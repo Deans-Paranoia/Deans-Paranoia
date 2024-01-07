@@ -11,11 +11,10 @@ var body:CharacterBody2D
 var can_use_alarm : bool = false
 # sprawdza czy znajduje sie w strefie gdzie mozna odpalic alarm
 
-var action_instance = preload("res://ui/action_info.tscn").instantiate()
-var label_alarm_use = action_instance.get_node("Control/VBoxContainer/LabelAlarmUse")
+var action = preload("res://ui/action_info.tscn")
 
 func _ready():
-	get_tree().root.add_child(action_instance)
+	
 	var hall = get_tree().root.get_node("Map/lecture_hall")
 	body = get_node_or_null(str(self.name))
 	if globalScript.deanId == multiplayer.get_unique_id() and get_parent().name != "lecture_hall":
@@ -57,10 +56,13 @@ func _input(event):
 
 @rpc("any_peer","call_remote")
 func display_info_alarm():
+	var action_instance = action.instantiate()
+	var label_alarm_use = action_instance.get_node("Control/VBoxContainer/LabelAlarmUse")
+	get_tree().root.add_child(action_instance)
 	label_alarm_use.visible = true
 	await get_tree().create_timer(3.5).timeout
 	label_alarm_use.visible = false
-			
+	action_instance.queue_free()		
 @rpc("any_peer","call_remote")
 func change_alarm_state():
 	var fire_alarm_reference = get_node_or_null("../thirdFloor/fire_alarm")

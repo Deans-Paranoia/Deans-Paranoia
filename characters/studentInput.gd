@@ -160,20 +160,27 @@ func catch_student():
 		is_catched = true
 		stop_player_movement()
 		change_is_catched.rpc()
-    body.get_node("AnimationTree")._on_student_catched()
+	body.get_node("AnimationTree")._on_student_catched()
 
 @rpc("any_peer","call_remote")
 func change_actionInfo_label_visibility(action):
-	if (action == "alarm"): 
+	if (action == "alarm"):
+		var action_instance = action.instantiate()
+		var label_alarm_use = action_instance.get_node("Control/VBoxContainer/LabelAlarmSabotage")
+		get_tree().root.add_child(action_instance) 
 		await get_tree().create_timer(2.0).timeout
 		label_alarm_sabotage.visible = true
 		await get_tree().create_timer(3.5).timeout
 		label_alarm_sabotage.visible = false
+		action_instance.queue_free()
 	else:
+		var action_instance = action.instantiate()
+		var label_alarm_use = action_instance.get_node("Control/VBoxContainer/LabelEnergizer")
+		get_tree().root.add_child(action_instance) 
 		label_energizer.visible = true
 		await get_tree().create_timer(3.5).timeout
 		label_energizer.visible = false
-
+		action_instance.queue_free()
 func use_server():
 	# funkcja do uzywania serwera przez studenta
 		var serverNode = get_node_or_null("../fourthFloor/server")
