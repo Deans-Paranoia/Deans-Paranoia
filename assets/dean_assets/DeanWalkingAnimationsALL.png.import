@@ -2,20 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjpeaebvfbiat"
-path="res://.godot/imported/dean.png-97c9d3d3d3325418550620221e357412.ctex"
+uid="uid://dtdv8peqgk4q8"
+path.s3tc="res://.godot/imported/DeanWalkingAnimationsALL.png-0b31fff57e93ea117d01069e7c17dbdf.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
-source_file="res://assets/dean.png"
-dest_files=["res://.godot/imported/dean.png-97c9d3d3d3325418550620221e357412.ctex"]
+source_file="res://assets/dean_assets/DeanWalkingAnimationsALL.png"
+dest_files=["res://.godot/imported/DeanWalkingAnimationsALL.png-0b31fff57e93ea117d01069e7c17dbdf.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
