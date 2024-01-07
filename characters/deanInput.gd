@@ -1,36 +1,36 @@
-# Klasa Dean - skrypt obsługujący postać dziekana w grze.
+## Klasa Dean - skrypt obsługujący postać dziekana w grze.
 
 extends Node2D
 
-# Sygnał informujący o wybraniu studenta.
+## Sygnał informujący o wybraniu studenta.
 signal student_picked()
 
-# Sygnał informujący o złapaniu studenta. Przekazuje nazwę złapanego studenta.
+## Sygnał informujący o złapaniu studenta. Przekazuje nazwę złapanego studenta.
 signal student_catched(name)
 
-# Instancja widżetu odpowiadającego za informacje o złapaniu studenta.
+## Instancja widżetu odpowiadającego za informacje o złapaniu studenta.
 @onready var catch_info_instance = load("res://ui/dig_and_dean_catch_info.tscn").instantiate()
 
-# Flaga określająca, czy tablet dziekana jest otwarty.
+## Flaga określająca, czy tablet dziekana jest otwarty.
 var is_tablet_open: bool = false
 
-# Gotowy widget sceny tabletu.
+## Gotowy widget sceny tabletu.
 @onready var scene = load("res://ui/deans_tablet/deans_tablet.tscn")
 
-# Scena tabletu.
+## Scena tabletu.
 var tablet_scene
 
-# Zmienna określająca, czy dziekan znajduje się w obszarze zadania.
+## Zmienna określająca, czy dziekan znajduje się w obszarze zadania.
 var is_task_area 
 
-# Referencja do ciała postaci.
+## Referencja do ciała postaci.
 var body: CharacterBody2D
 
-# Flaga określająca, czy Dean może aktywować alarm przeciwpożarowy.
+## Flaga określająca, czy Dean może aktywować alarm przeciwpożarowy.
 var can_use_alarm : bool = false
 
+## Funkcja wywoływana przy inicjalizacji obiektu.
 func _ready():
-	## Funkcja wywoływana przy inicjalizacji obiektu.
 	var hall = get_tree().root.get_node("Map/lecture_hall")
 	body = get_node_or_null(str(self.name))
 	
@@ -42,8 +42,8 @@ func _ready():
 		catch_info_instance.get_node("dean_catch_and_dig_info/Label").text = "Złap"
 		get_node("UI/UIContainer").add_child(catch_info_instance)
 
+## Funkcja obsługująca wejścia z klawiatury i myszy.
 func _input(event):
-	## Funkcja obsługująca wejścia z klawiatury i myszy.
 	# Obsługa otwierania tabletu przez dziekana.
 	if event.is_action_pressed("open_tablet"):
 		if self.name == str(multiplayer.get_unique_id()):
@@ -77,15 +77,15 @@ func _input(event):
 					#print(globalScript.Players[])
 					student_catched.emit(globalScript.Players[int(student_id)].fakeName)
 
+## Funkcja zdalna obsługująca zmianę stanu alarmu przeciwpożarowego.
 @rpc("any_peer","call_remote")
 func change_alarm_state():
-	## Funkcja zdalna obsługująca zmianę stanu alarmu przeciwpożarowego.
 	var fire_alarm_reference = get_node_or_null("../thirdFloor/fire_alarm")
 	if fire_alarm_reference:
 		fire_alarm_reference.use_alarm(false)
 
+## Funkcja zarządzająca widżetem tabletu dziekana.
 func manage_deans_tablet():
-	## Funkcja zarządzająca widżetem tabletu dziekana.
 	match is_tablet_open:
 		false:
 			if get_tree().root.get_node_or_null("DeansTablet")==null:
@@ -97,17 +97,17 @@ func manage_deans_tablet():
 			tablet_scene.visible = false
 			is_tablet_open = false
 
+## Funkcja placeholder do obsługi złapanego studenta.
 func catch_student():
-	## Funkcja placeholder do obsługi złapanego studenta.
 	pass
 
-func kick_student():
 ## Funkcja placeholder do obsługi kopnięcia studenta.
+func kick_student():
 	pass
 
+## Parametry: area - obszar który może wchodzić w interakcje z graczem
+## Funkcja wywoływana po wejściu w obszar 2D.
 func _on_area_2d_area_entered(area):
-	## Parametry: area - obszar który może wchodzić w interakcje z graczem
-	## Funkcja wywoływana po wejściu w obszar 2D.
 	# Rejestracja aktualnie odwiedzonej strefy.
 	var area_entered = area.get_name()
 	if (area_entered == "FireAlarmArea"):
@@ -118,9 +118,9 @@ func _on_area_2d_area_entered(area):
 			catch_info_instance.visible = false
 
 
+## Parametry: area - obszar który może wchodzić w interakcje z graczem
+## Funkcja wywoływana po opuszczeniu obszaru 2D.
 func _on_area_2d_area_exited(area):
-	## Parametry: area - obszar który może wchodzić w interakcje z graczem
-	## Funkcja wywoływana po opuszczeniu obszaru 2D.
 	# Rejestracja aktualnie opuszczonej strefy.
 	var area_exited = area.get_name()
 	if (area_exited == "FireAlarmArea"):
@@ -130,9 +130,9 @@ func _on_area_2d_area_exited(area):
 			is_task_area = false
 			catch_info_instance.visible = false
 
+## Parametry: area - obszar który może wchodzić w interakcje z graczem
+## Funkcja wywoływana po wejściu w obszar łapania studenta.
 func _on_catch_student_area_area_entered(area):
-	## Parametry: area - obszar który może wchodzić w interakcje z graczem
-	## Funkcja wywoływana po wejściu w obszar łapania studenta.
 	var object = area.get_parent().get_parent()
 
 	# Dodanie studenta do grupy złapanych studentów.

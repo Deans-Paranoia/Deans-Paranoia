@@ -2,22 +2,22 @@
 
 extends Control
 
+## Parametry: node - element GUI
+## Return: None
+## Funkcja animująca wznoszenie elementu GUI.
 func tweening_up(node):
-	## Parametry: node - element GUI
-	## Return: None
-	## Funkcja animująca wznoszenie elementu GUI.
 	var tween1 = create_tween()
 	tween1.tween_property(node, "position", Vector2(0, -5), 0.4).as_relative().set_trans(Tween.TRANS_ELASTIC)
 
+## Parametry: node - element GUI
+## Return: None
+## Funkcja animująca opadanie elementu GUI.
 func tweening_down(node):
-	## Parametry: node - element GUI
-	## Return: None
-	## Funkcja animująca opadanie elementu GUI.
 	var tween = create_tween()
 	tween.tween_property(node, "position", Vector2(0, 5), 0.2).as_relative().set_trans(Tween.TRANS_ELASTIC)
 	
+## Funkcja obsługująca naciśnięcie przycisku "Host Game".
 func _on_host_game_pressed():
-	## Funkcja obsługująca naciśnięcie przycisku "Host Game".
 	# Tworzenie instancji sceny głównej gry.
 	var scene = load("res://netcode/main.tscn").instantiate()
 	
@@ -30,8 +30,8 @@ func _on_host_game_pressed():
 	# Ukrycie bieżącego menu.
 	self.hide()
 
+## Funkcja obsługująca naciśnięcie przycisku "Join Game".
 func _on_join_game_pressed():
-	## Funkcja obsługująca naciśnięcie przycisku "Join Game".
 	# Tworzenie instancji sceny głównej gry.
 	var scene = load("res://netcode/main.tscn").instantiate()
 	
@@ -41,8 +41,8 @@ func _on_join_game_pressed():
 	# Ukrycie bieżącego menu.
 	self.hide()
 
+## Funkcja obsługująca naciśnięcie przycisku "Options".
 func _on_options_pressed():
-	## Funkcja obsługująca naciśnięcie przycisku "Options".
 	# Tworzenie instancji sceny głównej gry.
 	var scene = load("res://netcode/main.tscn").instantiate()
 	
@@ -52,7 +52,7 @@ func _on_options_pressed():
 	# Ukrycie bieżącego menu.
 	self.hide()
 
+## Funkcja obsługująca naciśnięcie przycisku "Quit Game".
 func _on_quit_game_pressed():
-	## Funkcja obsługująca naciśnięcie przycisku "Quit Game".
 	# Wyjście z gry.
 	get_tree().quit()

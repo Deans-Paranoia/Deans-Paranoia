@@ -1,13 +1,13 @@
 extends AnimationTree
 
-# Wektor związany z bieżącym zadaniem postaci NPC.
+## Wektor związany z bieżącym zadaniem postaci NPC.
 var taskVector = Vector2.ZERO
 
-# Sprite, do którego zostanie przywrócony animowany sprite po zakończeniu zadania.
+## Sprite, do którego zostanie przywrócony animowany sprite po zakończeniu zadania.
 @onready var sprite_to_back_to: Sprite2D = $"../Sprite2D"
 
+## Metoda obsługująca animacje zadania "takingNotes".
 func taking_notes_loop():
-	## Metoda obsługująca animacje zadania "takingNotes".
 	sprite_to_back_to = $"../Sprite2D"
 	taskVector = Vector2(-1, 0)
 	set_vector_and_sprite.rpc("base", taskVector)
@@ -20,8 +20,8 @@ func taking_notes_loop():
 			run_animation(taskVector)
 			run_animation.rpc(taskVector)
 
+## Metoda obsługująca animacje zadania "computer".
 func computer_loop():
-	## Metoda obsługująca animacje zadania "computer".
 	sprite_to_back_to = $"../Sprite2D"
 	taskVector = Vector2(0, 1)
 	set_vector_and_sprite.rpc("base", taskVector)
@@ -34,8 +34,8 @@ func computer_loop():
 			run_animation(taskVector)
 			run_animation.rpc(taskVector)
 
+## Metoda obsługująca animacje zadania "vendingMachine".
 func vending_machine_loop():
-	## Metoda obsługująca animacje zadania "vendingMachine".
 	if get_parent().get_parent().is_in_group("vendingMachine"):
 		taskVector = Vector2(1, 0)
 		sprite_to_back_to = $"../Sprite2DWalkingRight"
@@ -53,15 +53,15 @@ func vending_machine_loop():
 			run_animation(taskVector)
 			run_animation.rpc(taskVector)
 
+## Metoda obsługująca zdarzenie obrotu postaci NPC.
 func _on_character_body_2d_rotate(direction):
-	## Metoda obsługująca zdarzenie obrotu postaci NPC.
 	rotate_npc(direction)
 	rotate_npc.rpc(direction)
 
+## Parametry: direction
+## Metoda zdalna obsługująca obrót postaci NPC.
 @rpc("any_peer", "call_remote")
 func rotate_npc(direction):
-	## Parametry: direction
-	## Metoda zdalna obsługująca obrót postaci NPC.
 	match direction:
 		"start":
 			$".".get("parameters/playback").travel("Idle")
@@ -81,10 +81,10 @@ func rotate_npc(direction):
 			$"../Sprite2DWalkingDown".set("visible", true)
 			set("parameters/Walking/blend_position", Vector2(0, 1))
 
+## Parametry: sprite, vector
+## Metoda zdalna ustawiająca wektor i sprite postaci NPC.
 @rpc("any_peer", "call_remote")
 func set_vector_and_sprite(sprite, vector):
-	## Parametry: sprite, vector
-	## Metoda zdalna ustawiająca wektor i sprite postaci NPC.
 	$"../Sprite2DWalkingDown".set("visible", false)
 	$"../Sprite2DWalkingRight".set("visible", false)
 	$"../Sprite2DWalkingLeft".set("visible", false)
@@ -100,10 +100,10 @@ func set_vector_and_sprite(sprite, vector):
 	
 	sprite_to_back_to.set("visible", true)
 
+## Parametry: taskVector
+## Metoda zdalna uruchamiająca odpowiednią animację postaci NPC.
 @rpc("any_peer", "call_remote")
 func run_animation(taskVector):
-	## Parametry: taskVector
-	## Metoda zdalna uruchamiająca odpowiednią animację postaci NPC.
 	$"../Sprite2DWalkingDown".set("visible", false)
 	$"../Sprite2DWalkingRight".set("visible", false)
 	$"../Sprite2DWalkingLeft".set("visible", false)

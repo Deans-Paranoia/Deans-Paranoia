@@ -23,8 +23,8 @@ var speed: int = 250
 ## Flaga określająca, czy gracz może się poruszać.
 var canMove = true
 
+## Funkcja wywoływana przy inicjalizacji obiektu.
 func _ready():
-	## Funkcja wywoływana przy inicjalizacji obiektu.
 	# Ustawienie autorytetu dla synchronizacji wieloosobowej.
 	$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
 	
@@ -41,63 +41,63 @@ func _ready():
 			
 			add_child(camera)
 
+## Parametry: _delta
+## Funkcja wywoływana w każdej klatce fizyki.
 func _physics_process(_delta):
-	## Parametry: _delta
-	## Funkcja wywoływana w każdej klatce fizyki.
 	# Sprawdzenie, czy obecny gracz posiada autorytet do synchronizacji.
 	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id() and can_move:
 		apply_physics()
 
+## Metoda aplikująca fizykę ruchu gracza.
 func apply_physics():
-	## Metoda aplikująca fizykę ruchu gracza.
 	if canMove:
 		velocity = calculate_velocity()
 		emit_direction_signal(velocity)
 		move_and_slide()
 
+## Parametry: None
+## Return: Wektor prędkości gracza
+## Metoda obliczająca wektor prędkości gracza na podstawie kierunku z wejścia.
 func calculate_velocity():
-	## Parametry: None
-	## Return: Wektor prędkości gracza
-	## Metoda obliczająca wektor prędkości gracza na podstawie kierunku z wejścia.
 	var direction = Input.get_vector("left", "right", "up", "down")
 	if direction.length() > 0:
 		last_direction = direction.normalized()
 	return direction.normalized() * speed
 
+## Return: Prędkość gracza
+## Metoda zwracająca aktualną wartość prędkości gracza.
 func take_current_speed_value() -> int:
-	## Return: Prędkość gracza
-	## Metoda zwracająca aktualną wartość prędkości gracza.
 	return speed
 
+## Metoda zatrzymująca ruch gracza.
 func stop_player_movement():
-	## Metoda zatrzymująca ruch gracza.
 	speed = 0
 
+## Parametry: tempspeed
+## Metoda przywracająca ruch gracza.
 func restore_player_movement(tempspeed):
-	## Parametry: tempspeed
-	## Metoda przywracająca ruch gracza.
 	speed = tempspeed
 
+## Parametry: velocity - wektor prędkości
+## Funkcja emitująca sygnał informujący o kierunku ruchu.
 func emit_direction_signal(velocity):
-	## Parametry: velocity - wektor prędkości
-	## Funkcja emitująca sygnał informujący o kierunku ruchu.
 	direction.emit(velocity)
 
+## Parametry: duration - czas wyłaczenia ruchu
+## Metoda wyłączająca ruch gracza na określony czas.
 func _on_disable_player_movement_for_duration(duration):
-	## Parametry: duration - czas wyłaczenia ruchu
-	## Metoda wyłączająca ruch gracza na określony czas.
 	canMove = false
 	await get_tree().create_timer(duration).timeout
 	canMove = true
 
+## Metoda zdalna obsługująca zatrzymanie animacji chodzenia gracza.
 @rpc("any_peer", "call_remote")
 func stop_walking_animation():
-	## Metoda zdalna obsługująca zatrzymanie animacji chodzenia gracza.
 	get_node_or_null("AnimationTree").get("parameters/playback").travel("Idle")
 
+## Parametry: is_opened - flaga przechowująca stan okna chatu (otwarty/zamknięty)
+## Metoda obsługująca otwieranie i zamykanie okna czatu.
 func _on_chat_chat_opened(is_opened):
-	## Parametry: is_opened - flaga przechowująca stan okna chatu (otwarty/zamknięty)
-	## Metoda obsługująca otwieranie i zamykanie okna czatu.
 	if is_opened:
 		temp_speed = speed
 		speed = 0
