@@ -152,7 +152,7 @@ func catch_student():
 		is_catched = true
 		stop_player_movement()
 		change_is_catched.rpc()
-	
+		body.get_node("AnimationTree")._on_student_catched()
 func use_server():
 	# funkcja do uzywania serwera przez studenta
 		var serverNode = get_node_or_null("../fourthFloor/server")

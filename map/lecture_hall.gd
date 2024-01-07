@@ -25,6 +25,9 @@ func on_npc_spawn():
 @rpc("any_peer","call_remote")
 func set_student(name,spot):
 	var scene = npcScene.instantiate()
+	scene.get_node("CharacterBody2D/Sprite2DFakingTasks").visible = false
+	scene.get_node("CharacterBody2D/Sprite2DWalkingStudentGirlAnimations").visible = true
+	scene.get_node("CharacterBody2D/AnimationTree").set("parameters/Idle/blend_position", Vector2(1,0))
 	scene.name = name;
 	var label = scene.get_node("CharacterBody2D/Label")
 	label.text = name
@@ -34,8 +37,6 @@ func set_student(name,spot):
 	scene.get_node("CharacterBody2D/KickScript").on_lecture_hall = true
 	scene.get_node("CharacterBody2D/KickScript").on_student_hovered.connect(set_hovered_student)
 	scene.scale = Vector2(1,1)
-	scene.get_node("CharacterBody2D/Sprite2D").visible = false
-	scene.get_node("CharacterBody2D/Sprite2DWalkingDown").visible = true
 	add_child(scene)
 @rpc("any_peer","call_remote")
 func set_dean():
@@ -45,8 +46,9 @@ func set_dean():
 	label.text = "Dean"
 	kickLabel = dean.get_node("UI/KickLabel")
 	var spawnPoint = get_node("spawnPoints/deanSpawn")
+	dean.get_node("CharacterBody2D/AnimationTree").set("parameters/Idle/blend_position", Vector2(-1,0))
 	dean.position = spawnPoint.position
-	dean.scale = Vector2(3,3)
+	dean.scale = Vector2(1,1)
 	add_child(dean)
 func on_student_moved():
 	if(hovered_student != null and clicked<maximum_ammount_to_kick):
@@ -81,6 +83,7 @@ func display_info(is_player):
 		kickLabel.text = ""
 
 func on_student_catched(name):
+	await get_tree().create_timer(3.0).timeout
 	hovered_student = name
 	move_student(hovered_student)
 	move_student.rpc(hovered_student)
