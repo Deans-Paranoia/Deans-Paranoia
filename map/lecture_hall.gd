@@ -72,11 +72,11 @@ func on_student_moved():
 @rpc("any_peer","call_remote")
 func display_info(is_player):
 	if is_player:
-		kickLabel.text = "He was a player"
+		kickLabel.text = "Wykreślono nieuka!"
 		await get_tree().create_timer(2.0).timeout
 		kickLabel.text = ""
 	else:
-		kickLabel.text = "He was a bot"
+		kickLabel.text = "Uczelnia straciła dobrego studenta!"
 		await get_tree().create_timer(2.0).timeout
 		kickLabel.text = ""
 
