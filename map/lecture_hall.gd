@@ -65,6 +65,7 @@ func on_student_moved():
 			back_to_game(students_to_kick)
 			
 func on_student_catched(name):
+	await get_tree().create_timer(3.0).timeout
 	hovered_student = name
 	move_student(hovered_student)
 	move_student.rpc(hovered_student)
