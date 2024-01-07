@@ -1,6 +1,7 @@
 extends Node2D
 @onready var npcScene = load("res://characters/npc.tscn")
 @onready var deanScene = load("res://characters/dean.tscn")
+var kickLabel
 var rng = RandomNumberGenerator.new()
 var available_spots = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
 var clicked = 0
@@ -42,6 +43,7 @@ func set_dean():
 	dean.name = "dean"
 	var label = dean.get_node("CharacterBody2D/Label")
 	label.text = "Dean"
+	kickLabel = dean.get_node("UI/KickLabel")
 	var spawnPoint = get_node("spawnPoints/deanSpawn")
 	dean.position = spawnPoint.position
 	dean.scale = Vector2(3,3)
@@ -52,9 +54,16 @@ func on_student_moved():
 		move_student.rpc(hovered_student)
 		if(check_if_was_player(hovered_student)):
 			print("he was player")
+			kickLabel.text = "He was a player"
+			await get_tree().create_timer(2.0).timeout
+			kickLabel.text = ""
+			
 			change_players_count.rpc_id(1)
 		else:
 			print("he was bot")
+			kickLabel.text = "He was a bot"
+			await get_tree().create_timer(2.0).timeout
+			kickLabel.text = ""
 		hovered_student = null
 		clicked +=1
 		if clicked == maximum_ammount_to_kick:
