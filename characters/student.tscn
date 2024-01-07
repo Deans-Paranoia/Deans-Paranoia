@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://y4kbm2l282iy"]
+[gd_scene load_steps=44 format=3 uid="uid://y4kbm2l282iy"]
 
 [ext_resource type="PackedScene" uid="uid://ctspysrhlil1i" path="res://characters/player.tscn" id="1_6lj7h"]
 [ext_resource type="Script" path="res://characters/studentInput.gd" id="2_vaos0"]
@@ -44,103 +44,62 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2DWalkingDown:frame")
+tracks/2/path = NodePath("Sprite2DFakingTasks:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
+"values": [1]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2DFakingTasks:frame")
+tracks/3/path = NodePath("Sprite2D:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [1]
+"values": [0]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Sprite2D:frame")
+tracks/4/path = NodePath("Sprite2DFakingTasks:flip_h")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
+"values": [false]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Sprite2DFakingTasks:flip_h")
+tracks/5/path = NodePath("Sprite2DWalkingStudentGirlAnimations:frame")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [0]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Sprite2DWalkingStudentGirlAnimations:frame")
+tracks/6/path = NodePath("Sprite2DWalkingStudentGirlAnimations:frame_coords")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Sprite2DWalkingStudentGirlAnimations:frame_coords")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
 "values": [Vector2i(0, 0)]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Sprite2DCatchGirlStudent:frame")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_g57e7"]
-resource_name = "catch_student_girl"
-loop_mode = 2
-step = 0.125
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2DCatchGirlStudent:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
 
 [sub_resource type="Animation" id="Animation_uv04j"]
@@ -241,7 +200,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2DWalkingDown:frame")
+tracks/0/path = NodePath("Sprite2DWalkingStudentGirlAnimations:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -258,14 +217,14 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2DWalkingLeft:frame")
+tracks/0/path = NodePath("Sprite2DWalkingStudentGirlAnimations:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
+"values": [26]
 }
 
 [sub_resource type="Animation" id="Animation_tk5j6"]
@@ -275,14 +234,14 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2DWalkingRight:frame")
+tracks/0/path = NodePath("Sprite2DWalkingStudentGirlAnimations:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
+"values": [39]
 }
 
 [sub_resource type="Animation" id="Animation_pmtjs"]
@@ -292,14 +251,14 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2DWalkingStudentGirlAnimations:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.00458977),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
+"values": [13]
 }
 
 [sub_resource type="Animation" id="Animation_asw14"]
@@ -421,7 +380,6 @@ tracks/1/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sav45"]
 _data = {
 "RESET": SubResource("Animation_hnehq"),
-"catch_student_girl": SubResource("Animation_g57e7"),
 "faking_task_computer": SubResource("Animation_uv04j"),
 "faking_task_notes": SubResource("Animation_x2k35"),
 "faking_task_vending": SubResource("Animation_u17cn"),
@@ -439,74 +397,74 @@ _data = {
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xmbjk"]
 animation = &"catch_student_girl"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cm216"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qae5s"]
 animation = &"faking_task_computer"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_acm2k"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ji6by"]
 animation = &"faking_task_notes"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5m8tv"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5k7xa"]
 animation = &"faking_task_vending"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_78ymg"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fcfbu"]
 animation = &"faking_task_vending_2"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_0g37y"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_cm216")
+blend_point_0/node = SubResource("AnimationNodeAnimation_qae5s")
 blend_point_0/pos = Vector2(0, 1)
-blend_point_1/node = SubResource("AnimationNodeAnimation_acm2k")
+blend_point_1/node = SubResource("AnimationNodeAnimation_ji6by")
 blend_point_1/pos = Vector2(-1, 0)
-blend_point_2/node = SubResource("AnimationNodeAnimation_5m8tv")
+blend_point_2/node = SubResource("AnimationNodeAnimation_5k7xa")
 blend_point_2/pos = Vector2(1, 0)
-blend_point_3/node = SubResource("AnimationNodeAnimation_78ymg")
+blend_point_3/node = SubResource("AnimationNodeAnimation_fcfbu")
 blend_point_3/pos = Vector2(0, -1)
 blend_mode = 1
 sync = true
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f8dug"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7g1bg"]
 animation = &"idle_left"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nrt83"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5ohor"]
 animation = &"idle_up"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t8f2h"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8kv1s"]
 animation = &"idle_right"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_n1qr8"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w0m5r"]
 animation = &"idle_down"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_la2ey"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_f8dug")
+blend_point_0/node = SubResource("AnimationNodeAnimation_7g1bg")
 blend_point_0/pos = Vector2(-1, 0)
-blend_point_1/node = SubResource("AnimationNodeAnimation_nrt83")
+blend_point_1/node = SubResource("AnimationNodeAnimation_5ohor")
 blend_point_1/pos = Vector2(0, -1)
-blend_point_2/node = SubResource("AnimationNodeAnimation_t8f2h")
+blend_point_2/node = SubResource("AnimationNodeAnimation_8kv1s")
 blend_point_2/pos = Vector2(1, 0)
-blend_point_3/node = SubResource("AnimationNodeAnimation_n1qr8")
+blend_point_3/node = SubResource("AnimationNodeAnimation_w0m5r")
 blend_point_3/pos = Vector2(0, 1)
 blend_mode = 1
 sync = true
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pivsp"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yxwb6"]
 animation = &"walking_left"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m62ru"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lme0s"]
 animation = &"walking_right"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_be0ug"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xmxeo"]
 animation = &"walking_down"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5o0w6"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x4j1l"]
 animation = &"walking_up"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_aisff"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_pivsp")
+blend_point_0/node = SubResource("AnimationNodeAnimation_yxwb6")
 blend_point_0/pos = Vector2(-1, 0)
-blend_point_1/node = SubResource("AnimationNodeAnimation_m62ru")
+blend_point_1/node = SubResource("AnimationNodeAnimation_lme0s")
 blend_point_1/pos = Vector2(1, 0)
-blend_point_2/node = SubResource("AnimationNodeAnimation_be0ug")
+blend_point_2/node = SubResource("AnimationNodeAnimation_xmxeo")
 blend_point_2/pos = Vector2(0, 1)
-blend_point_3/node = SubResource("AnimationNodeAnimation_5o0w6")
+blend_point_3/node = SubResource("AnimationNodeAnimation_x4j1l")
 blend_point_3/pos = Vector2(0, -1)
 snap = Vector2(0.01, 0.1)
 blend_mode = 1
@@ -616,7 +574,7 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_5hyjn")
 anim_player = NodePath("../AnimationPlayer")
 parameters/FakingTasks/blend_position = Vector2(0.0102249, -0.915344)
-parameters/Idle/blend_position = Vector2(0.0361248, 0.037037)
+parameters/Idle/blend_position = Vector2(0.1248, 2.59788)
 parameters/Walking/blend_position = Vector2(0.00631201, 1.08466)
 script = ExtResource("3_8lqqm")
 

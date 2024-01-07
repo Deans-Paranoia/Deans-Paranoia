@@ -24,6 +24,8 @@ func on_npc_spawn():
 @rpc("any_peer","call_remote")
 func set_student(name,spot):
 	var scene = npcScene.instantiate()
+	scene.get_node("CharacterBody2D/Sprite2DFakingTasks").visible = false
+	scene.get_node("CharacterBody2D/Sprite2DWalkingStudentGirlAnimations").visible = true
 	scene.get_node("CharacterBody2D/AnimationTree").set("parameters/Idle/blend_position", Vector2(1,0))
 	scene.name = name;
 	var label = scene.get_node("CharacterBody2D/Label")
@@ -34,8 +36,6 @@ func set_student(name,spot):
 	scene.get_node("CharacterBody2D/KickScript").on_lecture_hall = true
 	scene.get_node("CharacterBody2D/KickScript").on_student_hovered.connect(set_hovered_student)
 	scene.scale = Vector2(1,1)
-	scene.get_node("CharacterBody2D/Sprite2D").visible = false
-	scene.get_node("CharacterBody2D/Sprite2DWalkingDown").visible = true
 	add_child(scene)
 @rpc("any_peer","call_remote")
 func set_dean():
