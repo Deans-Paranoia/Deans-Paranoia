@@ -15,7 +15,7 @@ var action_instance = preload("res://ui/action_info.tscn").instantiate()
 var label_alarm_use = action_instance.get_node("Control/VBoxContainer/LabelAlarmUse")
 
 func _ready():
-	add_child(action_instance)
+	get_tree().root.add_child(action_instance)
 	var hall = get_tree().root.get_node("Map/lecture_hall")
 	body = get_node_or_null(str(self.name))
 	if globalScript.deanId == multiplayer.get_unique_id() and get_parent().name != "lecture_hall":
@@ -43,6 +43,8 @@ func _input(event):
 			if fire_alarm_reference and fire_alarm_reference.useable and can_use_alarm and self.name == str(multiplayer.get_unique_id()):
 				for i in get_tree().get_nodes_in_group("Student"):
 					label_alarm_use.visible = true
+					await get_tree().create_timer(3.5).timeout
+					label_alarm_use.visible = false
 				change_alarm_state.rpc()
 	if event.is_action_pressed("catch_student"):	
 		if self.name == str(multiplayer.get_unique_id()):		
