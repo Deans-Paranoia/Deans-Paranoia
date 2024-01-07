@@ -46,6 +46,11 @@ offset_left = 556.0
 offset_top = 61.0
 offset_right = 712.0
 offset_bottom = 101.0
+theme_override_colors/font_color = Color(1, 0.807843, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 30
+text = "KickLabel PlaceHolder"
 
 [connection signal="area_entered" from="CharacterBody2D/CatchStudentArea" to="." method="_on_catch_student_area_area_entered"]
 [connection signal="area_exited" from="CharacterBody2D/CatchStudentArea" to="." method="_on_catch_student_area_area_exited"]
