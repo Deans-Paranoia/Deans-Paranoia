@@ -162,6 +162,7 @@ func catch_student():
 		change_is_catched.rpc()
 
 func change_actionInfo_label_visibility(action):
+	if (action == label_alarm_sabotage): await get_tree().create_timer(2.0).timeout
 	action.visible = true
 	await get_tree().create_timer(3.5).timeout
 	action.visible = false
