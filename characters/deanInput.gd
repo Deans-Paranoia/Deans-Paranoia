@@ -41,8 +41,8 @@ func _input(event):
 		if self.name == str(multiplayer.get_unique_id()):
 			var fire_alarm_reference = get_node_or_null("../thirdFloor/fire_alarm")
 			if fire_alarm_reference and fire_alarm_reference.useable and can_use_alarm and self.name == str(multiplayer.get_unique_id()):
-				display_info_alarm()
-				display_info_alarm.rpc()
+				#display_info_alarm()
+				#display_info_alarm.rpc()
 				change_alarm_state.rpc()
 	if event.is_action_pressed("catch_student"):	
 		if self.name == str(multiplayer.get_unique_id()):		
