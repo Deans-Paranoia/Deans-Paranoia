@@ -16,7 +16,6 @@ func _on_character_body_2d_direction(velocity:Vector2):
 	run_animation(velocity)
 	if $"../../Timer/".is_stopped():
 		run_animation.rpc(velocity)
-		run_animation(velocity)
 		$"../../Timer".set("wait_time", 0.1)
 		$"../../Timer".start()
 func _on_student_catched():
