@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://4tjd8x3ggqj4"]
+[gd_scene load_steps=2 format=3 uid="uid://dltubcguq8lad"]
 
 [ext_resource type="FontFile" uid="uid://duw2x2g18tmee" path="res://ui/style/joystix monospace.otf" id="1_addaa"]
 
@@ -37,12 +37,13 @@ alignment = 1
 visible = false
 layout_mode = 2
 size_flags_vertical = 0
-theme_override_colors/font_color = Color(0.741176, 0.529412, 0.34902, 1)
+theme_override_colors/font_color = Color(0.741176, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 6
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("1_addaa")
-theme_override_font_sizes/font_size = 20
 text = "Wypito energetyka!"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -51,25 +52,28 @@ vertical_alignment = 1
 visible = false
 layout_mode = 2
 size_flags_vertical = 0
-theme_override_colors/font_color = Color(0.741176, 0.529412, 0.34902, 1)
+theme_override_colors/font_color = Color(0.741176, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 6
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("1_addaa")
-theme_override_font_sizes/font_size = 20
-text = "Sabotowano alarm!"
+text = "Zasabotowano alarm!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="LabelAlarmUse" type="Label" parent="Control/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 0
-theme_override_colors/font_color = Color(0.741176, 0.529412, 0.34902, 1)
+theme_override_colors/font_color = Color(0.741176, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 6
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("1_addaa")
-theme_override_font_sizes/font_size = 20
-text = "Uruchomiono alarm!"
+text = "Dziekan uruchomił alarm!"
 horizontal_alignment = 1
 vertical_alignment = 1

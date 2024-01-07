@@ -9,10 +9,9 @@ var current_task_area = "" # pusty string jesli gracz nie w tasku
 var fourthFloor = load("res://map/fourth_floor.tscn")
 var thirdFloor = load("res://map/level.tscn")
 
-var actionInfo = preload("res://ui/action_info.tscn")
-var action_instance = actionInfo.instantiate()
-var label_energizer = action_instance.get_node("Control/VBoxContainer/LabelEnergizer")
-var label_alarm_sabotage = action_instance.get_node("Control/VBoxContainer/LabelAlarmSabotage")
+@onready var action_instance = load("res://ui/action_info.tscn").instantiate()
+var label_energizer
+var label_alarm_sabotage
 
 var dangerScene = preload("res://ui/task_exited.tscn")
 var danger_instance
@@ -59,6 +58,8 @@ var _dig_speed : float = 1
 #dfunc _process(_delta):
 	#dig()
 func _ready():
+	label_alarm_sabotage = action_instance.get_node("Control/VBoxContainer/LabelAlarmSabotage")
+	label_energizer = action_instance.get_node("Control/VBoxContainer/LabelEnergizer")
 	get_tree().root.add_child(action_instance)
 	dig_info_instance.visible = false
 	get_node("UI/UIContainer").add_child(dig_info_instance)
@@ -143,8 +144,8 @@ func sabotage_alarm():
 	print("Alarm sabotaged")
 	stop_player_movement()
 	body.get_node("FreezeTimer").start()
-	change_actionInfo_label_visibility.rpc(label_alarm_sabotage)
-	change_actionInfo_label_visibility(label_alarm_sabotage)
+	change_actionInfo_label_visibility.rpc("alarm")
+	change_actionInfo_label_visibility("alarm")
 func task_execution():
 	# funkcja do wykonywania taska przez studenta
 	player_task.emit(current_task_area)
@@ -161,7 +162,7 @@ func catch_student():
 		change_is_catched.rpc()
 @rpc("any_peer","call_remote")
 func change_actionInfo_label_visibility(action):
-	if (action == label_alarm_sabotage): await get_tree().create_timer(2.0).timeout
+	if (action == "alarm"): await get_tree().create_timer(2.0).timeout
 	action.visible = true
 	await get_tree().create_timer(3.5).timeout
 	action.visible = false
@@ -212,8 +213,8 @@ func acquire_booster():
 	has_booster = true
 	_dig_speed = 0.6
 	print("Boost taken, current dig speed: ",_dig_speed)
-	change_actionInfo_label_visibility(label_energizer)
-	
+	change_actionInfo_label_visibility("energizer")
+	change_actionInfo_label_visibility.rpc("energizer")
 
 @rpc("any_peer","call_local")
 func teleport(ammount):
