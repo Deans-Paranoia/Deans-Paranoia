@@ -10,7 +10,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	pass
-	
+
+## Używa alarm
 func use_alarm(isSabotaged):
 	if useable:
 		emit_signal("change_texture")
@@ -20,6 +21,7 @@ func use_alarm(isSabotaged):
 			set_lecture_hall.rpc()
 			
 @rpc("any_peer","call_remote")
+## Ustanawia lecture hall
 func set_lecture_hall():
 	var hall = get_node("../../lecture_hall")
 	hall.maximum_ammount_to_kick = 3

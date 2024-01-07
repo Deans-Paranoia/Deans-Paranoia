@@ -18,10 +18,14 @@ func _ready():
 	for i in range(0,10):
 		var texture = load("res://assets/terminal_"+str(i) +".png")
 		digits_sprites.append(texture)
+		
 @rpc("any_peer","call_remote")
+## Parametry: value - wartość
+## Funkcja ustawiająca wartość serwera
 func set_server_value(value):
 	serverValue = value
-	
+
+## Funkcja sprawdzająca poprawność wprowadzonych wartości terminali
 func calculate_value():
 	if (100 * terminal1.actual_value + 10 * terminal2.actual_value + terminal3.actual_value) == serverValue:
 		show_end_screen.rpc()
@@ -31,7 +35,9 @@ func calculate_value():
 		run_server_error()
 		run_server_error.rpc()
 		return false
-@rpc("any_peer","call_remote")		
+		
+@rpc("any_peer","call_remote")
+## Funkcja obsługująca błąd serwera
 func run_server_error():
 	$"body/sprite/Digit 1".texture = digits_sprites[0]
 	$"body/sprite/Digit 2".texture = digits_sprites[0]
@@ -46,6 +52,8 @@ func run_server_error():
 	$"body/sprite/Digit 1".texture = digits_sprites[terminal1.actual_value]
 	$"body/sprite/Digit 2".texture = digits_sprites[terminal2.actual_value]
 	$"body/sprite/Digit 3".texture = digits_sprites[terminal3.actual_value]
+	
+## Funkcja ustawiająca pozycję terminali dla hosta
 func set_terminals_position_for_host():
 	var obstacles_top = get_tree().get_nodes_in_group("obstacle_top")
 	var obstacle1 = obstacles_top[randi() % obstacles_top.size()]
@@ -63,6 +71,7 @@ func set_terminals_position_for_host():
 	set_terminals_position.rpc(obstacle1.global_position, obstacle2.global_position,obstacle3.global_position)
 	
 @rpc("any_peer","call_remote")
+## Funkcja ustawiająca pozycję terminali
 func set_terminals_position(position1, position2, position3):
 	terminal1.global_position = position1
 	terminal1.get_node("Terminal/Sprite2D").texture =  green_terminal
@@ -70,7 +79,9 @@ func set_terminals_position(position1, position2, position3):
 	terminal2.get_node("Terminal/Sprite2D").texture = violet_terminal
 	terminal3.global_position = position3
 	terminal3.get_node("Terminal/Sprite2D").texture = yellow_terminal
+	
 @rpc("any_peer","call_remote")
+## Funkcja pokazująca ekran końcowy gry
 func show_end_screen():
 	var endgame_instance = endgame.instantiate()
 	get_tree().root.add_child(endgame_instance)
@@ -78,6 +89,8 @@ func show_end_screen():
 	if globalScript.deanId != multiplayer.get_unique_id():
 		endgame_instance.get_node("ColorRect/VBoxContainer2/Label").text = "Wygrałeś!"
 	self.hide()		
+## Parametry: name - nazwa terminala, value - cyfra
+## Funkcja zmieniająca teksturę cyfr na ekranie w zależności od wartości wprowadzonej do terminali
 func on_number_changed(name, value):
 	if name == "terminal1":
 		$"body/sprite/Digit 1".texture = digits_sprites[value]

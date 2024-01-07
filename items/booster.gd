@@ -1,6 +1,6 @@
 extends Node2D
 
+## Funkcja usuwajaca booster po jego zebraniu
 func on_boost_requested():
-	# funkcja usuwajaca booster po jego zebraniu
 	queue_free()
 
