@@ -69,7 +69,7 @@ func task_animation(task_type):
 	$"../Sprite2DFakingTasks".set("visible", false)
 
 
-func _on_student_catched():
+func _on_student_catched(): 
 	$"../Sprite2DFakingTasks".set("visible", false)
 	$"../Sprite2DWalkingStudentGirlAnimations".set("visible", false)
 	$"../Sprite2DCatchGirlStudent".set("visible", true)
