@@ -24,6 +24,7 @@ func on_npc_spawn():
 @rpc("any_peer","call_remote")
 func set_student(name,spot):
 	var scene = npcScene.instantiate()
+	scene.get_node("CharacterBody2D/AnimationTree").set("parameters/Idle/blend_position", Vector2(1,0))
 	scene.name = name;
 	var label = scene.get_node("CharacterBody2D/Label")
 	label.text = name
@@ -43,8 +44,9 @@ func set_dean():
 	var label = dean.get_node("CharacterBody2D/Label")
 	label.text = "Dean"
 	var spawnPoint = get_node("spawnPoints/deanSpawn")
+	dean.get_node("CharacterBody2D/AnimationTree").set("parameters/Idle/blend_position", Vector2(-1,0))
 	dean.position = spawnPoint.position
-	dean.scale = Vector2(3,3)
+	dean.scale = Vector2(1,1)
 	add_child(dean)
 func on_student_moved():
 	if(hovered_student != null and clicked<maximum_ammount_to_kick):

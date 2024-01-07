@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://ctspysrhlil1i" path="res://characters/player.tscn" id="1_hbpgo"]
 [ext_resource type="Script" path="res://characters/deanInput.gd" id="2_14kl1"]
 [ext_resource type="Texture2D" uid="uid://dtdv8peqgk4q8" path="res://assets/dean_assets/DeanWalkingAnimationsALL.png" id="3_1i5r3"]
-[ext_resource type="Script" path="res://characters/student_animation_tree.gd" id="4_3hb57"]
+[ext_resource type="Script" path="res://characters/dean_animation_tree.gd" id="4_3gy8g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0hrm5"]
 size = Vector2(472, 448)
@@ -285,9 +285,9 @@ libraries = {
 }
 tree_root = SubResource("AnimationNodeStateMachine_c6j6m")
 anim_player = NodePath("../AnimationPlayer")
-parameters/Idle/blend_position = Vector2(-0.0437376, -0.301587)
+parameters/Idle/blend_position = Vector2(-0.8336, -0.0476191)
 parameters/Walking/blend_position = Vector2(0.029821, -0.84127)
-script = ExtResource("4_3hb57")
+script = ExtResource("4_3gy8g")
 
 [node name="UI" type="CanvasLayer" parent="." index="2"]
 
