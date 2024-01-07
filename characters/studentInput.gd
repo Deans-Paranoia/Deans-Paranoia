@@ -60,6 +60,7 @@ var _dig_speed : float = 1
 #dfunc _process(_delta):
 	#dig()
 func _ready():
+	add_child(action_instance)
 	dig_info_instance.visible = false
 	get_node("UI/UIContainer").add_child(dig_info_instance)
 	set_process_input(true)
@@ -143,6 +144,7 @@ func sabotage_alarm():
 	print("Alarm sabotaged")
 	stop_player_movement()
 	body.get_node("FreezeTimer").start()
+	change_actionInfo_label_visibility(label_alarm_sabotage)
 
 func task_execution():
 	# funkcja do wykonywania taska przez studenta
@@ -158,7 +160,12 @@ func catch_student():
 		is_catched = true
 		stop_player_movement()
 		change_is_catched.rpc()
-	
+
+func change_actionInfo_label_visibility(action):
+	action.visible = true
+	await get_tree().create_timer(2.0).timeout
+	action.visible = false
+
 func use_server():
 	# funkcja do uzywania serwera przez studenta
 		var serverNode = get_node_or_null("../fourthFloor/server")
@@ -205,6 +212,7 @@ func acquire_booster():
 	has_booster = true
 	_dig_speed = 0.6
 	print("Boost taken, current dig speed: ",_dig_speed)
+	change_actionInfo_label_visibility(label_energizer)
 	
 
 @rpc("any_peer","call_local")
