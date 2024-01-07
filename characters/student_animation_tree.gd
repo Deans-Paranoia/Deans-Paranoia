@@ -69,8 +69,15 @@ func task_animation(task_type):
 	$"../Sprite2DFakingTasks".set("visible", false)
 
 
-func _on_student_catched(): 
+func _on_student_catched():
+	display_catch_animation()
+	display_catch_animation.rpc()
+
+@rpc("any_peer","call_remote")
+func display_catch_animation():
 	$"../Sprite2DFakingTasks".set("visible", false)
 	$"../Sprite2DWalkingStudentGirlAnimations".set("visible", false)
 	$"../Sprite2DCatchGirlStudent".set("visible", true)
 	$".".get("parameters/playback").travel("CatchStudentGirl")
+
+

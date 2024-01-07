@@ -18,9 +18,11 @@ func _on_character_body_2d_direction(velocity:Vector2):
 		run_animation.rpc(velocity)
 		$"../../Timer".set("wait_time", 0.1)
 		$"../../Timer".start()
+
 func _on_student_catched():
 	run_catch_animation()
 	run_catch_animation.rpc()
+
 @rpc("any_peer","call_remote")
 func run_catch_animation():
 	$"../Sprite2D".set("visible", false)
