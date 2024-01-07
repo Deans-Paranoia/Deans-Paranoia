@@ -1,6 +1,7 @@
 extends Node2D
 @onready var npcScene = load("res://characters/npc.tscn")
 @onready var deanScene = load("res://characters/dean.tscn")
+var kickLabel
 var rng = RandomNumberGenerator.new()
 var available_spots = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
 var clicked = 0
@@ -24,6 +25,9 @@ func on_npc_spawn():
 @rpc("any_peer","call_remote")
 func set_student(name,spot):
 	var scene = npcScene.instantiate()
+	scene.get_node("CharacterBody2D/Sprite2DFakingTasks").visible = false
+	scene.get_node("CharacterBody2D/Sprite2DWalkingStudentGirlAnimations").visible = true
+	scene.get_node("CharacterBody2D/AnimationTree").set("parameters/Idle/blend_position", Vector2(1,0))
 	scene.name = name;
 	var label = scene.get_node("CharacterBody2D/Label")
 	label.text = name
@@ -33,8 +37,6 @@ func set_student(name,spot):
 	scene.get_node("CharacterBody2D/KickScript").on_lecture_hall = true
 	scene.get_node("CharacterBody2D/KickScript").on_student_hovered.connect(set_hovered_student)
 	scene.scale = Vector2(1,1)
-	scene.get_node("CharacterBody2D/Sprite2D").visible = false
-	scene.get_node("CharacterBody2D/Sprite2DWalkingDown").visible = true
 	add_child(scene)
 @rpc("any_peer","call_remote")
 func set_dean():
@@ -42,9 +44,11 @@ func set_dean():
 	dean.name = "dean"
 	var label = dean.get_node("CharacterBody2D/Label")
 	label.text = "Dean"
+	kickLabel = dean.get_node("UI/KickLabel")
 	var spawnPoint = get_node("spawnPoints/deanSpawn")
+	dean.get_node("CharacterBody2D/AnimationTree").set("parameters/Idle/blend_position", Vector2(-1,0))
 	dean.position = spawnPoint.position
-	dean.scale = Vector2(3,3)
+	dean.scale = Vector2(1,1)
 	add_child(dean)
 func on_student_moved():
 	if(hovered_student != null and clicked<maximum_ammount_to_kick):
@@ -52,17 +56,34 @@ func on_student_moved():
 		move_student.rpc(hovered_student)
 		if(check_if_was_player(hovered_student)):
 			print("he was player")
+			display_info.rpc(true)
+			display_info(true)
+			
 			change_players_count.rpc_id(1)
 		else:
 			print("he was bot")
+			display_info.rpc(false)
+			display_info(false)
 		hovered_student = null
 		clicked +=1
 		if clicked == maximum_ammount_to_kick:
 			await get_tree().create_timer(3.0).timeout
 			back_to_game.rpc(students_to_kick)
 			back_to_game(students_to_kick)
-			
+
+@rpc("any_peer","call_remote")
+func display_info(is_player):
+	if is_player:
+		kickLabel.text = "Wykreślono nieuka!"
+		await get_tree().create_timer(2.0).timeout
+		kickLabel.text = ""
+	else:
+		kickLabel.text = "Uczelnia straciła dobrego studenta!"
+		await get_tree().create_timer(2.0).timeout
+		kickLabel.text = ""
+
 func on_student_catched(name):
+	await get_tree().create_timer(3.0).timeout
 	hovered_student = name
 	move_student(hovered_student)
 	move_student.rpc(hovered_student)
@@ -83,7 +104,7 @@ func change_players_count():
 	hovered_student = null
 @rpc("any_peer","call_remote")
 func show_end_screen():
-	
+	await get_tree().create_timer(3.0).timeout
 	var endgame_instance = endgame.instantiate()
 	get_tree().root.add_child(endgame_instance)
 	get_tree().root.get_node("Map").queue_free()

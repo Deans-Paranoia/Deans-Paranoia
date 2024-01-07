@@ -29,6 +29,7 @@ func _ready():
 				camera.make_current()
 			
 			add_child(camera)
+	
 func _physics_process(_delta):
 	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id() and can_move:
 		apply_physics()

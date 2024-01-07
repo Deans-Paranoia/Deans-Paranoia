@@ -15,12 +15,13 @@ func _ready():
 	$ServerBrowser.joinGame.connect(joinByIp)
 	var panel = get_node("ServerBrowser/ip_panel")
 	for i in IP.get_local_interfaces():
-		var single_ip_info_instance = single_ip_info.instantiate()
-		single_ip_info_instance.name =  str(i.friendly)
-		single_ip_info_instance.get_node("Network Name").text = str(i.friendly)
-		single_ip_info_instance.get_node("Ipv4").text = str(i.addresses[1])
-		single_ip_info_instance.host_down.connect(_on_host_button_down)
-		panel.get_node("ScrollContainer/VBoxContainer").add_child(single_ip_info_instance)
+		if i.addresses.size()>1 and (i.friendly != null or i.friendly != "") :	
+			var single_ip_info_instance = single_ip_info.instantiate()
+			single_ip_info_instance.name =  str(i.friendly)
+			single_ip_info_instance.get_node("Network Name").text = str(i.friendly)
+			single_ip_info_instance.get_node("Ipv4").text = str(i.addresses[1])
+			single_ip_info_instance.host_down.connect(_on_host_button_down)
+			panel.get_node("ScrollContainer/VBoxContainer").add_child(single_ip_info_instance)
 	pass	
 
 # called on the server and clients
