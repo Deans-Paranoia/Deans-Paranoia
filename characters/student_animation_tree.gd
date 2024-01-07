@@ -11,8 +11,6 @@ func _process(delta):
 	pass
 
 
-
-
 func _on_character_body_2d_direction(velocity:Vector2):
 	run_animation(velocity)
 	if $"../../Timer/".is_stopped():
@@ -22,6 +20,7 @@ func _on_character_body_2d_direction(velocity:Vector2):
 			
 @rpc("any_peer","call_remote")
 func run_animation(velocity):
+	$"../Sprite2DCatchGirlStudent".set("visible", false)
 	if velocity == Vector2.ZERO:
 		if $".".get("parameters/playback").get_current_node() != "Idle":
 			#print($".".get("parameters/playback").get_current_node())
@@ -46,6 +45,7 @@ func task_animation(task_type):
 	$".".get("parameters/playback").travel("Idle")
 	var taskVector = Vector2.ZERO
 	$"../Sprite2DWalkingStudentGirlAnimations".set("visible", false)
+	$"../Sprite2DCatchGirlStudent".set("visible", false)
 	
 	match task_type:
 		"computer":
@@ -67,4 +67,11 @@ func task_animation(task_type):
 	$".".get("parameters/playback").travel("Idle")
 	$"../Sprite2DWalkingStudentGirlAnimations".set("visible", true)
 	$"../Sprite2DFakingTasks".set("visible", false)
+
+
+func _on_student_catched(_name):
+	$"../Sprite2DFakingTasks".set("visible", false)
+	$"../Sprite2DWalkingStudentGirlAnimations".set("visible", false)
+	$"../Sprite2DCatchGirlStudent".set("visible", true)
+	$".".get("parameters/playback").travel("CatchStudentGirl")
 
