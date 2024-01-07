@@ -1,19 +1,42 @@
 extends Node2D
+## Ładuje scenę postaci NPC
 @onready var npcScene = load("res://characters/npc.tscn")
+
+## Ładuje scenę postaci Dean'a
 @onready var deanScene = load("res://characters/dean.tscn")
+
+## Tworzy nowy generator liczb losowych
 var rng = RandomNumberGenerator.new()
+
+## Lista dostępnych miejsc
 var available_spots = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+
+## Licznik kliknięć
 var clicked = 0
+
+## Numer gracza do wyrzucenia
 var kicked_player_number = 1
+
+## Maksymalna liczba do wyrzucenia
 var maximum_ammount_to_kick = 1
+
+## Zmienna przechowująca informację o najechanym studencie
 var hovered_student
+
+## Lista studentów do wyrzucenia
 var students_to_kick = []
+
+## Licznik graczy
 var playersCount=0
+
+## Ładuje scenę zakończenia gry
 var endgame = load("res://ui/endgame.tscn")
+
+## Ładuje scenę powiadomienia o wyrzuceniu
 var kicked_notification = load("res://ui/kick_notification.tscn")
 
+## Funkcja wykonująca się przy spawnowaniu npc
 func on_npc_spawn():
-	## Funkcja wykonująca się przy spawnowaniu npc
 	if(multiplayer.get_unique_id() ==1):
 		for i in globalScript.usedNames:
 			var spot = rng.randi_range(0,available_spots.size()-1)
@@ -23,11 +46,11 @@ func on_npc_spawn():
 		set_dean.rpc()
 	playersCount = get_tree().get_nodes_in_group("Student").size()
 	print("Students-real players count: " + str(playersCount))
-	
+
+
 @rpc("any_peer","call_remote")
+## Funkcja ustawiająca studenta w lecture hallu
 func set_student(name,spot):
-	## Parametry: name - imię studenta, spot - miejsce gdzie gracz będzie siedział
-	## Funkcja ustawiająca studenta w lecture hallu
 	var scene = npcScene.instantiate()
 	scene.name = name;
 	var label = scene.get_node("CharacterBody2D/Label")
@@ -41,10 +64,11 @@ func set_student(name,spot):
 	scene.get_node("CharacterBody2D/Sprite2D").visible = false
 	scene.get_node("CharacterBody2D/Sprite2DWalkingDown").visible = true
 	add_child(scene)
-	
+
+
 @rpc("any_peer","call_remote")
+## Funkcja ustawiająca dziekana w lecture hallu
 func set_dean():
-	## Funkcja ustawiająca dziekana w lecture hallu
 	var dean = deanScene.instantiate()
 	dean.name = "dean"
 	var label = dean.get_node("CharacterBody2D/Label")
@@ -53,10 +77,9 @@ func set_dean():
 	dean.position = spawnPoint.position
 	dean.scale = Vector2(3,3)
 	add_child(dean)
-	
+
+## Funkcja wykonuje się kiedy dziekan przeniesie studenta, żeby go wyrzucić
 func on_student_moved():
-	## Funkcja wykonuje się kiedy dziekan przeniesie studenta, żeby go wyrzucić
-	## zwraca komunikat czy był to gracz czy bot.
 	if(hovered_student != null and clicked<maximum_ammount_to_kick):
 		move_student(hovered_student)
 		move_student.rpc(hovered_student)
@@ -71,65 +94,67 @@ func on_student_moved():
 			await get_tree().create_timer(3.0).timeout
 			back_to_game.rpc(students_to_kick)
 			back_to_game(students_to_kick)
-			
+
+## Funkcja wywołuje się przy złapaniu studenta
 func on_student_catched(name):
-	## Parametry: name - imię studenta
-	## Funkcja wywołuje się przy złapaniu studenta
 	hovered_student = name
 	move_student(hovered_student)
 	move_student.rpc(hovered_student)
 	change_players_count.rpc_id(1)
-	
+
+
 @rpc("any_peer","call_remote")
+## Funkcja która obsługuje wychodzenie z gry
 func quit_game():
-	## Funkcja która obsługuje wychodzenie z gry
 	get_tree().root.get_node("Map").queue_free()
 	var kicked_notification_instance = kicked_notification.instantiate()
 	get_tree().root.add_child(kicked_notification_instance)
 	self.hide
-	
+
+
 @rpc("any_peer","call_remote")
+## Funkcja zmiejsza liczbe graczy o 1, jeśli jest 0 graczy gra się kończy
 func change_players_count():
-	## Funkcja zmiejsza liczbe graczy o 1, jeśli jest 0 graczy gra się kończy
 	playersCount -=1
 	print("Students-real players count: " + str(playersCount))
 	if playersCount <1:
 		show_end_screen()
 		show_end_screen.rpc()
 	hovered_student = null
-	
+
+
 @rpc("any_peer","call_remote")
+## Funkcja do wyświetlania ekranu końcowego
 func show_end_screen():
-	## Funkcja do wyświetlania ekranu końcowego
 	var endgame_instance = endgame.instantiate()
 	get_tree().root.add_child(endgame_instance)
 	get_tree().root.get_node("Map").queue_free()
 	if globalScript.deanId == multiplayer.get_unique_id():
 		endgame_instance.get_node("ColorRect/VBoxContainer2/Label").text = "Wygrałeś!"
-	self.hide()	
-	
+	self.hide()
+
+
 @rpc("any_peer","call_remote")
+## Funkcja, która obsługuje restart mapy
 func send_restart_task_call():
-	## Funkcja, która obsługuje restart mapy
 	if multiplayer.get_unique_id() ==1:
 		get_parent().restart_tasks.rpc()
 		get_parent().restart_tasks()
 		restart_map.rpc()
 		restart_map()
-		
+
+
 @rpc("any_peer","call_remote")
+## Funkcja wyrzuca studenta z lecture hall
 func remove_student_from_hall(i):
-	## Parametry: i - indeks studenta
-	## Funkcja wyrzuca studenta z lecture hall
 	var lecture_hall_node = get_node_or_null(str(i))
 	if lecture_hall_node != null:
-		lecture_hall_node.queue_free()		
-		
+		lecture_hall_node.queue_free()
+
+
 @rpc("any_peer","call_remote")
+## Funkcja obsługuje powrót do gry, po skończeniu wyrzucaniu studentów w lecture hallu
 func back_to_game(to_kick):
-	## Parametry: to_kick - lista studentów do wyrzucenia z gry
-	## Funkcja obsługuje powrót do gry, po skończeniu wyrzucaniu studentów
-	## w lecture hallu
 	for i in to_kick:
 		var isPlayer = false
 		if multiplayer.get_unique_id()==1:
@@ -161,20 +186,20 @@ func back_to_game(to_kick):
 				npc_body.walking_task = false
 				npcNode.queue_free()
 	send_restart_task_call()
-	
+
+
 @rpc("any_peer","call_remote")
+## Restartowanie mapy
 func restart_map():
-	## Restartowanie mapy
 	students_to_kick = []
 	clicked = 0
 	maximum_ammount_to_kick = 1
 	$"../Camera2D".enabled = false
 	
-	
 	var map = get_node("../")
 	map.isVotingProcess = false
 	if multiplayer.get_unique_id()==1:
-		map.change_code()	
+		map.change_code() 
 	if(multiplayer.get_unique_id()!=1):
 		var player =map.get_node(str(multiplayer.get_unique_id()))
 		if player.is_in_group("Student"):
@@ -201,25 +226,23 @@ func restart_map():
 		var cam = map.get_node("Camera2D")
 		cam.enabled = true
 		cam.make_current()
-		
+
+
 @rpc("any_peer","call_remote")
+## Przenoszenie studenta spowrotem na mape
 func move_student(name):
-	## Parametry: name - imię studenta
-	## Przenoszenie studenta spowrotem na mape
 	students_to_kick.append(name)
 	var student = get_node(str(name))
 	student.position = get_node("deathZones/"+str(kicked_player_number)).position
 	student.get_node("CharacterBody2D/KickScript").on_lecture_hall = false
 	kicked_player_number+=1
-	
+
+## ustawanie wybranego studenta
 func set_hovered_student(name):
-	## Parametry: name - imię studenta
-	## ustawanie wybranego studenta
 	hovered_student = name
-	
+
+## Sprawdzanie czy student był graczem czy też botem
 func check_if_was_player(name):
-	## Parametry: name - imię studenta
-	## Sprawdzanie czy student był graczem czy też botem
 	for i in globalScript.Players:
 		if globalScript.Players[i].fakeName == name:
 			return true

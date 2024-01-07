@@ -1,13 +1,27 @@
 extends Node2D
-@export var studentScene:PackedScene
-@export var deanScene:PackedScene
-@export var npcScene:PackedScene
+## Deklaracja zmiennych przechowujących trzy sceny: studentScene, deanScene, npcScene
+@export var studentScene: PackedScene
+@export var deanScene: PackedScene
+@export var npcScene: PackedScene
+
+## Inicjalizacja pustej listy 'textures'
 var textures = []
+
+## Ładowanie sceny 'time.tscn' z katalogu 'ui' i tworzenie instancji tej sceny
 @onready var timeUi = load("res://ui/time.tscn").instantiate()
+
+## Inicjalizacja zmiennej 'isVotingProcess' jako logicznej wartości 'False'
 var isVotingProcess = false
+
+## Inicjalizacja zmiennej 'day' jako liczby całkowitej równą 1
 var day = 1
+
+## Inicjalizacja generatora liczb losowych
 var rand = RandomNumberGenerator.new()
+
+## Sygnał 'taskType' emitowany z argumentem 'taskType'
 signal taskType(taskType)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	for i in range(10):
@@ -77,8 +91,8 @@ func _process(delta):
 		set_time_ui.rpc(timeLeft)
 		
 @rpc("any_peer","call_remote")
-func restart_tasks():
 	## Funkcja restartująca taski npc
+func restart_tasks():
 	globalScript.resetTasks()
 	#print(str(get_tree().get_nodes_in_group("npc").size()))
 	if multiplayer.get_unique_id() ==1:
@@ -98,17 +112,17 @@ func restart_tasks():
 				#player.position = Vector2(600,-1200)
 				
 @rpc("any_peer","call_remote")
+## Parametry: deanId - indeks dziekana, vector - pozycja dziekana
+## Ustanowienie początkowe pozycji dziekana
 func set_dean_position(deanId, vector):
-	## Parametry: deanId - indeks dziekana, vector - pozycja dziekana
-	## Ustanowienie początkowe pozycji dziekana
 	var dean = get_node(str(deanId))
 	dean.get_node(str(deanId)).position = Vector2(0,0)
 	dean.position =vector
 	
 @rpc("any_peer","call_remote")
+## Parametry: name - imię studenta, task_number - numer taska, które robi student
+## Funkcja restartuje wybranego npc.
 func restart_npc(name,task_number):
-	## Parametry: name - imię studenta, task_number - numer taska, które robi student
-	## Funkcja restartuje wybranego npc.
 	var npc = get_tree().root.get_node_or_null("Map/"+name)
 	if npc != null:
 		var body = npc.get_node("CharacterBody2D")
@@ -135,9 +149,9 @@ func restart_npc(name,task_number):
 		globalScript.manage_task(task_number)
 		
 @rpc("any_peer","call_remote")
+## Parametry: time - czas ui
+## Funkcja ustanawia podany czas w ui, do pokazania na ekranie
 func set_time_ui(time):
-	## Parametry: time - czas ui
-	## Funkcja ustanawia podany czas w ui, do pokazania na ekranie
 	var label = timeUi.get_node("Control/VBoxContainer/Label")
 	if time == "0":
 		label.visible = false
@@ -146,10 +160,10 @@ func set_time_ui(time):
 		label.text= time
 		
 @rpc("any_peer","call_remote")
+## Parametry: name - imię studenta, task_number - numer taska, które robi student
+## has_name - zmienna bool, mówiąca czy npc już posiada imię
+## Funkcja ustawia npc na początku gry
 func setNpc(name,task_number,has_name):
-	## Parametry: name - imię studenta, task_number - numer taska, które robi student
-	## has_name - zmienna bool, mówiąca czy npc już posiada imię
-	## Funkcja ustawia npc na początku gry
 	var task_data = globalScript.get_task_data(task_number)
 	var position = Vector2(task_data.positionX, task_data.positionY)
 	var npc = npcScene.instantiate()
@@ -165,11 +179,11 @@ func setNpc(name,task_number,has_name):
 		globalScript.remove_name(globalScript.studentsNames.find(name))
 	globalScript.manage_task(task_number)
 	
-@rpc("any_peer","call_remote")		
+@rpc("any_peer","call_remote")
+## Parametry: i - indeks gracza, task_number - numer taska w który znajduję
+## się gracz
+## Funkcja ustawia gracza na początku gry
 func setPlayer(i,task_number):
-	## Parametry: i - indeks gracza, task_number - numer taska w który znajduję
-	## się gracz
-	## Funkcja ustawia gracza na początku gry
 	var player:Node2D = get_node_or_null(str(i))
 	var body = player.get_node(str(i))
 	body.position = Vector2(0,0)
@@ -181,9 +195,9 @@ func setPlayer(i,task_number):
 		globalScript.manage_task(task_number)
 		
 @rpc("any_peer","call_remote")
+## Parametry: random - zmienna losowa, day - dzień
+## Funkcja losuje kod do serwerów
 func set_code_number(random,day):
-	## Parametry: random - zmienna losowa, day - dzień
-	## Funkcja losuje kod do serwerów
 	var code_node = get_node("Code")
 	var position = get_node("CodeSpawnpoints/"+str(random))
 	code_node.position = position.position
@@ -204,17 +218,17 @@ func set_code_number(random,day):
 			code_node.get_node("Number").texture = textures[third_digit]
 	
 @rpc("any_peer","call_remote")
+## Funkcja zmienia kod do serwerów
 func change_code():
-	## Funkcja zmienia kod do serwerów
 	day+=1
 	var random = rand.randi_range(1,3)
 	set_code_number(random,day)
 	set_code_number.rpc(random,day)
 	
+## Parametry: name - imię studenta, task_number - numer taska, które robi student
+## has_name - zmienna bool, mówiąca czy npc już posiada imię
+## Ustawia npc dla hosta.
 func set_npc_for_host(name,task_number,has_name):
-	## Parametry: name - imię studenta, task_number - numer taska, które robi student
-	## has_name - zmienna bool, mówiąca czy npc już posiada imię
-	## Ustawia npc dla hosta.
 	var task_data = globalScript.get_task_data(task_number)
 	var position = Vector2(task_data.positionX, task_data.positionY)
 	var npc = npcScene.instantiate()
@@ -234,9 +248,9 @@ func set_npc_for_host(name,task_number,has_name):
 		globalScript.remove_name(globalScript.studentsNames.find(name))
 	globalScript.manage_task(task_number)
 	
+## Funkcja wykonująca się kiedy skończy się czas, przenosi na lecture hall po
+## upływie czasu
 func _on_round_timer_timeout():
-	## Funkcja wykonująca się kiedy skończy się czas, przenosi na lecture hall po
-	## upływie czasu
 	change_view.rpc()
 	var camera:Camera2D = get_node("lecture_hall/Camera2D")
 	camera.enabled = true
@@ -244,8 +258,8 @@ func _on_round_timer_timeout():
 	pass
 	
 @rpc("any_peer","call_remote")
+## Funkcja zmienia widok gracza na lecture hall
 func change_view():
-	## Funkcja zmienia widok gracza na lecture hall
 	var camera:Camera2D = get_node("lecture_hall/Camera2D")
 	isVotingProcess = true
 	camera.enabled = true
