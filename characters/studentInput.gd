@@ -13,7 +13,6 @@ var actionInfo = preload("res://ui/action_info.tscn")
 var action_instance = actionInfo.instantiate()
 var label_energizer = action_instance.get_node("Control/VBoxContainer/LabelEnergizer")
 var label_alarm_sabotage = action_instance.get_node("Control/VBoxContainer/LabelAlarmSabotage")
-var label_alarm_use = action_instance.get_node("Control/VBoxContainer/LabelAlarmUse")
 
 var dangerScene = preload("res://ui/task_exited.tscn")
 var danger_instance
@@ -60,7 +59,7 @@ var _dig_speed : float = 1
 #dfunc _process(_delta):
 	#dig()
 func _ready():
-	add_child(action_instance)
+	get_tree().root.add_child(action_instance)
 	dig_info_instance.visible = false
 	get_node("UI/UIContainer").add_child(dig_info_instance)
 	set_process_input(true)
