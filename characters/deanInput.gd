@@ -10,7 +10,12 @@ var is_task_area
 var body:CharacterBody2D
 var can_use_alarm : bool = false
 # sprawdza czy znajduje sie w strefie gdzie mozna odpalic alarm
+
+var action_instance = preload("res://ui/action_info.tscn").instantiate()
+var label_alarm_use = action_instance.get_node("Control/VBoxContainer/LabelAlarmUse")
+
 func _ready():
+	get_tree().root.add_child(action_instance)
 	var hall = get_tree().root.get_node("Map/lecture_hall")
 	body = get_node_or_null(str(self.name))
 	if globalScript.deanId == multiplayer.get_unique_id() and get_parent().name != "lecture_hall":
@@ -36,6 +41,8 @@ func _input(event):
 		if self.name == str(multiplayer.get_unique_id()):
 			var fire_alarm_reference = get_node_or_null("../thirdFloor/fire_alarm")
 			if fire_alarm_reference and fire_alarm_reference.useable and can_use_alarm and self.name == str(multiplayer.get_unique_id()):
+				#display_info_alarm()
+				display_info_alarm.rpc()
 				change_alarm_state.rpc()
 	if event.is_action_pressed("catch_student"):	
 		if self.name == str(multiplayer.get_unique_id()):		
@@ -47,6 +54,12 @@ func _input(event):
 					print("catched")
 					#print(globalScript.Players[])
 					student_catched.emit(globalScript.Players[int(student_id)].fakeName)
+
+@rpc("any_peer","call_remote")
+func display_info_alarm():
+	label_alarm_use.visible = true
+	await get_tree().create_timer(3.5).timeout
+	label_alarm_use.visible = false
 			
 @rpc("any_peer","call_remote")
 func change_alarm_state():
@@ -55,7 +68,6 @@ func change_alarm_state():
 		fire_alarm_reference.use_alarm(false)
 
 func manage_deans_tablet():
-	
 	# funkcja do obsługi tabletu przez dziekana
 	match is_tablet_open:
 		false:
