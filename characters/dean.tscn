@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dm1vrnv5e47gm"]
+[gd_scene load_steps=29 format=3 uid="uid://dm1vrnv5e47gm"]
 
 [ext_resource type="PackedScene" uid="uid://ctspysrhlil1i" path="res://characters/player.tscn" id="1_hbpgo"]
 [ext_resource type="Script" path="res://characters/deanInput.gd" id="2_14kl1"]
@@ -7,6 +7,10 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0hrm5"]
 size = Vector2(472, 448)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1u06l"]
+radius = 40.0
+height = 80.0
 
 [sub_resource type="Animation" id="Animation_hnehq"]
 length = 0.001
@@ -237,17 +241,32 @@ graph_offset = Vector2(-52, -42)
 scale = Vector2(0.25, 0.25)
 script = ExtResource("2_14kl1")
 
+[node name="Timer" type="Timer" parent="." index="0"]
+wait_time = 0.1
+one_shot = true
+autostart = true
+
 [node name="CatchStudentArea" type="Area2D" parent="CharacterBody2D" index="0"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/CatchStudentArea" index="0"]
 shape = SubResource("RectangleShape2D_0hrm5")
 
 [node name="Sprite2D" parent="CharacterBody2D" index="1"]
-scale = Vector2(0.37, 0.37)
+scale = Vector2(0.44, 0.44)
 texture = ExtResource("3_1i5r3")
 hframes = 13
 vframes = 4
 frame = 26
+
+[node name="CollisionShape2D" parent="CharacterBody2D" index="3"]
+position = Vector2(4, 60)
+shape = SubResource("CapsuleShape2D_1u06l")
+
+[node name="PlayerArea" parent="CharacterBody2D" index="4"]
+visible = false
+
+[node name="CollisionShape2D" parent="CharacterBody2D/PlayerArea" index="0"]
+position = Vector2(4, -7.16675)
 
 [node name="Label" parent="CharacterBody2D" index="5"]
 offset_left = -100.0
@@ -267,10 +286,10 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_c6j6m")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Idle/blend_position = Vector2(-0.0437376, -0.301587)
-parameters/Walking/blend_position = Vector2(-0.0636183, -0.269841)
+parameters/Walking/blend_position = Vector2(0.029821, -0.84127)
 script = ExtResource("4_3hb57")
 
-[node name="UI" type="CanvasLayer" parent="." index="1"]
+[node name="UI" type="CanvasLayer" parent="." index="2"]
 
 [node name="UIContainer" type="VBoxContainer" parent="UI" index="0"]
 anchors_preset = -1
@@ -285,6 +304,7 @@ offset_bottom = 7.776
 size_flags_horizontal = 3
 metadata/_edit_use_anchors_ = true
 
+[connection signal="direction" from="CharacterBody2D" to="CharacterBody2D/AnimationTree" method="_on_character_body_2d_direction"]
 [connection signal="area_entered" from="CharacterBody2D/CatchStudentArea" to="." method="_on_catch_student_area_area_entered"]
 [connection signal="area_exited" from="CharacterBody2D/CatchStudentArea" to="." method="_on_catch_student_area_area_exited"]
 [connection signal="area_entered" from="CharacterBody2D/PlayerArea" to="." method="_on_area_2d_area_entered"]
