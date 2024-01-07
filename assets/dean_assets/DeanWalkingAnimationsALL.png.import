@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://do5x8bg4ionhg"
-path.s3tc="res://.godot/imported/dean.png-ef0c7ba0c10336937ff765f019ee63b6.s3tc.ctex"
+uid="uid://dtdv8peqgk4q8"
+path.s3tc="res://.godot/imported/DeanWalkingAnimationsALL.png-0b31fff57e93ea117d01069e7c17dbdf.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://dean.png"
-dest_files=["res://.godot/imported/dean.png-ef0c7ba0c10336937ff765f019ee63b6.s3tc.ctex"]
+source_file="res://assets/dean_assets/DeanWalkingAnimationsALL.png"
+dest_files=["res://.godot/imported/DeanWalkingAnimationsALL.png-0b31fff57e93ea117d01069e7c17dbdf.s3tc.ctex"]
 
 [params]
 
