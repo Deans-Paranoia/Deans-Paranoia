@@ -163,7 +163,7 @@ func catch_student():
 
 func change_actionInfo_label_visibility(action):
 	action.visible = true
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(3.5).timeout
 	action.visible = false
 
 func use_server():
