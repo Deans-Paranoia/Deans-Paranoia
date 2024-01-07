@@ -614,7 +614,7 @@ libraries = {
 }
 tree_root = SubResource("AnimationNodeStateMachine_5hyjn")
 anim_player = NodePath("../AnimationPlayer")
-parameters/CatchStudentGirl/blend_position = -0.0402802
+parameters/CatchStudentGirl/blend_position = -0.0424886
 parameters/FakingTasks/blend_position = Vector2(0.0102249, -0.915344)
 parameters/Idle/blend_position = Vector2(0.1248, 2.59788)
 parameters/Walking/blend_position = Vector2(0.00631201, 1.08466)

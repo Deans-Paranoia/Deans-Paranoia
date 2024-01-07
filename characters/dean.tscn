@@ -1,9 +1,10 @@
-[gd_scene load_steps=29 format=3 uid="uid://dm1vrnv5e47gm"]
+[gd_scene load_steps=30 format=3 uid="uid://dm1vrnv5e47gm"]
 
 [ext_resource type="PackedScene" uid="uid://ctspysrhlil1i" path="res://characters/player.tscn" id="1_hbpgo"]
 [ext_resource type="Script" path="res://characters/deanInput.gd" id="2_14kl1"]
 [ext_resource type="Texture2D" uid="uid://dtdv8peqgk4q8" path="res://assets/dean_assets/DeanWalkingAnimationsALL.png" id="3_1i5r3"]
 [ext_resource type="Script" path="res://characters/dean_animation_tree.gd" id="4_3gy8g"]
+[ext_resource type="FontFile" uid="uid://duw2x2g18tmee" path="res://ui/style/joystix monospace.otf" id="5_j07b5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0hrm5"]
 size = Vector2(472, 448)
@@ -316,6 +317,7 @@ grow_horizontal = 2
 theme_override_colors/font_color = Color(1, 0.807843, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("5_j07b5")
 theme_override_font_sizes/font_size = 30
 horizontal_alignment = 1
 
