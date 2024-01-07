@@ -304,15 +304,14 @@ offset_bottom = 7.776
 size_flags_horizontal = 3
 metadata/_edit_use_anchors_ = true
 
-
 [node name="KickLabel" type="Label" parent="UI" index="1"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -78.0
-offset_top = 35.0
+offset_top = 20.0
 offset_right = 78.0
-offset_bottom = 77.0
+offset_bottom = 62.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(1, 0.807843, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -320,9 +319,7 @@ theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 30
 horizontal_alignment = 1
 
-
 [connection signal="direction" from="CharacterBody2D" to="CharacterBody2D/AnimationTree" method="_on_character_body_2d_direction"]
-
 [connection signal="area_entered" from="CharacterBody2D/CatchStudentArea" to="." method="_on_catch_student_area_area_entered"]
 [connection signal="area_exited" from="CharacterBody2D/CatchStudentArea" to="." method="_on_catch_student_area_area_exited"]
 [connection signal="area_entered" from="CharacterBody2D/PlayerArea" to="." method="_on_area_2d_area_entered"]
