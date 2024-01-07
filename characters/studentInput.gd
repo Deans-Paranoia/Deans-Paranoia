@@ -9,7 +9,7 @@ var current_task_area = "" # pusty string jesli gracz nie w tasku
 var fourthFloor = load("res://map/fourth_floor.tscn")
 var thirdFloor = load("res://map/level.tscn")
 
-@onready var action_instance = load("res://ui/action_info.tscn").instantiate()
+@onready var action = load("res://ui/action_info.tscn")
 var label_energizer
 var label_alarm_sabotage
 
@@ -58,9 +58,6 @@ var _dig_speed : float = 1
 #dfunc _process(_delta):
 	#dig()
 func _ready():
-	label_alarm_sabotage = action_instance.get_node("Control/VBoxContainer/LabelAlarmSabotage")
-	label_energizer = action_instance.get_node("Control/VBoxContainer/LabelEnergizer")
-	get_tree().root.add_child(action_instance)
 	dig_info_instance.visible = false
 	get_node("UI/UIContainer").add_child(dig_info_instance)
 	set_process_input(true)
@@ -163,19 +160,19 @@ func catch_student():
 		body.get_node("AnimationTree")._on_student_catched()
 
 @rpc("any_peer","call_remote")
-func change_actionInfo_label_visibility(action):
-	if (action == "alarm"):
+func change_actionInfo_label_visibility(name):
+	if (name == "alarm"):
 		var action_instance = action.instantiate()
 		var label_alarm_use = action_instance.get_node("Control/VBoxContainer/LabelAlarmSabotage")
 		get_tree().root.add_child(action_instance) 
 		await get_tree().create_timer(2.0).timeout
-		label_alarm_sabotage.visible = true
+		label_alarm_use.visible = true
 		await get_tree().create_timer(3.5).timeout
-		label_alarm_sabotage.visible = false
+		label_alarm_use.visible = false
 		action_instance.queue_free()
 	else:
 		var action_instance = action.instantiate()
-		var label_alarm_use = action_instance.get_node("Control/VBoxContainer/LabelEnergizer")
+		var label_energizer = action_instance.get_node("Control/VBoxContainer/LabelEnergizer")
 		get_tree().root.add_child(action_instance) 
 		label_energizer.visible = true
 		await get_tree().create_timer(3.5).timeout
