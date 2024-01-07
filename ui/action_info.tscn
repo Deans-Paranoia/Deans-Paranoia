@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://db5id54tq568e"]
+
+[ext_resource type="FontFile" uid="uid://duw2x2g18tmee" path="res://ui/style/joystix monospace.otf" id="1_addaa"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 11.975
+anchor_top = 3.925
+anchor_right = 15.35
+anchor_bottom = 5.125
+offset_bottom = -1.52588e-05
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.741176, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_addaa")
+text = "WRACAJ DO NAUKI!"
+horizontal_alignment = 1
+vertical_alignment = 1
