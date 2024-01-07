@@ -41,6 +41,12 @@ offset_bottom = 7.776
 size_flags_horizontal = 3
 metadata/_edit_use_anchors_ = true
 
+[node name="KickLabel" type="Label" parent="UI" index="1"]
+offset_left = 556.0
+offset_top = 61.0
+offset_right = 712.0
+offset_bottom = 101.0
+
 [connection signal="area_entered" from="CharacterBody2D/CatchStudentArea" to="." method="_on_catch_student_area_area_entered"]
 [connection signal="area_exited" from="CharacterBody2D/CatchStudentArea" to="." method="_on_catch_student_area_area_exited"]
 [connection signal="area_entered" from="CharacterBody2D/PlayerArea" to="." method="_on_area_2d_area_entered"]
