@@ -54,23 +54,32 @@ func on_student_moved():
 		move_student.rpc(hovered_student)
 		if(check_if_was_player(hovered_student)):
 			print("he was player")
-			kickLabel.text = "He was a player"
-			await get_tree().create_timer(2.0).timeout
-			kickLabel.text = ""
+			display_info.rpc(true)
+			display_info(true)
 			
 			change_players_count.rpc_id(1)
 		else:
 			print("he was bot")
-			kickLabel.text = "He was a bot"
-			await get_tree().create_timer(2.0).timeout
-			kickLabel.text = ""
+			display_info.rpc(false)
+			display_info(false)
 		hovered_student = null
 		clicked +=1
 		if clicked == maximum_ammount_to_kick:
 			await get_tree().create_timer(3.0).timeout
 			back_to_game.rpc(students_to_kick)
 			back_to_game(students_to_kick)
-			
+
+@rpc("any_peer","call_remote")
+func display_info(is_player):
+	if is_player:
+		kickLabel.text = "He was a player"
+		await get_tree().create_timer(2.0).timeout
+		kickLabel.text = ""
+	else:
+		kickLabel.text = "He was a bot"
+		await get_tree().create_timer(2.0).timeout
+		kickLabel.text = ""
+
 func on_student_catched(name):
 	hovered_student = name
 	move_student(hovered_student)
@@ -92,7 +101,7 @@ func change_players_count():
 	hovered_student = null
 @rpc("any_peer","call_remote")
 func show_end_screen():
-	
+	await get_tree().create_timer(3.0).timeout
 	var endgame_instance = endgame.instantiate()
 	get_tree().root.add_child(endgame_instance)
 	get_tree().root.get_node("Map").queue_free()
