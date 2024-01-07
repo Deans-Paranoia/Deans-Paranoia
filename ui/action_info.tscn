@@ -22,7 +22,8 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="Control/VBoxContainer"]
+[node name="LabelEnergizer" type="Label" parent="Control/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_colors/font_color = Color(0.741176, 0, 0, 1)
@@ -32,6 +33,36 @@ theme_override_constants/shadow_offset_x = 4
 theme_override_constants/shadow_offset_y = 5
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("1_addaa")
-text = "WRACAJ DO NAUKI!"
+text = "Wypito energetyka!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LabelAlarmSabotage" type="Label" parent="Control/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.741176, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_addaa")
+text = "Zasabotowano alarm!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LabelAlarmUse" type="Label" parent="Control/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.741176, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_addaa")
+text = "Dziekan uruchomił alarm!"
 horizontal_alignment = 1
 vertical_alignment = 1

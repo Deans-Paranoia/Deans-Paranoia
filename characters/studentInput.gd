@@ -9,6 +9,12 @@ var current_task_area = "" # pusty string jesli gracz nie w tasku
 var fourthFloor = load("res://map/fourth_floor.tscn")
 var thirdFloor = load("res://map/level.tscn")
 
+var actionInfo = preload("res://ui/action_info.tscn")
+var action_instance = actionInfo.instantiate()
+var label_energizer = action_instance.get_node("Control/VBoxContainer/LabelEnergizer")
+var label_alarm_sabotage = action_instance.get_node("Control/VBoxContainer/LabelAlarmSabotage")
+var label_alarm_use = action_instance.get_node("Control/VBoxContainer/LabelAlarmUse")
+
 var dangerScene = preload("res://ui/task_exited.tscn")
 var danger_instance
 # pusta zmienna do ktorej przypisywana jest instancja sceny
