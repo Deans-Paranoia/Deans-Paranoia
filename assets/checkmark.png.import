@@ -2,21 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://do5x8bg4ionhg"
-path.s3tc="res://.godot/imported/dean.png-ef0c7ba0c10336937ff765f019ee63b6.s3tc.ctex"
+uid="uid://dfp6mrq5wbaei"
+path="res://.godot/imported/checkmark.png-5a88961c1c72d2a83fb11a78bf485998.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://dean.png"
-dest_files=["res://.godot/imported/dean.png-ef0c7ba0c10336937ff765f019ee63b6.s3tc.ctex"]
+source_file="res://assets/checkmark.png"
+dest_files=["res://.godot/imported/checkmark.png-5a88961c1c72d2a83fb11a78bf485998.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

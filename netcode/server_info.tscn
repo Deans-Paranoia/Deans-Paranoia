@@ -1,34 +1,47 @@
-[gd_scene load_steps=2 format=3 uid="uid://bjahfyp48dpwn"]
+[gd_scene load_steps=3 format=3 uid="uid://bjahfyp48dpwn"]
 
 [ext_resource type="Script" path="res://netcode/ServerInfo.gd" id="1_lno7d"]
+[ext_resource type="Theme" uid="uid://clry0vicpsvk4" path="res://ui/style/buttons.tres" id="1_teeit"]
 
 [node name="ServerInfo" type="HBoxContainer" groups=["server"]]
+custom_minimum_size = Vector2(1053, 70)
+offset_left = 12.0
+offset_top = 3.0
+offset_right = 1146.0
+offset_bottom = 73.0
 size_flags_stretch_ratio = 0.61
+theme = ExtResource("1_teeit")
 script = ExtResource("1_lno7d")
 
 [node name="name" type="Label" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 25
+size_flags_stretch_ratio = 4.17
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
 text = "test label"
 
 [node name="ip" type="Label" parent="."]
 layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 25
-text = "192.168.0.1
-"
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "192.168.0.1"
 
 [node name="playerCount" type="Label" parent="."]
 layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 25
+size_flags_horizontal = 10
+size_flags_stretch_ratio = 2.5
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
 text = "5/8"
 
 [node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 25
-text = "Join"
+size_flags_horizontal = 10
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.82
+theme_override_font_sizes/font_size = 20
+text = " Dołącz "
 
 [connection signal="button_down" from="Button" to="." method="_on_button_button_down"]

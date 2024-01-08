@@ -1,5 +1,5 @@
 extends Node2D
-var endgame = load("res://ui/endgame.tscn")
+var endgame = load("res://ui/game_result_screens/endgame.tscn")
 var rng = RandomNumberGenerator.new()
 @onready var green_terminal = load("res://assets/terminal_green.png")
 @onready var violet_terminal = load("res://assets/terminal_violet.png")
@@ -76,7 +76,11 @@ func show_end_screen():
 	get_tree().root.add_child(endgame_instance)
 	get_tree().root.get_node("Map").queue_free()
 	if globalScript.deanId != multiplayer.get_unique_id():
-		endgame_instance.get_node("ColorRect/VBoxContainer2/Label").text = "Wygrałeś!"
+		endgame_instance.get_node("ColorRectMessage/Message").text = "Wygrałeś! Teraz Dziekan już Cię nie dosięgnie."
+	else:
+		endgame_instance.get_node("ColorRectMessage/Message").text = "Przegrałeś! Poszukaj innej pracy."
+		
+		
 	self.hide()		
 func on_number_changed(name, value):
 	if name == "terminal1":

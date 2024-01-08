@@ -1,6 +1,30 @@
-[gd_scene load_steps=2 format=3 uid="uid://bkpceoqr0p20i"]
+[gd_scene load_steps=2 format=3 uid="uid://c1d8xjolc54u8"]
 
-[ext_resource type="Script" path="res://ui/pause_menu.gd" id="1_jh5fn"]
+[sub_resource type="GDScript" id="GDScript_lmxiq"]
+script/source = "extends Control
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+func _on_resume_button_pressed():
+	pass # Replace with function body.
+
+
+func _on_options_button_pressed():
+	pass # Replace with function body.
+
+
+func _on_exit_button_pressed():
+	pass # Replace with function body.
+"
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -9,7 +33,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_jh5fn")
+script = SubResource("GDScript_lmxiq")
 
 [node name="ResumeButton" type="Button" parent="."]
 layout_mode = 0

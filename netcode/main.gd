@@ -15,12 +15,13 @@ func _ready():
 	$ServerBrowser.joinGame.connect(joinByIp)
 	var panel = get_node("ServerBrowser/ip_panel")
 	for i in IP.get_local_interfaces():
-		var single_ip_info_instance = single_ip_info.instantiate()
-		single_ip_info_instance.name =  str(i.friendly)
-		single_ip_info_instance.get_node("Network Name").text = str(i.friendly)
-		single_ip_info_instance.get_node("Ipv4").text = str(i.addresses[1])
-		single_ip_info_instance.host_down.connect(_on_host_button_down)
-		panel.get_node("VBoxContainer").add_child(single_ip_info_instance)
+		if i.addresses.size()>1 and (i.friendly != null or i.friendly != "") :	
+			var single_ip_info_instance = single_ip_info.instantiate()
+			single_ip_info_instance.name =  str(i.friendly)
+			single_ip_info_instance.get_node("Network Name").text = str(i.friendly)
+			single_ip_info_instance.get_node("Ipv4").text = str(i.addresses[1])
+			single_ip_info_instance.host_down.connect(_on_host_button_down)
+			panel.get_node("ScrollContainer/VBoxContainer").add_child(single_ip_info_instance)
 	pass	
 
 # called on the server and clients
@@ -70,6 +71,7 @@ func SendPlayerInformation(name, id):
 			SendPlayerInformation.rpc(globalScript.Players[i].name, i)
 @rpc("any_peer","call_remote")
 func StartGame():
+	get_tree().root.get_node("MainMenu").hide()
 	var sceneMain = load("res://map/map.tscn").instantiate()
 	self.hide()
 	#print(control)
@@ -80,6 +82,7 @@ func StartGame():
 	
 func hostGame():
 	peer = ENetMultiplayerPeer.new()
+	
 	var error = peer.create_server(Port,8)
 	if error != OK:
 		print("Cannot host: " + str(error))
@@ -88,7 +91,7 @@ func hostGame():
 	multiplayer.set_multiplayer_peer(peer)
 	print("waiting for players...")
 	var scene:Node = load("res://netcode/waiting_room.tscn").instantiate()
-	var node:Button = scene.get_node("StartGame")
+	var node:Button = scene.get_node("HBoxContainer/StartGame")
 	node.disabled = false
 	scene.button_pressed.connect(on_start_game)
 	scene.dean_picked.connect(on_update_id)
@@ -124,7 +127,7 @@ func joinByIp(ip):
 		peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER)
 		multiplayer.set_multiplayer_peer(peer)
 	else:
-		for i in $ServerBrowser/VBoxContainer.get_children():
+		for i in $ServerBrowser/ScrollContainer/VBoxContainer.get_children():
 			i.get_node("Button").text = "room is full"
 func on_start_game():
 	for i in globalScript.Players:
@@ -135,6 +138,7 @@ func on_start_game():
 			signName(name_number,i)
 			signName.rpc(name_number,i)		
 	globalScript.game_started = true
+
 	StartGame.rpc()
 	StartGame()
 	pass
@@ -142,3 +146,11 @@ func on_start_game():
 func signName(name_number,i):
 	globalScript.Players[i].fakeName = globalScript.studentsNames[name_number]
 	globalScript.remove_name(name_number)
+
+
+
+
+func _on_back_to_menu_button_button_down():
+	get_tree().root.get_node("MainMenu").visible = true
+	get_tree().root.get_node("main").queue_free()
+	

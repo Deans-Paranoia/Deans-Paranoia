@@ -7,102 +7,102 @@
 script = ExtResource("1_8j4cy")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1, 1.11553)
 texture = ExtResource("1_p0gvo")
+metadata/_edit_lock_ = true
 
 [node name="spawnPoints" type="Node2D" parent="."]
-position = Vector2(-3, -8)
 
 [node name="1" type="Node2D" parent="spawnPoints"]
-position = Vector2(-316, -516)
+position = Vector2(-498, -398)
 
 [node name="2" type="Node2D" parent="spawnPoints"]
-position = Vector2(-692, -252)
+position = Vector2(-769, -228)
 
 [node name="3" type="Node2D" parent="spawnPoints"]
-position = Vector2(-672, 488)
+position = Vector2(-787, 391)
 
 [node name="4" type="Node2D" parent="spawnPoints"]
-position = Vector2(-1052, -512)
+position = Vector2(-1065, -404)
 
 [node name="5" type="Node2D" parent="spawnPoints"]
-position = Vector2(-316, 492)
+position = Vector2(-488, 401)
 
 [node name="6" type="Node2D" parent="spawnPoints"]
-position = Vector2(-672, 220)
+position = Vector2(-782, 228)
 
 [node name="7" type="Node2D" parent="spawnPoints"]
-position = Vector2(-1496, 464)
+position = Vector2(94, 388)
 
 [node name="8" type="Node2D" parent="spawnPoints"]
-position = Vector2(-1080, 196)
+position = Vector2(-1067, 228)
 
 [node name="9" type="Node2D" parent="spawnPoints"]
-position = Vector2(-688, -528)
+position = Vector2(-769, -386)
 
 [node name="10" type="Node2D" parent="spawnPoints"]
-position = Vector2(-1496, -220)
+position = Vector2(83, -225)
 
 [node name="11" type="Node2D" parent="spawnPoints"]
-position = Vector2(-1068, 488)
+position = Vector2(-1074, 383)
 
 [node name="12" type="Node2D" parent="spawnPoints"]
-position = Vector2(-1492, 204)
+position = Vector2(87, 230)
 
 [node name="13" type="Node2D" parent="spawnPoints"]
-position = Vector2(-1056, -236)
+position = Vector2(-1074, -235)
 
 [node name="14" type="Node2D" parent="spawnPoints"]
-position = Vector2(-1472, -524)
+position = Vector2(92, -391)
 
 [node name="deanSpawn" type="Node2D" parent="spawnPoints"]
-position = Vector2(1272, -428)
+position = Vector2(1058, -471)
 
 [node name="15" type="Node2D" parent="spawnPoints"]
-position = Vector2(105, 240)
+position = Vector2(-198, 235)
 
 [node name="16" type="Node2D" parent="spawnPoints"]
-position = Vector2(-334, 243)
+position = Vector2(-488, 211)
 
 [node name="17" type="Node2D" parent="spawnPoints"]
-position = Vector2(-314, -249)
+position = Vector2(-498, -233)
 
 [node name="18" type="Node2D" parent="spawnPoints"]
-position = Vector2(105, -489)
+position = Vector2(-207, -386)
 
 [node name="19" type="Node2D" parent="spawnPoints"]
-position = Vector2(99, -255)
+position = Vector2(-205, -217)
 
 [node name="20" type="Node2D" parent="spawnPoints"]
-position = Vector2(122, 495)
+position = Vector2(-207, 398)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 enabled = false
-zoom = Vector2(0.3, 0.3)
+zoom = Vector2(0.45, 0.45)
 metadata/_edit_lock_ = true
 
 [node name="deathZones" type="Node2D" parent="."]
-metadata/_edit_lock_ = true
 
 [node name="1" type="Node2D" parent="deathZones"]
-position = Vector2(1386, 279)
+position = Vector2(1013, 304)
 
 [node name="2" type="Node2D" parent="deathZones"]
-position = Vector2(1223, 438)
+position = Vector2(864, 496)
 
 [node name="3" type="Node2D" parent="deathZones"]
-position = Vector2(1070, 251)
+position = Vector2(720, 314)
 
 [node name="4" type="Node2D" parent="deathZones"]
-position = Vector2(1205, 104)
+position = Vector2(875, 158)
 
 [node name="5" type="Node2D" parent="deathZones"]
-position = Vector2(1307, 197)
+position = Vector2(966, 226)
 
 [node name="6" type="Node2D" parent="deathZones"]
-position = Vector2(1329, 364)
+position = Vector2(974, 425)
 
 [node name="7" type="Node2D" parent="deathZones"]
-position = Vector2(1106, 381)
+position = Vector2(769, 430)
 
 [node name="8" type="Node2D" parent="deathZones"]
-position = Vector2(1120, 158)
+position = Vector2(783, 210)

@@ -1,47 +1,237 @@
-[gd_scene load_steps=3 format=3 uid="uid://cf2ewqcmgs8ki"]
+[gd_scene load_steps=8 format=3 uid="uid://bwijmdumypa3t"]
 
-[ext_resource type="Script" path="res://ui/deans_tablet/deans_tablet.gd" id="1_7662k"]
+[ext_resource type="StyleBox" uid="uid://8l5cjlkfk2tn" path="res://ui/style/exit_button_tablet.tres" id="1_5x0rk"]
+[ext_resource type="FontFile" uid="uid://duw2x2g18tmee" path="res://ui/style/joystix monospace.otf" id="1_xhymt"]
+[ext_resource type="PackedScene" uid="uid://b01mi8vx1flxo" path="res://ui/style/BowserWindow.tscn" id="3_hkgli"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_cqflp"]
-font_size = 22
+[sub_resource type="GDScript" id="GDScript_kf4a7"]
+script/source = "extends CanvasLayer
+@onready var single_scene = load(\"res://ui/deans_tablet/tablet_single_student.tscn\")
+func _ready():
+	var i = 1
+	print(str(globalScript.usedNames.size()))
+	for j in globalScript.usedNames:
+		
+		var scene = single_scene.instantiate()
+		scene.get_node(\"Label\").text = str(j)
+		if i%2 ==1:
+			get_node(\"Tablet/BowserWindow/VBoxContainer\").add_child(scene)
+		else:
+			get_node(\"Tablet/BowserWindow/VBoxContainer2\").add_child(scene)
+		i+=1
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e8cli"]
+bg_color = Color(0.203922, 0.203922, 0.203922, 1)
+corner_radius_top_left = 35
+corner_radius_top_right = 35
+corner_radius_bottom_right = 35
+corner_radius_bottom_left = 35
+shadow_color = Color(0, 0, 0, 1)
+shadow_size = 22
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tek4y"]
+bg_color = Color(0.203922, 0.203922, 0.203922, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yv5s5"]
+bg_color = Color(0.447059, 0.67451, 0.866667, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+shadow_color = Color(0.447059, 0.67451, 0.866667, 1)
+shadow_size = 2
 
 [node name="DeansTablet" type="CanvasLayer"]
-script = ExtResource("1_7662k")
+script = SubResource("GDScript_kf4a7")
 
 [node name="Tablet" type="Panel" parent="."]
-anchors_preset = -1
-anchor_left = 0.283
-anchor_top = 0.136
-anchor_right = 0.716
-anchor_bottom = 0.793
-offset_left = -2.01602
-offset_top = -0.128006
-offset_right = 0.167969
-offset_bottom = 0.135986
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -444.0
+offset_top = -261.0
+offset_right = 447.0
+offset_bottom = 251.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_e8cli")
 
-[node name="Label" type="Label" parent="Tablet"]
-custom_minimum_size = Vector2(0, 50)
+[node name="ExitButton" type="Button" parent="Tablet"]
 layout_mode = 2
-offset_right = 500.0
-offset_bottom = 50.0
-text = "Is a BOT?"
-label_settings = SubResource("LabelSettings_cqflp")
+anchor_left = -0.00448934
+anchor_top = -0.00585938
+anchor_right = -0.00448934
+anchor_bottom = -0.00585938
+offset_left = 864.0
+offset_top = 227.0
+offset_right = 890.0
+offset_bottom = 278.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 1
+theme_override_styles/normal = ExtResource("1_5x0rk")
+theme_override_styles/hover = ExtResource("1_5x0rk")
+theme_override_styles/pressed = ExtResource("1_5x0rk")
+
+[node name="ExitButton2" type="Button" parent="Tablet"]
+layout_mode = 2
+anchor_top = -0.296875
+anchor_bottom = -0.296875
+offset_left = 849.0
+offset_top = 362.0
+offset_right = 891.0
+offset_bottom = 404.0
+grow_horizontal = 0
+grow_vertical = 2
+rotation = 4.71239
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_tek4y")
+text = "⮪	"
+
+[node name="ExitButton3" type="Button" parent="Tablet"]
+layout_mode = 2
+anchor_top = -0.0136719
+offset_left = 849.0
+offset_top = 337.0
+offset_right = 891.0
+offset_bottom = 372.0
+grow_horizontal = 0
+grow_vertical = 2
+rotation = 4.71239
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_tek4y")
+text = "⌂"
+
+[node name="Screen" type="Panel" parent="Tablet"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -401.5
+offset_top = -224.0
+offset_right = 403.5
+offset_bottom = 230.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yv5s5")
+
+[node name="Brand" type="Label" parent="Tablet"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.016835
+anchor_top = 0.595703
+anchor_right = 0.016835
+anchor_bottom = 0.595703
+offset_top = -10.0
+offset_right = 106.0
+offset_bottom = 10.0
+grow_vertical = 2
+rotation = 4.71413
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("1_xhymt")
+text = "Szajsung"
+metadata/_edit_use_anchors_ = true
+
+[node name="BowserWindow" parent="Tablet" instance=ExtResource("3_hkgli")]
+layout_mode = 1
+anchor_left = -0.150393
+anchor_top = -0.0566406
+anchor_right = 0.525607
+anchor_bottom = 0.61036
+offset_top = 74.375
+offset_bottom = 74.159
+
+[node name="HSeparator" type="HSeparator" parent="Tablet/BowserWindow"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 85.0
+offset_right = 777.0
+offset_bottom = 89.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tablet/BowserWindow"]
+layout_mode = 2
+offset_left = 11.0
+offset_top = 95.0
+offset_right = 375.0
+offset_bottom = 425.0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Tablet/BowserWindow"]
+layout_mode = 2
+offset_left = 396.0
+offset_top = 95.0
+offset_right = 756.0
+offset_bottom = 425.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Tablet/BowserWindow"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 42.0
+offset_right = 387.0
+offset_bottom = 89.0
+
+[node name="Student" type="Label" parent="Tablet/BowserWindow/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_xhymt")
+text = " Student"
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="IsNieuk" type="Label" parent="Tablet/BowserWindow/HBoxContainer"]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_xhymt")
+text = "Nieuk?"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Tablet"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Tablet/BowserWindow"]
 layout_mode = 0
-offset_left = 29.0
-offset_top = 64.0
-offset_right = 225.0
-offset_bottom = 538.0
+offset_left = 387.0
+offset_top = 42.0
+offset_right = 778.0
+offset_bottom = 89.0
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Tablet"]
+[node name="Student" type="Label" parent="Tablet/BowserWindow/HBoxContainer2"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_xhymt")
+text = " Student"
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="IsNieuk" type="Label" parent="Tablet/BowserWindow/HBoxContainer2"]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_xhymt")
+text = "Nieuk?"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="VSeparator" type="VSeparator" parent="Tablet/BowserWindow"]
 layout_mode = 0
-offset_left = 257.0
-offset_top = 65.0
-offset_right = 461.0
-offset_bottom = 538.0
+offset_left = 383.0
+offset_top = 42.0
+offset_right = 387.0
+offset_bottom = 427.0
+
+[node name="Address" type="Label" parent="Tablet/BowserWindow"]
+layout_mode = 0
+offset_left = 43.0002
+offset_top = 11.0
+offset_right = 682.0
+offset_bottom = 34.0
+text = "https://e-dziekan.edu.pl/sggw/wzim/dziekan/lista-studentów/znajdowanie-nieuków"

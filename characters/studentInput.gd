@@ -9,6 +9,10 @@ var current_task_area = "" # pusty string jesli gracz nie w tasku
 var fourthFloor = load("res://map/fourth_floor.tscn")
 var thirdFloor = load("res://map/level.tscn")
 
+@onready var action = load("res://ui/action_info.tscn")
+var label_energizer
+var label_alarm_sabotage
+
 var dangerScene = preload("res://ui/task_exited.tscn")
 var danger_instance
 # pusta zmienna do ktorej przypisywana jest instancja sceny
@@ -138,7 +142,8 @@ func sabotage_alarm():
 	print("Alarm sabotaged")
 	stop_player_movement()
 	body.get_node("FreezeTimer").start()
-
+	change_actionInfo_label_visibility.rpc("alarm")
+	change_actionInfo_label_visibility("alarm")
 func task_execution():
 	# funkcja do wykonywania taska przez studenta
 	player_task.emit(current_task_area)
@@ -153,7 +158,27 @@ func catch_student():
 		is_catched = true
 		stop_player_movement()
 		change_is_catched.rpc()
-	
+		body.get_node("AnimationTree")._on_student_catched()
+
+@rpc("any_peer","call_remote")
+func change_actionInfo_label_visibility(name):
+	if (name == "alarm"):
+		var action_instance = action.instantiate()
+		var label_alarm_use = action_instance.get_node("Control/VBoxContainer/LabelAlarmSabotage")
+		get_tree().root.add_child(action_instance) 
+		await get_tree().create_timer(2.0).timeout
+		label_alarm_use.visible = true
+		await get_tree().create_timer(3.5).timeout
+		label_alarm_use.visible = false
+		action_instance.queue_free()
+	else:
+		var action_instance = action.instantiate()
+		var label_energizer = action_instance.get_node("Control/VBoxContainer/LabelEnergizer")
+		get_tree().root.add_child(action_instance) 
+		label_energizer.visible = true
+		await get_tree().create_timer(3.5).timeout
+		label_energizer.visible = false
+		action_instance.queue_free()
 func use_server():
 	# funkcja do uzywania serwera przez studenta
 		var serverNode = get_node_or_null("../fourthFloor/server")
@@ -200,7 +225,8 @@ func acquire_booster():
 	has_booster = true
 	_dig_speed = 0.6
 	print("Boost taken, current dig speed: ",_dig_speed)
-	
+	change_actionInfo_label_visibility("energizer")
+	change_actionInfo_label_visibility.rpc("energizer")
 
 @rpc("any_peer","call_local")
 func teleport(ammount):

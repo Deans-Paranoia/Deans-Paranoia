@@ -1,0 +1,76 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3gav5e6dpieu"]
+
+[ext_resource type="FontFile" uid="uid://duw2x2g18tmee" path="res://ui/style/joystix monospace.otf" id="1_addaa"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -577.0
+offset_top = -325.0
+offset_right = 577.0
+offset_bottom = 92.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -119.5
+offset_top = -68.5
+offset_right = 119.5
+offset_bottom = -48.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="LabelEnergizer" type="Label" parent="Control/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.741176, 0.529412, 0.34902, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("1_addaa")
+theme_override_font_sizes/font_size = 20
+text = "Student wypił energetyka!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LabelAlarmSabotage" type="Label" parent="Control/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.741176, 0.529412, 0.34902, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("1_addaa")
+theme_override_font_sizes/font_size = 20
+text = "Sabotowano alarm!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LabelAlarmUse" type="Label" parent="Control/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.741176, 0.529412, 0.34902, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("1_addaa")
+theme_override_font_sizes/font_size = 20
+text = "Uruchomiono alarm!"
+horizontal_alignment = 1
+vertical_alignment = 1
