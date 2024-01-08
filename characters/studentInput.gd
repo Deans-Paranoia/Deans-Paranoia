@@ -217,7 +217,8 @@ func task_entered(text):
 	change_catchable(false)
 	change_catchable.rpc(false)
 	current_task_area = text
-	text_interaction("Zrób zadanie")
+	if multiplayer.get_unique_id() == int(str(name)):
+		text_interaction("Zrób zadanie")
 	
 func task_exited():
 	danger_instance = dangerScene.instantiate()
