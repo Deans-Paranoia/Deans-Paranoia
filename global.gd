@@ -7,7 +7,7 @@ func _ready():
 		
 var Players ={}
 var deanId:int
-
+var game_started = false
 
 class Task:
 	var positionX: float

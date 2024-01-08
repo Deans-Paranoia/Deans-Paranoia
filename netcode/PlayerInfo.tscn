@@ -29,3 +29,5 @@ size_flags_vertical = 4
 size_flags_stretch_ratio = 0.0
 theme = ExtResource("1_037bl")
 text = "Uczyń dziekanem"
+
+[connection signal="button_down" from="MakeAsDean" to="." method="_on_make_as_dean_button_down"]

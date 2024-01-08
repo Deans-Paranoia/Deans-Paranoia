@@ -13,6 +13,7 @@ var is_host = false
 func _ready():
 	broadcastTimer = $BroadcastTimer
 	setUp()
+	
 	pass
 func _process(delta):
 	if listener != null and listener.get_available_packet_count() > 0 and is_host == false:
@@ -28,17 +29,26 @@ func _process(delta):
 		if $VBoxContainer.get_children().size()>0:
 			for i in $VBoxContainer.get_children():
 				if i.name == roomInfo.name:
-					i.get_node("playerCount").text = str(playerCount)+"/8"
-					i.get_node("ip").text = str(serverIp)
-					return
+					if playerCount == 9:
+						i.queue_free()
+						return
+					else:
+						i.get_node("playerCount").text = str(playerCount)+"/8"
+						i.get_node("ip").text = str(serverIp)
+						return
 		else:
 			var currentInfo = serverInfo.instantiate()
 			currentInfo.name = roomInfo.name
 			currentInfo.get_node("name").text = roomInfo.name
-			currentInfo.get_node("playerCount").text = str(roomInfo.playerCount)+"/8"
-			currentInfo.get_node("ip").text = serverIp
-			$VBoxContainer.add_child(currentInfo)
-			currentInfo.joinGame.connect(joinByIp)
+			if playerCount == 9:
+				currentInfo.get_node("playerCount").text = "W trakcie gry"
+				get_node("../BowserWindow/Title").visible = true
+
+			else:
+				currentInfo.get_node("playerCount").text = str(roomInfo.playerCount)+"/8"
+				currentInfo.get_node("ip").text = serverIp
+				$VBoxContainer.add_child(currentInfo)
+				currentInfo.joinGame.connect(joinByIp)
 		
 	
 		#$"../Host".disabled = true
@@ -57,7 +67,9 @@ func setUp():
 		var ok = listener.bind(listenPort)
 		if ok == OK:
 			print("Bound to listen port " + str(listenPort) + "succesfull")
+			
 			$ip_panel.visible = false
+			
 		else:
 			get_tree().quit()
 			
@@ -80,16 +92,22 @@ func setupBroadcast(name):
 		print("Failed to bind to broadcast port")
 	$BroadcastTimer.start()
 func _on_broadcast_timer_timeout():
-	#print("Broadcasting game!")
-	RoomInfo.playerCount = globalScript.Players.size()
+	if globalScript.game_started == false:
+		RoomInfo.playerCount = globalScript.Players.size()
+	else:
+		RoomInfo.playerCount = 9
 	var data = JSON.stringify(RoomInfo)
 	var packet = data.to_ascii_buffer()
 	broadcaster.put_packet(packet)
 	
-	pass
+
 func exit_tree():
 	cleanUp()
-
+@rpc("any_peer","call_remote")
+func remove_server():
+	get_node("VBoxContainer/Dean's Paranoia").queue_free()
+	listener = null
+	
 func cleanUp():
 	
 	if listener != null:
