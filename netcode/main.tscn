@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://netcode/ServerBrowser.gd" id="2_4kyfb"]
 [ext_resource type="Theme" uid="uid://clry0vicpsvk4" path="res://ui/style/buttons.tres" id="2_gr6m0"]
 [ext_resource type="PackedScene" uid="uid://b01mi8vx1flxo" path="res://ui/style/BowserWindow.tscn" id="2_urcuq"]
-[ext_resource type="PackedScene" uid="uid://cbojdoijafiyk" path="res://netcode/ip_panel.tscn" id="4_5v8nh"]
+[ext_resource type="PackedScene" path="res://netcode/ip_panel.tscn" id="4_5v8nh"]
 [ext_resource type="PackedScene" uid="uid://bjahfyp48dpwn" path="res://netcode/server_info.tscn" id="4_8y5yr"]
 
 [node name="main" type="Control"]

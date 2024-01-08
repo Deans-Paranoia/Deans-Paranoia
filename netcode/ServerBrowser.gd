@@ -43,6 +43,7 @@ func _process(delta):
 			if playerCount == 9:
 				currentInfo.get_node("playerCount").text = "W trakcie gry"
 				get_node("../BowserWindow/Title").visible = true
+
 			else:
 				currentInfo.get_node("playerCount").text = str(roomInfo.playerCount)+"/8"
 				currentInfo.get_node("ip").text = serverIp
