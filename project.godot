@@ -27,9 +27,17 @@ window/stretch/mode="canvas_items"
 
 project/assembly_name="Dean-s Paranoia"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gdUnit4/plugin.cfg")
+
 [filesystem]
 
 import/blender/enabled=false
+
+[gdunit4]
+
+settings/test/test_suite_naming_convention=1
 
 [importer_defaults]
 
