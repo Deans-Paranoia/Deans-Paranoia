@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0owslyqqlx18"
-path.s3tc="res://.godot/imported/questionmark.png-2969f0296fe4029cbfa9ef58c3fb14bd.s3tc.ctex"
+uid="uid://belcpfe8jllry"
+path.s3tc="res://.godot/imported/Grafika_bez_nazwy 3.png-a06f65b870ece96fe162a25e644751db.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/questionmark.png"
-dest_files=["res://.godot/imported/questionmark.png-2969f0296fe4029cbfa9ef58c3fb14bd.s3tc.ctex"]
+source_file="res://assets/Fixed/Grafika_bez_nazwy 3.png"
+dest_files=["res://.godot/imported/Grafika_bez_nazwy 3.png-a06f65b870ece96fe162a25e644751db.s3tc.ctex"]
 
 [params]
 
